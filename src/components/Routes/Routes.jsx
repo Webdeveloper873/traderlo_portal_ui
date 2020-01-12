@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 
-const LANDING_PAGE_PATH = '/fda';
+const LANDING_PAGE_PATH = '/traderlo';
 
 const FallbackDisplay = () => (<div>loading...</div>);
 const MockComponent = () => <div>Mock Component</div>

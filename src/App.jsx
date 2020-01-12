@@ -2,10 +2,10 @@ import React from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
 
 //components
-import Routes from './components/Routes';
-import Viewport from './common/components/Viewport';
+import Routes from 'components/Routes';
+import Viewport from 'common/components/Viewport';
 
-import configureStore from './appRedux/store';
+import configureStore from 'appRedux/store';
 
 const propTypes = {
 }

@@ -1,8 +1,8 @@
 {
-  "name": "atskill-portal",
+  "name": "traderlo-portal",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://angecapuz.github.io/react-demo-app",
+  "homepage": "./",
   "dependencies": {
     "bootstrap": "^4.4.1",
     "gh-pages": "^2.1.1",
