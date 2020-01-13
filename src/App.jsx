@@ -5,7 +5,11 @@ import { Provider as ReduxProvider } from 'react-redux';
 import Routes from 'components/Routes';
 import Viewport from 'common/components/Viewport';
 
+//utils
 import configureStore from 'appRedux/store';
+
+//styles
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const propTypes = {
 }
