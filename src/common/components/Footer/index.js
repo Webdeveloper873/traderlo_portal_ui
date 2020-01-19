@@ -2,7 +2,7 @@ import React from 'react';
 import {Jumbotron, Col, Nav, InputGroup, Form, Button, Row} from 'react-bootstrap';
 
 //component
-import Divider from 'common/components/Divider';
+import PageWrapper from 'common/components/PageWrapper';
 
 //style
 import classes from './styles.module.scss';
@@ -77,7 +77,7 @@ const CopyRights = () => {
 const Footer = () => {
   return(
     <>
-    <Jumbotron className={`navbar fixed-bottom ${classes.jumbotronStyle}`}>
+    <Jumbotron className={`navbar sticky-bottom ${classes.jumbotronStyle}`}>
       <Row className={classes.wrapper} >
         <RightCol />
         <MiddleCol />

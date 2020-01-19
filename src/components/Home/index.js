@@ -5,6 +5,9 @@ import Login from 'components/Login';
 import Header from 'common/components/Header';
 import Footer from 'common/components/Footer';
 
+//styles
+import classes from './styles.module.scss';
+
 const Home = () => {
   const [showLogin, setShowLogin] = useState(false);
 
@@ -14,6 +17,9 @@ const Home = () => {
     <>
       <Header onClickSignInUp={toggleShowLogin}/>
       <Login show={showLogin} handleClose={toggleShowLogin}/>
+      <div className={classes.wrapper}>
+        dsa
+      </div>
       <Footer />
     </>
   );
