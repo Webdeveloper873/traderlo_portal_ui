@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Col, Row, ListGroup} from 'react-bootstrap';
+import { Col, Row} from 'react-bootstrap';
 
 //components
 import Login from 'components/Login';
@@ -10,6 +10,7 @@ import GlobalSearch from './GlobalSearch';
 import CarouselBlogs from './CarouselBlogs';
 import ProductCard from './ProductCard';
 import TemplatesList from './TemplatesList';
+import HowItWorks from './HowItWorks';
 
 //styles
 import classes from './styles.module.scss';
@@ -35,6 +36,10 @@ const HomeContent = () => {
         <Col xs={12} lg={7}>
           <TemplatesList />
         </Col>
+      </Row>
+
+      <Row className={classes.contentRow}>
+        <HowItWorks />
       </Row>
     </PageWrapper>
   );

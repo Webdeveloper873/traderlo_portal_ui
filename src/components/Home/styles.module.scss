@@ -30,3 +30,16 @@
   padding: 0 !important;
   border-radius: 0 !important;
 }
+
+.howItWorks {
+  text-align: center;
+  width: 100%;
+
+  .cardDeck {
+    margin-top: 15px;
+
+    .card {
+      border: 0px;
+    }
+  }
+}
