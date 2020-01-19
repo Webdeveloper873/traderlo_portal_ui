@@ -12,6 +12,7 @@
 
 .contentRow {
   margin-top: 15px;
+  width: 100%;
 }
 
 .marginBot {
@@ -43,3 +44,35 @@
     }
   }
 }
+
+.subsNewLetter {
+  width: 100%;
+  text-align: center;
+
+  .subTitle {
+    font-weight: bold;
+    color: #888;
+    margin-bottom: 30px;
+  }
+
+  .searchInput {
+    width: 344px;
+  }
+
+  .imgList {
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+  }
+
+  .details {
+    display: flex;
+    
+    .detailsList {
+      // display: inline-block;
+      flex: 1 1 30%;
+    }
+  }
+
+}
+
