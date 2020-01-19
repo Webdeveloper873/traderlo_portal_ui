@@ -1,13 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
+import Login from 'components/Login';
 
 //components
 import Header from 'common/components/Header';
+import Footer from 'common/components/Footer';
 
 const Home = () => {
+  const [showLogin, setShowLogin] = useState(false);
+
+  const toggleShowLogin = () => setShowLogin(!showLogin)
+
   return(
-    <React.Fragment>
-      <Header/>
-    </React.Fragment>
+    <>
+      <Header onClickSignInUp={toggleShowLogin}/>
+      <Login show={showLogin} handleClose={toggleShowLogin}/>
+      <Footer />
+    </>
   );
 }
 

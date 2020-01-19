@@ -7,7 +7,7 @@ import classes from './styles.module.scss';
 //assets
 import logo from 'assets/logo.png';
 
-const Header = () => {
+const Header = ({onClickSignInUp}) => {
   return (
     <div className={classes.wrapper}>
       <Navbar className={classes.header} bg="light" expand="lg" sticky="top">
@@ -20,7 +20,7 @@ const Header = () => {
             <Nav.Link href="/templates">Template/Graphics</Nav.Link>
             <Nav.Link href="/script">Clone script</Nav.Link>
             <Nav.Link href="/plugins">Plugins/Themes</Nav.Link>
-            <Nav.Link href="/SignIn">Sign in/Signup</Nav.Link>
+            <Nav.Link onClick={onClickSignInUp}>Sign in/Signup</Nav.Link>
             <Button variant="primary">Start Selling</Button>
           </Nav>
         </Navbar.Collapse>
