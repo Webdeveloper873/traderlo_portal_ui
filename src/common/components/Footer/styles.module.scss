@@ -1,6 +1,10 @@
 .jumbotronStyle {
   padding: 60px 60px 30px 60px !important;
-  border-bottom: 1px solid #ccc;
+  margin-bottom: 0 !important;
+
+  .copyRights {
+    border-top: 1px solid #e8e8e8 !important;
+  }
 }
 
 .logo {
@@ -16,4 +20,12 @@
   margin-top: 25px;
   height: 50px;
   width: 100%;
+}
+
+.wrapper {
+  width: 100%;
+  box-sizing: content-box;
+  max-width: 1140px;
+  margin-right: auto !important;
+  margin-left: auto !important;
 }

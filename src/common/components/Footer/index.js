@@ -1,5 +1,5 @@
 import React from 'react';
-import {Jumbotron, Col, Nav, InputGroup, Form, Button} from 'react-bootstrap';
+import {Jumbotron, Col, Nav, InputGroup, Form, Button, Row} from 'react-bootstrap';
 
 //component
 import Divider from 'common/components/Divider';
@@ -51,13 +51,39 @@ const LeftCol = () => {
   );
 }
 
+const CopyRights = () => {
+  return (
+    <Row className={`${classes.wrapper} ${classes.copyRights}`} md={12} xs={12}>
+      <Col xs={12} md={6}>
+        Copyright © 2019 Free Domain Auctions. All rights reserved.
+      </Col>
+      <Col xs={12} md={6} >
+        <Nav as="ul" className="justify-content-end">
+          <Nav.Item as="li">
+            <Nav.Link href="/home">About Us</Nav.Link>
+          </Nav.Item>
+          <Nav.Item as="li">
+            <Nav.Link eventKey="link-1">How it Works</Nav.Link>
+          </Nav.Item>
+          <Nav.Item as="li">
+            <Nav.Link eventKey="link-2">Terms and Condition</Nav.Link>
+          </Nav.Item>
+        </Nav>
+      </Col>
+    </Row>
+  );
+}
+
 const Footer = () => {
   return(
     <>
     <Jumbotron className={`navbar fixed-bottom ${classes.jumbotronStyle}`}>
-      <RightCol />
-      <MiddleCol />
-      <LeftCol />
+      <Row className={classes.wrapper} >
+        <RightCol />
+        <MiddleCol />
+        <LeftCol />
+      </Row>
+      <CopyRights/>
     </Jumbotron>
     </>
   );
