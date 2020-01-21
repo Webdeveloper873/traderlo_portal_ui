@@ -4,4 +4,8 @@
   max-width: 1000px;
   margin-right: auto !important;
   margin-left: auto !important;
+
+  &.centerContent {
+    text-align: center;
+  }
 }

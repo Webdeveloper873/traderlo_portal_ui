@@ -12,6 +12,7 @@ import ProductCard from './ProductCard';
 import TemplatesList from './TemplatesList';
 import HowItWorks from './HowItWorks';
 import SubscribeLetter from './SubscribeLetter';
+import BlogCards from './BlogCards';
 
 //styles
 import classes from './styles.module.scss';
@@ -46,6 +47,7 @@ const HomeContent = () => {
 
       </PageWrapper>
       <SubscribeLetter />
+      <BlogCards />
     </>
   );
 }
