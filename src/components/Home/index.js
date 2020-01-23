@@ -1,10 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Col, Row} from 'react-bootstrap';
 
 //components
-import Login from 'components/Login';
-import Header from 'common/components/Header';
-import Footer from 'common/components/Footer';
 import PageWrapper from 'common/components/PageWrapper';
 import GlobalSearch from './GlobalSearch';
 import CarouselBlogs from './CarouselBlogs';
@@ -17,8 +14,10 @@ import BlogCards from './BlogCards';
 //styles
 import classes from './styles.module.scss';
 
-const HomeContent = () => {
-  return (
+
+const Home = () => {
+
+  return(
     <>
       <PageWrapper>
         <Row className={classes.contentRow}>
@@ -48,17 +47,6 @@ const HomeContent = () => {
       </PageWrapper>
       <SubscribeLetter />
       <BlogCards />
-    </>
-  );
-}
-
-const Home = () => {
-
-  return(
-    <>
-
-      <HomeContent />
-
     </>
   );
 }
