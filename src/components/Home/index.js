@@ -53,16 +53,12 @@ const HomeContent = () => {
 }
 
 const Home = () => {
-  const [showLogin, setShowLogin] = useState(false);
-
-  const toggleShowLogin = () => setShowLogin(!showLogin)
 
   return(
     <>
-      <Header onClickSignInUp={toggleShowLogin} />
-      <Login show={showLogin} handleClose={toggleShowLogin} />
+
       <HomeContent />
-      <Footer />
+
     </>
   );
 }

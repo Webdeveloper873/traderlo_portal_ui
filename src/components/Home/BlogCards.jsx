@@ -12,7 +12,7 @@ import ImageHolder from 'assets/main.jpg';
 
 const CardItem = () => {
   return (
-    <Col xs={12} lg={5}>
+    <Col xs={12} lg={4}>
       <Card>
         <Card.Img variant="top" src={ImageHolder} />
         <Card.Body>
@@ -32,7 +32,9 @@ const BlogCards = () => {
           <h1>Blog</h1>
           <span className={classes.subTitle}>Consectetur adipisicing eliteiuim set eiusmod tempor incididunt labore etnalom dolore magna aliqua udiminimate veniam quistan norud.</span>
         </div>
-        <Row>
+        <Row className={classes.contentRow} gutter={24}>
+          <CardItem />
+          <CardItem />
           <CardItem />
         </Row>
       </PageWrapper>
