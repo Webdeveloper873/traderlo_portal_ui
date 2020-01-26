@@ -1,9 +1,6 @@
 import React from 'react';
 import {Jumbotron, Col, Nav, InputGroup, Form, Button, Row} from 'react-bootstrap';
 
-//component
-import PageWrapper from 'common/components/PageWrapper';
-
 //style
 import classes from './styles.module.scss';
 
