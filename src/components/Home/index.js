@@ -3,6 +3,7 @@ import { Col, Row} from 'react-bootstrap';
 
 //components
 import PageWrapper from 'common/components/PageWrapper';
+import MultiItemCarousel from 'common/components/MultiItemCarousel';
 import GlobalSearch from './GlobalSearch';
 import CarouselBlogs from './CarouselBlogs';
 import ProductCard from './ProductCard';
@@ -39,12 +40,16 @@ const Home = () => {
             <TemplatesList />
           </Col>
         </Row>
+      </PageWrapper>
 
+      <MultiItemCarousel />
+
+      <PageWrapper>
         <Row className={classes.contentRow}>
           <HowItWorks />
         </Row>
-
       </PageWrapper>
+
       <SubscribeLetter />
       <BlogCards />
     </>
