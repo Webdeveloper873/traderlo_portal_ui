@@ -1,0 +1,22 @@
+.pageWrapper {
+  padding: 40px 0;
+}
+
+.banner {
+  background: url('../../assets/trade.png');
+  min-height: 180px;
+  background-size: cover;
+
+  .text {
+    text-align: center;
+    color: #fff;
+    font-size: 36px;
+    padding-top: 70px;
+    font-weight: 600;
+  }
+}
+
+.searchKeyword {
+  background: #f2f2f2;
+  padding: 16px !important;
+}

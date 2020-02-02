@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 
 //components
 import Home from 'components/Home';
-import Domains from 'components/Domains';
 import SearchRecord from 'components/SearchRecord';
 import Header from 'common/components/Header';
 import Login from 'components/Login';
@@ -29,7 +28,7 @@ const Routes = ({ }) => {
         <Login show={showLogin} handleClose={toggleShowLogin} />
         <Switch>
           <Route exact path={routes.HOME_PAGE} component={Home} />
-          <Route exact path={routes.DOMAINS_PAGE} component={SearchRecord} />
+          <Route exact path={routes.DOMAINS_PAGE} render={() => <SearchRecord title='Domains'/>} />
           <Route path="*" render={
             () => (<Redirect to={routes.HOME_PAGE} />)
           } />

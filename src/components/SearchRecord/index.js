@@ -1,15 +1,42 @@
 import React from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Card, Col } from 'react-bootstrap';
 
 //components
 import PageWrapper from 'common/components/PageWrapper';
+import Banner from './Banner';
 
-const SearchRecord = () => {
+//styles
+import classes from './styles.module.scss';
+
+const Filters = () => {
   return(
-    <PageWrapper>
-      <Col xs={12} md={4}>sideA</Col>
-      <Col xs={12} md={8}>Side B</Col>
-    </PageWrapper>
+    <Card body>
+      <span>Filters</span>
+    </Card>
+  );
+}
+
+const SearchKeyword = () => {
+  return(
+    <div className={classes.searchKeyword}>
+
+    </div>
+  );
+}
+
+const SearchRecord = ({title}) => {
+  return(
+    <>
+      <Banner text={title} />
+      <PageWrapper className={classes.pageWrapper}>
+        <Col xs={12} md={3}>
+          <Filters />
+        </Col>
+        <Col xs={12} md={9}>
+          <SearchKeyword />
+        </Col>
+      </PageWrapper>
+    </>
   );
 }
 
