@@ -10,7 +10,7 @@ const text = ({children}) => {
 
 const Divider = ({ className, children, ...props }) => {
   return(
-    <div className={`${classes.separator} ${className}`}>
+    <div className={`${classes.separator} ${children ? classes.midText : ''} ${className}`}>
       {children}
     </div>
   );

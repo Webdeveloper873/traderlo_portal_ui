@@ -1,7 +1,10 @@
 .separator {
-    display: flex;
-    align-items: center;
-    text-align: center;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.midText {
 
   &:before {
     margin-right: 1em;

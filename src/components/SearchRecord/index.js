@@ -1,8 +1,9 @@
 import React from 'react';
-import { Card, Col } from 'react-bootstrap';
+import { Card, Col, Button } from 'react-bootstrap';
 
 //components
 import PageWrapper from 'common/components/PageWrapper';
+import Divider from 'common/components/Divider';
 import Banner from './Banner';
 
 //styles
@@ -10,11 +11,16 @@ import classes from './styles.module.scss';
 
 const Filters = () => {
   return(
-    <Card body>
-      <span>Filters</span>
+    <Card className={classes.filters} body>
+      <div className='d-flex justify-content-between'>
+        <span className={classes.label}>Filters</span>
+        <Button variant="outline-info border-0">clear all</Button>
+      </div>
+      <Divider />
     </Card>
   );
 }
+
 
 const SearchKeyword = () => {
   return(
