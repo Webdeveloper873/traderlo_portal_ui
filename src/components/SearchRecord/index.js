@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Col, Button } from 'react-bootstrap';
+import { Card, Col, Button, DropdownButton, Dropdown } from 'react-bootstrap';
 
 //components
 import PageWrapper from 'common/components/PageWrapper';
@@ -16,7 +16,14 @@ const Filters = () => {
         <span className={classes.label}>Filters</span>
         <Button variant="outline-info border-0">clear all</Button>
       </div>
-      <Divider />
+      <Divider className={classes.divider} />
+      <span className={classes.filterLabel}>Categories</span>
+      <select className="browser-default custom-select" defaultValue='1'>
+        <option value="1">Anywhere</option>
+        <option value="2">At the start</option>
+        <option value="3">At the end</option>
+        <option value="3">Exact</option>
+      </select>
     </Card>
   );
 }
