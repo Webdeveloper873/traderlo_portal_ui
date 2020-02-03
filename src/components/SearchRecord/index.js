@@ -17,13 +17,22 @@ const Filters = () => {
         <Button variant="outline-info border-0">clear all</Button>
       </div>
       <Divider className={classes.divider} />
-      <span className={classes.filterLabel}>Categories</span>
-      <select className="browser-default custom-select" defaultValue='1'>
+      <span className={classes.filterLabel}>Placement</span>
+      <select className={`browser-default custom-select ${classes.inputField}`} defaultValue='1'>
         <option value="1">Anywhere</option>
         <option value="2">At the start</option>
         <option value="3">At the end</option>
         <option value="3">Exact</option>
       </select>
+      <span className={classes.filterLabel}>Extensions</span>
+      <select className={`browser-default custom-select ${classes.inputField}`}>
+        <option value="1">.com</option>
+        <option value="2">.net</option>
+        <option value="3">.org</option>
+        <option value="3">.io</option>
+      </select>
+      <span className={classes.filterLabel}>Price Range</span>
+      <span className='input-group-addon'>to</span>
     </Card>
   );
 }
