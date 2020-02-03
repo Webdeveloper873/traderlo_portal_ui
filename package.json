@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "./",
   "dependencies": {
+    "antd": "^3.26.8",
     "bootstrap": "^4.4.1",
     "gh-pages": "^2.1.1",
     "node-sass": "^4.12.0",

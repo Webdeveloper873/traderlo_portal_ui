@@ -10,6 +10,7 @@ import configureStore from 'appRedux/store';
 
 //styles
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'antd/dist/antd.css';
 
 const propTypes = {
 }
