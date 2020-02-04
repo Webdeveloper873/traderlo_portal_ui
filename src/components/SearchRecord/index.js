@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Col } from 'react-bootstrap';
-import { Slider, Divider, Card, Typography, Select, Checkbox } from 'antd';
+import { Slider, Divider, Card, Typography, Select, Checkbox, Input } from 'antd';
 
 //components
 import PageWrapper from 'common/components/PageWrapper';
-// import Divider from 'common/components/Divider';
 import Banner from './Banner';
 
 //styles
@@ -12,6 +11,7 @@ import classes from './styles.module.scss';
 
 const {Text} = Typography;
 const {Option} = Select;
+
 
 const SliderFilter = ({ sliderVal, amtLabel, ...props}) => {
   return(
@@ -108,7 +108,17 @@ const Filters = () => {
 const SearchKeyword = () => {
   return(
     <div className={classes.searchKeyword}>
+      <Input.Group compact large>
+        <Select style={{width: '125px'}} placeholder='Placement'>
+          <Option value="beginning">Beginning</Option>
+          <Option value="anywhere">Any Where</Option>
+          <Option value="ending">Ending</Option>
+        </Select>
+        <Input.Search style={{ width: '220px ' }} enterButton />
+      </Input.Group>
+      <Divider/>
 
+      <Typography.Title level={4}>Showing 1 - 30 of 12,076 results</Typography.Title>
     </div>
   );
 }
