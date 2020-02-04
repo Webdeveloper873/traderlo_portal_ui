@@ -17,6 +17,16 @@
 }
 
 .filters {
+
+  &.filterCard {
+    margin-top: 15px;
+  }
+
+  .inputField {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
   .label {
     color: #ec018c;
     padding: 6px 12px;
@@ -24,7 +34,7 @@
   }
 
   .divider {
-    padding-bottom: 15px;
+    margin: 10px 0px;
   }
 
   .filterLabel {
