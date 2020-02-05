@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Col } from 'react-bootstrap';
-import { Slider, Divider, Card, Typography, Select, Checkbox, Input } from 'antd';
+import { Slider, Divider, Card, Typography, Select, Checkbox, Input, Row, Col } from 'antd';
 
 //components
 import PageWrapper from 'common/components/PageWrapper';
@@ -108,7 +107,8 @@ const Filters = () => {
 const SearchKeyword = () => {
   return(
     <div className={classes.searchKeyword}>
-      <Input.Group compact large>
+      <Typography.Text level={4} strong>{`Keywords : `}</Typography.Text>
+      <Input.Group compact className={classes.inputLeft}>
         <Select style={{width: '125px'}} placeholder='Placement'>
           <Option value="beginning">Beginning</Option>
           <Option value="anywhere">Any Where</Option>
@@ -118,7 +118,18 @@ const SearchKeyword = () => {
       </Input.Group>
       <Divider/>
 
-      <Typography.Title level={4}>Showing 1 - 30 of 12,076 results</Typography.Title>
+      <Row>
+        <Col span={18}>
+          <Typography.Title level={4}>Showing 1 - 30 of 12,076 results</Typography.Title>
+        </Col>
+        <Col span={6} className={classes.alignEnd}>
+          <Select style={{ width: '125px' }} placeholder='Sort By:'>
+            <Option value="beginning">opt1</Option>
+            <Option value="anywhere">opt2</Option>
+            <Option value="ending">opt3</Option>
+          </Select>
+        </Col>
+      </Row>
     </div>
   );
 }
@@ -128,10 +139,10 @@ const SearchRecord = ({title}) => {
     <>
       <Banner text={title} />
       <PageWrapper className={classes.pageWrapper}>
-        <Col xs={12} md={3}>
+        <Col xs={24} md={6}>
           <Filters />
         </Col>
-        <Col xs={12} md={9}>
+        <Col xs={24} md={18}>
           <SearchKeyword />
         </Col>
       </PageWrapper>
