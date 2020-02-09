@@ -1,32 +1,28 @@
 import React from 'react';
 import {CardDeck, Card} from 'react-bootstrap';
+import { Col, Row } from 'antd';
+
+//component
+import CardItem from 'common/components/CardItem';
 
 //styles
 import classes from './styles.module.scss';
 
-//assets
-import ImageHolder from 'assets/main.jpg';
+//constants
+import { responsiveConf } from 'common/constants';
+
+const { twoCol } = responsiveConf || {};
 
 const ProductCard = () => {
   return(
-    <CardDeck>
-      <Card className={classes.card}>
-        <Card.Img variant="top" src={ImageHolder} />
-        <Card.Body>
-          <Card.Text>
-            Card content
-          </Card.Text>
-        </Card.Body>
-      </Card>
-      <Card className={classes.card}>
-        <Card.Img variant="top" src={ImageHolder} />
-        <Card.Body>
-          <Card.Text>
-            Card content
-          </Card.Text>
-        </Card.Body>
-      </Card>
-    </CardDeck>
+    <Row>
+      <Col {...twoCol}>
+        <CardItem/>
+      </Col>
+      <Col {...twoCol}>
+        <CardItem/>
+      </Col>
+    </Row>
   );
 }
 

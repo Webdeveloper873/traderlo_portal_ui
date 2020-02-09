@@ -1,5 +1,6 @@
 import React from 'react';
-import { Col, Row} from 'react-bootstrap';
+import { Col as ColTemp, Row as RowTemp} from 'react-bootstrap';
+import { Col, Row } from 'antd';
 
 //components
 import PageWrapper from 'common/components/PageWrapper';
@@ -21,22 +22,22 @@ const Home = () => {
   return(
     <>
       <PageWrapper>
-        <Row className={classes.contentRow}>
-          <Col xs={12} lg={6} className={`sticky-top ${classes.globalSearch}`}>
+        <RowTemp className={classes.contentRow}>
+          <ColTemp xs={12} lg={6} className={`sticky-top ${classes.globalSearch}`}>
             <div className={classes.title}>No listing fee! Pay only when you Sell</div>
             <div className={classes.marginBot}>Buy/Sell Domains, Websites, Online Business and Apps</div>
             <GlobalSearch />
-          </Col>
-          <Col xs={12} lg={6} className={`fized-right`}>
+          </ColTemp>
+          <ColTemp xs={12} lg={6} className={`fized-right`}>
             <CarouselBlogs />
-          </Col>
-        </Row>
+          </ColTemp>
+        </RowTemp>
 
-        <Row className={classes.contentRow}>
-          <Col xs={12} lg={5}>
+        <Row className={classes.contentRow} gutter={16}>
+          <Col xs={24} lg={8}>
             <ProductCard />
           </Col>
-          <Col xs={12} lg={7}>
+          <Col xs={24} lg={16}>
             <TemplatesList />
           </Col>
         </Row>
@@ -45,9 +46,9 @@ const Home = () => {
       <MultiItemCarousel />
 
       <PageWrapper>
-        <Row className={classes.contentRow}>
+        <RowTemp className={classes.contentRow}>
           <HowItWorks />
-        </Row>
+        </RowTemp>
       </PageWrapper>
 
       <SubscribeLetter />
