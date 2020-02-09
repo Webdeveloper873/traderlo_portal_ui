@@ -5,5 +5,6 @@ export const routes = {
 };
 
 export const responsiveConf = {
-  threeCol: { xs: 24, sm: 24, md: 8, lg: 8 }
+  threeCol: { xs: 24, sm: 24, md: 8, lg: 8 },
+  twoCol: { xs: 24, sm: 24, md: 12, lg: 12 },
 }
