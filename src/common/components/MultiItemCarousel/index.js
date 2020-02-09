@@ -5,12 +5,11 @@ import Section from './Section';
 import Simple from './Simple';
 
 import "react-multi-carousel/lib/styles.css";
-import './styles.scss'
 
 const MultiItemCarousel = () => {
 
   return(
-    <Section className='mic-width'>
+    <Section>
       <Simple deviceType={'desktop'} />
     </Section>
   );

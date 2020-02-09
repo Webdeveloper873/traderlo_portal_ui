@@ -1,9 +1,12 @@
 import React from 'react';
 import Carousel from "react-multi-carousel";
-import { Image } from "react-bootstrap";
+import { Avatar } from 'antd';
 
 //assets
-import ImageHolder from 'assets/main.jpg';
+import Iconer from 'assets/tempImg/iconer.jpg';
+
+//styles
+import classes from './styles.module.scss';
 
 const responsive = {
   desktop: {
@@ -23,32 +26,45 @@ const responsive = {
   }
 };
 const images = [
-  ImageHolder,
-  ImageHolder,
-  ImageHolder,
-  ImageHolder,
-  ImageHolder,
-  ImageHolder,
-  ImageHolder,
-  ImageHolder,
-  ImageHolder,
-  ImageHolder,
-  ImageHolder,
-  ImageHolder,
-  ImageHolder,
-  ImageHolder,
-  ImageHolder,
-  ImageHolder,
-  ImageHolder,
-  ImageHolder,
-  ImageHolder,
-  ImageHolder,
-  ImageHolder,
-  ImageHolder,
+  Iconer,
+  Iconer,
+  Iconer,
+  Iconer,
+  Iconer,
+  Iconer,
+  Iconer,
+  Iconer,
+  Iconer,
+  Iconer,
+  Iconer,
+  Iconer,
+  Iconer,
+  Iconer,
+  Iconer,
+  Iconer,
+  Iconer,
+  Iconer,
+  Iconer,
+  Iconer,
+  Iconer,
+  Iconer,
 ];
 
 // Because this is an inframe, so the SSR mode doesn't not do well here.
 // It will work on real devices.
+
+const CarouselItem = ({imgSrc}) => {
+  return(
+    <div className={classes.item}>
+      <Avatar size={64} src={imgSrc} className={`${classes.inlineItem} ${classes.imgStyle}`}/>
+      <div className={classes.inlineItem}>
+        <h5>This is a title</h5>
+        <p>This is Info</p>
+      </div>
+    </div>
+  );
+}
+
 const Simple = ({ deviceType }) => {
   return (
     <Carousel
@@ -60,11 +76,7 @@ const Simple = ({ deviceType }) => {
     >
       {images.slice(0, 15).map(image => {
         return (
-          <Image
-            draggable={false}
-            style={{ width: '100px', height: '100px' }}
-            src={image}
-          />
+          <CarouselItem imgSrc={image}/>
         );
       })}
     </Carousel>
