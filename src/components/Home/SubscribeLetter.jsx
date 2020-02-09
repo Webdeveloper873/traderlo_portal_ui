@@ -1,7 +1,7 @@
 import React from 'react';
 import {Row, Jumbotron, InputGroup, Form, Button, Col, Image} from 'react-bootstrap';
 import CountUp from 'react-countup';
-
+import { Icon } from 'antd';
 //components
 import PageWrapper from 'common/components/PageWrapper';
 
@@ -45,18 +45,20 @@ const SubscribeLetter = () => {
             <span className={classes.subTitle}>Get notified about the next update</span>
             <Col lg={{span: 6, offset: 3}} className={`mb-3`}>
               <InputGroup>
-                <Form.Control aria-describedby='basic-addon1' />
+                <Form.Control aria-describedby='basic-addon1' style={{height:'auto'}} placeholder="Email Address"/>
                 <InputGroup.Append>
-                  <Button variant='primary'>Search</Button>
+                  <Button style={{backgroundColor:'#00bcd4',borderColor: '#00bcd4', textAlign:'center'}}>
+                    <Icon type="arrow-right" style={{ fontSize:15, padding:10}}/>
+                  </Button>
                 </InputGroup.Append>
               </InputGroup>
             </Col>
           </div>
           <Row className={classes.fullWidth}>
-            <DetailsList imgSrc={NewsLetter1} title='35682' subTitle='Active Listings'/>
-            <DetailsList imgSrc={NewsLetter2} title='99500' subTitle='Users'/>
-            <DetailsList imgSrc={NewsLetter3} title='45824890' subTitle='Item Sold'/>
-            <DetailsList imgSrc={NewsLetter4} title='12068' subTitle='Transactions Done'/>
+            <DetailsList imgSrc={NewsLetter1} title={35682} subTitle='Active Listings'/>
+            <DetailsList imgSrc={NewsLetter2} title={99500} subTitle='Users'/>
+            <DetailsList imgSrc={NewsLetter3} title={45824890} subTitle='Item Sold'/>
+            <DetailsList imgSrc={NewsLetter4} title={12068} subTitle='Transactions Done'/>
           </Row>
         </PageWrapper>
       </Jumbotron>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Jumbotron, Col, Nav, InputGroup, Form, Button, Row} from 'react-bootstrap';
-
+import { Icon } from 'antd';
 //style
 import classes from './styles.module.scss';
 
@@ -39,9 +39,12 @@ const LeftCol = () => {
           placeholder="Your Email"
           aria-label="Your Email"
           aria-describedby="basic-addon2"
+          style={{height:'auto'}}
         />
         <InputGroup.Append>
-          <Button variant="primary">Enter</Button>
+          <Button style={{backgroundColor:'#00bcd4',borderColor: '#00bcd4', textAlign:'center'}}>
+            <Icon type="arrow-right" style={{paddingBottom:4}}/>
+          </Button>
         </InputGroup.Append>
       </InputGroup>
     </Col>
