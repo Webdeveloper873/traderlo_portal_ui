@@ -90,11 +90,20 @@
 
 }
 
-.blogCards {
-  text-align: center;
+.blogDetails {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: start;
+  padding: 22px 29px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
 
-  .card {
-    height: 228px;
-    width: 360px;
+  h6 {
+    margin-top: 10px;
+  }
+
+  p {
+    padding-top: 20px;
+    text-align: start;
   }
 }
