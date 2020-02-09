@@ -1,0 +1,19 @@
+.avatarStyle {
+  position: absolute !important;
+  top: 135px;
+  background: white !important;
+  padding: 5px !important;
+
+  img {
+    border-radius: 20px;
+  }
+}
+
+.cardStyle {
+  width: 260px;
+
+  img{
+    width: 258px;
+    height: 161px;
+  }
+}

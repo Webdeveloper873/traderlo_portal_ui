@@ -3,13 +3,18 @@ import { Slider, Divider, Card, Typography, Select, Checkbox, Input, Row, Col } 
 
 //components
 import PageWrapper from 'common/components/PageWrapper';
+import CardItem from 'common/components/CardItem';
 import Banner from './Banner';
 
 //styles
 import classes from './styles.module.scss';
 
+//constants
+import {responsiveConf} from 'common/constants';
+
 const {Text} = Typography;
 const {Option} = Select;
+const {threeCol} = responsiveConf || {};
 
 
 const SliderFilter = ({ sliderVal, amtLabel, ...props}) => {
@@ -128,6 +133,18 @@ const SearchKeyword = () => {
             <Option value="anywhere">opt2</Option>
             <Option value="ending">opt3</Option>
           </Select>
+        </Col>
+      </Row>
+
+      <Row gutter={16}>
+        <Col {...threeCol}>
+          <CardItem />
+        </Col>
+        <Col {...threeCol}>
+          <CardItem />
+        </Col>
+        <Col {...threeCol}>
+          <CardItem />
         </Col>
       </Row>
     </div>
