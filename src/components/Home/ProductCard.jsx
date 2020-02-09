@@ -15,7 +15,7 @@ const { twoCol } = responsiveConf || {};
 
 const ProductCard = () => {
   return(
-    <Row>
+    <Row gutter={16}>
       <Col {...twoCol}>
         <CardItem/>
       </Col>
