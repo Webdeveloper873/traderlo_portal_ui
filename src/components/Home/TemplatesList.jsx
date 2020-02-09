@@ -14,6 +14,14 @@ const TemplatesList = () => {
               <h6><b>Templates - Premium</b></h6>
             </span>
           </ListGroup.Item>
+          <ListGroup.Item style={{backgroundColor:'rgba(0,0,0,.05)'}}>
+            <div style={{textAlign: 'center' }}>
+              <span style={{marginRight:15, marginLeft:5 }}>
+                <a>hellographic.com</a>
+              </span>
+              <span style={{color:'#00bcd4', fontWeight:600}}>2 days left</span>
+              </div>
+          </ListGroup.Item>
           <ListGroup.Item>
             <div style={{textAlign: 'center' }}>
               <span style={{marginRight:15, marginLeft:5 }}>
@@ -55,6 +63,14 @@ const TemplatesList = () => {
             <span style={{textAlign: 'center'}}>
               <h6><b>Templates - Premium</b></h6>
             </span>
+          </ListGroup.Item>
+          <ListGroup.Item style={{backgroundColor:'rgba(0,0,0,.05)'}}>
+            <div style={{textAlign: 'center' }}>
+              <span style={{marginRight:15, marginLeft:5 }}>
+                <a>hellographic.com</a>
+              </span>
+              <span style={{color:'#00bcd4', fontWeight:600}}>2 days left</span>
+              </div>
           </ListGroup.Item>
           <ListGroup.Item>
             <div style={{textAlign: 'center' }}>
@@ -98,6 +114,14 @@ const TemplatesList = () => {
             <span style={{textAlign: 'center'}}>
               <h6><b>Templates - Premium</b></h6>
             </span>
+          </ListGroup.Item>
+          <ListGroup.Item style={{backgroundColor:'rgba(0,0,0,.05)'}}>
+            <div style={{textAlign: 'center' }}>
+              <span style={{marginRight:15, marginLeft:5 }}>
+                <a>hellographic.com</a>
+              </span>
+              <span style={{color:'#00bcd4', fontWeight:600}}>2 days left</span>
+              </div>
           </ListGroup.Item>
           <ListGroup.Item>
             <div style={{textAlign: 'center' }}>
