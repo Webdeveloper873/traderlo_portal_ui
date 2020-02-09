@@ -1,5 +1,6 @@
 import React from 'react';
 import {Row, Jumbotron, InputGroup, Form, Button, Col, Image} from 'react-bootstrap';
+import CountUp from 'react-countup';
 
 //components
 import PageWrapper from 'common/components/PageWrapper';
@@ -20,7 +21,14 @@ const DetailsList = ({imgSrc, title, subTitle}) => {
         <Image src={imgSrc} className={classes.imgList}/>
       </div>
       <div className={classes.detailsList}>
-        <h3>{title}</h3>
+        <h3>
+          <CountUp
+            start={0}
+            end={title}
+            duration={2.75}
+            separator=","
+            />
+        </h3>
         <span>{subTitle}</span>
       </div>
     </Col>
@@ -45,10 +53,10 @@ const SubscribeLetter = () => {
             </Col>
           </div>
           <Row className={classes.fullWidth}>
-            <DetailsList imgSrc={NewsLetter1} title='35,682' subTitle='Active Listings'/>
+            <DetailsList imgSrc={NewsLetter1} title='35682' subTitle='Active Listings'/>
             <DetailsList imgSrc={NewsLetter2} title='99500' subTitle='Users'/>
-            <DetailsList imgSrc={NewsLetter3} title='45,824,890' subTitle='Item Sold'/>
-            <DetailsList imgSrc={NewsLetter4} title='12,068' subTitle='Transactions Done'/>
+            <DetailsList imgSrc={NewsLetter3} title='45824890' subTitle='Item Sold'/>
+            <DetailsList imgSrc={NewsLetter4} title='12068' subTitle='Transactions Done'/>
           </Row>
         </PageWrapper>
       </Jumbotron>
