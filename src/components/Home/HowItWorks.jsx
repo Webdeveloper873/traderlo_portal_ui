@@ -30,7 +30,7 @@ const HowItWorks = () => {
     <>
       <Col xs={12} lg={12} md={12} className={`${classes.howItWorks}`}>
         <h1>How It Works?</h1>
-        <div className={classes.subtitle}>Consectetur adipisicing eliteiuim set eiusmod tempor incididunt labore etnalom dolore magna aliqua udiminimate veniam quistan norud.</div>
+        <span className={classes.subtitle}>Consectetur adipisicing eliteiuim set eiusmod tempor incididunt labore etnalom dolore magna aliqua udiminimate veniam quistan norud.</span>
         <CardDeck className={classes.cardDeck}>
           <CardItem imgSrc={A1} cardTitle='List your products'/>
           <CardItem imgSrc={A2} cardTitle='Receive bids'/>

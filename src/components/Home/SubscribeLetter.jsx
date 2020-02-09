@@ -42,8 +42,12 @@ const SubscribeLetter = () => {
         <PageWrapper>
           <div className={classes.fullWidth}>
             <h1>Subscribe To Newsletter</h1>
-            <span className={classes.subTitle}>Get notified about the next update</span>
-            <Col lg={{span: 6, offset: 3}} className={`mb-3`}>
+            <span style={{
+              fontWeight: 'bold',
+              fontSize:16,
+              color: '#888',
+              marginBottom:30}}>Get notified about the next update</span>
+            <Col lg={{span: 6, offset: 3}} className={`mb-3`} style={{marginTop:35}}>
               <InputGroup>
                 <Form.Control aria-describedby='basic-addon1' style={{height:'auto'}} placeholder="Email Address"/>
                 <InputGroup.Append>
