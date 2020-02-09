@@ -10,16 +10,23 @@ import classes from './styles.module.scss';
 //resources
 import ImageHolder from 'assets/main.jpg';
 
+const BlogDetails = () => {
+  return(
+    <div className={classes.blogDetails}>
+      <a href={'/'}>By Admin</a>
+      <h6>Make Money Easy As Pie</h6>
+      <span>Jun 27,2 019</span>
+      <p>Consectetur adipisicing elite aeiuim setiusm tempor incididunt labore etnalom...</p>
+    </div>
+  );
+}
+
 const CardItem = () => {
   return (
     <Col xs={12} lg={4}>
       <Card>
         <Card.Img variant="top" src={ImageHolder} />
-        <Card.Body>
-          <Card.Text>
-            Card content
-          </Card.Text>
-        </Card.Body>
+        <BlogDetails/>
       </Card>
     </Col>
   )
