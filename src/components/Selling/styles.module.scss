@@ -1,3 +1,71 @@
 .pageWrapper {
   padding: 40px 0;
 }
+
+.steps {
+  display: block;
+  position: relative;
+  margin-bottom: 20px;
+  font-size: 18px !important;
+  font-weight: bold;
+
+  span {
+    color: #bbb;
+    font-size: 14px;
+    margin-left: 10px;
+  }
+}
+
+.rowStyle {
+  width: 100%;
+  margin-bottom: 40px;
+
+  .colStyle {
+    min-width: 227px;
+    text-align: center;
+  }
+}
+
+.card {
+  border-radius: 10px !important;
+  cursor: pointer;
+
+  &:hover {
+    background: #00bcd461;
+  }
+
+  h5 {
+    font-size: 18px;
+  }
+
+  img {
+    width: 50% !important;
+    margin: 0 50px;
+  }
+}
+
+.step2card {
+  img {
+    width: 103px;
+  }
+
+  .detail {
+    
+  }
+
+  span {
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: 500;
+    margin-left: 40px;
+  }
+
+  .cardFooter {
+    padding: 20px 30px;
+    background: #f9f9f9;
+
+    p {
+      font-size: 16px;
+    }
+  }
+}
