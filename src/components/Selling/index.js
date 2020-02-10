@@ -1,5 +1,5 @@
 import React from 'react';
-import {Col, Row, Card} from 'antd';
+import {Col, Row, Card, Input} from 'antd';
 
 //components
 import PageWrapper from 'common/components/PageWrapper';
@@ -20,6 +20,7 @@ import bids from 'assets/selling/bids.png';
 import { responsiveConf } from 'common/constants';
 
 const {fiveCol, threeCol} = responsiveConf || {};
+const {Search} = Input;
 
 const stepList = [
   {
@@ -99,6 +100,18 @@ const Selling = () => {
         <Row gutter={16} className={classes.rowStyle}>
           <Col {...threeCol} className={classes.colStyle}>
             <Step2Card />
+          </Col>
+          <Col {...threeCol} className={classes.colStyle}>
+            <Step2Card />
+          </Col>
+          <Col {...threeCol} className={classes.colStyle}>
+            <Step2Card />
+          </Col>
+        </Row>
+        <SellingStep>3. Basic details to get it started</SellingStep>
+        <Row gutter={16} className={classes.rowStyle}>
+          <Col xs={24} md={12}>
+            <Search placeholder="Enter The URL" onSearch={value => console.log(value)} enterButton='Getting Started' />
           </Col>
         </Row>
       </PageWrapper>
