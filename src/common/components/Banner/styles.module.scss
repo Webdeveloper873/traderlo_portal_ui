@@ -1,0 +1,13 @@
+.banner {
+  background: url('../../../assets/trade.png');
+  min-height: 180px;
+  background-size: cover;
+
+  .text {
+    text-align: center;
+    color: #fff;
+    font-size: 36px;
+    padding: 30px 0px;
+    font-weight: 600;
+  }
+}
