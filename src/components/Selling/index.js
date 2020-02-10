@@ -80,7 +80,7 @@ const SellingStep = ({subtitle, children}) => {
     <div className={classes.steps} >
       {children}
       {subtitle? <span>{subtitle}</span> : null}
-    </span>
+    </div>
   );
 }
 
