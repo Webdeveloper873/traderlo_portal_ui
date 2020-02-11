@@ -10,13 +10,17 @@ import {responsiveConf} from 'common/constants';
 const {Text} = Typography;
 const {threeCol} = responsiveConf || {};
 
+const Label = ({text}) => <Text strong className={classes.tabDetail}>{text}</Text>
+
 const InputField = ({ label, icon }) => {
   return (
     <Col {...threeCol} className={classes.marginBot20}>
-      <Text strong className={classes.tabDetail}>{label}</Text>
-      <Input addonBefore={<Icon type={icon} />} size='large' />
+      <Label text={label}/>
+      <Input addonBefore={icon ? <Icon type={icon} /> : null} size='large' />
     </Col>
   );
 }
+
+InputField.Label = Label;
 
 export default InputField;
