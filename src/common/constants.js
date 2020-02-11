@@ -3,6 +3,7 @@ export const routes = {
   WEBSITE_PAGE: '/traderlo/website',
   DOMAINS_PAGE: '/traderlo/domains',
   SELLING_PAGE: '/traderlo/sell',
+  SELLING_SUB_PAGE: '/traderlo/sell_sub',
 };
 
 export const responsiveConf = {
