@@ -4,7 +4,9 @@ import { Tabs, Card, Menu, Dropdown, Button, Icon, message, Form, Input, Col, Ro
 //components
 import PageWrapper from 'common/components/PageWrapper';
 import Banner from 'common/components/Banner';
-import ThePitch from 'components/SellingSub/ThePitch'
+import ThePitch from 'components/SellingSub/ThePitch';
+import Sale from './Sale';
+
 //styles
 import classes from './styles.module.scss';
 
@@ -110,7 +112,7 @@ const SellingSub = () => {
            </Card>
           </TabPane>
           <TabPane tab="2. Sale" key="2">
-            Content of Tab Pane 2
+            <Sale />
           </TabPane>
           <TabPane tab="3. Trafic" key="3">
             Content of Tab Pane 3
