@@ -56,6 +56,7 @@ const Step1Card = ({title, imgSrc, details}) => {
       <h5 className={classes.title}>{title}</h5>
       <img src={imgSrc} alt={'...loading'}/>
       <p>{details}</p>
+      
     </Card>
   )
 }
@@ -66,8 +67,10 @@ const Step2Card = () => {
       bodyStyle={{background: '#f9f9f9'}}
       title={<>
         <img src={bids} alt='...loading' />
-        <span>Auction - 14</span><br/>
-        <a href="https://www.freedomainauctions.com/content/learn-more-auction">Learn More.</a>
+        <div className={classes.details}>
+          <span>Auction - 14</span><br/>
+          <a href="https://www.freedomainauctions.com/content/learn-more-auction">Learn More.</a>
+        </div>
       </>}>
       <div className={classes.cardFooter}>
         An auction will get you the highest price and the most bids.
@@ -76,11 +79,12 @@ const Step2Card = () => {
   );
 }
 
-const SellingStep = ({subtitle, children}) => {
+const SellingStep = ({subtitle, sublink, children}) => {
   return(
     <div className={classes.steps} >
       {children}
       {subtitle? <span>{subtitle}</span> : null}
+      {sublink ? <p>{sublink}</p> : null}
     </div>
   );
 }
@@ -96,19 +100,20 @@ const Selling = () => {
             <Step1Card {...itemProps}/>
           </Col>)}
         </Row>
-        <SellingStep subtitle='(Choose one)'>2. How do you want to sell your asset?</SellingStep>
+        <SellingStep
+          subtitle='(Choose one)'
+          sublink='Learn more about selling on Free Domain Auctions'
+        >
+          2. How do you want to sell your asset?
+        </SellingStep>
         <Row gutter={16} className={classes.rowStyle}>
-          <Col {...threeCol} className={classes.colStyle}>
-            <Step2Card />
-          </Col>
-          <Col {...threeCol} className={classes.colStyle}>
-            <Step2Card />
-          </Col>
-          <Col {...threeCol} className={classes.colStyle}>
-            <Step2Card />
-          </Col>
+          {[1,2,3].map(idx => (
+            <Col {...threeCol} className={classes.colStyle}>
+              <Step2Card />
+            </Col>
+          ))}
         </Row>
-        <SellingStep>3. Basic details to get it started</SellingStep>
+        <SellingStep sublink='The URL of your website *'>3. Basic details to get it started</SellingStep>
         <Row gutter={16} className={classes.rowStyle}>
           <Col xs={24} md={12}>
             <Search placeholder="Enter The URL" onSearch={value => console.log(value)} enterButton='Getting Started' />
