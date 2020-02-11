@@ -49,8 +49,14 @@
     width: 103px;
   }
 
-  .detail {
-    
+  :global {
+    .ant-card-head-title {
+      padding: 0 !important;
+    }
+
+    .ant-card-body {
+      padding: 0 !important;
+    }
   }
 
   span {
