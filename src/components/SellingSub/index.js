@@ -7,6 +7,7 @@ import Banner from 'common/components/Banner';
 import ThePitch from 'components/SellingSub/ThePitch';
 import Sale from './components/Sale';
 import Traffic from './components/Traffic';
+import Promote from './components/Promote';
 
 //styles
 import classes from './styles.module.scss';
@@ -119,7 +120,7 @@ const SellingSub = () => {
             <Traffic />
           </TabPane>
           <TabPane tab="4. Promote" key="4">
-            Content of Tab Pane 4
+            <Promote />
           </TabPane>
           <TabPane tab="5. Verify Ownership" key="5">
             Content of Tab Pane 5
