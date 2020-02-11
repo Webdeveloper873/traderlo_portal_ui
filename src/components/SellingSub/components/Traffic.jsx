@@ -2,10 +2,10 @@ import React from 'react';
 import { Typography, Card, Row, Button, Upload, message, Icon } from 'antd';
 
 //components
-import InputField from '../InputField';
+import InputField from './InputField';
 
 //styles
-import classes from './styles.module.scss';
+import classes from '../styles.module.scss';
 
 const {Text} = Typography;
 const {Label} = InputField;

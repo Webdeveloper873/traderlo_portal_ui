@@ -2,7 +2,7 @@ import React from 'react';
 import { Col, Typography, Input, Icon} from 'antd';
 
 //style
-import classes from './styles.module.scss';
+import classes from '../styles.module.scss';
 
 //constants
 import {responsiveConf} from 'common/constants';

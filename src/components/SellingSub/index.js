@@ -5,8 +5,8 @@ import { Tabs, Card, Menu, Dropdown, Button, Icon, message, Form, Input, Col, Ro
 import PageWrapper from 'common/components/PageWrapper';
 import Banner from 'common/components/Banner';
 import ThePitch from 'components/SellingSub/ThePitch';
-import Sale from './Sale';
-import Traffic from './Traffic';
+import Sale from './components/Sale';
+import Traffic from './components/Traffic';
 
 //styles
 import classes from './styles.module.scss';
