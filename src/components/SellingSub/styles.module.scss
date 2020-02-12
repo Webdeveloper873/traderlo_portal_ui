@@ -114,3 +114,19 @@
     box-sizing: content-box;
   }
 }
+
+.verifyOwnership {
+  p {
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 20px;
+    width: 100% !important;
+    font-size: 1.125rem !important;
+
+    span {
+      margin-left: 10px;
+      color: rgb(221, 221, 221);
+      font-size: 1rem;
+    }
+  }
+}

@@ -8,6 +8,7 @@ import ThePitch from 'components/SellingSub/ThePitch';
 import Sale from './components/Sale';
 import Traffic from './components/Traffic';
 import Promote from './components/Promote';
+import VerifyOwnership from './components/VerifyOwnership';
 
 //styles
 import classes from './styles.module.scss';
@@ -123,7 +124,7 @@ const SellingSub = () => {
             <Promote />
           </TabPane>
           <TabPane tab="5. Verify Ownership" key="5">
-            Content of Tab Pane 5
+            <VerifyOwnership />
           </TabPane>
         </Tabs>,
       </PageWrapper>
