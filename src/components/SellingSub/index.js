@@ -4,7 +4,12 @@ import { Tabs, Card, Menu, Dropdown, Button, Icon, message, Form, Input, Col, Ro
 //components
 import PageWrapper from 'common/components/PageWrapper';
 import Banner from 'common/components/Banner';
-import ThePitch from 'components/SellingSub/ThePitch'
+import ThePitch from 'components/SellingSub/ThePitch';
+import Sale from './components/Sale';
+import Traffic from './components/Traffic';
+import Promote from './components/Promote';
+import VerifyOwnership from './components/VerifyOwnership';
+
 //styles
 import classes from './styles.module.scss';
 
@@ -110,16 +115,16 @@ const SellingSub = () => {
            </Card>
           </TabPane>
           <TabPane tab="2. Sale" key="2">
-            Content of Tab Pane 2
+            <Sale />
           </TabPane>
           <TabPane tab="3. Trafic" key="3">
-            Content of Tab Pane 3
+            <Traffic />
           </TabPane>
           <TabPane tab="4. Promote" key="4">
-            Content of Tab Pane 4
+            <Promote />
           </TabPane>
           <TabPane tab="5. Verify Ownership" key="5">
-            Content of Tab Pane 5
+            <VerifyOwnership />
           </TabPane>
         </Tabs>,
       </PageWrapper>

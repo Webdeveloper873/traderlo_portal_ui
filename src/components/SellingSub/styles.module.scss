@@ -70,3 +70,63 @@
     }
   }
 }
+
+.tabDetail {
+  font-size: 16px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.marginBot20 {
+  margin-bottom: 20px;
+}
+
+.btnContainer {
+  text-align: end;
+  margin-top: 15px;
+
+  .btnStyle {
+    padding: 0px 40px;
+  }
+}
+
+.promoteCard {
+  box-shadow: 0 1px 6px rgba(57,73,76,.35);
+
+  :global {
+    .ant-card-head-title{
+      text-align: center;
+
+      img {
+        width: 25%;
+      }
+    }
+  }
+}
+
+.imgContainer {
+
+  img {
+    width: 100%;
+    border-left: rgb(221, 221, 221) 2px solid;
+    padding: 50px;
+    margin-left: 30px;
+    box-sizing: content-box;
+  }
+}
+
+.verifyOwnership {
+  p {
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 20px;
+    width: 100% !important;
+    font-size: 1.125rem !important;
+
+    span {
+      margin-left: 10px;
+      color: rgb(221, 221, 221);
+      font-size: 1rem;
+    }
+  }
+}
