@@ -1,6 +1,6 @@
 import React from 'react';
-import { Navbar, Nav, Button } from 'react-bootstrap';
-
+import { Navbar, Nav } from 'react-bootstrap';
+import {Button} from 'antd'
 //styles
 import classes from './styles.module.scss';
 
@@ -9,6 +9,9 @@ import {routes} from 'common/constants';
 
 //assets
 import logo from 'assets/logo.png';
+
+
+const buttonStyle = {backgroundColor:'#00bcd4',color: 'white', textAlign:'center'};
 
 const Header = ({onClickSignInUp}) => {
   return (
@@ -24,7 +27,7 @@ const Header = ({onClickSignInUp}) => {
             <Nav.Link href="/script">Clone script</Nav.Link>
             <Nav.Link href="/plugins">Plugins/Themes</Nav.Link>
             <Nav.Link onClick={onClickSignInUp}>Sign in/Signup</Nav.Link>
-            <Button style={{backgroundColor:'#00bcd4',borderColor: '#00bcd4', textAlign:'center'}}>Start Selling</Button>
+            <Button size='large' style={buttonStyle}>Start Selling</Button>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
