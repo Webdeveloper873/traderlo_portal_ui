@@ -19,6 +19,8 @@ const txtContentInputText2 = {marginLeft:15, marginTop:10};
 const txtContentSubText = {marginLeft:40, marginTop:10};
 const avatarSubDetailSelected = {fontWeight:500, color:'#00bcd4'};
 const avatarSubDetailUnselected = {fontWeight:500, color:'#dbdcde'};
+const selectOptionFont = {textAlign:'center', marginTop:20, marginBottom:10};
+const selectionFont = {fontSize:15, color:'#dbdcde'};
 
 const HtmlFileContent = () => {
 
@@ -172,13 +174,10 @@ const VerifyOwnership = () => {
 
   return(
     <Card className={classes.verifyOwnership}>
-      <Row>
-      <h5>
-        {'We Have Three Methods To verify Ownership'}
-        <span>{'(Choose One)'}</span>
-      </h5>
+      <Row style={selectOptionFont}>
+            <span style={selectionFont}>We Have Three Methods To verify Ownership. (Choose one)</span>
 
-      </Row>
+          </Row>
    
       <Row gutter={16}>
         <VerifyOwnershipCard imgSrc={HtmlImage} itemKey={1} onClickContent={onClickContent} isSelected={oneSelected}
