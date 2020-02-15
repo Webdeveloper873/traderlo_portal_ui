@@ -86,7 +86,9 @@
   margin-top: 15px;
 
   .btnStyle {
+    background-color:#00bcd4;
     padding: 0px 40px;
+    color: white;
   }
 }
 
@@ -127,6 +129,17 @@
       margin-left: 10px;
       color: rgb(221, 221, 221);
       font-size: 1rem;
+    }
+  }
+  box-shadow: 0 1px 6px rgba(57,73,76,.35);
+
+  :global {
+    .ant-card-head-title{
+      text-align: center;
+
+      img {
+        width: 25%;
+      }
     }
   }
 }
