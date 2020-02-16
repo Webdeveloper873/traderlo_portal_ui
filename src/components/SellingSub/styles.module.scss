@@ -50,10 +50,6 @@
     width: 103px;
   }
 
-  .detail {
-    
-  }
-
   span {
     font-size: 18px;
     color: rgba(0, 0, 0, 0.85);
@@ -202,12 +198,26 @@
     margin-top:20px;
   }
 
-  .avatarSubDetailSelected {
+
+ 
+
+  .avatarSubDetailUnselected {
+    font-weight:500;
+    color:#dbdcde;
+  }
+
+  .activeCard {
+    background-color:#00bcd4;
+  }
+  .subDetailSelected {
     font-weight:500;
     color:#00bcd4;
   }
 
-  .avatarSubDetailUnselected {
+  .inactiveCard {
+    background-color:#dbdcde;
+  }
+  .subDetailUnselected {
     font-weight:500;
     color:#dbdcde;
   }

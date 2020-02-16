@@ -102,28 +102,20 @@ const MetaKeyContent = () => {
 
 const VerifyOwnershipCard = ({imgSrc, details, itemKey, onClickContent, isSelected}) => {
 
+  // className={`${classes.separator} ${children ? classes.midText : ''} ${className}`}
   return(
     <Col xs={24} md={8}>
       <Card hoverable onClick={() => onClickContent(itemKey)}> 
-      {isSelected === true ?
         <div className={classes.verifyOwnershipCard}>
           <Row style={{textAlign:'center'}}> 
-          <Avatar size={64} icon="user" src={imgSrc} alt='...loading' style={{backgroundColor:'#00bcd4'}}/>
+            <Avatar size={64} icon="user" src={imgSrc} alt='...loading' 
+              className={` ${isSelected === true ? classes.activeCard :  classes.inactiveCard}`}/>
           </Row>
           <Row className={classes.rowSubDetails}>
-            <span className={classes.avatarSubDetailSelected}>{details}</span>
+            <span className={` ${isSelected === true ? classes.subDetailSelected :  classes.subDetailUnselected}`}>
+              {details}</span>
           </Row>
         </div>
-         :
-         <div  className={classes.verifyOwnershipCard}>
-          <Row style={{textAlign:'center'}}> 
-          <Avatar size={64} icon="user" src={imgSrc} alt='...loading' style={{backgroundColor:'#dbdcde'}}/>
-          </Row>
-          <Row  className={classes.rowSubDetails}>
-            <span className={classes.avatarSubDetailUnselected}>{details}</span>
-          </Row>
-        </div>
-      }
       </Card>
     </Col>
   );

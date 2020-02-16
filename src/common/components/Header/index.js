@@ -11,8 +11,6 @@ import {routes} from 'common/constants';
 import logo from 'assets/logo.png';
 
 
-const buttonStyle = {backgroundColor:'#00bcd4',color: 'white', textAlign:'center'};
-
 const Header = ({onClickSignInUp}) => {
   return (
     <div className={classes.wrapper}>
@@ -27,7 +25,7 @@ const Header = ({onClickSignInUp}) => {
             <Nav.Link href="/script">Clone script</Nav.Link>
             <Nav.Link href="/plugins">Plugins/Themes</Nav.Link>
             <Nav.Link onClick={onClickSignInUp}>Sign in/Signup</Nav.Link>
-            <Button size='large' style={buttonStyle}>Start Selling</Button>
+            <Button size='large' className={classes.buttonStyle}>Start Selling</Button>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
