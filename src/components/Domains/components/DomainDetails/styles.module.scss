@@ -1,0 +1,27 @@
+.rowStyle {
+  margin-top: 20px;
+  width: 100%;
+
+  :global {
+    .ant-card-bordered {
+      border-radius: 6px;
+    }
+  }
+}
+
+.cardStyle {
+  text-align: center;
+
+  h3 {
+
+    &:after {
+      content: '';
+      background: #ec008c;
+      display: block;
+      width: 46px;
+      height: 3px;
+      margin: 0 calc(50% - 24px);
+      margin-top: 5px;
+    }
+  }
+}
