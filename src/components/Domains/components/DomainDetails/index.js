@@ -1,10 +1,11 @@
 import React from 'react';
-import { Row, Col, Card, Tabs, Icon, Input, Button } from 'antd';
+import { Row, Col, Card, Tabs, Icon, Input, Button, Divider } from 'antd';
 
 //components
 import Banner from 'common/components/Banner';
 import PageWrapper from 'common/components/PageWrapper';
 import CardItem from './components/CardItem';
+import SellerDetails from './components/SellerDetails';
 
 //styles
 import classes from './styles.module.scss';
@@ -64,6 +65,11 @@ const RightPane = () => {
             <Button type='danger'>Add to Watch</Button>
           </Col>
         </Row>
+      </Card>
+      <Card className={classes.marginTop15}>
+        <span>Seller Details</span>
+        <Divider />
+        <SellerDetails />
       </Card>
     </Col>
   );

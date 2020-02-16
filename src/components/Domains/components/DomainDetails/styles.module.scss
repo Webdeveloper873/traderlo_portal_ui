@@ -48,6 +48,8 @@
 }
 
 .rightPane {
+  height: 250px;
+
   h4 {
     font-size: 22px !important;
 
@@ -66,4 +68,14 @@
       margin-left: 10px;
     }
   }
+}
+
+.online {
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  background: #57e50c;
+  margin-left: 8px;
+  margin-right: 4px;
+  display: inline-block;
 }
