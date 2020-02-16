@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Typography, Card, Row, Button, Col, Tabs, Avatar, Icon, Input } from 'antd';
+import { Card, Row, Button, Col, Tabs, Avatar, Icon, Input } from 'antd';
 
 //styles
 import classes from '../styles.module.scss';
@@ -8,27 +8,14 @@ import classes from '../styles.module.scss';
 import HtmlImage from 'assets/selling/html.png';
 import KeyImage from 'assets/selling/key.png';
 import TxtImage from 'assets/selling/txt.png';
-import { compose } from 'redux';
-
-//declared style
-const donwloadButton = {color: '#00bcd4', marginTop:20};
-const txtContentGreyArea = {marginTop:15, backgroundColor:'#fafafa'};
-const txtContentInputBox = {marginLeft:15,marginRight:15};
-const txtContentInputText = {marginLeft:15, marginTop:15};
-const txtContentInputText2 = {marginLeft:15, marginTop:10};
-const txtContentSubText = {marginLeft:40, marginTop:10};
-const avatarSubDetailSelected = {fontWeight:500, color:'#00bcd4'};
-const avatarSubDetailUnselected = {fontWeight:500, color:'#dbdcde'};
-const selectOptionFont = {textAlign:'center', marginTop:20, marginBottom:10};
-const selectionFont = {fontSize:15, color:'#dbdcde'};
 
 const HtmlFileContent = () => {
 
   return (<>
-    <Row style={{marginTop:30}}>
-      <span style={{fontSize:17}}>Please click on the button to download the file and put it inside the root folder of the your site and then click on verify button below.Please click on the button to download the file and put it inside the root folder of the your site and then click on verify button below.</span>
+    <Row  className={classes.htmlFileContent}>
+      <span className={classes.fontDecor}>Please click on the button to download the file and put it inside the root folder of the your site and then click on verify button below.Please click on the button to download the file and put it inside the root folder of the your site and then click on verify button below.</span>
       <Row >
-        <Button type="link" size='large' style={donwloadButton}>Download  <Icon type="download" /></Button>
+        <Button type="link" size='large' className={classes.downloadButton}>Download  <Icon type="download" /></Button>
       </Row>
     </Row>
   </>)
@@ -37,50 +24,50 @@ const HtmlFileContent = () => {
 const TXTRecordContent = () => {
 
   return (<>
-    <Row style={{marginTop:30}}>
-      <span style={{fontSize:17}}>Please add the following TXT records to your DNS zone editor on your Website host and then click button to verify, the verification process maytake from 10 min to 24 hours</span>
+    <Row className={classes.tXTRecordContent}>
+      <span className={classes.fontDecor}>Please add the following TXT records to your DNS zone editor on your Website host and then click button to verify, the verification process maytake from 10 min to 24 hours</span>
       <Row >
-        <Card style={txtContentGreyArea} bordered={false}>
+        <Card className={classes.txtContentGreyArea} bordered={false}>
           <Row>
-            <Col span={11} style={txtContentInputBox}>
+            <Col span={11} className={classes.txtContentInputBox}>
             <Input
               size="large"
               placeholder="URL"
             />
             </Col>
-            <Col span={11} style={txtContentInputBox}>
+            <Col span={11} className={classes.txtContentInputBox}>
             <Input
               size="large"
               placeholder="Text Record"
             />
             </Col>
           </Row>
-          <Row style={txtContentInputText}>
-            <span style={{fontSize:15}}>1. Copy the above Generated TXT records.</span>
+          <Row className={classes.txtContentInputText}>
+            <span className={classes.fontDecor}>1. Copy the above Generated TXT records.</span>
           </Row>
-          <Row style={txtContentInputText2}>
-            <span style={{fontSize:15}}>2. Sign in to your domain host.</span>
+          <Row className={classes.txtContentInputText2}>
+            <span className={classes.fontDecor}>2. Sign in to your domain host.</span>
           </Row>
-          <Row style={txtContentInputText2}>
-            <span style={{fontSize:15}}>3. Go to your domain's DNS records.</span>
+          <Row className={classes.txtContentInputText2}>
+            <span className={classes.fontDecor}>3. Go to your domain's DNS records.</span>
           </Row>
-          <Row style={txtContentSubText}>
-            <span style={{fontSize:15}}>a. For the record type, select TXT.</span>
+          <Row className={classes.txtContentSubText}>
+            <span className={classes.fontDecor}>a. For the record type, select TXT.</span>
           </Row>
-          <Row style={txtContentSubText}>
-            <span style={{fontSize:15}}>b. In the Name/Host/Alias field, enter @ or leave it blank.</span>
+          <Row className={classes.txtContentSubText}>
+            <span className={classes.fontDecor}>b. In the Name/Host/Alias field, enter @ or leave it blank.</span>
           </Row>
-          <Row style={txtContentSubText}>
-            <span style={{fontSize:15}}>c. Your host might require you to enter your domain, which looks like yourdomain.com, into this field. Your other DNS records might indicate what you should enter.</span>
+          <Row className={classes.txtContentSubText}>
+            <span className={classes.fontDecor}>c. Your host might require you to enter your domain, which looks like yourdomain.com, into this field. Your other DNS records might indicate what you should enter.</span>
           </Row>
-          <Row style={txtContentSubText}>
-            <span style={{fontSize:15}}>d. In the Time to Live (TTL) field, enter 86400 or leave the default.</span>
+          <Row className={classes.txtContentSubText}>
+            <span className={classes.fontDecor}>d. In the Time to Live (TTL) field, enter 86400 or leave the default.</span>
           </Row>
-          <Row style={txtContentSubText}>
-            <span style={{fontSize:15}}>e. In the Value/Answer/Destination field, paste the verification record you copied in step 1.</span>
+          <Row className={classes.txtContentSubText}>
+            <span className={classes.fontDecor}>e. In the Value/Answer/Destination field, paste the verification record you copied in step 1.</span>
           </Row>
-          <Row style={txtContentSubText}>
-            <span style={{fontSize:15}}>f. Save the record.</span>
+          <Row className={classes.txtContentSubText}>
+            <span className={classes.fontDecor}>f. Save the record.</span>
           </Row>
         </Card>
       </Row>
@@ -91,17 +78,17 @@ const TXTRecordContent = () => {
   </>)
 }
 
-const MeteKeyContent = () => {
+const MetaKeyContent = () => {
 
   return (<>
-    <Row style={{marginTop:30}}>
-      <span style={{fontSize:17}}>Please use http or https in URL to verify. Add the meta tag to your site header and click verify button to verify your ownership.Please use http or https in URL to verify. Add the meta tag to your site header and click verify button to verify your ownership.</span>
+    <Row className={classes.metaKeyContent}>
+      <span className={classes.fontDecor}>Please use http or https in URL to verify. Add the meta tag to your site header and click verify button to verify your ownership.Please use http or https in URL to verify. Add the meta tag to your site header and click verify button to verify your ownership.</span>
       <Row style={{marginTop:15}}>
-      <Input
-        size="large"
-        placeholder="Meta Key"
-        style={{width:500}}
-      />
+        <Input
+          size="large"
+          placeholder="Meta Key"
+          style={{width:500}}
+        />
       </Row>
       <Row className={classes.btnContainer}>
         <Button size='large' className={classes.btnStyle}>Next</Button>
@@ -119,23 +106,23 @@ const VerifyOwnershipCard = ({imgSrc, details, itemKey, onClickContent, isSelect
     <Col xs={24} md={8}>
       <Card hoverable onClick={() => onClickContent(itemKey)}> 
       {isSelected === true ?
-        <>
+        <div className={classes.verifyOwnershipCard}>
           <Row style={{textAlign:'center'}}> 
           <Avatar size={64} icon="user" src={imgSrc} alt='...loading' style={{backgroundColor:'#00bcd4'}}/>
           </Row>
-          <Row style={{textAlign:'center', marginTop:20}}>
-            <span style={avatarSubDetailSelected}>{details}</span>
+          <Row className={classes.rowSubDetails}>
+            <span className={classes.avatarSubDetailSelected}>{details}</span>
           </Row>
-        </>
+        </div>
          :
-         <>
+         <div  className={classes.verifyOwnershipCard}>
           <Row style={{textAlign:'center'}}> 
           <Avatar size={64} icon="user" src={imgSrc} alt='...loading' style={{backgroundColor:'#dbdcde'}}/>
           </Row>
-          <Row style={{textAlign:'center', marginTop:20}}>
-            <span style={avatarSubDetailUnselected}>{details}</span>
+          <Row  className={classes.rowSubDetails}>
+            <span className={classes.avatarSubDetailUnselected}>{details}</span>
           </Row>
-        </>
+        </div>
       }
       </Card>
     </Col>
@@ -164,7 +151,7 @@ const VerifyOwnership = () => {
       setSelectedTwo(true);
       setSelectedThree(false);
     } else {
-      setContent(<> <MeteKeyContent/> </>);
+      setContent(<> <MetaKeyContent/> </>);
       setSelectedOne(false);
       setSelectedTwo(false);
       setSelectedThree(true);
@@ -174,8 +161,8 @@ const VerifyOwnership = () => {
 
   return(
     <Card className={classes.verifyOwnership}>
-      <Row style={selectOptionFont}>
-            <span style={selectionFont}>We Have Three Methods To verify Ownership. (Choose one)</span>
+      <Row className={classes.selectOptionFont}>
+            <span className={classes.fontDecor}>We Have Three Methods To verify Ownership. (Choose one)</span>
 
           </Row>
    

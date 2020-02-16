@@ -9,13 +9,7 @@ import classes from '../styles.module.scss';
 
 //re-name constants
 const { TextArea } = Input;
-const { TabPane } = Tabs;
 
-//styles
-const nextButtonStyle = {backgroundColor:'#00bcd4', color:'white', textAlign:'center', width:140, padding:10, height:50};
-const listCategory = {width:'30%', marginTop:30,marginBottom:30,marginRight:30};
-const listSubCategory = {width:'30%', margin:30};
-const cardStyle = {paddingRight:25,paddingLeft:25, paddingTop:10};
 
 //functions
 const handleMenuClick = (e) => {
@@ -47,8 +41,8 @@ const listCategoryMenu = () => {
 
 const ThePitch = () => {
   return(
-    <>
-      <Card style={cardStyle}>
+    <div className={classes.thePitch}>
+      <Card className={classes.cardStyle}>
         <h5 style={{fontWeight:700}}>Describe Your Product</h5>
         <div style={{marginTop:20}}>
           <span style={{fontSize:17}}>Get in front of buyers looking for website like your by categorizing it accurately, and letting them know how long the website has been live.</span>
@@ -56,12 +50,12 @@ const ThePitch = () => {
         <div>
           <Row>
             <Dropdown overlay={listCategoryMenu}>
-              <Button size="large" style={listCategory}>
+              <Button size="large" className={classes.listCategory}>
                 List Category <Icon type="down" />
               </Button>
             </Dropdown>
             <Dropdown overlay={listCategoryMenu}>
-              <Button size="large" style={listSubCategory}>
+              <Button size="large" className={classes.listSubCategory}>
                 List Sub Category <Icon type="down" />
               </Button>
             </Dropdown>
@@ -74,18 +68,14 @@ const ThePitch = () => {
             />
           </Row>
           <Row>
-            <TextArea rows={8} style={{width:685, marginTop:20}}  placeholder="Description"/>
+            <TextArea rows={8} className={classes.textAreaDecor}  placeholder="Description"/>
           </Row>
-          {/* <Row style={{marginTop:30}}>
-            <Button size='large' style={nextButtonStyle} className={classes.btnStyle}>Next</Button>
-            
-          </Row> */}
           <Row className={classes.btnContainer}>
             <Button size='large' className={classes.btnStyle}>Next</Button>
           </Row>
         </div>
       </Card>
-    </>
+    </div>
   )
 }
 
