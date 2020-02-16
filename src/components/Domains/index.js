@@ -4,7 +4,7 @@ import { Slider, Divider, Card, Typography, Select, Checkbox, Input, Row, Col } 
 //components
 import PageWrapper from 'common/components/PageWrapper';
 import CardItem from 'common/components/CardItem';
-import Banner from './Banner';
+import Banner from 'common/components/Banner';
 
 //styles
 import classes from './styles.module.scss';
