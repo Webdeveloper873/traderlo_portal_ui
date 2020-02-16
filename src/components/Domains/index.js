@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Slider, Divider, Card, Typography, Select, Checkbox, Input, Row, Col } from 'antd';
+import { Redirect } from "react-router-dom";
 
 //components
 import PageWrapper from 'common/components/PageWrapper';
@@ -10,7 +11,7 @@ import Banner from 'common/components/Banner';
 import classes from './styles.module.scss';
 
 //constants
-import {responsiveConf} from 'common/constants';
+import {responsiveConf, routes} from 'common/constants';
 
 const {Text} = Typography;
 const {Option} = Select;
@@ -110,6 +111,17 @@ const Filters = () => {
 
 
 const SearchKeyword = () => {
+  const [viewDetails, setViewDetails] = useState(false);
+
+  if(viewDetails){
+    return <Redirect to={routes.DOMAINS_VIEW_PAGE} />;
+  }
+
+  const onClickCardItem = () => {
+    setViewDetails(true);
+  }
+
+
   return(
     <div className={classes.searchKeyword}>
       <Typography.Text level={4} strong>{`Keywords : `}</Typography.Text>
@@ -138,13 +150,13 @@ const SearchKeyword = () => {
 
       <Row gutter={16}>
         <Col {...threeCol}>
-          <CardItem />
+          <CardItem onClick={onClickCardItem}/>
         </Col>
         <Col {...threeCol}>
-          <CardItem />
+          <CardItem onClick={onClickCardItem}/>
         </Col>
         <Col {...threeCol}>
-          <CardItem />
+          <CardItem onClick={onClickCardItem}/>
         </Col>
       </Row>
     </div>

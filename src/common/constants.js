@@ -2,6 +2,7 @@ export const routes = {
   HOME_PAGE: '/traderlo',
   WEBSITE_PAGE: '/traderlo/website',
   DOMAINS_PAGE: '/traderlo/domains',
+  DOMAINS_VIEW_PAGE: '/traderlo/domains/view',
   SELLING_PAGE: '/traderlo/sell',
   SELLING_SUB_PAGE: '/traderlo/sell_sub',
 };
