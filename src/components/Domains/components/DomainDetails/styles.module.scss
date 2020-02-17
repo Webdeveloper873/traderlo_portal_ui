@@ -79,3 +79,56 @@
   margin-right: 4px;
   display: inline-block;
 }
+
+.sellerDetailsCard {
+
+  &.phoneNumberCard {
+    background: #dcedc8 !important;
+  }
+
+  &.addressCard {
+    margin-top: 15px;
+    background: #ffecb3 !important;
+  }
+
+  :global {
+    .ant-card-body {
+      padding: 15px !important;
+    }
+  }
+
+  .number {
+    font-weight: 700;
+    font-size: 16px;
+    display: block;
+  }
+
+  .showNumber {
+    margin-top: 20px;
+    color: #00bcd4;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .padlock {
+    font-size: 30px;
+    float: right;
+    padding-top: 8px;
+  }
+}
+
+.messageIcon {
+  font-size: 32px;
+  color: #00bcd4;
+  top: 0;
+  position: absolute;
+  cursor: pointer;
+}
+
+.chat {
+  cursor: pointer;
+  margin-left: 36px;
+  font-weight: 500;
+  font-size: 24px;
+  color: #00bcd4;
+}
