@@ -6,49 +6,49 @@ import classes from './styles.module.scss';
 
 const TemplatesList = () => {
   return(
-    <Row type="flex" style={{alignItems: 'center'}}>
+    <Row type="flex">
       <Col xs={4} lg={4} md={4} className={classes.tempLists}>
         <ListGroup>
           <ListGroup.Item>
-            <span style={{textAlign: 'center'}}>
+            <span className={classes.title}>
               <h6><b>Templates - Premium</b></h6>
             </span>
           </ListGroup.Item>
-          <ListGroup.Item style={{backgroundColor:'rgba(0,0,0,.05)'}}>
-            <div style={{textAlign: 'center' }}>
-              <span style={{marginRight:15, marginLeft:5 }}>
+          <ListGroup.Item className={classes.greyBackground}>
+            <div>
+              <span className={classes.content}>
                 <a>hellographic.com</a>
               </span>
-              <span style={{color:'#00bcd4', fontWeight:600}}>2 days left</span>
-              </div>
-          </ListGroup.Item>
-          <ListGroup.Item>
-            <div style={{textAlign: 'center' }}>
-              <span style={{marginRight:15, marginLeft:5 }}>
-                <a>hellographic.com</a>
-              </span>
-              <span style={{color:'#00bcd4', fontWeight:600}}>2 days left</span>
+              <span className={classes.daysLeftDecor}>2 days left</span>
             </div>
           </ListGroup.Item>
-          <ListGroup.Item style={{backgroundColor:'rgba(0,0,0,.05)'}}>
-            <div style={{textAlign: 'center' }}>
-              <span style={{marginRight:15, marginLeft:5 }}>
+          <ListGroup.Item className={classes.whiteBackground}>
+            <div>
+              <span className={classes.content}>
                 <a>hellographic.com</a>
               </span>
-              <span style={{color:'#00bcd4', fontWeight:600}}>2 days left</span>
-              </div>
+              <span className={classes.daysLeftDecor}>2 days left</span>
+            </div>
           </ListGroup.Item>
-          <ListGroup.Item>
-            <div style={{textAlign: 'center' }}>
-              <span style={{marginRight:15, marginLeft:5 }}>
+          <ListGroup.Item className={classes.greyBackground}>
+            <div>
+              <span className={classes.content}>
                 <a>hellographic.com</a>
               </span>
-              <span style={{color:'#00bcd4', fontWeight:600}}>2 days left</span>
+              <span className={classes.daysLeftDecor}>2 days left</span>
+            </div>
+          </ListGroup.Item>
+          <ListGroup.Item className={classes.whiteBackground}>
+            <div>
+              <span className={classes.content}>
+                <a>hellographic.com</a>
+              </span>
+              <span className={classes.daysLeftDecor}>2 days left</span>
             </div>
           </ListGroup.Item>
           <ListGroup.Item>
-            <div style={{textAlign: 'center',alignItems: 'center' }}>
-              <span style={{color:'#ec008c', fontWeight:600, display:'block'}}>
+            <div className={classes.viewAllDecor}>
+              <span className={classes.fontDecor}>
                 <a>View All <Icon type="arrow-right" style={{ fontSize:14}}/></a> 
               </span>
             </div>
@@ -57,49 +57,49 @@ const TemplatesList = () => {
       </Col>
 
 {/* Table two */}
-      <Col xs={4} lg={4} md={4} className={classes.tempLists}>
-      <ListGroup>
+<Col xs={4} lg={4} md={4} className={classes.tempLists}>
+        <ListGroup>
           <ListGroup.Item>
-            <span style={{textAlign: 'center'}}>
+            <span className={classes.title}>
               <h6><b>Templates - Premium</b></h6>
             </span>
           </ListGroup.Item>
-          <ListGroup.Item style={{backgroundColor:'rgba(0,0,0,.05)'}}>
-            <div style={{textAlign: 'center' }}>
-              <span style={{marginRight:15, marginLeft:5 }}>
+          <ListGroup.Item className={classes.greyBackground}>
+            <div>
+              <span className={classes.content}>
                 <a>hellographic.com</a>
               </span>
-              <span style={{color:'#00bcd4', fontWeight:600}}>2 days left</span>
-              </div>
-          </ListGroup.Item>
-          <ListGroup.Item>
-            <div style={{textAlign: 'center' }}>
-              <span style={{marginRight:15, marginLeft:5 }}>
-                <a>hellographic.com</a>
-              </span>
-              <span style={{color:'#00bcd4', fontWeight:600}}>2 days left</span>
+              <span className={classes.daysLeftDecor}>2 days left</span>
             </div>
           </ListGroup.Item>
-          <ListGroup.Item style={{backgroundColor:'rgba(0,0,0,.05)'}}>
-            <div style={{textAlign: 'center' }}>
-              <span style={{marginRight:15, marginLeft:5 }}>
+          <ListGroup.Item className={classes.whiteBackground}>
+            <div>
+              <span className={classes.content}>
                 <a>hellographic.com</a>
               </span>
-              <span style={{color:'#00bcd4', fontWeight:600}}>2 days left</span>
-              </div>
+              <span className={classes.daysLeftDecor}>2 days left</span>
+            </div>
           </ListGroup.Item>
-          <ListGroup.Item>
-            <div style={{textAlign: 'center' }}>
-              <span style={{marginRight:15, marginLeft:5 }}>
+          <ListGroup.Item className={classes.greyBackground}>
+            <div>
+              <span className={classes.content}>
                 <a>hellographic.com</a>
               </span>
-              <span style={{color:'#00bcd4', fontWeight:600}}>2 days left</span>
+              <span className={classes.daysLeftDecor}>2 days left</span>
+            </div>
+          </ListGroup.Item>
+          <ListGroup.Item className={classes.whiteBackground}>
+            <div>
+              <span className={classes.content}>
+                <a>hellographic.com</a>
+              </span>
+              <span className={classes.daysLeftDecor}>2 days left</span>
             </div>
           </ListGroup.Item>
           <ListGroup.Item>
-            <div style={{textAlign: 'center',alignItems: 'center' }}>
-              <span style={{color:'#ec008c', fontWeight:600, display:'block'}}>
-                <a>View All <Icon type="arrow-right"/></a> 
+            <div className={classes.viewAllDecor}>
+              <span className={classes.fontDecor}>
+                <a>View All <Icon type="arrow-right" style={{ fontSize:14}}/></a> 
               </span>
             </div>
           </ListGroup.Item>
@@ -108,49 +108,49 @@ const TemplatesList = () => {
 
 
 {/* Table three */}
-      <Col xs={4} lg={4} md={4} className={classes.tempLists}>
-      <ListGroup>
+<Col xs={4} lg={4} md={4} className={classes.tempLists}>
+        <ListGroup>
           <ListGroup.Item>
-            <span style={{textAlign: 'center'}}>
+            <span className={classes.title}>
               <h6><b>Templates - Premium</b></h6>
             </span>
           </ListGroup.Item>
-          <ListGroup.Item style={{backgroundColor:'rgba(0,0,0,.05)'}}>
-            <div style={{textAlign: 'center' }}>
-              <span style={{marginRight:15, marginLeft:5 }}>
+          <ListGroup.Item className={classes.greyBackground}>
+            <div>
+              <span className={classes.content}>
                 <a>hellographic.com</a>
               </span>
-              <span style={{color:'#00bcd4', fontWeight:600}}>2 days left</span>
-              </div>
-          </ListGroup.Item>
-          <ListGroup.Item>
-            <div style={{textAlign: 'center' }}>
-              <span style={{marginRight:15, marginLeft:5 }}>
-                <a>hellographic.com</a>
-              </span>
-              <span style={{color:'#00bcd4', fontWeight:600}}>2 days left</span>
+              <span className={classes.daysLeftDecor}>2 days left</span>
             </div>
           </ListGroup.Item>
-          <ListGroup.Item style={{backgroundColor:'rgba(0,0,0,.05)'}}>
-            <div style={{textAlign: 'center' }}>
-              <span style={{marginRight:15, marginLeft:5 }}>
+          <ListGroup.Item className={classes.whiteBackground}>
+            <div>
+              <span className={classes.content}>
                 <a>hellographic.com</a>
               </span>
-              <span style={{color:'#00bcd4', fontWeight:600}}>2 days left</span>
-              </div>
+              <span className={classes.daysLeftDecor}>2 days left</span>
+            </div>
           </ListGroup.Item>
-          <ListGroup.Item>
-            <div style={{textAlign: 'center' }}>
-              <span style={{marginRight:15, marginLeft:5 }}>
+          <ListGroup.Item className={classes.greyBackground}>
+            <div>
+              <span className={classes.content}>
                 <a>hellographic.com</a>
               </span>
-              <span style={{color:'#00bcd4', fontWeight:600}}>2 days left</span>
+              <span className={classes.daysLeftDecor}>2 days left</span>
+            </div>
+          </ListGroup.Item>
+          <ListGroup.Item className={classes.whiteBackground}>
+            <div>
+              <span className={classes.content}>
+                <a>hellographic.com</a>
+              </span>
+              <span className={classes.daysLeftDecor}>2 days left</span>
             </div>
           </ListGroup.Item>
           <ListGroup.Item>
-            <div style={{textAlign: 'center',alignItems: 'center' }}>
-              <span style={{color:'#ec008c', fontWeight:600, display:'block'}}>
-                <a>View All <Icon type="arrow-right"/></a> 
+            <div className={classes.viewAllDecor}>
+              <span className={classes.fontDecor}>
+                <a>View All <Icon type="arrow-right" style={{ fontSize:14}}/></a> 
               </span>
             </div>
           </ListGroup.Item>
