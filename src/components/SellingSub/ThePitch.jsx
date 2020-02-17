@@ -1,19 +1,10 @@
 import React from 'react';
-import { Tabs, Card, Menu, Dropdown, Button, Icon, message, Form, Input, Col, Row  } from 'antd';
-
-//components
-import PageWrapper from 'common/components/PageWrapper';
-import Banner from 'common/components/Banner';
+import { Tabs, Menu, Dropdown, Button, Icon, message, Input, Row  } from 'antd';
 
 //styles
 import classes from './styles.module.scss';
 
-//constants
-import { responsiveConf } from 'common/constants';
-
 const { TextArea } = Input;
-const { TabPane } = Tabs;
-const {fiveCol, threeCol} = responsiveConf || {};
 
 //The Pitch Part
 const handleMenuClick = (e) => {
@@ -42,55 +33,41 @@ const listCategoryMenu = () => {
 
 
 
-const handleButtonClick = (e) => {
-  message.info('Click on left button.');
-  console.log('click left button', e);
-}
-
-const callback = (key) => {
-  console.log(key);
-}
-
 const ThePitch = () => {
   return(
-    <>
-      <h5 style={{fontWeight:700}}>Describe Your Product</h5>
-      <div style={{marginTop:20}}>
-        <span style={{fontSize:17}}>Get in front of buyers looking for website like your by categorizing it accurately, and letting them know how long the website has been live.</span>
+    <div className={classes.thePitch}>
+      <h5 className={classes.fontDecorH5}>Describe Your Product</h5>
+      <div className={classes.subDetails}>
+        <span className={classes.fontDecor}>Get in front of buyers looking for website like your by categorizing it accurately, and letting them know how long the website has been live.</span>
       </div>
       <div>
         <Row>
           <Dropdown overlay={listCategoryMenu}>
-            <Button size="large" style={{width:'30%', marginTop:30,marginBottom:30,marginRight:30}}>
+            <Button size="large" className={classes.listCategory}>
               List Category <Icon type="down" />
             </Button>
           </Dropdown>
           <Dropdown overlay={listCategoryMenu}>
-            <Button size="large" style={{width:'30%', margin:30}}>
+            <Button size="large" className={classes.listSubCategory}>
               List Sub Category <Icon type="down" />
             </Button>
           </Dropdown>
         </Row>
         <Row>
-          {/* <Form layout="inline" >
-            <Form.Item > */}
-                <Input
-                  size="large"
-                  style={{width:685}}
-                  // prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                  placeholder="Description Heading"
-                />
-            {/* </Form.Item>
-          </Form> */}
+          <Input
+            size="large"
+            className={classes.descriptionHeading}
+            placeholder="Description Heading"
+          />
         </Row>
         <Row>
-          <TextArea rows={8} style={{width:685, marginTop:20}}  placeholder="Description"/>
+          <TextArea rows={8} className={classes.description}  placeholder="Description"/>
         </Row>
-        <Row style={{marginTop:30}}>
-          <Button size='large' style={{backgroundColor:'#00bcd4', color:'white', textAlign:'center', width:140, padding:10, height:50}}>Next</Button>
+        <Row className={classes.btnContainer}>
+          <Button size='large' className={classes.btnStyle}>Next</Button>
         </Row>
       </div>
-    </>
+    </div>
   )
 }
 
