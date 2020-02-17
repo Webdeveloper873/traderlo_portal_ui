@@ -37,10 +37,7 @@
   margin-left: 0px !important;
 }
 
-.tempLists {
-  padding: 0 !important;
-  border-radius: 0 !important;
-}
+
 
 .howItWorks {
   text-align: center;
@@ -106,4 +103,60 @@
     padding-top: 20px;
     text-align: start;
   }
+}
+
+
+// **** Template List ****
+
+.tempLists {
+  padding: 0 !important;
+  border-radius: 0 !important;
+  align-items: center;
+
+  .title {
+    text-align: center;
+  }
+
+  .greyBackground {
+    background-color:rgba(0,0,0,.05);
+    text-align: center;
+
+    .content {
+      margin-right:15px;
+      margin-left:5px;
+    }
+
+    .daysLeftDecor {
+      color:#00bcd4;
+      font-weight:600;
+    }
+  }
+
+  .whiteBackground {
+    background-color:white;
+    text-align: center;
+
+    .content {
+      margin-right:15px;
+      margin-left:5px;
+    }
+
+    .daysLeftDecor {
+      color:#00bcd4;
+      font-weight:600;
+    }
+  }
+
+  .viewAllDecor {
+    text-align: center;
+    align-items: center; 
+
+    .fontDecor {
+      color:#ec008c;
+      font-weight:600;
+      display:block;
+    }
+
+  }
+
 }

@@ -22,7 +22,7 @@ const Sale = () => {
         <InputField label='Buy Now' icon='dollar' />
       </Row>
       <Row className={classes.btnContainer}>
-        <Button type='primary' size='large' className={classes.btnStyle}>Next</Button>
+        <Button size='large' className={classes.btnStyle}>Next</Button>
       </Row>
     </Card>
   );
