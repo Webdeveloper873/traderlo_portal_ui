@@ -1,5 +1,5 @@
 import React from 'react';
-import {Col, Row, Card, Icon, Avatar, Collapse} from 'antd';
+import {Col, Row, Card, Avatar, Collapse} from 'antd';
 
 //components
 import PageWrapper from 'common/components/PageWrapper';
@@ -10,14 +10,12 @@ import classes from './styles.module.scss';
 
 //assets
 import UserImgTemp from 'assets/user-img.jpg';
-import WebsiteTemp from 'assets/tempImg/website.png';
-
-import buyingActivities from 'assets/chat/buyingActivities.png';
-import chat from 'assets/chat/chat.png';
-import dashboard from 'assets/chat/dashboard.png';
-import myFinance from 'assets/chat/myFinance.png';
-import myProfileAndAccount from 'assets/chat/myProfileAndAccount.png';
-import sellingActivities from 'assets/chat/sellingActivities.png';
+import buyingActivities from 'assets/userSideBar/buyingActivities.png';
+import chat from 'assets/userSideBar/chat.png';
+import dashboard from 'assets/userSideBar/dashboard.png';
+import myFinance from 'assets/userSideBar/myFinance.png';
+import myProfileAndAccount from 'assets/userSideBar/myProfileAndAccount.png';
+import sellingActivities from 'assets/userSideBar/sellingActivities.png';
 
 
 const { Panel } = Collapse;

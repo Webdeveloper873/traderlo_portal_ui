@@ -1,8 +1,5 @@
 import React from 'react';
-import { Tabs, Card, Menu, Dropdown, Button, Icon, message, Form, Input, Col, Row  } from 'antd';
-
-//constants
-import { responsiveConf } from 'common/constants';
+import { Card, Menu, Dropdown, Button, Icon, message, Input, Row  } from 'antd';
 
 //styles
 import classes from '../styles.module.scss';

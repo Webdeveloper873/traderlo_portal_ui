@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, Card, Menu, Dropdown, Button, Icon, message, Form, Input, Col, Row  } from 'antd';
+import { Tabs  } from 'antd';
 
 //components
 import PageWrapper from 'common/components/PageWrapper';
