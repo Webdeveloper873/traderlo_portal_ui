@@ -119,7 +119,7 @@ const CollapsibleItems = () => {
   )
 }
 
-const Chat = () => {
+const UserSideBar = () => {
   return(
     <>
       <Banner text={'Chat'} />
@@ -137,4 +137,4 @@ const Chat = () => {
   );
 }
 
-export default Chat;
+export default UserSideBar;

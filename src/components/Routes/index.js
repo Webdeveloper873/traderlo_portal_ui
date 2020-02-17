@@ -6,7 +6,7 @@ import Home from 'components/Home';
 import Selling from 'components/Selling';
 import SellingSub from 'components/SellingSub';
 import SearchRecord from 'components/SearchRecord';
-import Chat from 'components/Chat';
+import UserSideBar from 'common/components/UserSidebar';
 import Header from 'common/components/Header';
 import Login from 'components/Login';
 import Footer from 'common/components/Footer';
@@ -34,7 +34,7 @@ const Routes = ({ }) => {
           <Route exact path={routes.DOMAINS_PAGE} render={() => <SearchRecord title='Domains'/>} />
           <Route exact path={routes.SELLING_PAGE} render={() => <Selling />} />
           <Route exact path={routes.SELLING_SUB_PAGE} render={() => <SellingSub />} />
-          <Route exact path={routes.CHAT_PAGE} render={() => <Chat />} />
+          <Route exact path={routes.CHAT_PAGE} render={() => <UserSideBar />} />
           <Route path="*" render={
             () => (<Redirect to={routes.HOME_PAGE} />)
           } />
