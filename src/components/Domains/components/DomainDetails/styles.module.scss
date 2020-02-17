@@ -132,3 +132,30 @@
   font-size: 24px;
   color: #00bcd4;
 }
+
+.similarList {
+  display: block;
+
+  .caretIcon {
+    position: absolute;
+    font-size: 16px;
+    padding-top: 5px;
+  }
+
+  span {
+    margin-left: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #00bcd4;
+  }
+}
+
+.dividerStyle {
+  margin: 10px 0 !important;
+}
+
+.cardTitle {
+  font-weight: 700;
+  font-size: 16px;
+}

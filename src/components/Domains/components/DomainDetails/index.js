@@ -17,6 +17,7 @@ import Payments from 'assets/bidding/payments.png';
 
 //constants
 import {responsiveConf} from 'common/constants';
+import SimilarPost from './components/SimilarPost';
 
 const {TabPane} = Tabs;
 const {twoCol} = responsiveConf;
@@ -67,9 +68,14 @@ const RightPane = () => {
         </Row>
       </Card>
       <Card className={classes.marginTop15}>
-        <span>Seller Details</span>
-        <Divider />
+        <span className={classes.cardTitle}>Seller Details</span>
+        <Divider className={classes.dividerStyle} />
         <SellerDetails />
+      </Card>
+      <Card className={classes.marginTop15}>
+        <span className={classes.cardTitle}>Similar Domains</span>
+        <Divider className={classes.dividerStyle} />
+        <SimilarPost />
       </Card>
     </Col>
   );
