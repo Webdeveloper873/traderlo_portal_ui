@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Card, Row, Button, Upload, message, Icon, Col, Divider } from 'antd';
+import { Typography, Card, Row, Button, Upload, message, Icon, Col } from 'antd';
 
 //components
 import InputField from './InputField';

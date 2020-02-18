@@ -1,8 +1,5 @@
 import React from 'react';
-import { Tabs, Card, Menu, Dropdown, Button, Icon, message, Form, Input, Col, Row  } from 'antd';
-
-//constants
-import { responsiveConf } from 'common/constants';
+import { Card, Menu, Dropdown, Button, Icon, message, Input, Row  } from 'antd';
 
 //styles
 import classes from '../styles.module.scss';
@@ -43,9 +40,9 @@ const ThePitch = () => {
   return(
     <div className={classes.thePitch}>
       <Card className={classes.cardStyle}>
-        <h5 style={{fontWeight:700}}>Describe Your Product</h5>
-        <div style={{marginTop:20}}>
-          <span style={{fontSize:17}}>Get in front of buyers looking for website like your by categorizing it accurately, and letting them know how long the website has been live.</span>
+        <h5 className={classes.fontDecorH5}>Describe Your Product</h5>
+        <div className={classes.subDetails}>
+          <span className={classes.fontDecor}>Get in front of buyers looking for website like your by categorizing it accurately, and letting them know how long the website has been live.</span>
         </div>
         <div>
           <Row>
@@ -63,12 +60,12 @@ const ThePitch = () => {
           <Row>
             <Input
               size="large"
-              style={{width:685}}
+              className={classes.descriptionHeading}
               placeholder="Description Heading"
             />
           </Row>
           <Row>
-            <TextArea rows={8} className={classes.textAreaDecor}  placeholder="Description"/>
+            <TextArea rows={8} className={classes.description}  placeholder="Description"/>
           </Row>
           <Row className={classes.btnContainer}>
             <Button size='large' className={classes.btnStyle}>Next</Button>

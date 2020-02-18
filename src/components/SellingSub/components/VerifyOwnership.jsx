@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Card, Row, Button, Col, Tabs, Avatar, Icon, Input } from 'antd';
+import { Card, Row, Button, Col, Avatar, Icon, Input } from 'antd';
 
 //styles
 import classes from '../styles.module.scss';
