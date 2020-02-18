@@ -1,12 +1,28 @@
 import React, {useState} from 'react';
 import {Modal, Row, Form, Button} from 'react-bootstrap';
+import { Redirect } from "react-router-dom";
 
 //components
 import Divider from 'common/components/Divider';
 
+//styles
 import classes from './styles.module.scss';
 
-const SignInForm = () => {
+//constants
+import {routes} from 'common/constants';
+
+const SignInForm = ({handleClose}) => {
+  const [toLoginPage, setToLoginPage] = useState(false);
+
+  const onSignIn = () => {
+    handleClose();
+    setToLoginPage(true);
+  }
+
+  if (toLoginPage){
+    return <Redirect to={routes.CHAT_PAGE} />
+  }
+
   return(
     <Form className={classes.formWrapper}>
       <Row className="justify-content-md-center">
@@ -17,11 +33,11 @@ const SignInForm = () => {
       </Divider>
       <br />
         <Form.Group>
-          <Form.Control type="text" placeholder="Email/Username" /> <br />
-          <Form.Control type="text" placeholder="Password" /> <br />
+          <Form.Control type="text" placeholder="Email/Username" defaultValue='anythingworks' /> <br />
+          <Form.Control type="text" placeholder="Password" defaultValue='asdqwe123' type='password' /> <br />
           <Form.Check type="checkbox" label="Remember me" />
         </Form.Group>
-        <Button variant="primary" type="submit">Submit</Button>
+      <Button variant="primary" onClick={onSignIn}>Submit</Button>
     </Form>
   )
 }
@@ -83,7 +99,7 @@ const Login = ({show, handleClose}) => {
         <Modal.Title>SIGN IN</Modal.Title>
       </Modal.Header>
       <Modal.Body className="justify-content-md-center">
-        <SignInForm />
+        <SignInForm handleClose={handleClose}/>
       </Modal.Body>
       <Modal.Footer className="justify-content-md-center">
         <span>Don't have an account?</span>
