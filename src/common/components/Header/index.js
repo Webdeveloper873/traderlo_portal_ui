@@ -25,7 +25,7 @@ const Header = ({onClickSignInUp}) => {
             <Nav.Link href="/script">Clone script</Nav.Link>
             <Nav.Link href="/plugins">Plugins/Themes</Nav.Link>
             <Nav.Link onClick={onClickSignInUp}>Sign in/Signup</Nav.Link>
-            <Button size='large' className={classes.buttonStyle}>Start Selling</Button>
+            <Button size='large' className={classes.buttonStyle} href={routes.SELLING_PAGE}>Start Selling</Button>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
