@@ -15,7 +15,7 @@ const Header = ({onClickSignInUp}) => {
   return (
     <div className={classes.wrapper}>
       <Navbar className={classes.header} bg="light" expand="lg" sticky="top">
-        <Navbar.Brand href="/"><img className={classes.logo} src={logo} alt="Free Domain Auctions"/></Navbar.Brand>
+        <Navbar.Brand href={routes.HOME_PAGE}><img className={classes.logo} src={logo} alt="Free Domain Auctions"/></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
           <Nav className={classes.font} >

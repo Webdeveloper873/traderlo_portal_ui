@@ -33,7 +33,7 @@ const Routes = ({ }) => {
           <Route exact path={routes.HOME_PAGE} component={Home} />
           <Route exact path={routes.DOMAINS_PAGE} render={() => <SearchRecord title='Domains'/>} />
           <Route exact path={routes.SELLING_PAGE} render={() => <Selling />} />
-          <Route exact path={routes.SELLING_SUB_PAGE} render={() => <SellingDomain />} />
+          <Route exact path={routes.SELLING_DOMAINS_PAGE} render={() => <SellingDomain />} />
           <Route exact path={routes.CHAT_PAGE} render={() => <UserSideBar />} />
           <Route path="*" render={
             () => (<Redirect to={routes.HOME_PAGE} />)
