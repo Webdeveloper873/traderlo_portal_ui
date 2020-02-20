@@ -120,17 +120,17 @@ const CollapsibleItems = () => {
 const UserSideBar = () => {
   return(
     <>
-      <Banner text={'Chat'} />
-      <PageWrapper className={classes.pageWrapper}>
-       <Row>
-         <Col>
+      {/* <Banner text={'Chat'} />
+      <PageWrapper className={classes.pageWrapper}> */}
+       {/* <Row>
+         <Col> */}
           <UsersCard></UsersCard>
           <ItemSelection image={dashboard} title={'Dashboard'}></ItemSelection>
           <ItemSelection image={chat} title={'Chat'}></ItemSelection>
           <CollapsibleItems></CollapsibleItems>
-         </Col>
-       </Row>
-      </PageWrapper>
+         {/* </Col>
+       </Row> */}
+      {/* </PageWrapper> */}
     </>
   );
 }

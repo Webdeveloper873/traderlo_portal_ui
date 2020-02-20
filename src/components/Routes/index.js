@@ -1,15 +1,18 @@
 import React, { Suspense, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 
+//common components
+import UserSideBar from 'common/components/UserSidebar';
+import Header from 'common/components/Header';
+import Login from 'components/Login';
+import Footer from 'common/components/Footer';
+
 //components
 import Home from 'components/Home';
 import Selling from 'components/Selling';
 import SellingSub from 'components/SellingSub';
 import SearchRecord from 'components/SearchRecord';
-import UserSideBar from 'common/components/UserSidebar';
-import Header from 'common/components/Header';
-import Login from 'components/Login';
-import Footer from 'common/components/Footer';
+import UserBuyActivity from 'components/UserBuyActivity';
 
 //constants
 import { routes } from 'common/constants';
@@ -35,6 +38,7 @@ const Routes = ({ }) => {
           <Route exact path={routes.SELLING_PAGE} render={() => <Selling />} />
           <Route exact path={routes.SELLING_SUB_PAGE} render={() => <SellingSub />} />
           <Route exact path={routes.CHAT_PAGE} render={() => <UserSideBar />} />
+          <Route exact path={routes.MY_BIDS} render={() => <UserBuyActivity />} />
           <Route path="*" render={
             () => (<Redirect to={routes.HOME_PAGE} />)
           } />
