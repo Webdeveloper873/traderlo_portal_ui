@@ -19,11 +19,12 @@ const CardsDesc = () => (
   </>
 )
 
-const CardDisplay = () => {
+const CardDisplay = ({...props}) => {
   return(
     <Card className={classes.cardStyle}
       hoverable
       cover={<img alt="example" src={WebsiteTemp} />}
+      {...props}
     >
       <Avatar size={52} src={UserImgTemp} className={classes.avatarStyle}/>
       <Meta title="Product Name" description={<CardsDesc />} />

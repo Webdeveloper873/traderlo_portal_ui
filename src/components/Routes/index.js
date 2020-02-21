@@ -1,15 +1,18 @@
 import React, { Suspense, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 
-//components
+//route components
 import Home from 'components/Home';
 import Selling from 'components/Selling';
 import SellingSub from 'components/SellingSub';
-import SearchRecord from 'components/SearchRecord';
 import UserSideBar from 'common/components/UserSidebar';
+import Domains from 'components/Domains';
 import Header from 'common/components/Header';
 import Login from 'components/Login';
 import Footer from 'common/components/Footer';
+
+//subroute component
+import DomainDetails from 'components/Domains/components/DomainDetails'
 
 //constants
 import { routes } from 'common/constants';
@@ -31,7 +34,8 @@ const Routes = ({ }) => {
         <Login show={showLogin} handleClose={toggleShowLogin} />
         <Switch>
           <Route exact path={routes.HOME_PAGE} component={Home} />
-          <Route exact path={routes.DOMAINS_PAGE} render={() => <SearchRecord title='Domains'/>} />
+          <Route exact path={routes.DOMAINS_PAGE} render={() => <Domains title='Domains'/>} />
+          <Route exact path={routes.DOMAINS_VIEW_PAGE} render={() => <DomainDetails/>} />
           <Route exact path={routes.SELLING_PAGE} render={() => <Selling />} />
           <Route exact path={routes.SELLING_SUB_PAGE} render={() => <SellingSub />} />
           <Route exact path={routes.CHAT_PAGE} render={() => <UserSideBar />} />

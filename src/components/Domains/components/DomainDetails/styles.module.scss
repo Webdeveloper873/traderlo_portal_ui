@@ -1,0 +1,161 @@
+.rowStyle {
+  margin-top: 20px;
+  width: 100%;
+
+  :global {
+    .ant-card-bordered {
+      border-radius: 6px;
+    }
+  }
+}
+
+.cardStyle {
+  text-align: center;
+
+  h3 {
+
+    &:after {
+      content: '';
+      background: #ec008c;
+      display: block;
+      width: 46px;
+      height: 3px;
+      margin: 0 calc(50% - 24px);
+      margin-top: 5px;
+    }
+  }
+}
+
+.cardItem {
+  text-align: center;
+
+  img {
+    width: 25%;
+    margin: 0 90px;
+    margin-bottom: 10px;
+  }
+
+  .title {
+    font-size: 14px;
+    margin: 10px;
+    text-align: center;
+    font-weight: 700;
+  }
+}
+
+.marginTop15 {
+  margin-top: 15px !important;
+}
+
+.rightPane {
+  height: 250px;
+
+  h4 {
+    font-size: 22px !important;
+
+    span {
+      text-align: right !important;
+      float: right;
+      font-size: 14px;
+      margin-top: 8px;
+      color: #888 !important;
+      cursor: pointer;
+    }
+  }
+
+  p {
+    span {
+      margin-left: 10px;
+    }
+  }
+}
+
+.online {
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  background: #57e50c;
+  margin-left: 8px;
+  margin-right: 4px;
+  display: inline-block;
+}
+
+.sellerDetailsCard {
+
+  &.phoneNumberCard {
+    background: #dcedc8 !important;
+  }
+
+  &.addressCard {
+    margin-top: 15px;
+    background: #ffecb3 !important;
+  }
+
+  :global {
+    .ant-card-body {
+      padding: 15px !important;
+    }
+  }
+
+  .number {
+    font-weight: 700;
+    font-size: 16px;
+    display: block;
+  }
+
+  .showNumber {
+    margin-top: 20px;
+    color: #00bcd4;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .padlock {
+    font-size: 30px;
+    float: right;
+    padding-top: 8px;
+  }
+}
+
+.messageIcon {
+  font-size: 32px;
+  color: #00bcd4;
+  top: 0;
+  position: absolute;
+  cursor: pointer;
+}
+
+.chat {
+  cursor: pointer;
+  margin-left: 36px;
+  font-weight: 500;
+  font-size: 24px;
+  color: #00bcd4;
+}
+
+.similarList {
+  display: block;
+
+  .caretIcon {
+    position: absolute;
+    font-size: 16px;
+    padding-top: 5px;
+  }
+
+  span {
+    margin-left: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #00bcd4;
+  }
+}
+
+.dividerStyle {
+  margin: 10px 0 !important;
+}
+
+.cardTitle {
+  font-weight: 700;
+  font-size: 16px;
+}
