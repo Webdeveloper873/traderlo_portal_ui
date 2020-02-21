@@ -6,6 +6,7 @@ export const routes = {
   SELLING_PAGE: '/traderlo/sell',
   SELLING_SUB_PAGE: '/traderlo/sell_sub',
   CHAT_PAGE: '/traderlo/chat',
+  MY_BIDS: '/traderlo/user/bids',
 };
 
 export const responsiveConf = {
