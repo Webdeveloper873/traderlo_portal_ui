@@ -1,5 +1,6 @@
-import React from 'react';
-import {Col, Row, Card, Input} from 'antd';
+import React, { useState } from 'react';
+import { Col, Row, Card, Input } from 'antd';
+import { Redirect } from 'react-router-dom';
 
 //components
 import PageWrapper from 'common/components/PageWrapper';
@@ -17,7 +18,7 @@ import tmpltsGrphcs from 'assets/selling/tmpltsGrphcs.png';
 import bids from 'assets/selling/bids.png';
 
 //constants
-import { responsiveConf } from 'common/constants';
+import { responsiveConf, routes } from 'common/constants';
 
 const {fiveCol, threeCol} = responsiveConf || {};
 const {Search} = Input;
@@ -56,7 +57,7 @@ const Step1Card = ({title, imgSrc, details}) => {
       <h5 className={classes.title}>{title}</h5>
       <img src={imgSrc} alt={'...loading'}/>
       <p>{details}</p>
-      
+
     </Card>
   )
 }
@@ -90,6 +91,12 @@ const SellingStep = ({subtitle, sublink, children}) => {
 }
 
 const Selling = () => {
+  const [toNextStep, setToNextStep] = useState(false);
+
+  if(toNextStep){
+    return <Redirect to={routes.SELLING_DOMAINS_PAGE} />
+  }
+
   return(
     <>
       <Banner text={'Selling'} />
@@ -116,7 +123,10 @@ const Selling = () => {
         <SellingStep sublink='The URL of your website *'>3. Basic details to get it started</SellingStep>
         <Row gutter={16} className={classes.rowStyle}>
           <Col xs={24} md={12}>
-            <Search placeholder="Enter The URL" onSearch={value => console.log(value)} enterButton='Getting Started' />
+            <Search placeholder="Enter The URL"
+              onSearch={value => setToNextStep(true)}
+              enterButton='Getting Started'
+            />
           </Col>
         </Row>
       </PageWrapper>

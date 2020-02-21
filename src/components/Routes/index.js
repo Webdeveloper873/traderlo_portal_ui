@@ -8,9 +8,9 @@ import Login from 'components/Login';
 import Footer from 'common/components/Footer';
 
 //components
+import SellingDomain from 'components/SellingDomain';
 import Home from 'components/Home';
 import Selling from 'components/Selling';
-import SellingSub from 'components/SellingSub';
 import Domains from 'components/Domains';
 import UserBuyActivity from 'components/UserBuyActivity';
 
@@ -40,7 +40,7 @@ const Routes = ({ }) => {
           <Route exact path={routes.DOMAINS_PAGE} render={() => <Domains title='Domains'/>} />
           <Route exact path={routes.DOMAINS_VIEW_PAGE} render={() => <DomainDetails/>} />
           <Route exact path={routes.SELLING_PAGE} render={() => <Selling />} />
-          <Route exact path={routes.SELLING_SUB_PAGE} render={() => <SellingSub />} />
+          <Route exact path={routes.SELLING_DOMAINS_PAGE} render={() => <SellingDomain />} />
           <Route exact path={routes.CHAT_PAGE} render={() => <UserSideBar />} />
           <Route exact path={routes.MY_BIDS} render={() => <UserBuyActivity />} />
           <Route path="*" render={
