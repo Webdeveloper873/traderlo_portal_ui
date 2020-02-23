@@ -40,7 +40,7 @@ const UsersCard = () => {
     <Card className={classes.usersCard}>
       <Row>
         <Col span={8}>
-          <Avatar size={60} src={UserImgTemp} className={classes.avatarStyle}/> 
+          <Avatar size={60} src={UserImgTemp} className={classes.avatarStyle}/>
         </Col>
         <Col span={16}>
           <Meta title="User Name" description={<CardsDesc />} />
@@ -56,8 +56,8 @@ const ItemSelection = ({image, title}) => {
     <div className={classes.itemSelection} onClick={test}>
       <a>
         <Col span={24} className={classes.colDecor}>
-          <Avatar size={35} src={image} className={classes.avatarStyle} shape="square"/> 
-          <span className={classes.fontDecor}>{title}</span> 
+          <Avatar size={35} src={image} className={classes.avatarStyle} shape="square"/>
+          <span className={classes.fontDecor}>{title}</span>
         </Col>
       </a>
   </div>
@@ -68,8 +68,8 @@ const DropdownSelection = ({image, title}) => {
   return (
     <div className={classes.dropdownSelection}>
       <Col span={24} className={classes.colDecor}>
-        <Avatar size={35} src={image} className={classes.avatarStyle} shape="square"/> 
-        <span className={classes.fontDecor}>{title}</span> 
+        <Avatar size={35} src={image} className={classes.avatarStyle} shape="square"/>
+        <span className={classes.fontDecor}>{title}</span>
       </Col>
     </div>
   )
@@ -77,10 +77,10 @@ const DropdownSelection = ({image, title}) => {
 
 
 
-const SubItemSelection = ({title}) => {
+const SubItemSelection = ({title, redirectPath, ...props}) => {
   return(
-    <a>
-      <div className={classes.subItemSelection} onClick={test}>
+    <a href={redirectPath}>
+      <div className={classes.subItemSelection} {...props}>
         <span className={classes.fontDecor}>{title}</span>
       </div>
     </a>
@@ -92,11 +92,11 @@ const test = () => {
 }
 
 const CollapsibleItems = () => {
-  return ( 
+  return (
     <Collapse defaultActiveKey={[]} onChange={callback} expandIconPosition={'right'} style={customPanelStyle}>
       <Panel header={<DropdownSelection image={buyingActivities} title = {'Buying Activities'}></DropdownSelection>} key="1" style={{padding:0}}>
-        <SubItemSelection title={'Bid Related'}></SubItemSelection>
-        <SubItemSelection title={'Orders'} ></SubItemSelection>
+        <SubItemSelection title={'My Bids'} redirectPath='/traderlo/user/bids'></SubItemSelection>
+        <SubItemSelection title={'My Orders'} redirectPath='/traderlo/user/orders'></SubItemSelection>
         <SubItemSelection title={'Watching'} ></SubItemSelection>
       </Panel>
       <Panel header={<DropdownSelection image={sellingActivities} title = {'Selling Activities'}></DropdownSelection>} key="2" >

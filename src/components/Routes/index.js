@@ -12,7 +12,7 @@ import SellingDomain from 'components/SellingDomain';
 import Home from 'components/Home';
 import Selling from 'components/Selling';
 import Domains from 'components/Domains';
-import UserBuyActivity from 'components/UserBuyActivity';
+import UserBids from 'components/UserBids';
 
 //subroute component
 import DomainDetails from 'components/Domains/components/DomainDetails'
@@ -42,7 +42,7 @@ const Routes = ({ }) => {
           <Route exact path={routes.SELLING_PAGE} render={() => <Selling />} />
           <Route exact path={routes.SELLING_DOMAINS_PAGE} render={() => <SellingDomain />} />
           <Route exact path={routes.CHAT_PAGE} render={() => <UserSideBar />} />
-          <Route exact path={routes.MY_BIDS} render={() => <UserBuyActivity />} />
+          <Route exact path={routes.MY_BIDS} render={() => <UserBids />} />
           <Route path="*" render={
             () => (<Redirect to={routes.HOME_PAGE} />)
           } />
