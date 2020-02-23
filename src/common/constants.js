@@ -7,6 +7,7 @@ export const routes = {
   SELLING_DOMAINS_PAGE: '/traderlo/sell_domain',
   CHAT_PAGE: '/traderlo/chat',
   MY_BIDS: '/traderlo/user/bids',
+  MY_ORDERS: '/traderlo/user/orders',
 };
 
 export const responsiveConf = {

@@ -13,6 +13,7 @@ import Home from 'components/Home';
 import Selling from 'components/Selling';
 import Domains from 'components/Domains';
 import UserBids from 'components/UserBids';
+import UserOrders from 'components/UserOrders';
 
 //subroute component
 import DomainDetails from 'components/Domains/components/DomainDetails'
@@ -43,6 +44,7 @@ const Routes = ({ }) => {
           <Route exact path={routes.SELLING_DOMAINS_PAGE} render={() => <SellingDomain />} />
           <Route exact path={routes.CHAT_PAGE} render={() => <UserSideBar />} />
           <Route exact path={routes.MY_BIDS} render={() => <UserBids />} />
+          <Route exact path={routes.MY_ORDERS} render={() => <UserOrders />} />
           <Route path="*" render={
             () => (<Redirect to={routes.HOME_PAGE} />)
           } />
