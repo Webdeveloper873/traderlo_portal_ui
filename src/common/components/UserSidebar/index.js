@@ -4,6 +4,7 @@ import {Col, Row, Card, Avatar, Collapse} from 'antd';
 //components
 import PageWrapper from 'common/components/PageWrapper';
 import Banner from 'common/components/Banner';
+import MyOrderList from 'common/components/MyOrders';
 
 //styles
 import classes from './styles.module.scss';
@@ -122,14 +123,17 @@ const UserSideBar = () => {
     <>
       {/* <Banner text={'Chat'} />
       <PageWrapper className={classes.pageWrapper}> */}
-       {/* <Row>
-         <Col> */}
+       <Row>
+         <Col span={6} style={{paddingLeft:20}}>
           <UsersCard></UsersCard>
           <ItemSelection image={dashboard} title={'Dashboard'}></ItemSelection>
           <ItemSelection image={chat} title={'Chat'}></ItemSelection>
           <CollapsibleItems></CollapsibleItems>
-         {/* </Col>
-       </Row> */}
+         </Col>
+          <Col span={18}>
+            <MyOrderList></MyOrderList>
+          </Col>
+       </Row>
       {/* </PageWrapper> */}
     </>
   );
