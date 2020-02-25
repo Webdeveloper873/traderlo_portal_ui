@@ -2,12 +2,13 @@ import React, { Suspense, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 
 //common components
-import UserSideBar from 'common/components/UserSidebar';
+
 import Header from 'common/components/Header';
 import Login from 'components/Login';
 import Footer from 'common/components/Footer';
 
 //components
+import Dashboard from 'components/Dashboard';
 import SellingDomain from 'components/SellingDomain';
 import Home from 'components/Home';
 import Selling from 'components/Selling';
@@ -41,7 +42,7 @@ const Routes = ({ }) => {
           <Route exact path={routes.DOMAINS_VIEW_PAGE} render={() => <DomainDetails/>} />
           <Route exact path={routes.SELLING_PAGE} render={() => <Selling />} />
           <Route exact path={routes.SELLING_DOMAINS_PAGE} render={() => <SellingDomain />} />
-          <Route exact path={routes.CHAT_PAGE} render={() => <UserSideBar />} />
+          <Route exact path={routes.DASHBOARD_PAGE} render={() => <Dashboard />} />
           <Route exact path={routes.MY_BIDS} render={() => <UserBuyActivity />} />
           <Route path="*" render={
             () => (<Redirect to={routes.HOME_PAGE} />)

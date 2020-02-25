@@ -1,10 +1,6 @@
 import React from 'react';
 import {Col, Row, Card, Avatar, Collapse} from 'antd';
 
-//components
-import PageWrapper from 'common/components/PageWrapper';
-import Banner from 'common/components/Banner';
-
 //styles
 import classes from './styles.module.scss';
 
@@ -120,17 +116,14 @@ const CollapsibleItems = () => {
 const UserSideBar = () => {
   return(
     <>
-      {/* <Banner text={'Chat'} />
-      <PageWrapper className={classes.pageWrapper}> */}
-       {/* <Row>
-         <Col> */}
+       <Row>
+         <Col span={5} style={{paddingLeft:20}}>
           <UsersCard></UsersCard>
           <ItemSelection image={dashboard} title={'Dashboard'}></ItemSelection>
           <ItemSelection image={chat} title={'Chat'}></ItemSelection>
           <CollapsibleItems></CollapsibleItems>
-         {/* </Col>
-       </Row> */}
-      {/* </PageWrapper> */}
+         </Col>
+       </Row>
     </>
   );
 }

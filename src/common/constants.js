@@ -6,6 +6,7 @@ export const routes = {
   SELLING_PAGE: '/traderlo/sell',
   SELLING_DOMAINS_PAGE: '/traderlo/sell_domain',
   CHAT_PAGE: '/traderlo/chat',
+  DASHBOARD_PAGE: '/traderlo/dashboard',
   MY_BIDS: '/traderlo/user/bids',
 };
 
