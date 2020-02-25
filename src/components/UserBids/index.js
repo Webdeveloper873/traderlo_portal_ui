@@ -16,7 +16,7 @@ const SearchBid = () => {
   return(<Input addonAfter={<Icon type={'search'} />} size='large' />);
 }
 
-const UserBuyActivity = () => {
+const UserBids = () => {
   return(
     <>
       <Banner text={'Bids'} />
@@ -34,4 +34,4 @@ const UserBuyActivity = () => {
   );
 }
 
-export default UserBuyActivity;
+export default UserBids;
