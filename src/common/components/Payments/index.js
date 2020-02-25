@@ -7,9 +7,9 @@ import CardItem from '../CardItem'
 import classes from './styles.module.scss';
 
 //assets
-import bankCheck from '../../../assets/payments/bankCheck.png';
-import debitCards from '../../../assets/payments/debitCards.png';
-import paypal from '../../../assets/payments/paypal.png';
+import bankCheck from 'assets/payments/bankCheck.png';
+import debitCards from 'assets/payments/debitCards.png';
+import paypal from 'assets/payments/paypal.png';
 
 
 const Payments = () => {
