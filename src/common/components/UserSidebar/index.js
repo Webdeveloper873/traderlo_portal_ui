@@ -1,11 +1,6 @@
 import React from 'react';
 import {Col, Row, Card, Avatar, Collapse} from 'antd';
 
-//components
-import PageWrapper from 'common/components/PageWrapper';
-import Banner from 'common/components/Banner';
-import MyOrderList from 'common/components/MyOrders';
-import DashBoard from 'common/components/Dashboard';
 //styles
 import classes from './styles.module.scss';
 
@@ -121,8 +116,6 @@ const CollapsibleItems = () => {
 const UserSideBar = () => {
   return(
     <>
-      {/* <Banner text={'Chat'} />
-      <PageWrapper className={classes.pageWrapper}> */}
        <Row>
          <Col span={5} style={{paddingLeft:20}}>
           <UsersCard></UsersCard>
@@ -130,12 +123,7 @@ const UserSideBar = () => {
           <ItemSelection image={chat} title={'Chat'}></ItemSelection>
           <CollapsibleItems></CollapsibleItems>
          </Col>
-          <Col span={19}>
-            {/* <MyOrderList></MyOrderList>  << This part is where the Dashboard, Chat, etc since the routing points in here temporarily*/} 
-            <DashBoard></DashBoard>
-          </Col>
        </Row>
-      {/* </PageWrapper> */}
     </>
   );
 }
