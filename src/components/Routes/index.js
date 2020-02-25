@@ -41,7 +41,7 @@ const Routes = ({ }) => {
           <Route exact path={routes.DOMAINS_VIEW_PAGE} render={() => <DomainDetails/>} />
           <Route exact path={routes.SELLING_PAGE} render={() => <Selling />} />
           <Route exact path={routes.SELLING_DOMAINS_PAGE} render={() => <SellingDomain />} />
-          <Route exact path={routes.CHAT_PAGE} render={() => <UserSideBar />} />
+          <Route exact path={routes.DASHBOARD_PAGE} render={() => <UserSideBar />} />
           <Route exact path={routes.MY_BIDS} render={() => <UserBuyActivity />} />
           <Route path="*" render={
             () => (<Redirect to={routes.HOME_PAGE} />)
