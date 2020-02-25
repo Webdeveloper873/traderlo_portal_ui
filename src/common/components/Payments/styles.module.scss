@@ -1,0 +1,27 @@
+.wrapperStyle {
+  width: 100%;
+  box-sizing: content-box;
+  max-width: 1140px;
+  margin-right: auto !important;
+  margin-left: auto !important;
+
+  &.centerContent {
+    text-align: center;
+  }
+
+  &.paddingTop15 {
+    padding-top: 30px;
+  }
+}
+
+
+.btnContainer {
+  text-align: center;
+  margin-top: 50px;
+
+  .btnStyle {
+    background-color:#00bcd4;
+    padding: 0px 40px;
+    color: white;
+  }
+}
