@@ -91,7 +91,8 @@ const RightPane = () => {
 
       <Modal
         visible={buyNowVisible}
-        onCancel = {hideModal}>
+        onCancel = {hideModal}
+        footer={null}>
         <Payments></Payments>
       </Modal>
     </Col>

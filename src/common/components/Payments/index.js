@@ -14,18 +14,18 @@ import paypal from '../../../assets/payments/paypal.png';
 
 const Payments = () => {
   return(
-    <div style={{textAlign:'center'}}>
-    <span style={{fontSize:15, fontWeight:700}}>Just Few Clicks to finish you purchase! </span>
+    <div className={classes.paymentWrap}>
+    <span className={classes.header}>Just Few Clicks to finish you purchase! </span>
       <Divider />
-      <span style={{fontSize:12, fontWeight:600}}>Select the Payment Method to make the payment</span>  
-        <Row style={{marginTop:50}}>
+      <span className={classes.subHeader}>Select the Payment Method to make the payment</span>  
+        <Row className={classes.imageRow}>
             <Col span={8}>
                 <Row><Avatar shape="square" size={120} icon="user" src={debitCards} /></Row>
-                <Row><span style={{fontSize:12, fontWeight:600}}> Credit / Debit Card</span></Row>
+                <Row><span className={classes.fontDecor}> Credit / Debit Card</span></Row>
             </Col>
             <Col span={8}>
                 <Row><Avatar shape="square" size={120} icon="user" src={bankCheck} /></Row>
-                <Row><span style={{fontSize:12, fontWeight:600}}> Bank Account </span></Row>
+                <Row><span className={classes.fontDecor}> Bank Account </span></Row>
             </Col>
             <Col span={8}>
                 <Row>{' '}</Row>
@@ -35,9 +35,9 @@ const Payments = () => {
         <Row className={classes.btnContainer}>
         <Button size='large' className={classes.btnStyle}>Proceed</Button>
         </Row>
-        <Row style={{marginTop:40}}>
-          <span style={{fontSize:12, fontWeight:600}}> Problem with payment? contact us on</span>
-          <span style={{fontSize:12, fontWeight:600, color:'#00bcd4'}}> pay@traderlo.com</span>
+        <Row className={classes.contactRow}>
+          <span className={classes.fontDecor}> Problem with payment? contact us on</span>
+          <span className={classes.linkDecor}> pay@traderlo.com</span>
         </Row>
     </div>
   );
