@@ -1,0 +1,49 @@
+
+.btnContainer {
+  text-align: center;
+  margin-top: 50px;
+
+  .btnStyle {
+    background-color:#00bcd4;
+    padding: 0px 40px;
+    color: white;
+  }
+}
+
+.paymentWrap {
+  text-align:center;
+
+  .header {
+    font-Size:15px;
+    font-weight:700;
+  }
+
+  .subHeader {
+    font-size:12px;
+    font-weight:600;
+  }
+
+  .imageRow {
+    margin-top:50px;
+  
+    .fontDecor {
+      font-size:12px;
+      font-weight:600;
+    }
+  }
+
+  .contactRow {
+    margin-top:40px;
+
+    .fontDecor {
+      font-size:12px;
+      font-weight:600;
+    }
+
+    .linkDecor {
+      font-size:12px;
+      font-weight:600;
+      color:#00bcd4
+    }
+  }
+}

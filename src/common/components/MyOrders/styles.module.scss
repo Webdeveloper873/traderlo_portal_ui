@@ -1,0 +1,52 @@
+.item {
+  padding: 30px 20px;
+  margin: 0px 2px;
+  display: flex;
+  background: #f7f7f7;
+
+  .imgStyle {
+    margin-right: 30px;
+  }
+}
+
+.inlineItem {
+  display: inline-block;
+
+
+}
+
+// ** Orders ** //
+.statusDesign {
+  background: #ec008c;
+    color: #fff;
+    padding: 0 15px;
+    border-radius: 6px !important;
+    height: 25px;
+    font-size: 1rem !important;
+    border: none;
+    margin-top:10px;
+}
+
+.nameDecor {
+  font-size:15px;
+  font-weight:600;
+  color:black
+}
+
+.itemDetails {
+  padding-top: 10px;
+}
+
+.doneColor {
+  color:#00bcd4;
+}
+
+.bottomComment {
+  text-align:center;
+  padding-top:18px;
+
+  .linkDecor {
+    color:#ea07ae;
+    font-weight:500;
+  }
+}
