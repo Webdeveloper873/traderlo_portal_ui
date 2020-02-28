@@ -9,26 +9,42 @@ import bankCheck from 'assets/payments/bankCheck.png';
 import debitCards from 'assets/payments/debitCards.png';
 import paypal from 'assets/payments/paypal.png';
 
-const ChooseMethod = () => {
+//constants
+import { responsiveConf } from 'common/constants';
+
+const optDetails = [
+  {
+    label: 'Credit / Debit Card',
+    imgSrc: debitCards
+  },
+  {
+    label: 'Bank Account',
+    imgSrc: bankCheck
+  },
+  {
+    label: 'Credit / Debit Card',
+    imgSrc: paypal
+  },
+]
+
+const PaymentOptions = ({imgSrc, label}) => {
+  return(
+    <Col {...responsiveConf.threeCol}>
+      <Row><Avatar shape="square" size={120} icon="user" src={imgSrc} /></Row>
+      {label && <Row><span className={classes.fontDecor}>{label}</span></Row>}
+    </Col>
+  )
+}
+
+const ChooseMethod = ({nextStep}) => {
   return(
     <>
       <span className={classes.subHeader}>Select the Payment Method to make the payment</span>
       <Row className={classes.imageRow}>
-        <Col span={8}>
-          <Row><Avatar shape="square" size={120} icon="user" src={debitCards} /></Row>
-          <Row><span className={classes.fontDecor}> Credit / Debit Card</span></Row>
-        </Col>
-        <Col span={8}>
-          <Row><Avatar shape="square" size={120} icon="user" src={bankCheck} /></Row>
-          <Row><span className={classes.fontDecor}> Bank Account </span></Row>
-        </Col>
-        <Col span={8}>
-          <Row>{' '}</Row>
-          <Row><Avatar shape="square" size={120} icon="user" src={paypal} /></Row>
-        </Col>
+        {optDetails.map(opt => <PaymentOptions label={opt.label} imgSrc={opt.imgSrc} />)}
       </Row>
       <Row className={classes.btnContainer}>
-        <Button size='large' className={classes.btnStyle}>Proceed</Button>
+        <Button onClick={nextStep} size='large' className={classes.btnStyle}>Proceed</Button>
       </Row>
       <Row className={classes.contactRow}>
         <span className={classes.fontDecor}> Problem with payment? contact us on</span>

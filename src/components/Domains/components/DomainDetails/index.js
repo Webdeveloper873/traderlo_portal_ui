@@ -89,11 +89,11 @@ const RightPane = () => {
         <SimilarPost />
       </Card>
 
-      <Modal
+      <Modal destroyOnClose
         visible={buyNowVisible}
         onCancel = {hideModal}
         footer={null}>
-        <Payments></Payments>
+        <Payments />
       </Modal>
     </Col>
   );
