@@ -9,6 +9,7 @@ export const routes = {
   DASHBOARD_PAGE: '/traderlo/dashboard',
   MY_BIDS: '/traderlo/user/bids',
   MY_ORDERS: '/traderlo/user/orders',
+  MY_WATCHINGS: '/traderlo/user/watchings',
 };
 
 export const responsiveConf = {

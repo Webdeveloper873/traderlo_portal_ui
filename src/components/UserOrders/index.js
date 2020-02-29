@@ -24,7 +24,7 @@ const UserOrders = () => {
         <Col xs={24} sm={24} md={6} lg={6} >
           <UserSidebar />
         </Col>
-        <Col xs={24} sm={24} md={18} lg={18} >
+        <Col xs={24} sm={24} md={18} lg={18} className={classes.customPadding}>
           <Card type="inner" title={'My Orders'} extra={<SearchBid />} className={classes.tableContainer}>
             <Table columns={myBidsCol} dataSource={[]}/>
           </Card>
