@@ -25,11 +25,16 @@
 
   .imageRow {
     margin-top: 30px;
-  
+
+    .selected {
+      border: 1px solid blue;
+    }
+
     .fontDecor {
       font-size:12px;
       font-weight:600;
     }
+
   }
 
   .contactRow {
@@ -48,11 +53,15 @@
   }
 }
 
-.stepper {
-  margin-bottom: 25px !important;
-}
-
 .inputRow {
   padding: 0 50px;
   text-align: center;
+}
+
+.inputBlock {
+  display: block;
+}
+
+.paymentResult {
+  font-size: 64px;
 }

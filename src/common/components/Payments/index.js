@@ -4,20 +4,21 @@ import { Avatar, Divider, Row, Col, Button, Steps } from 'antd';
 //components
 import ChooseMethod from './Components/ChooseMethod';
 import MethodDetails from './Components/MethodDetails';
+import PaymentResult from './Components/PaymentResult';
 
 //styles
 import classes from './styles.module.scss';
 
 const {Step} = Steps;
 
-const PageRouter = ({ stepNo, nextStep}) => {
+const PageRouter = ({ selectedOpt, onClickOpt, stepNo, nextStep}) => {
   switch(stepNo){
     case 0:
-      return <ChooseMethod nextStep={nextStep} />;
+      return <ChooseMethod selectedOpt={selectedOpt} nextStep={nextStep} onClickOpt={onClickOpt} />;
     case 1:
-      return <MethodDetails />;
+      return <MethodDetails selectedOpt={selectedOpt} nextStep={nextStep}/>;
     case 2:
-      return <div>3</div>;
+      return <PaymentResult />;
     default:
       return <ChooseMethod />;
   }
@@ -26,21 +27,27 @@ const PageRouter = ({ stepNo, nextStep}) => {
 
 const Payments = () => {
   const [stepNo, setStepNo] = useState(0);
+  const [selectedOpt, setSelectedOpt] = useState();
 
   const nextStep = () => {
     setStepNo(stepNo+1);
+  }
+
+  const onClickOpt = (selected) => {
+    console.log('selected', selected);
+    setSelectedOpt(selected);
   }
 
   return(
     <div className={classes.paymentWrap}>
     <span className={classes.header}>Just Few Clicks to finish you purchase! </span>
       <Divider />
-      <Steps current={stepNo} className={classes.stepper}>
-        <Step title="Select Method"/>
-        <Step title="Enter Details"/>
-        <Step title="Payment Done"/>
-      </Steps>
-      <PageRouter stepNo={stepNo} nextStep={nextStep}/>
+      <PageRouter
+        stepNo={stepNo}
+        nextStep={nextStep}
+        onClickOpt={onClickOpt}
+        selectedOpt={selectedOpt}
+      />
     </div>
   );
 }
