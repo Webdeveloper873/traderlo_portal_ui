@@ -16,12 +16,15 @@ import Domains from 'components/Domains';
 import UserBids from 'components/UserBids';
 import UserOrders from 'components/UserOrders';
 import UserWatchings from 'components/UserWatchings';
+import CustomerOrders from 'components/CustomerOrders';
+import ListingAndStatus from 'components/ListingAndStatus';
 
 //subroute component
 import DomainDetails from 'components/Domains/components/DomainDetails'
 
 //constants
 import { routes } from 'common/constants';
+
 
 
 
@@ -44,11 +47,12 @@ const Routes = ({ }) => {
           <Route exact path={routes.DOMAINS_VIEW_PAGE} render={() => <DomainDetails/>} />
           <Route exact path={routes.SELLING_PAGE} render={() => <Selling />} />
           <Route exact path={routes.SELLING_DOMAINS_PAGE} render={() => <SellingDomain />} />
-          {/* <Route exact path={routes.CHAT_PAGE} render={() => <UserSideBar />} /> */}
           <Route exact path={routes.MY_BIDS} render={() => <UserBids />} />
           <Route exact path={routes.MY_ORDERS} render={() => <UserOrders />} />
           <Route exact path={routes.MY_WATCHINGS} render={() => <UserWatchings />} />
           <Route exact path={routes.DASHBOARD_PAGE} render={() => <Dashboard />} />
+          <Route exact path={routes.CUSTOMER_ORDERS} render={() => <CustomerOrders />} />
+          <Route exact path={routes.LISTING_AND_STATUS} render={() => <ListingAndStatus />} />
           <Route path="*" render={
             () => (<Redirect to={routes.HOME_PAGE} />)
           } />

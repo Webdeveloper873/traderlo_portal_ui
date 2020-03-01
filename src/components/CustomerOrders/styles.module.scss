@@ -19,7 +19,7 @@
 .statusDesign {
   background: #ec008c;
     color: #fff;
-    padding: 0 15px;
+    padding: 0 5px;
     border-radius: 6px !important;
     height: 25px;
     font-size: 1rem !important;
@@ -49,4 +49,8 @@
     color:#ea07ae;
     font-weight:500;
   }
+}
+
+.customPadding {
+  padding-left: 10px !important;
 }

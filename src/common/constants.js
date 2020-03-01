@@ -10,6 +10,9 @@ export const routes = {
   MY_BIDS: '/traderlo/user/bids',
   MY_ORDERS: '/traderlo/user/orders',
   MY_WATCHINGS: '/traderlo/user/watchings',
+  CUSTOMER_ORDERS: '/traderlo/user/customer_orders',
+  BIDS_PERFORMANCE: '/traderlo/user/bids_performance',
+  LISTING_AND_STATUS: '/traderlo/user/listing_and_status',
 };
 
 export const responsiveConf = {

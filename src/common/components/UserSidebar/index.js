@@ -96,9 +96,9 @@ const CollapsibleItems = () => {
         <SubItemSelection title={'Watching'} redirectPath='/traderlo/user/watchings'></SubItemSelection>
       </Panel>
       <Panel header={<DropdownSelection image={sellingActivities} title = {'Selling Activities'}></DropdownSelection>} key="2" >
-        <SubItemSelection title={'Listing And Status'} ></SubItemSelection>
+        <SubItemSelection title={'Listing And Status'} redirectPath='/traderlo/user/listing_and_status' ></SubItemSelection>
         <SubItemSelection title={'Bids'} ></SubItemSelection>
-        <SubItemSelection title={'Customer Orders'} ></SubItemSelection>
+        <SubItemSelection title={'Customer Orders'} redirectPath='/traderlo/user/customer_orders' ></SubItemSelection>
       </Panel>
       <Panel header={<DropdownSelection image={myFinance} title = {'My Finance'}></DropdownSelection>} key="3" >
       <SubItemSelection title={'Payment Activity'} ></SubItemSelection>

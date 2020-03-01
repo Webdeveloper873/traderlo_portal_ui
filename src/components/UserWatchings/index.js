@@ -33,7 +33,7 @@ const UserWatchings = () => {
           <UserSidebar />
         </Col>
         <Col xs={24} sm={24} md={18} lg={18} className={classes.customPadding}>
-        <Card type="inner" title={'Watching/Favorites'} extra={<SearchBid />} className={classes.tableContainer}>
+          <Card type="inner" title={'Watching/Favorites'} extra={<SearchBid />} className={classes.tableContainer}>
             <Tabs defaultActiveKey="1" onChange={callback} tabBarGutter={250} size={'large'}>
             <TabPane tab="Domain/Websites" key="1">
               <Table columns={domWebCol} dataSource={[]}/>
