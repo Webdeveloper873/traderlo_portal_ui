@@ -9,10 +9,17 @@ import { request } from 'common/utils/helpers';
 
 function* subscribeNewsletter() {
   console.log('here in subscribeNewsletter');
-  // let resp = yield call(() => request(
-  //   `${base_url}/subscribe`,
-  //   { method: 'POST', headers, email: 'sample@gmail.com'}
-  // ));
+  try {
+    let resp = yield call(() => request(
+      `${base_url}/subscribe`,
+      {
+        method: 'POST', headers,
+        email: 'sample@gmail.com'
+      }
+    ));
+  }catch(err){
+    console.log('err: ', err);
+  }
 
 }
 
