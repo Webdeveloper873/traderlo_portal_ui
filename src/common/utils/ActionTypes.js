@@ -1,3 +1,0 @@
-//TestQues
-export const FETCH_TEST_QUESTION = "FETCH_TEST_QUESTION";
-export const SAVE_TEST_QUESTION = "SAVE_TEST_QUESTION";

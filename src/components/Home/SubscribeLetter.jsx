@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import {Row, Jumbotron, InputGroup, Form, Button, Col, Image} from 'react-bootstrap';
 import CountUp from 'react-countup';
 import { Icon } from 'antd';
@@ -13,6 +14,9 @@ import NewsLetter1 from 'assets/newletter1.png';
 import NewsLetter2 from 'assets/newletter2.png';
 import NewsLetter3 from 'assets/newletter3.png';
 import NewsLetter4 from 'assets/newletter4.png';
+
+//actions
+import { subscribeToNewsletter } from 'appRedux/actions/Home';
 
 const DetailsList = ({imgSrc, title, subTitle}) => {
   return(
@@ -36,6 +40,13 @@ const DetailsList = ({imgSrc, title, subTitle}) => {
 }
 
 const SubscribeLetter = () => {
+  // const testStore = useSelector(store => store);
+  const dispatch = useDispatch();
+
+  const onSubscribe = () => {
+    dispatch(subscribeToNewsletter());
+  }
+
   return(
     <div className={classes.contentRow}>
       <Jumbotron className={`${classes.subsNewLetter}`}>
@@ -51,7 +62,7 @@ const SubscribeLetter = () => {
               <InputGroup>
                 <Form.Control aria-describedby='basic-addon1' style={{height:'auto'}} placeholder="Email Address"/>
                 <InputGroup.Append>
-                  <Button style={{backgroundColor:'#00bcd4',borderColor: '#00bcd4', textAlign:'center'}}>
+                  <Button onClick={onSubscribe} style={{backgroundColor:'#00bcd4',borderColor: '#00bcd4', textAlign:'center'}}>
                     <Icon type="arrow-right" style={{ fontSize:15, padding:10}}/>
                   </Button>
                 </InputGroup.Append>
