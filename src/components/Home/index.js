@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Col as ColTemp, Row as RowTemp} from 'react-bootstrap';
 import { Col, Row } from 'antd';
 
@@ -13,11 +14,20 @@ import HowItWorks from './HowItWorks';
 import SubscribeLetter from './SubscribeLetter';
 import BlogCards from './BlogCards';
 
+//actions
+import { getFeaturedBlogs } from 'appRedux/actions/Home';
+
 //styles
 import classes from './styles.module.scss';
 
 
 const Home = () => {
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    //add fetching on initialization
+    dispatch(getFeaturedBlogs());
+  }, []);
 
   return(
     <>

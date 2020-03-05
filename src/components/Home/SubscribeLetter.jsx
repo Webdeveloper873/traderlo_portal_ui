@@ -6,6 +6,12 @@ import { Icon } from 'antd';
 //components
 import PageWrapper from 'common/components/PageWrapper';
 
+//actions
+import { subscribeToNewsletter } from 'appRedux/actions/Home';
+
+//utils
+import { useFormInput } from 'common/utils/hooks';
+
 //styles
 import classes from './styles.module.scss';
 
@@ -15,8 +21,6 @@ import NewsLetter2 from 'assets/newletter2.png';
 import NewsLetter3 from 'assets/newletter3.png';
 import NewsLetter4 from 'assets/newletter4.png';
 
-//actions
-import { subscribeToNewsletter } from 'appRedux/actions/Home';
 
 const DetailsList = ({imgSrc, title, subTitle}) => {
   return(
@@ -40,11 +44,11 @@ const DetailsList = ({imgSrc, title, subTitle}) => {
 }
 
 const SubscribeLetter = () => {
-  // const testStore = useSelector(store => store);
+  const emailInput = useFormInput();
   const dispatch = useDispatch();
 
   const onSubscribe = () => {
-    dispatch(subscribeToNewsletter());
+    dispatch(subscribeToNewsletter(emailInput.value));
   }
 
   return(
@@ -60,7 +64,10 @@ const SubscribeLetter = () => {
               marginBottom:30}}>Get notified about the next update</span>
             <Col lg={{span: 6, offset: 3}} className={`mb-3`} style={{marginTop:35}}>
               <InputGroup>
-                <Form.Control aria-describedby='basic-addon1' style={{height:'auto'}} placeholder="Email Address"/>
+                <Form.Control aria-describedby='basic-addon1' style={{height:'auto'}}
+                  placeholder="Email Address"
+                  onChange={emailInput.handleInputChange}
+                />
                 <InputGroup.Append>
                   <Button onClick={onSubscribe} style={{backgroundColor:'#00bcd4',borderColor: '#00bcd4', textAlign:'center'}}>
                     <Icon type="arrow-right" style={{ fontSize:15, padding:10}}/>
