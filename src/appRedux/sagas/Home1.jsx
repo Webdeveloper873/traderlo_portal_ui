@@ -1,5 +1,8 @@
 import { all, call, fork, put, takeEvery } from "redux-saga/effects";
 
+//actions
+import { successSubscribeNewsletter } from 'appRedux/actions/home/subscribe';
+
 //constants
 import { homeActions } from 'appRedux/constants/ActionTypes';
 import { base_url, headers } from 'appRedux/constants/configs';
@@ -8,12 +11,15 @@ import { base_url, headers } from 'appRedux/constants/configs';
 import { request } from 'common/utils/helpers';
 
 function* subscribeNewsletter({payload}) {
-  console.log('here in subscribeNewsletter option: ', payload);
   const {subscriber} = payload || {};
   try {
     let resp = yield call(() =>
-      request.post(`${base_url}/subscribe`, { headers, body: JSON.stringify({subscriber}) })
+      request.post(`${base_url}/subscribe`, { headers, body: JSON.stringify({...subscriber}) })
     );
+    if(resp){
+      console.log('resp', resp);
+      yield put(successSubscribeNewsletter());
+    }
   }catch(err){
     console.log('err: ', err);
   }

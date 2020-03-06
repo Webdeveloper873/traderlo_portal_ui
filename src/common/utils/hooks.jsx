@@ -7,6 +7,7 @@ export const useFormInput = (initialValue) => {
 
   return {
     value,
-    handleInputChange
+    handleInputChange,
+    reset: () => setValue(''),
   };
 }
