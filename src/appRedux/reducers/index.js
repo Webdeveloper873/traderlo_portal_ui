@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import { subscribeNews } from './home';
+import * as home from './home';
 
 export default combineReducers({
-  subscribeNews
+  ...home
 });

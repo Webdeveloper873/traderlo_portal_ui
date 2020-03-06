@@ -5,7 +5,8 @@ const intialState = {
 };
 
 export default (state = intialState, action) => {
-  switch (action.type) {
+  const {type} = action || {};
+  switch (type) {
     case homeActions.SUBSCRIBE_NEWSLETTER_SUCCESS:
       return { ...state, subscribeResult: true };
     case homeActions.SUBSCRIBE_NEWSLETTER_FAILED:

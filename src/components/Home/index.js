@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Col as ColTemp, Row as RowTemp} from 'react-bootstrap';
 import { Col, Row } from 'antd';
 
@@ -15,13 +15,14 @@ import SubscribeLetter from './SubscribeLetter';
 import BlogCards from './BlogCards';
 
 //actions
-import { getFeaturedBlogs } from 'appRedux/actions/Home';
+import { getFeaturedBlogs } from 'appRedux/actions/home/blogs';
 
 //styles
 import classes from './styles.module.scss';
 
 
 const Home = () => {
+  const featBlogs = useSelector(({blogs})=>blogs.featBlogs);
   const dispatch = useDispatch();
 
   useEffect(()=>{
@@ -62,7 +63,7 @@ const Home = () => {
       </PageWrapper>
 
       <SubscribeLetter />
-      <BlogCards />
+      {featBlogs && <BlogCards featBlogs={featBlogs} />}
     </>
   );
 }
