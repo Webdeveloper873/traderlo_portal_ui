@@ -51,7 +51,7 @@ const Dashboards = ({...props}) => {
             <UserSidebar></UserSidebar>
           </Col>
 
-          <Col span={6}> 
+          <Col span={6}>
             <DashboardItem title ={' Total Posted Ads'} count={16578612}></DashboardItem>
           </Col>
           <Col span={6}>

@@ -27,15 +27,15 @@ const SignInForm = ({handleClose}) => {
   const onSignIn = () => {
     handleClose();
     setToLoginPage(true);
-    // const userDetails = {
-    //   username: loginUser.value,
-    //   password: loginPass.value
-    // }
-    // dispatch(user.login(userDetails));
+    const userDetails = {
+      username: loginUser.value,
+      password: loginPass.value
+    }
+    dispatch(user.login(userDetails));
   }
 
   if (toLoginPage){
-    return <Redirect to={routes.MY_BIDS} />
+    return <Redirect to={routes.DASHBOARD_PAGE} />
   }
 
   return(
