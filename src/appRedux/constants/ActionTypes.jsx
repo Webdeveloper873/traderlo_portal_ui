@@ -8,3 +8,7 @@ export const homeActions = {
   SUBSCRIBE_NEWSLETTER_SUCCESS: 'SUBSCRIBE_NEWSLETTER_SUCCESS',
   SUBSCRIBE_RESET_RESULT: 'SUBSCRIBE_RESET_RESULT',
 };
+
+export const userActTypes = {
+  LOGIN: 'LOGIN'
+}

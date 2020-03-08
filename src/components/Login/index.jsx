@@ -1,9 +1,16 @@
 import React, {useState} from 'react';
-import {Modal, Row, Form, Button} from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { Modal, Row, Form, Button } from 'react-bootstrap';
 import { Redirect } from "react-router-dom";
 
 //components
 import Divider from 'common/components/Divider';
+
+//utils
+import { useFormInput } from 'common/utils/hooks';
+
+//actions
+import { user } from 'appRedux/actions/home';
 
 //styles
 import classes from './styles.module.scss';
@@ -13,10 +20,18 @@ import {routes} from 'common/constants';
 
 const SignInForm = ({handleClose}) => {
   const [toLoginPage, setToLoginPage] = useState(false);
+  const loginUser = useFormInput('');
+  const loginPass = useFormInput('');
+  const dispatch = useDispatch();
 
   const onSignIn = () => {
     handleClose();
     setToLoginPage(true);
+    // const userDetails = {
+    //   username: loginUser.value,
+    //   password: loginPass.value
+    // }
+    // dispatch(user.login(userDetails));
   }
 
   if (toLoginPage){
@@ -33,8 +48,12 @@ const SignInForm = ({handleClose}) => {
       </Divider>
       <br />
         <Form.Group>
-          <Form.Control type="text" placeholder="Email/Username" defaultValue='anythingworks' /> <br />
-          <Form.Control type="text" placeholder="Password" defaultValue='asdqwe123' type='password' /> <br />
+          <Form.Control type='text' placeholder="Email/Username"
+            onChange={loginUser.handleInputChange}
+            /> <br />
+          <Form.Control type='password' placeholder="Password"
+            onChange={loginPass.handleInputChange}
+          /> <br />
           <Form.Check type="checkbox" label="Remember me" />
         </Form.Group>
       <Button variant="primary" onClick={onSignIn}>Submit</Button>
