@@ -5,16 +5,20 @@ import { sellDomainTypes } from 'appRedux/constants/ActionTypes';
 import { base_url, headers } from 'appRedux/constants/configs';
 
 //utils
-import { request } from 'common/utils/helpers';
+import { request, objToFormData } from 'common/utils/helpers';
 
-function* sellDomain() {
+function* sellDomain({payload}) {
   console.log('sell domain');
   try {
-    const tempData = {
-      "ipAddress": "1.1.1.1",
-      "url": "test.com"
-    };
-    let resp = yield call(() => request.post(`${base_url}/selling/domain`, { headers, body: JSON.stringify(tempData)}));
+    let resp = yield call(() => request.post(`${base_url}/selling/domain`,
+      {
+        headers: {
+          ...headers,
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      }
+    ));
     console.log('sellDomain resp: ', resp)
   } catch (err) {
     console.log('err: ', err);

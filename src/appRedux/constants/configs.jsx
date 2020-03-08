@@ -5,7 +5,6 @@ export const loginHeaders = {
   Authorization: 'Basic Y2xpZW50OnBhc3N3b3Jk' //TODO: to change
 };
 export const headers = {
-  'Content-Type': 'application/json',
   Accept: 'application/json',
   uid: '1',
   authorization: `Bearer ${window.localStorage.getItem('access_token')}`

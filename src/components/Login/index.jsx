@@ -30,7 +30,7 @@ const SignInForm = ({handleClose}) => {
       setTimeout(()=>{
         handleClose();
         setToLoginPage(true);
-      }, 100)
+      }, 100);
     }
   }, [isLoggedIn]);
 
