@@ -52,7 +52,7 @@ const SubscribeLetter = () => {
     if(subscribeResult){
       message.success('Subscribe to Newsletter success');
     }else if(subscribeResult === false){
-      message.failed('Subscribe to Newsletter failed')
+      message.error('Subscribe to Newsletter failed')
     }
     emailInput.reset();
     dispatch(resetSubscribeResult());

@@ -1,7 +1,7 @@
 import { all, call, fork, put, takeEvery } from "redux-saga/effects";
 
 //actions
-import { successSubscribeNewsletter } from 'appRedux/actions/home/subscribe';
+import { successSubscribeNewsletter, failedSubscribeNewsletter } from 'appRedux/actions/home/subscribe';
 
 //constants
 import { homeActions } from 'appRedux/constants/ActionTypes';
@@ -21,7 +21,7 @@ function* subscribeNewsletter({ payload }) {
       yield put(successSubscribeNewsletter());
     }
   } catch (err) {
-    console.log('err: ', err);
+    yield put(failedSubscribeNewsletter());
   }
 }
 
