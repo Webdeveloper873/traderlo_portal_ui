@@ -10,29 +10,30 @@ import classes from './styles.module.scss';
 //resources
 import ImageHolder from 'assets/main.jpg';
 
-const BlogDetails = () => {
+const BlogDetails = ({blog}) => {
   return(
     <div className={classes.blogDetails}>
-      <a href={'/'}>By Admin</a>
-      <h6>Make Money Easy As Pie</h6>
-      <span>Jun 27,2 019</span>
+      <a href={'/'}>{`by ${blog.slug}`}</a>
+      <h6>{blog.title}</h6>
+      <span>{blog.createdDate}</span>
       <p>Consectetur adipisicing elite aeiuim setiusm tempor incididunt labore etnalom...</p>
     </div>
   );
 }
 
-const CardItem = () => {
+const CardItem = ({blog}) => {
   return (
     <Col xs={12} lg={4}>
       <Card>
         <Card.Img variant="top" src={ImageHolder} />
-        <BlogDetails/>
+        <BlogDetails blog={blog}/>
       </Card>
     </Col>
   )
 }
 
-const BlogCards = () => {
+const BlogCards = ({ featBlogs }) => {
+  console.log('featBlogs', featBlogs)
   return(
       <PageWrapper center>
         <div className={`${classes.fullWidth} ${classes.contentRow}`}>
@@ -40,9 +41,10 @@ const BlogCards = () => {
           <span className={classes.subTitle}>Consectetur adipisicing eliteiuim set eiusmod tempor incididunt labore etnalom dolore magna aliqua udiminimate veniam quistan norud.</span>
         </div>
         <Row className={classes.contentRow} gutter={24}>
+          {featBlogs && featBlogs.map(blog => <CardItem blog={blog} />)}
+          {/* <CardItem />
           <CardItem />
-          <CardItem />
-          <CardItem />
+          <CardItem /> */}
         </Row>
       </PageWrapper>
   );

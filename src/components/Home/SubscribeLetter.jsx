@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {Row, Jumbotron, InputGroup, Form, Button, Col, Image} from 'react-bootstrap';
 import CountUp from 'react-countup';
-import { Icon } from 'antd';
+import { Icon, message } from 'antd';
 //components
 import PageWrapper from 'common/components/PageWrapper';
+
+//actions
+import { subscribeToNewsletter, resetSubscribeResult } from 'appRedux/actions/home/subscribe';
+
+//utils
+import { useFormInput } from 'common/utils/hooks';
 
 //styles
 import classes from './styles.module.scss';
@@ -13,6 +20,7 @@ import NewsLetter1 from 'assets/newletter1.png';
 import NewsLetter2 from 'assets/newletter2.png';
 import NewsLetter3 from 'assets/newletter3.png';
 import NewsLetter4 from 'assets/newletter4.png';
+
 
 const DetailsList = ({imgSrc, title, subTitle}) => {
   return(
@@ -36,6 +44,24 @@ const DetailsList = ({imgSrc, title, subTitle}) => {
 }
 
 const SubscribeLetter = () => {
+  const emailInput = useFormInput();
+  const dispatch = useDispatch();
+  const subscribeResult = useSelector(({ subscribeNews }) => subscribeNews.subscribeResult);
+
+  useEffect(()=>{
+    if(subscribeResult){
+      message.success('Subscribe to Newsletter success');
+    }else if(subscribeResult === false){
+      message.failed('Subscribe to Newsletter failed')
+    }
+    emailInput.reset();
+    dispatch(resetSubscribeResult());
+  }, [subscribeResult]);
+
+  const onSubscribe = () => {
+    dispatch(subscribeToNewsletter(emailInput.value));
+  }
+
   return(
     <div className={classes.contentRow}>
       <Jumbotron className={`${classes.subsNewLetter}`}>
@@ -49,9 +75,12 @@ const SubscribeLetter = () => {
               marginBottom:30}}>Get notified about the next update</span>
             <Col lg={{span: 6, offset: 3}} className={`mb-3`} style={{marginTop:35}}>
               <InputGroup>
-                <Form.Control aria-describedby='basic-addon1' style={{height:'auto'}} placeholder="Email Address"/>
+                <Form.Control aria-describedby='basic-addon1' style={{height:'auto'}}
+                  placeholder="Email Address"
+                  onChange={emailInput.handleInputChange}
+                />
                 <InputGroup.Append>
-                  <Button style={{backgroundColor:'#00bcd4',borderColor: '#00bcd4', textAlign:'center'}}>
+                  <Button onClick={onSubscribe} style={{backgroundColor:'#00bcd4',borderColor: '#00bcd4', textAlign:'center'}}>
                     <Icon type="arrow-right" style={{ fontSize:15, padding:10}}/>
                   </Button>
                 </InputGroup.Append>
