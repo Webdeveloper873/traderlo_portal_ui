@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Card, Icon, Avatar, Row, Col } from 'antd';
 import CountUp from 'react-countup';
 
@@ -6,6 +7,7 @@ import CountUp from 'react-countup';
 import PageWrapper from 'common/components/PageWrapper';
 import Banner from 'common/components/Banner';
 import UserSidebar from 'common/components/UserSidebar';
+
 //styles
 import classes from './styles.module.scss';
 
@@ -43,6 +45,13 @@ const DashboardItem = ({count ,title}) => {
 }
 
 const Dashboards = ({...props}) => {
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    //this is initial login, fetch user profile
+
+  }, []);
+
   return(
     <>
       <Banner text={'Dashboard'} />
