@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import {Col, Row, Card, Avatar, Collapse} from 'antd';
 
 //styles
@@ -32,6 +33,8 @@ const CardsDesc = () => (
 )
 
 const UsersCard = () => {
+  const profile = useSelector(({user}) => user.profile);
+  const {userName} = profile || {};
   return(
     <Card className={classes.usersCard}>
       <Row>
@@ -39,7 +42,7 @@ const UsersCard = () => {
           <Avatar size={60} src={UserImgTemp} className={classes.avatarStyle}/>
         </Col>
         <Col span={16}>
-          <Meta title="User Name" description={<CardsDesc />} />
+          <Meta title={userName} description={<CardsDesc />} />
         </Col>
       </Row>
     </Card>
