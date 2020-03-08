@@ -11,7 +11,6 @@ import { base_url, headers, login_url, loginHeaders } from 'appRedux/constants/c
 import { request } from 'common/utils/helpers';
 
 function* login({payload}) {
-  console.log('login payload:', payload);
   try {
     const { grant_type, scrope, username, password } = payload || {};
     var data = new FormData();
@@ -21,10 +20,7 @@ function* login({payload}) {
     data.append('password', password);
 
     let resp = yield call(() => request.post(`${login_url}/oauth/token`, {
-      headers: {
-        ...loginHeaders,
-        Authorization: 'Basic Y2xpZW50OnBhc3N3b3Jk' //TODO: change to valid authorization
-      },
+      headers: loginHeaders,
       body: data,
     }));
 
@@ -39,9 +35,7 @@ function* login({payload}) {
 function* getUserProfile({payload}) {
   try{
     const {id} = payload || {};
-    let resp = yield call(() => request.get(`${base_url}/user/${id}/profile`, {
-      headers
-    }));
+    const resp = yield call(() => request.get(`${base_url}/user/${id}/profile`, { headers }));
     console.log('getUserProfile', resp);
     if(resp){
       yield put(user.getProfileSuccess(resp));
