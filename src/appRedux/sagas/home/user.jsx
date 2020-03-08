@@ -8,20 +8,13 @@ import { userActTypes } from 'appRedux/constants/ActionTypes';
 import { base_url, headers, login_url, loginHeaders } from 'appRedux/constants/configs';
 
 //utils
-import { request } from 'common/utils/helpers';
+import { request, objToFormData } from 'common/utils/helpers';
 
 function* login({payload}) {
   try {
-    const { grant_type, scrope, username, password } = payload || {};
-    var data = new FormData();
-    data.append('grant_type', grant_type);
-    data.append('scope', scrope);
-    data.append('username', username);
-    data.append('password', password);
-
     let resp = yield call(() => request.post(`${login_url}/oauth/token`, {
       headers: loginHeaders,
-      body: data,
+      body: objToFormData(payload),
     }));
 
     if (resp) {

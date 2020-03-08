@@ -27,8 +27,10 @@ const SignInForm = ({handleClose}) => {
 
   useEffect(()=>{
     if(isLoggedIn){
-      handleClose();
-      setToLoginPage(true);
+      setTimeout(()=>{
+        handleClose();
+        setToLoginPage(true);
+      }, 100)
     }
   }, [isLoggedIn]);
 

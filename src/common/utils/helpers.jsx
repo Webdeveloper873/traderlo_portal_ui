@@ -19,3 +19,13 @@ export const request = {
     return await fetch(url, {method: 'GET', ...params}).then(handleError);
   },
 }
+
+export const objToFormData = (obj) => {
+  const objKeys = Object.keys(obj);
+  var formData = new FormData();
+
+  objKeys.map(key => {
+    formData.append(key, obj[key]);
+  });
+  return formData;
+}
