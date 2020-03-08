@@ -25,10 +25,10 @@ function callback(key) {
 }
 
 
-const CardsDesc = () => (
+const CardsDesc = ({aboutMe}) => (
   <>
     <div>{'Designer | Developer'}</div>
-    <div>{'category and other stuff'}</div>
+    <div>{aboutMe}</div>
   </>
 )
 
@@ -42,7 +42,7 @@ const UsersCard = () => {
           <Avatar size={60} src={UserImgTemp} className={classes.avatarStyle}/>
         </Col>
         <Col span={16}>
-          <Meta title={userName} description={<CardsDesc />} />
+          <Meta title={userName} description={<CardsDesc profile={profile} />} />
         </Col>
       </Row>
     </Card>

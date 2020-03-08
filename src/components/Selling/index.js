@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Col, Row, Card, Input } from 'antd';
 import { Redirect } from 'react-router-dom';
 
 //components
 import PageWrapper from 'common/components/PageWrapper';
 import Banner from 'common/components/Banner';
+
+//actions
+import { domain as domainActions } from 'appRedux/actions/selling';
 
 //styles
 import classes from './styles.module.scss';
@@ -16,6 +20,9 @@ import themesplugins from 'assets/selling/themesplugins.png';
 import clonescripts from 'assets/selling/clonescripts.png';
 import tmpltsGrphcs from 'assets/selling/tmpltsGrphcs.png';
 import bids from 'assets/selling/bids.png';
+
+//utils
+// import { useFormInput } from 'common/utils/hooks';
 
 //constants
 import { responsiveConf, routes } from 'common/constants';
@@ -92,6 +99,12 @@ const SellingStep = ({subtitle, sublink, children}) => {
 
 const Selling = () => {
   const [toNextStep, setToNextStep] = useState(false);
+  const dispatch = useDispatch();
+
+  const onGetStarted = value => {
+    console.log('value: ', value);
+    dispatch(domainActions.sellDomain(value));
+  }
 
   if(toNextStep){
     return <Redirect to={routes.SELLING_DOMAINS_PAGE} />
@@ -124,7 +137,7 @@ const Selling = () => {
         <Row gutter={16} className={classes.rowStyle}>
           <Col xs={24} md={12}>
             <Search placeholder="Enter The URL"
-              onSearch={value => setToNextStep(true)}
+              onSearch={onGetStarted}
               enterButton='Getting Started'
             />
           </Col>

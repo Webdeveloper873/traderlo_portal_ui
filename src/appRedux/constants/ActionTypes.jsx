@@ -15,3 +15,7 @@ export const userActTypes = {
   FETCH_PROFILE: 'FETCH_PROFILE',
   FETCH_PROFILE_SUCCESS: 'FETCH_PROFILE_SUCCESS',
 }
+
+export const sellDomainTypes = {
+  SELL_DOMAIN: 'SELL_DOMAIN',
+}
