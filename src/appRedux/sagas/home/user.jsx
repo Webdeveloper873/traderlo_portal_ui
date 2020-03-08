@@ -40,9 +40,7 @@ function* getUserProfile({payload}) {
   try{
     const {id} = payload || {};
     let resp = yield call(() => request.get(`${base_url}/user/${id}/profile`, {
-      headers: { ...headers,
-        authorization: `Bearer ${window.localStorage.getItem('access_token')}`
-      }
+      headers
     }));
     console.log('getUserProfile', resp);
     if(resp){
