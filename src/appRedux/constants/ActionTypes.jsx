@@ -11,5 +11,7 @@ export const homeActions = {
 
 export const userActTypes = {
   LOGIN: 'LOGIN',
+  LOGIN_SUCCESS: 'LOGIN_SUCCESS',
   FETCH_PROFILE: 'FETCH_PROFILE',
+  FETCH_PROFILE_SUCCESS: 'FETCH_PROFILE_SUCCESS',
 }

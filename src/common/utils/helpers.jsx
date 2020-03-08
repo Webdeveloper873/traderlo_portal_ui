@@ -5,7 +5,6 @@
 // }
 
 const handleError = (resp) => {
-  console.log('handleError resp', resp);
   if(resp.ok){
     return resp.json();
   }

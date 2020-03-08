@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Card, Icon, Avatar, Row, Col } from 'antd';
+import { Card, Icon, Row, Col } from 'antd';
 import CountUp from 'react-countup';
 
 //component
 import PageWrapper from 'common/components/PageWrapper';
 import Banner from 'common/components/Banner';
 import UserSidebar from 'common/components/UserSidebar';
+
+//actions
+import { user } from 'appRedux/actions/home';
 
 //styles
 import classes from './styles.module.scss';
@@ -49,7 +52,8 @@ const Dashboards = ({...props}) => {
 
   useEffect(()=>{
     //this is initial login, fetch user profile
-
+    console.log('dispatch userGetProfile');
+    dispatch(user.getUserProfile());
   }, []);
 
   return(

@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { useDispatch } from 'react-redux';
+import React, {useState, useEffect} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Modal, Row, Form, Button } from 'react-bootstrap';
 import { Redirect } from "react-router-dom";
 
@@ -22,11 +22,17 @@ const SignInForm = ({handleClose}) => {
   const [toLoginPage, setToLoginPage] = useState(false);
   const loginUser = useFormInput('');
   const loginPass = useFormInput('');
+  const isLoggedIn = useSelector(({user}) => user.isLoggedIn);
   const dispatch = useDispatch();
 
+  useEffect(()=>{
+    if(isLoggedIn){
+      handleClose();
+      setToLoginPage(true);
+    }
+  }, [isLoggedIn]);
+
   const onSignIn = () => {
-    handleClose();
-    setToLoginPage(true);
     const userDetails = {
       username: loginUser.value,
       password: loginPass.value

@@ -1,11 +1,11 @@
 import { all, call, fork, put, takeEvery } from "redux-saga/effects";
 
 //actions
-import { saveFeatBlogs } from 'appRedux/actions/home/blogs';
+import { user } from 'appRedux/actions/home';
 
 //constants
 import { userActTypes } from 'appRedux/constants/ActionTypes';
-import { login_url, headers, loginHeaders } from 'appRedux/constants/configs';
+import { base_url, headers, login_url, loginHeaders } from 'appRedux/constants/configs';
 
 //utils
 import { request } from 'common/utils/helpers';
@@ -21,15 +21,40 @@ function* login({payload}) {
     data.append('password', password);
 
     let resp = yield call(() => request.post(`${login_url}/oauth/token`, {
-      headers: { ...loginHeaders,
+      headers: {
+        ...loginHeaders,
         Authorization: 'Basic Y2xpZW50OnBhc3N3b3Jk' //TODO: change to valid authorization
       },
       body: data,
     }));
-    console.log('resp: ', resp);
+
+    if (resp) {
+      yield put(user.successLogin(resp));
+    }
   } catch (err) {
     console.log('err: ', err);
   }
+}
+
+function* getUserProfile({payload}) {
+  try{
+    const {id} = payload || {};
+    let resp = yield call(() => request.get(`${base_url}/user/${id}/profile`, {
+      headers: { ...headers,
+        authorization: `Bearer ${window.localStorage.getItem('access_token')}`
+      }
+    }));
+    console.log('getUserProfile', resp);
+    if(resp){
+      yield put(user.getProfileSuccess(resp));
+    }
+  }catch(err) {
+    console.log('err: ', err);
+  }
+}
+
+export function* getProfileWatcher() {
+  yield takeEvery(userActTypes.FETCH_PROFILE, getUserProfile);
 }
 
 export function* loginWatcher() {
@@ -39,5 +64,6 @@ export function* loginWatcher() {
 export default function* rootSaga() {
   yield all([
     fork(loginWatcher),
+    fork(getProfileWatcher),
   ]);
 }
