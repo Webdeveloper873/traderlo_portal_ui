@@ -6,13 +6,14 @@ export const routes = {
   SELLING_PAGE: '/traderlo/sell',
   SELLING_DOMAINS_PAGE: '/traderlo/sell_domain',
   CHAT_PAGE: '/traderlo/chat',
-  DASHBOARD_PAGE: '/traderlo/dashboard',
+  DASHBOARD_PAGE: '/traderlo/user/dashboard',
   MY_BIDS: '/traderlo/user/bids',
   MY_ORDERS: '/traderlo/user/orders',
   MY_WATCHINGS: '/traderlo/user/watchings',
   CUSTOMER_ORDERS: '/traderlo/user/customer_orders',
   BIDS_PERFORMANCE: '/traderlo/user/bids_performance',
   LISTING_AND_STATUS: '/traderlo/user/listing_and_status',
+  CHAT: '/traderlo/user/chat',
 };
 
 export const responsiveConf = {

@@ -19,6 +19,7 @@ import UserWatchings from 'components/UserWatchings';
 import CustomerOrders from 'components/CustomerOrders';
 import ListingAndStatus from 'components/ListingAndStatus';
 import BidPerformance from 'components/BidPerformance';
+import Chat from 'components/Chat';
 
 //subroute component
 import DomainDetails from 'components/Domains/components/DomainDetails'
@@ -55,6 +56,7 @@ const Routes = ({ }) => {
           <Route exact path={routes.CUSTOMER_ORDERS} render={() => <CustomerOrders />} />
           <Route exact path={routes.LISTING_AND_STATUS} render={() => <ListingAndStatus />} />
           <Route exact path={routes.BIDS_PERFORMANCE} render={() => <BidPerformance />} />
+          <Route exact path={routes.CHAT} render={() => <Chat />} />
           <Route path="*" render={
             () => (<Redirect to={routes.HOME_PAGE} />)
           } />
