@@ -1,0 +1,84 @@
+.tableContainer {
+  :global {
+    .ant-card-body{
+      padding: 0 !important;
+    }
+
+    .ant-table-thead {
+      tr {
+        th {
+          background: inherit !important;
+        }
+      }
+    }
+  }
+}
+
+.customPadding {
+  padding-left: 10px !important;
+}
+
+.chatSender {
+  font-size: 0.875rem;
+  line-height: 1.714286em;
+  padding: 12px 18px;
+  margin-top: 5px;
+  text-align:right;
+  background-color:#e0f7fa;
+  margin-left:100px;
+  margin-bottom:10px;
+  border-radius:6px;
+  margin-right:10px;
+}
+
+.chatReceiver {
+  text-align:left;
+  background-color:#fff8e1;
+  margin-left:5px;
+  margin-top:5px;
+  margin-bottom:10px;
+  border-radius:6px;
+  padding:12px;
+  margin-right:100px
+}
+.btnContainer {
+  text-align: end;
+  margin-top: 15px;
+
+  .btnStyle {
+    background-color:#00bcd4;
+    padding: 0px 40px;
+    color: white;
+  }
+}
+
+.selectedUserAvatar {
+  padding-left:15px;
+  padding-top:5px;
+  padding-bottom:5px;
+}
+
+.selectedUserInfo {
+  text-align:center;
+  padding-top:10px;
+}
+
+.selectedUserDelete {
+
+  padding-top:5px;
+  padding-left:25px;
+
+  font-size:30px;
+  color: red
+}
+
+.chat1 {
+  text-align:right;
+  background-color:#e0f7fa;
+  margin-left:100px;
+  margin-Top:5px;
+  margin-bottom:10px;
+  border-radius:3px;
+  padding:12px;
+  margin-right:10px;
+}

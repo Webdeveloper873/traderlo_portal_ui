@@ -50,10 +50,10 @@ const UsersCard = () => {
 }
 
 
-const ItemSelection = ({image, title}) => {
+const ItemSelection = ({image, title, redirectPath, ...props}) => {
   return (
     <div className={classes.itemSelection} onClick={test}>
-      <a>
+      <a href={redirectPath}>
         <Col span={24} className={classes.colDecor}>
           <Avatar size={35} src={image} className={classes.avatarStyle} shape="square"/>
           <span className={classes.fontDecor}>{title}</span>
@@ -122,8 +122,8 @@ const UserSideBar = () => {
        <Row>
          <Col span={5} style={{paddingLeft:20}}>
           <UsersCard></UsersCard>
-          <ItemSelection image={dashboard} title={'Dashboard'}></ItemSelection>
-          <ItemSelection image={chat} title={'Chat'}></ItemSelection>
+          <ItemSelection image={dashboard} title={'Dashboard'} redirectPath='/traderlo/user/dashboard'></ItemSelection>
+          <ItemSelection image={chat} title={'Chat'} redirectPath='/traderlo/user/chat'></ItemSelection>
           <CollapsibleItems></CollapsibleItems>
          </Col>
        </Row>
