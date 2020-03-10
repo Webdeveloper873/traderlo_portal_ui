@@ -26,3 +26,10 @@ export const getProfileSuccess = (profile) => ({
   type: userActTypes.FETCH_PROFILE_SUCCESS,
   payload: { profile }
 })
+
+export const registerUser = (profile) => (
+  console.log('profile',profile),
+  {
+  type: userActTypes.REGISTER_USER,
+  payload: { profile }
+})

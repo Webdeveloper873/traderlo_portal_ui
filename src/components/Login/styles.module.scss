@@ -11,3 +11,16 @@
 .formWrapper {
   padding: 0 50px;
 }
+
+
+.btnContainer {
+  text-align: end;
+  margin-top: 15px;
+  margin-left: 15px;
+
+  .btnStyle {
+    background-color:#00bcd4;
+    padding: 0px 40px;
+    color: white;
+  }
+}

@@ -35,6 +35,7 @@ const SignInForm = ({handleClose}) => {
   }, [isLoggedIn]);
 
   const onSignIn = () => {
+    console.log('signIn')
     const userDetails = {
       username: loginUser.value,
       password: loginPass.value
@@ -70,6 +71,23 @@ const SignInForm = ({handleClose}) => {
 }
 
 const SignUpForm = () => {
+  const signUpUsername = useFormInput('');
+  const signUpUserEmail = useFormInput('');
+  const signUpUserPass = useFormInput('');
+  const signUpUserConfirmPass = useFormInput('');
+  const dispatch = useDispatch();
+
+  const onSignUp = () => {
+    console.log('sign upppp')
+    const userDetails = {
+      username: signUpUsername.value,
+      email: signUpUserEmail.value,
+      password: signUpUserPass.value,
+    }
+    console.log(userDetails,'userDetails')
+    dispatch(user.registerUser(userDetails));
+  }
+
   return (
     <Form className={classes.formWrapper}>
       <Row className="justify-content-md-center">
@@ -80,12 +98,16 @@ const SignUpForm = () => {
       </Divider>
       <br />
       <Form.Group>
-        <Form.Control type="text" placeholder="Username" /> <br />
-        <Form.Control type="text" placeholder="Email Id" /> <br />
-        <Form.Control type="text" placeholder="Password" /> <br />
-        <Form.Control type="text" placeholder="Confirm Password" />
+        <Form.Control type="text" placeholder="Username" 
+          onChange={signUpUsername.handleInputChange}/> <br />
+        <Form.Control type="text" placeholder="Email Id"
+          onChange={signUpUserEmail.handleInputChange}/> <br />
+        <Form.Control type="text" placeholder="Password"
+          onChange={signUpUserPass.handleInputChange}/> <br />
+        <Form.Control type="text" placeholder="Confirm Password" 
+          onChange={signUpUserConfirmPass.handleInputChange}/>
       </Form.Group>
-      <Button variant="primary" type="submit">Sign Up</Button>
+      <Button variant="primary" type="submit" disabled={signUpUserConfirmPass.value !== signUpUserPass.value} onClick={onSignUp}>Sign Up</Button>
     </Form>
   )
 }

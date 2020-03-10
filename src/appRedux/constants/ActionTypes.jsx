@@ -14,6 +14,7 @@ export const userActTypes = {
   LOGIN_SUCCESS: 'LOGIN_SUCCESS',
   FETCH_PROFILE: 'FETCH_PROFILE',
   FETCH_PROFILE_SUCCESS: 'FETCH_PROFILE_SUCCESS',
+  REGISTER_USER: 'REGISTER_USER',
 }
 
 export const sellDomainTypes = {
