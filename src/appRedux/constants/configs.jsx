@@ -10,3 +10,9 @@ export const headers = {
   uid: '1',
   authorization: `Bearer ${window.localStorage.getItem('access_token')}`
 };
+
+export const noAuthHeaders = {
+  'content-type': 'application/json',
+  Accept: 'application/json',
+  uid: '1',
+}

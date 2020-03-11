@@ -69,7 +69,39 @@ const SignInForm = ({handleClose}) => {
   )
 }
 
-const SignUpForm = () => {
+const SignUpForm = ({handleClose}) => {
+  const [toLoginPage, setToLoginPage] = useState(false);
+  const signUpUsername = useFormInput('');
+  const signUpUserEmail = useFormInput('');
+  const signUpUserPass = useFormInput('');
+  const signUpUserConfirmPass = useFormInput('');
+  const isLoggedIn = useSelector(({user}) => user.isLoggedIn);
+  const dispatch = useDispatch();
+  
+
+  useEffect(()=>{
+    if(isLoggedIn){
+      setTimeout(()=>{
+        handleClose();
+        setToLoginPage(true);
+      }, 100);
+    }
+  }, [isLoggedIn]);
+
+
+  const onSignUp = () => {
+    const userDetails = {
+      userName: signUpUsername.value,
+      email: signUpUserEmail.value,
+      password: signUpUserPass.value,
+    }
+    dispatch(user.registerUser(userDetails));
+  }
+
+  if (toLoginPage){
+    return <Redirect to={routes.DASHBOARD_PAGE} />
+  }
+
   return (
     <Form className={classes.formWrapper}>
       <Row className="justify-content-md-center">
@@ -80,17 +112,22 @@ const SignUpForm = () => {
       </Divider>
       <br />
       <Form.Group>
-        <Form.Control type="text" placeholder="Username" /> <br />
-        <Form.Control type="text" placeholder="Email Id" /> <br />
-        <Form.Control type="text" placeholder="Password" /> <br />
-        <Form.Control type="text" placeholder="Confirm Password" />
+        <Form.Control type="text" placeholder="Username" 
+          onChange={signUpUsername.handleInputChange}/> <br />
+        <Form.Control type="text" placeholder="Email Id"
+          onChange={signUpUserEmail.handleInputChange}/> <br />
+        <Form.Control type="text" placeholder="Password"
+          onChange={signUpUserPass.handleInputChange}/> <br />
+        <Form.Control type="text" placeholder="Confirm Password" 
+          onChange={signUpUserConfirmPass.handleInputChange}/>
       </Form.Group>
-      <Button variant="primary" type="submit">Sign Up</Button>
+      <Button variant="primary" disabled={signUpUserConfirmPass.value !== signUpUserPass.value} onClick={onSignUp}>Sign Up</Button>
     </Form>
   )
 }
 
 const SignUp = ({show, handleClose, toggleIsSignUp}) => {
+  
   return (
     <Modal centered
       aria-labelledby="contained-modal-title-vcenter"
@@ -99,7 +136,7 @@ const SignUp = ({show, handleClose, toggleIsSignUp}) => {
         <Modal.Title>SIGN UP</Modal.Title>
       </Modal.Header>
       <Modal.Body className="justify-content-md-center">
-        <SignUpForm />
+        <SignUpForm handleClose={handleClose}/>
       </Modal.Body>
       <Modal.Footer className="justify-content-md-center">
         <span>Already have a Free Domain Auctions account?</span>

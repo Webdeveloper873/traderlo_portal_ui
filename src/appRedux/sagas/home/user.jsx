@@ -5,7 +5,7 @@ import { user } from 'appRedux/actions/home';
 
 //constants
 import { userActTypes } from 'appRedux/constants/ActionTypes';
-import { base_url, headers, login_url, loginHeaders } from 'appRedux/constants/configs';
+import { base_url, headers, login_url, loginHeaders, noAuthHeaders } from 'appRedux/constants/configs';
 
 //utils
 import { request, objToFormData, getAccessToken } from 'common/utils/helpers';
@@ -40,6 +40,24 @@ function* getUserProfile({payload}) {
   }
 }
 
+
+function* registerUser({payload}) {
+  try{
+    const {profile} = payload || {};
+    const { userName, password, email } = profile || {};
+    const resp = yield call(() => request.post(`${base_url}/user/register`,
+      {
+        headers: noAuthHeaders,
+        body: JSON.stringify(profile),
+      }));
+    if(resp){
+      yield put(user.registerUserSuccess(resp));
+    }
+  }catch(err) {
+    console.log('err: ', err);
+  }
+}
+
 function* logout({payload}) {
   try{
     console.log('logout payload', payload);
@@ -56,7 +74,9 @@ function* logout({payload}) {
   }
 }
 
-
+export function* registerUserWatcher() {
+  yield takeEvery(userActTypes.REGISTER_USER, registerUser);
+}
 
 export function* getProfileWatcher() {
   yield takeEvery(userActTypes.FETCH_PROFILE, getUserProfile);
@@ -75,6 +95,7 @@ export default function* rootSaga() {
   yield all([
     fork(loginWatcher),
     fork(getProfileWatcher),
+    fork(registerUserWatcher),
     fork(logOutWatcher),
   ]);
 }

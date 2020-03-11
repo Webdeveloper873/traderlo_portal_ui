@@ -27,6 +27,17 @@ export const getProfileSuccess = (profile) => ({
   payload: { profile }
 })
 
+export const registerUser = (profile) => (
+  {
+  type: userActTypes.REGISTER_USER,
+  payload: { profile }
+})
+
+export const registerUserSuccess = (profile) => ({
+  type: userActTypes.REGISTER_USER_SUCCESS,
+  payload: { profile }
+});
+
 export const logout = () => ({
   type: userActTypes.LOGOUT,
   payload: {
@@ -36,4 +47,4 @@ export const logout = () => ({
 
 export const successLogout = () => ({
   type: userActTypes.LOGOUT_SUCCESS
-})
+});

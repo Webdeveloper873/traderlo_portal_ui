@@ -22,6 +22,11 @@ export default (state = intialState, action) => {
       };
     case userActTypes.FETCH_PROFILE_SUCCESS:
       return { ...state, profile };
+    case userActTypes.REGISTER_USER_SUCCESS:
+      return { ...state,
+        isLoggedIn: true,
+        profile
+      };
     case userActTypes.LOGOUT_SUCCESS:
       window.localStorage.clear();
       window.location.reload();
