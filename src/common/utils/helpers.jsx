@@ -10,6 +10,7 @@ const handleError = (resp) => {
   }
   throw Error(resp.statusMessage);
 }
+
 const handleResponse = (resp) => {   // if empty return {}
   if (resp.ok) {
     return resp.text().then(function(respText) {
@@ -17,10 +18,7 @@ const handleResponse = (resp) => {   // if empty return {}
     })
   }
   throw Error(resp.statusMessage);
-  
 }
-
-
 
 export const request = {
   post: async (url, params) => {
@@ -43,3 +41,5 @@ export const objToFormData = (obj) => {
   });
   return formData;
 }
+
+export const getAccessToken = () => window.localStorage.getItem('access_token');

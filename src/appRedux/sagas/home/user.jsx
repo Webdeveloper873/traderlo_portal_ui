@@ -8,7 +8,9 @@ import { userActTypes } from 'appRedux/constants/ActionTypes';
 import { base_url, headers, login_url, loginHeaders } from 'appRedux/constants/configs';
 
 //utils
-import { request, objToFormData } from 'common/utils/helpers';
+import { request, objToFormData, getAccessToken } from 'common/utils/helpers';
+
+const newHeaders = { ...headers, authorization: `Bearer ${getAccessToken()}` };
 
 function* login({payload}) {
   try {
@@ -38,9 +40,14 @@ function* getUserProfile({payload}) {
   }
 }
 
-function* logout() {
+function* logout({payload}) {
   try{
-    const resp = yield call(() => request.delete(`${base_url}/user/logout`, { headers }));
+    console.log('logout payload', payload);
+    const resp = yield call(() => request.delete(`${base_url}/user/logout`, {
+      headers: { ...headers,
+        authorization: `Bearer ${getAccessToken()}`
+      }
+    }));
     if(resp){
       yield put(user.successLogout());
     }
