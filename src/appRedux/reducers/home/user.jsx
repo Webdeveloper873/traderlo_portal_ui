@@ -20,6 +20,11 @@ export default (state = intialState, action) => {
       };
     case userActTypes.FETCH_PROFILE_SUCCESS:
       return { ...state, profile };
+      case userActTypes.REGISTER_USER_SUCCESS:
+        return { ...state,
+          isLoggedIn: true,
+          profile
+        };
     default:
       return state;
   }

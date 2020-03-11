@@ -28,8 +28,12 @@ export const getProfileSuccess = (profile) => ({
 })
 
 export const registerUser = (profile) => (
-  console.log('profile',profile),
   {
   type: userActTypes.REGISTER_USER,
+  payload: { profile }
+})
+
+export const registerUserSuccess = (profile) => ({
+  type: userActTypes.REGISTER_USER_SUCCESS,
   payload: { profile }
 })

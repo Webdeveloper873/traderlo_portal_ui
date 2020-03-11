@@ -5,7 +5,7 @@ import { user } from 'appRedux/actions/home';
 
 //constants
 import { userActTypes } from 'appRedux/constants/ActionTypes';
-import { base_url, headers, login_url, loginHeaders, testeHeaders, sampleBody } from 'appRedux/constants/configs';
+import { base_url, headers, login_url, loginHeaders, noAuthHeaders } from 'appRedux/constants/configs';
 
 //utils
 import { request, objToFormData } from 'common/utils/helpers';
@@ -43,66 +43,13 @@ function* registerUser({payload}) {
   try{
     const {profile} = payload || {};
     const { userName, password, email } = profile || {};
-    console.log(payload.profile,'payload profile');
-    const tempData = {
-      "aboutMe": "string",
-      "address": "string",
-      "associatedAccount": "string",
-      "birthDate": "2020-03-10T11:34:10.834Z",
-      "buyerCertificate": "y",
-      "cardName": 0,
-      "contactNo": "string",
-      "createdDate": "2020-03-10T11:34:10.834Z",
-      "description": "string",
-      "email": email,
-      "emailVerificationStatus": "y",
-      "facebookUserProfile": "string",
-      "facebookVerificationStatus": "y",
-      "firstName": "string",
-      "gender": "m",
-      "homePageUrl": "string",
-      "id": 0,
-      "identifier": "string",
-      "ipAddress": "string",
-      "isActive": "y",
-      "isDeleted": "y",
-      "isFacebookDisplayed": "y",
-      "isLinkedInDisplayed": "y",
-      "isPaypalVerified": "y",
-      "isSubscribed": "y",
-      "isTwitterDisplayed": "y",
-      "lastLoginDate": "2020-03-10T11:34:10.834Z",
-      "lastName": "string",
-      "linkedInUserProfile": "string",
-      "linkedInVerificationStatus": "y",
-      "location": "string",
-      "password": password,
-      "paypalAccount": "string",
-      "phoneVerificationStatus": "y",
-      "phoneVerifyCode": "string",
-      "phoneVerifyTimes": 0,
-      "profileImage": "string",
-      "publicProfileUrl": "string",
-      "status": "a",
-      "token": "string",
-      "twitterUserProfile": "string",
-      "twitterVerificationStatus": "y",
-      "userName": userName,
-      "walletAmount": 0,
-      "webUrl": "string"
-    };
-
     const resp = yield call(() => request.post(`${base_url}/user/register`,
       {
-        headers: testeHeaders,
+        headers: noAuthHeaders,
         body: JSON.stringify(profile),
-        // body: JSON.stringify(payload.profile),
       }));
-    console.log('getUserProfile', resp);
     if(resp){
-      console.log(resp,'resp');
-    } else {
-      console.log('failed fetch')
+      yield put(user.registerUserSuccess(resp));
     }
   }catch(err) {
     console.log('err: ', err);

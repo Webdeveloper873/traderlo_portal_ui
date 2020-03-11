@@ -35,7 +35,6 @@ const SignInForm = ({handleClose}) => {
   }, [isLoggedIn]);
 
   const onSignIn = () => {
-    console.log('signIn')
     const userDetails = {
       username: loginUser.value,
       password: loginPass.value
@@ -70,22 +69,37 @@ const SignInForm = ({handleClose}) => {
   )
 }
 
-const SignUpForm = () => {
+const SignUpForm = ({handleClose}) => {
+  const [toLoginPage, setToLoginPage] = useState(false);
   const signUpUsername = useFormInput('');
   const signUpUserEmail = useFormInput('');
   const signUpUserPass = useFormInput('');
   const signUpUserConfirmPass = useFormInput('');
+  const isLoggedIn = useSelector(({user}) => user.isLoggedIn);
   const dispatch = useDispatch();
+  
+
+  useEffect(()=>{
+    if(isLoggedIn){
+      setTimeout(()=>{
+        handleClose();
+        setToLoginPage(true);
+      }, 100);
+    }
+  }, [isLoggedIn]);
+
 
   const onSignUp = () => {
-    console.log('sign upppp')
     const userDetails = {
       userName: signUpUsername.value,
       email: signUpUserEmail.value,
       password: signUpUserPass.value,
     }
-    console.log(userDetails,'userDetails')
     dispatch(user.registerUser(userDetails));
+  }
+
+  if (toLoginPage){
+    return <Redirect to={routes.DASHBOARD_PAGE} />
   }
 
   return (
@@ -113,6 +127,7 @@ const SignUpForm = () => {
 }
 
 const SignUp = ({show, handleClose, toggleIsSignUp}) => {
+  
   return (
     <Modal centered
       aria-labelledby="contained-modal-title-vcenter"
@@ -121,7 +136,7 @@ const SignUp = ({show, handleClose, toggleIsSignUp}) => {
         <Modal.Title>SIGN UP</Modal.Title>
       </Modal.Header>
       <Modal.Body className="justify-content-md-center">
-        <SignUpForm />
+        <SignUpForm handleClose={handleClose}/>
       </Modal.Body>
       <Modal.Footer className="justify-content-md-center">
         <span>Already have a Free Domain Auctions account?</span>
@@ -137,7 +152,7 @@ const Login = ({show, handleClose}) => {
   const toggleIsSignUp = () => setIsSignUp(!isSignUp)
 
   if (isSignUp){
-    return <SignUp show={show} toggleIsSignUp={toggleIsSignUp}/>;
+    return <SignUp show={show} handleClose={handleClose} toggleIsSignUp={toggleIsSignUp}/>;
   }
 
   return(
