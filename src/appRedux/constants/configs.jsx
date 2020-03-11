@@ -12,13 +12,9 @@ export const headers = {
 };
 
 export const testeHeaders = {
-  //'content-type': 'application/json',
+  'content-type': 'application/json',
   Accept: 'application/json',
   uid: '1',
-  // 'Access-Control-Allow-Origin': '*',
-  // 'Access-Control-Allow-Methods': 'GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH',
-  // 'Access-Control-Allow-Credentials': 'true',
-  // 'Access-Control-Allow-Headers': "x-requested-with, Content-Type, origin, authorization, accept, client-security-token"
 }
 
 export const sampleBody = {

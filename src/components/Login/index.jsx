@@ -80,7 +80,7 @@ const SignUpForm = () => {
   const onSignUp = () => {
     console.log('sign upppp')
     const userDetails = {
-      username: signUpUsername.value,
+      userName: signUpUsername.value,
       email: signUpUserEmail.value,
       password: signUpUserPass.value,
     }
@@ -107,7 +107,7 @@ const SignUpForm = () => {
         <Form.Control type="text" placeholder="Confirm Password" 
           onChange={signUpUserConfirmPass.handleInputChange}/>
       </Form.Group>
-      <Button variant="primary" type="submit" disabled={signUpUserConfirmPass.value !== signUpUserPass.value} onClick={onSignUp}>Sign Up</Button>
+      <Button variant="primary" disabled={signUpUserConfirmPass.value !== signUpUserPass.value} onClick={onSignUp}>Sign Up</Button>
     </Form>
   )
 }
@@ -137,7 +137,7 @@ const Login = ({show, handleClose}) => {
   const toggleIsSignUp = () => setIsSignUp(!isSignUp)
 
   if (isSignUp){
-    return <SignUp show={show} handleClose={handleClose} toggleIsSignUp={toggleIsSignUp}/>;
+    return <SignUp show={show} toggleIsSignUp={toggleIsSignUp}/>;
   }
 
   return(
