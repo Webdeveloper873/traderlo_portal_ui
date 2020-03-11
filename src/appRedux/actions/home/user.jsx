@@ -26,3 +26,14 @@ export const getProfileSuccess = (profile) => ({
   type: userActTypes.FETCH_PROFILE_SUCCESS,
   payload: { profile }
 })
+
+export const logout = () => ({
+  type: userActTypes.LOGOUT,
+  payload: {
+    accessToken: window.localStorage.getItem('access_token')
+  }
+});
+
+export const successLogout = () => ({
+  type: userActTypes.LOGOUT_SUCCESS
+})
