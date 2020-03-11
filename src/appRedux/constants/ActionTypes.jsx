@@ -19,4 +19,7 @@ export const userActTypes = {
 
 export const sellDomainTypes = {
   SELL_DOMAIN: 'SELL_DOMAIN',
+  SELL_DOMAIN_SUCCESS: 'SELL_DOMAIN_SUCCESS',
+  SALE: 'SALE',
+  TRAFFIC: 'TRAFFIC',
 }
