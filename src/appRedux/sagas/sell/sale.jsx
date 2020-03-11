@@ -1,8 +1,5 @@
 import { all, call, fork, put, takeEvery } from "redux-saga/effects";
 
-//actions
-import { domain } from 'appRedux/actions/selling';
-
 //constants
 import { sellDomainTypes } from 'appRedux/constants/ActionTypes';
 import { base_url, headers } from 'appRedux/constants/configs';
@@ -10,9 +7,10 @@ import { base_url, headers } from 'appRedux/constants/configs';
 //utils
 import { request, objToFormData } from 'common/utils/helpers';
 
-function* sellDomain({payload}) {
+function* domainSale({ payload }) {
+  console.log('domainSale payload: ', payload);
   try {
-    const resp = yield call(() => request.post(`${base_url}/selling/domain`,
+    let resp = yield call(() => request.post(`${base_url}/selling/domain/sale`,
       {
         headers: {
           ...headers,
@@ -21,21 +19,18 @@ function* sellDomain({payload}) {
         body: JSON.stringify(payload)
       }
     ));
-    console.log('sellDomain resp: ', resp)
-    if(resp){
-      yield put(domain.sellDomainSuccess(resp));
-    }
+    console.log('domainSale resp: ', resp)
   } catch (err) {
     console.log('err: ', err);
   }
 }
 
-export function* sellDomainWatcher() {
-  yield takeEvery(sellDomainTypes.SELL_DOMAIN, sellDomain);
+export function* domainSaleWatcher() {
+  yield takeEvery(sellDomainTypes.SALE, domainSale);
 }
 
 export default function* rootSaga() {
   yield all([
-    fork(sellDomainWatcher),
+    fork(domainSaleWatcher),
   ]);
 }

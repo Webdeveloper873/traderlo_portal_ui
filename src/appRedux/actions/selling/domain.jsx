@@ -4,3 +4,8 @@ export const sellDomain = (url) => ({
   type: sellDomainTypes.SELL_DOMAIN,
   payload: { url }
 })
+
+export const sellDomainSuccess = (payload) => ({
+  type: sellDomainTypes.SELL_DOMAIN_SUCCESS,
+  payload
+})
