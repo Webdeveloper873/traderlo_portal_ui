@@ -38,6 +38,19 @@ function* getUserProfile({payload}) {
   }
 }
 
+function* logout() {
+  try{
+    const resp = yield call(() => request.delete(`${base_url}/user/logout`, { headers }));
+    if(resp){
+      yield put(user.successLogout());
+    }
+  }catch(err) {
+    console.log('err: ', err);
+  }
+}
+
+
+
 export function* getProfileWatcher() {
   yield takeEvery(userActTypes.FETCH_PROFILE, getUserProfile);
 }
@@ -46,9 +59,15 @@ export function* loginWatcher() {
   yield takeEvery(userActTypes.LOGIN, login);
 }
 
+export function* logOutWatcher() {
+  yield takeEvery(userActTypes.LOGOUT, logout);
+}
+
+
 export default function* rootSaga() {
   yield all([
     fork(loginWatcher),
     fork(getProfileWatcher),
+    fork(logOutWatcher),
   ]);
 }

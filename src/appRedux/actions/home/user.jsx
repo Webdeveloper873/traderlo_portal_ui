@@ -26,3 +26,11 @@ export const getProfileSuccess = (profile) => ({
   type: userActTypes.FETCH_PROFILE_SUCCESS,
   payload: { profile }
 })
+
+export const logout = () => ({
+  type: userActTypes.LOGOUT,
+});
+
+export const successLogout = () => ({
+  type: userActTypes.LOGOUT_SUCCESS
+})
