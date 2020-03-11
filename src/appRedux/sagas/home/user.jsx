@@ -8,7 +8,9 @@ import { userActTypes } from 'appRedux/constants/ActionTypes';
 import { base_url, headers, login_url, loginHeaders, noAuthHeaders } from 'appRedux/constants/configs';
 
 //utils
-import { request, objToFormData } from 'common/utils/helpers';
+import { request, objToFormData, getAccessToken } from 'common/utils/helpers';
+
+const newHeaders = { ...headers, authorization: `Bearer ${getAccessToken()}` };
 
 function* login({payload}) {
   try {
@@ -56,6 +58,22 @@ function* registerUser({payload}) {
   }
 }
 
+function* logout({payload}) {
+  try{
+    console.log('logout payload', payload);
+    const resp = yield call(() => request.delete(`${base_url}/user/logout`, {
+      headers: { ...headers,
+        authorization: `Bearer ${getAccessToken()}`
+      }
+    }));
+    if(resp){
+      yield put(user.successLogout());
+    }
+  }catch(err) {
+    console.log('err: ', err);
+  }
+}
+
 export function* registerUserWatcher() {
   yield takeEvery(userActTypes.REGISTER_USER, registerUser);
 }
@@ -68,11 +86,16 @@ export function* loginWatcher() {
   yield takeEvery(userActTypes.LOGIN, login);
 }
 
+export function* logOutWatcher() {
+  yield takeEvery(userActTypes.LOGOUT, logout);
+}
+
 
 export default function* rootSaga() {
   yield all([
     fork(loginWatcher),
     fork(getProfileWatcher),
     fork(registerUserWatcher),
+    fork(logOutWatcher),
   ]);
 }

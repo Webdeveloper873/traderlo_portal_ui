@@ -36,4 +36,15 @@ export const registerUser = (profile) => (
 export const registerUserSuccess = (profile) => ({
   type: userActTypes.REGISTER_USER_SUCCESS,
   payload: { profile }
-})
+});
+
+export const logout = () => ({
+  type: userActTypes.LOGOUT,
+  payload: {
+    accessToken: window.localStorage.getItem('access_token')
+  }
+});
+
+export const successLogout = () => ({
+  type: userActTypes.LOGOUT_SUCCESS
+});

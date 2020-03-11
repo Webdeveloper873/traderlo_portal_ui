@@ -27,6 +27,9 @@ export const request = {
   get: async (url, params) => {
     return await fetch(url, {method: 'GET', ...params}).then(handleResponse);
   },
+  delete: async (url, params) => {
+    return await fetch(url, {method: 'DELETE', ...params}).then(handleResponse);
+  },
 }
 
 export const objToFormData = (obj) => {
@@ -38,3 +41,5 @@ export const objToFormData = (obj) => {
   });
   return formData;
 }
+
+export const getAccessToken = () => window.localStorage.getItem('access_token');
