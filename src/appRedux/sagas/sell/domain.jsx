@@ -23,7 +23,7 @@ function* sellDomain({payload}) {
     ));
     console.log('sellDomain resp: ', resp)
     if(resp){
-      put(domain.sellDomainSuccess(resp));
+      yield put(domain.sellDomainSuccess(resp));
     }
   } catch (err) {
     console.log('err: ', err);

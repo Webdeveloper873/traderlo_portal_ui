@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Col, Row, Card, Input } from 'antd';
 import { Redirect } from 'react-router-dom';
 
@@ -99,12 +99,24 @@ const SellingStep = ({subtitle, sublink, children}) => {
 
 const Selling = () => {
   const [toNextStep, setToNextStep] = useState(false);
+  const listingId = useSelector(({ sellDomain })=>sellDomain.listingId);
   const dispatch = useDispatch();
 
   const onGetStarted = value => {
     console.log('value: ', value);
     dispatch(domainActions.sellDomain(value));
   }
+
+  useEffect(()=>{
+    //reset listing id
+  }, [])
+
+  useEffect(()=>{
+    if(listingId != null){
+      console.log('listingId not null');
+      setToNextStep(true);
+    }
+  }, [listingId]);
 
   if(toNextStep){
     return <Redirect to={routes.SELLING_DOMAINS_PAGE} />
