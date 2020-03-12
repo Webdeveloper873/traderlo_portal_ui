@@ -5,7 +5,7 @@ import { successSubscribeNewsletter, failedSubscribeNewsletter } from 'appRedux/
 
 //constants
 import { homeActions } from 'appRedux/constants/ActionTypes';
-import { base_url, headers } from 'appRedux/constants/configs';
+import { base_url, noAuthHeaders } from 'appRedux/constants/configs';
 
 //utils
 import { request } from 'common/utils/helpers';
@@ -14,7 +14,10 @@ function* subscribeNewsletter({ payload }) {
   const { subscriber } = payload || {};
   try {
     let resp = yield call(() =>
-      request.post(`${base_url}/subscribe`, { headers, body: JSON.stringify({ ...subscriber }) })
+      request.post(`${base_url}/subscribe`, { headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  }, body: JSON.stringify({ ...subscriber }) })
     );
     if (resp) {
       console.log('resp', resp);
