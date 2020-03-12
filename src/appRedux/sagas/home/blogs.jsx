@@ -5,7 +5,7 @@ import { saveFeatBlogs } from 'appRedux/actions/home/blogs';
 
 //constants
 import { homeActions } from 'appRedux/constants/ActionTypes';
-import { base_url, headers } from 'appRedux/constants/configs';
+import { base_url, noAuthHeaders } from 'appRedux/constants/configs';
 
 //utils
 import { request } from 'common/utils/helpers';
@@ -13,7 +13,7 @@ import { request } from 'common/utils/helpers';
 function* fetchFeatBlogs(){
   console.log('fetchfeatblogs');
   try{
-    let resp = yield call(()=> request.get(`${base_url}/blog/featured`, { headers, uid: 1 }));
+    let resp = yield call(()=> request.get(`${base_url}/blog/featured`, { noAuthHeaders, uid: 1 }));
     console.log('fetchFeatBlogs resp: ', resp);
     if(resp){
       yield put(saveFeatBlogs(resp));
