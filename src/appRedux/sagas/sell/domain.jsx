@@ -51,6 +51,32 @@ function* pitchDomain({ payload }) {
   }
 }
 
+function* domainSale({ payload }) {
+  console.log('domainSale payload: ', payload);
+  try {
+    let resp = yield call(() => request.post(`${base_url}/selling/domain/sale`,
+      {
+        headers: {
+          ...headers,
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      }
+    ));
+    console.log('domainSale resp: ', resp);
+    if(resp){
+      yield put(domain.setSaleSuccess());
+    }
+  } catch (err) {
+    console.log('err: ', err);
+  }
+}
+
+export function* domainSaleWatcher() {
+  yield takeEvery(sellDomainTypes.SALE, domainSale);
+}
+
+
 export function* pitchDomainWatcher() {
   yield takeEvery(sellDomainTypes.PITCH, pitchDomain);
 }
@@ -63,5 +89,6 @@ export default function* rootSaga() {
   yield all([
     fork(sellDomainWatcher),
     fork(pitchDomainWatcher),
+    fork(domainSaleWatcher),
   ]);
 }

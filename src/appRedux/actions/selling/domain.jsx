@@ -18,3 +18,12 @@ export const setPitch = (payload) => ({
 export const setPitchSuccess = () => ({
   type: sellDomainTypes.PITCH_SUCCESS,
 });
+
+export const setSale = (payload) => ({
+  type: sellDomainTypes.SALE,
+  payload
+});
+
+export const setSaleSuccess = () => ({
+  type: sellDomainTypes.SALE_SUCCESS,
+});

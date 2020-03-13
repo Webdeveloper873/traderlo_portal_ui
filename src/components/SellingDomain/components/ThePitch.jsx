@@ -12,9 +12,6 @@ import classes from '../styles.module.scss';
 //utils
 import { useFormInput } from 'common/utils/hooks';
 
-//constants
-import { routes } from 'common/constants';
-
 const { TextArea } = Input;
 
 const handleMenuClick = (e) => {

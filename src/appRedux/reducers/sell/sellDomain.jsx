@@ -17,6 +17,8 @@ export default (state = intialState, action) => {
       return { ...state, listingId: id };
     case sellDomainTypes.PITCH_SUCCESS:
       return { ...state, pitch: true};
+    case sellDomainTypes.SALE_SUCCESS:
+      return { ...state, sale: true};
     default:
       return state;
   }

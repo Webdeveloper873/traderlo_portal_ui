@@ -37,13 +37,13 @@ const SellingSub = () => {
             <ThePitch setActiveKey={setActiveKey} />
           </TabPane>
           <TabPane tab="2. Sale" key="2">
-            <Sale moveToNextTab={moveToNextTab} />
+            <Sale setActiveKey={setActiveKey} />
           </TabPane>
           <TabPane tab="3. Trafic" key="3">
-            <Traffic moveToNextTab={moveToNextTab} />
+            <Traffic setActiveKey={setActiveKey} />
           </TabPane>
           <TabPane tab="4. Promote" key="4">
-            <Promote moveToNextTab={moveToNextTab} />
+            <Promote setActiveKey={setActiveKey} />
           </TabPane>
           <TabPane tab="5. Verify Ownership" key="5">
             <VerifyOwnership />
