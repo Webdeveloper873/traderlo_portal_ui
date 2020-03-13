@@ -1,20 +1,28 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { Card, Menu, Dropdown, Button, Icon, message, Input, Row  } from 'antd';
+
+//action
+import { domain } from 'appRedux/actions/selling';
 
 //styles
 import classes from '../styles.module.scss';
 
-//re-name constants
+//utils
+import { useFormInput } from 'common/utils/hooks';
+
+//constants
+import { routes } from 'common/constants';
+
 const { TextArea } = Input;
 
-
-//functions
 const handleMenuClick = (e) => {
   message.info('Click on menu item.');
   console.log('click', e);
 }
 
-// components
+
 const listCategoryMenu = () => {
   return (
     <Menu onClick={handleMenuClick}>
@@ -36,7 +44,32 @@ const listCategoryMenu = () => {
 
 
 
-const ThePitch = () => {
+const ThePitch = ({ setActiveKey }) => {
+  const tagline = useFormInput();
+  const description = useFormInput();
+  const listingId = useSelector(({ sellDomain }) => sellDomain.listingId);
+  const pitch = useSelector(({ sellDomain }) => sellDomain.pitch);
+  const dispatch = useDispatch();
+
+  const onClickNext = () => {
+    const data = {
+      args: {
+        tagline: tagline.value,
+        description: description.value
+      },
+      listingId,
+    };
+    dispatch(domain.setPitch(data));
+  }
+
+  if(!listingId){
+    console.log('listingId null');
+  }
+
+  if(pitch){
+    setActiveKey(2);
+  }
+
   return(
     <div className={classes.thePitch}>
       <Card className={classes.cardStyle}>
@@ -62,13 +95,17 @@ const ThePitch = () => {
               size="large"
               className={classes.descriptionHeading}
               placeholder="Description Heading"
+              onChange={tagline.handleInputChange}
             />
           </Row>
           <Row>
-            <TextArea rows={8} className={classes.description}  placeholder="Description"/>
+            <TextArea rows={8} className={classes.description}
+              onChange={description.handleInputChange}
+              placeholder="Description"
+            />
           </Row>
           <Row className={classes.btnContainer}>
-            <Button size='large' className={classes.btnStyle}>Next</Button>
+            <Button size='large' className={classes.btnStyle} onClick={onClickNext}>Next</Button>
           </Row>
         </div>
       </Card>
