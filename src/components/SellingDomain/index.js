@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Tabs  } from 'antd';
 
 //components
@@ -21,22 +21,29 @@ const callback = (key) => {
 
 // Main part
 const SellingSub = () => {
+  const [activeKey, setActiveKey] = useState(1);
+
+  const moveToNextTab = () => {
+    console.log('move to next: ', activeKey)
+    setActiveKey(activeKey+1);
+  }
+
   return(
     <>
       <Banner text={'Selling'} />
       <PageWrapper className={classes.pageWrapper}>
-        <Tabs defaultActiveKey="1" onChange={callback} size="large" tabBarGutter={120} tabBarStyle={{fontWeight:600}}>
+        <Tabs activeKey={JSON.stringify(5)} onNextClick={moveToNextTab} defaultActiveKey="1" onChange={callback} size="large" tabBarGutter={120} tabBarStyle={{fontWeight:600}}>
           <TabPane tab="1.The Pitch" key="1">
-           <ThePitch></ThePitch>
+            <ThePitch setActiveKey={setActiveKey} />
           </TabPane>
           <TabPane tab="2. Sale" key="2">
-            <Sale />
+            <Sale setActiveKey={setActiveKey} />
           </TabPane>
           <TabPane tab="3. Trafic" key="3">
-            <Traffic />
+            <Traffic setActiveKey={setActiveKey} />
           </TabPane>
           <TabPane tab="4. Promote" key="4">
-            <Promote />
+            <Promote setActiveKey={setActiveKey} />
           </TabPane>
           <TabPane tab="5. Verify Ownership" key="5">
             <VerifyOwnership />
