@@ -75,16 +75,16 @@ function* domainSale({ payload }) {
 function* domainTraffic({ payload }) {
   console.log('domainTraffic payload: ', payload);
   try {
-    // let resp = yield call(() => request.post(`${base_url}/selling/domain/traffic`,
-    //   {
-    //     headers: {
-    //       ...headers,
-    //       'content-type': 'application/json'
-    //     },
-    //     body: JSON.stringify(payload)
-    //   }
-    // ));
-    let resp = true;
+    let resp = yield call(() => request.post(`${base_url}/selling/domain/traffic`,
+      {
+        headers: {
+          ...headers,
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      }
+    ));
+    // let resp = true;
     console.log('domainTraffic resp: ', resp);
     if (resp) {
       yield put(domain.setTrafficSuccess());
@@ -115,6 +115,103 @@ function* domainPromote({ payload }) {
   }
 }
 
+function* verifyByText({ payload }) {
+  console.log('verifyByText payload: ', payload);
+  try {
+    let resp = yield call(() => request.post(`${base_url}/domain/verifyDomain`,
+      {
+        headers: {
+          ...headers,
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      }
+    ));
+    console.log('verifyByText resp: ', resp);
+    if (resp) {
+      yield put(domain.verifyTextFileSuccess(resp));
+    }
+  } catch (err) {
+    console.log('err: ', err);
+  }
+}
+
+function* verifyByMetaTag({ payload }) {
+  console.log('verifyByMetaTag payload: ', payload);
+  const { metaTag, ...others } = payload;
+  try {
+    let resp = yield call(() => request.post(`${base_url}/domain/verifyMeta?metaTag=${metaTag}`,
+      {
+        headers: {
+          ...headers,
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(others)
+      }
+    ));
+    console.log('verifyByMetaTag resp: ', resp);
+    if (resp) {
+      yield put(domain.verifyByMetaSuccess(resp));
+    }
+  } catch (err) {
+    console.log('err: ', err);
+  }
+}
+
+function* getRandText() {
+  try {
+    let resp = yield call(() => request.get(`${base_url}/domain/getText?id=1`,
+      {
+        headers: {
+          ...headers,
+          'content-type': 'application/json'
+        },
+      }
+    ));
+    console.log('getRandText resp: ', resp);
+    if (resp) {
+      yield put(domain.getRandTextSuccess(resp.value));
+    }
+  } catch (err) {
+    console.log('err: ', err);
+  }
+}
+
+function* getMetaText() {
+  try {
+    let resp = yield call(() => request.get(`${base_url}/domain/getMetaTag?id=1`,
+      {
+        headers: {
+          ...headers,
+          'content-type': 'application/json'
+        },
+      }
+    ));
+    console.log('getRandText resp: ', resp);
+    if (resp) {
+      yield put(domain.getMetaSuccess(resp.value));
+    }
+  } catch (err) {
+    console.log('err: ', err);
+  }
+}
+
+export function* verifyByMetaTagWatcher() {
+  yield takeEvery(sellDomainTypes.VERIFY_META, verifyByMetaTag);
+}
+
+export function* getMetaTextWatcher() {
+  yield takeEvery(sellDomainTypes.GET_META, getMetaText);
+}
+
+export function* getRandTextWatcher() {
+  yield takeEvery(sellDomainTypes.GET_TEXT, getRandText);
+}
+
+export function* verifyByTextWatcher() {
+  yield takeEvery(sellDomainTypes.VERIFY_TEXTFILE, verifyByText);
+}
+
 export function* domainPromoteWatcher() {
   yield takeEvery(sellDomainTypes.PROMOTE, domainPromote);
 }
@@ -142,5 +239,9 @@ export default function* rootSaga() {
     fork(domainSaleWatcher),
     fork(domainTrafficWatcher),
     fork(domainPromoteWatcher),
+    fork(verifyByTextWatcher),
+    fork(getRandTextWatcher),
+    fork(getMetaTextWatcher),
+    fork(verifyByMetaTagWatcher),
   ]);
 }

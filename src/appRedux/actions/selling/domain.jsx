@@ -45,3 +45,41 @@ export const setPromote = (payload) => ({
 export const setPromoteSuccess = () => ({
   type: sellDomainTypes.PROMOTE_SUCCESS
 });
+
+export const verifyByTextFile = (payload) => ({
+  type: sellDomainTypes.VERIFY_TEXTFILE,
+  payload
+});
+
+export const verifyTextFileSuccess = (payload) => ({
+  type: sellDomainTypes.VERIFY_TEXTFILE_SUCCESS,
+  payload
+});
+
+export const verifyByMetaTag = (payload) => ({
+  type: sellDomainTypes.VERIFY_META,
+  payload
+});
+
+export const verifyByMetaSuccess = (payload) => ({
+  type: sellDomainTypes.VERIFY_META_SUCCESS,
+  payload
+});
+
+export const getRandText = () => ({
+  type: sellDomainTypes.GET_TEXT
+});
+
+export const getRandTextSuccess = (payload) => ({
+  type: sellDomainTypes.GET_TEXT_SUCCESS,
+  payload,
+});
+
+export const getMetaKey = () => ({
+  type: sellDomainTypes.GET_META,
+});
+
+export const getMetaSuccess = (payload) => ({
+  type: sellDomainTypes.GET_META_SUCCESS,
+  payload,
+});

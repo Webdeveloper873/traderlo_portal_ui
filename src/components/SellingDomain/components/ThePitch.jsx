@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import { Card, Menu, Dropdown, Button, Icon, message, Input, Row  } from 'antd';
 
 //action
