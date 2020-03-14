@@ -61,7 +61,6 @@ const Traffic = ({ setActiveKey }) => {
       },
       listingId,
     };
-    console.log('traffic data', data)
     dispatch(domain.setTraffic(data));
   }
 

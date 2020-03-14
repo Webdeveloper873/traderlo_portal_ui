@@ -21,6 +21,8 @@ export default (state = intialState, action) => {
       return { ...state, sale: true};
     case sellDomainTypes.TRAFFIC_SUCCESS:
       return { ...state, traffic: true};
+    case sellDomainTypes.PROMOTE_SUCCESS:
+      return { ...state, promote: true};
     default:
       return state;
   }

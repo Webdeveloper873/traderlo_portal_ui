@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Button, Card, Col, Row } from 'antd';
+
+//utils
+import { domain } from 'appRedux/actions/selling';
 
 //styles
 import classes from '../styles.module.scss';
@@ -25,12 +29,31 @@ const PromoteCard = ({optKey, selectedOpt, imgSrc, label, details, onClickCard})
   );
 }
 
-const Promote = () => {
+const Promote = ({ setActiveKey }) => {
+  const listingId = useSelector(({ sellDomain }) => sellDomain.listingId);
+  const promote = useSelector(({ sellDomain }) => sellDomain.promote);
   const [selectedOpt, setSelectedOpt] = useState(1);
+  const dispatch = useDispatch();
 
   const onClickCard = (key) => {
     console.log('selectedOpt', key);
     setSelectedOpt(key);
+  }
+
+  const onClickNext = () => {
+    const extraFees = selectedOpt === 1 ? 0 : 50;
+    const data = {
+      args: {
+        sellerAmount: 1,
+        extraFees
+      },
+      listingId
+    };
+    dispatch(domain.setPromote(data));
+  };
+
+  if(promote){
+    setActiveKey(5);
   }
 
   return(
@@ -47,7 +70,7 @@ const Promote = () => {
         />
       </Row>
       <Row className={classes.btnContainer}>
-        <Button size='large' className={classes.btnStyle}>Next</Button>
+        <Button onClick={onClickNext} size='large' className={classes.btnStyle}>Next</Button>
       </Row>
     </Card>
   );

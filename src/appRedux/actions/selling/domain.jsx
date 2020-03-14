@@ -36,3 +36,12 @@ export const setTraffic = (payload) => ({
 export const setTrafficSuccess = () => ({
   type: sellDomainTypes.TRAFFIC_SUCCESS
 });
+
+export const setPromote = (payload) => ({
+  type: sellDomainTypes.PROMOTE,
+  payload
+});
+
+export const setPromoteSuccess = () => ({
+  type: sellDomainTypes.PROMOTE_SUCCESS
+});

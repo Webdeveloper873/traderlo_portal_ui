@@ -42,10 +42,10 @@ const listCategoryMenu = () => {
 
 
 const ThePitch = ({ setActiveKey }) => {
-  const tagline = useFormInput();
-  const description = useFormInput();
   const listingId = useSelector(({ sellDomain }) => sellDomain.listingId);
   const pitch = useSelector(({ sellDomain }) => sellDomain.pitch);
+  const tagline = useFormInput();
+  const description = useFormInput();
   const dispatch = useDispatch();
 
   const onClickNext = () => {
