@@ -11,7 +11,7 @@ export default function* rootSaga() {
     blogs(),
     user(),
     domain(),
-    sale(),
+    //sale(),
     buyingDomain(),
   ]);
 }
