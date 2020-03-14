@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { Card, Icon, Avatar } from 'antd';
 
 //assets
@@ -18,7 +19,7 @@ const CardsDesc = ({...props}) => {
       <div><span style={{fontWeight:700}}>{`$ ${props.startingPrice}`}</span></div>
       <div><span style={{fontWeight:600}}> {`Category: ${props.category.listingTypeName}`}</span></div>
       <div>{`Description: ${props.category.description}`}</div>
-      <div><Icon type="clock-circle" />{' Time Left'}</div>
+      <div><Icon type="clock-circle" />{`Time Left: ${props.days}`}</div>
     </>
   )
 }
