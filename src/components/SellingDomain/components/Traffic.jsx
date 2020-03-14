@@ -1,8 +1,15 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Typography, Card, Row, Button, Upload, message, Icon, Col } from 'antd';
 
 //components
 import InputField from './InputField';
+
+//action
+import { domain } from 'appRedux/actions/selling';
+
+//utils
+import { useFormInput } from 'common/utils/hooks';
 
 //styles
 import classes from '../styles.module.scss';
@@ -35,19 +42,44 @@ const uploadBtnProps = {
   },
 };
 
-const Traffic = () => {
+const Traffic = ({ setActiveKey }) => {
+  const listingId = useSelector(({ sellDomain }) => sellDomain.listingId);
+  const traffic = useSelector(({ sellDomain }) => sellDomain.traffic);
+  const uniqVisit = useFormInput();
+  const pageViews = useFormInput();
+  const revenue = useFormInput();
+  const expensives = useFormInput();
+  const dispatch = useDispatch();
+
+  const onClickNext = () => {
+    const data = {
+      args: {
+        avgUniquePerMonth: parseInt(uniqVisit.value),
+        avgPageViewsPerMonth: parseInt(pageViews.value),
+        averageRevenue: parseInt(revenue.value),
+        averageExpense: parseInt(expensives.value),
+      },
+      listingId,
+    };
+    dispatch(domain.setTraffic(data));
+  }
+
+  if (traffic) {
+    setActiveKey(4);
+  }
+
   return(
     <Card>
       <Text className={classes.tabDetail}>Get in front of buyers looking for website like your by categorizing it accurately, and letting them know how long the website has been live.</Text>
       <Row gutter={16}>
         <Col xs={24} md={14}>
           <Row gutter={16}>
-            <InputField label='Monthly Unique Visits' colStyle={twoCol} />
-            <InputField label='Monthly Page Views' colStyle={twoCol} />
+            <InputField onChange={uniqVisit.handleInputChange} label='Monthly Unique Visits' colStyle={twoCol} />
+            <InputField onChange={pageViews.handleInputChange} label='Monthly Page Views' colStyle={twoCol} />
           </Row>
           <Row gutter={16}>
-            <InputField label='Monthly Revenue' icon='dollar' colStyle={twoCol} />
-            <InputField label='Monthly Expensives' icon='dollar' colStyle={twoCol} />
+            <InputField onChange={revenue.handleInputChange} label='Monthly Revenue' icon='dollar' colStyle={twoCol} />
+            <InputField onChange={expensives.handleInputChange} label='Monthly Expensives' icon='dollar' colStyle={twoCol} />
           </Row>
           <Row>
             <Label text={`Upload Files (Revenue Proof's & Traffic Products)`} />
@@ -63,7 +95,7 @@ const Traffic = () => {
         </Col>
       </Row>
       <Row className={classes.btnContainer}>
-        <Button size='large' className={classes.btnStyle}>Next</Button>
+        <Button onClick={onClickNext} size='large' className={classes.btnStyle}>Next</Button>
       </Row>
     </Card>
   );
