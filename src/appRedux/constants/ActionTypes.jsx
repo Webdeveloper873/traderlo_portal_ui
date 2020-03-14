@@ -24,4 +24,5 @@ export const sellDomainTypes = {
   SALE: 'SALE',
   SALE_SUCCESS: 'SALE_SUCCESS',
   TRAFFIC: 'TRAFFIC',
+  TRAFFIC_SUCCESS: 'TRAFFIC_SUCCESS',
 }

@@ -27,3 +27,12 @@ export const setSale = (payload) => ({
 export const setSaleSuccess = () => ({
   type: sellDomainTypes.SALE_SUCCESS,
 });
+
+export const setTraffic = (payload) => ({
+  type: sellDomainTypes.TRAFFIC,
+  payload
+});
+
+export const setTrafficSuccess = () => ({
+  type: sellDomainTypes.TRAFFIC_SUCCESS
+});
