@@ -90,6 +90,12 @@
 
 .promoteCard {
   box-shadow: 0 1px 6px rgba(101, 112, 114, 0.15);
+  cursor: pointer;
+
+  &.selected {
+    border: 1px solid #1c85ad;
+    background: #68aac329;
+  }
 
   :global {
     .ant-card-head-title{

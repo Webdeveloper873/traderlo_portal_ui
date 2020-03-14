@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Card, Col, Row } from 'antd';
 
 //styles
@@ -9,10 +9,11 @@ import EditorChoice from 'assets/selling/editorchoice.png';
 import Featured from 'assets/selling/featured.png';
 import FreeBasic from 'assets/selling/freebasic.png';
 
-const PromoteCard = ({imgSrc, label, details}) => {
+const PromoteCard = ({optKey, selectedOpt, imgSrc, label, details, onClickCard}) => {
   return(
     <Col xs={24} md={8}>
-      <Card className={classes.promoteCard}
+      <Card className={`${classes.promoteCard} ${selectedOpt === optKey ? classes.selected : ''}`}
+        onClick={() => onClickCard(optKey)}
         bodyStyle={{ background: '#f9f9f9' }}
         title={<>
           <h5>{label}</h5>
@@ -25,16 +26,23 @@ const PromoteCard = ({imgSrc, label, details}) => {
 }
 
 const Promote = () => {
+  const [selectedOpt, setSelectedOpt] = useState(1);
+
+  const onClickCard = (key) => {
+    console.log('selectedOpt', key);
+    setSelectedOpt(key);
+  }
+
   return(
     <Card>
       <Row gutter={16}>
-        <PromoteCard imgSrc={FreeBasic} label='Free Basic'
+        <PromoteCard selectedOpt={selectedOpt} onClickCard={onClickCard} optKey={1} imgSrc={FreeBasic} label='Free Basic'
           details='Promote your listing for free, At no cost.'
         />
-        <PromoteCard imgSrc={Featured} label='Featured'
+        <PromoteCard selectedOpt={selectedOpt} onClickCard={onClickCard} optKey={2} imgSrc={Featured} label='Featured'
           details='Be first to sell your listing at $50Per Month'
         />
-        <PromoteCard imgSrc={EditorChoice} label='Editor Choice'
+        <PromoteCard selectedOpt={selectedOpt} onClickCard={onClickCard} optKey={3} imgSrc={EditorChoice} label='Editor Choice'
           details='Be first to sell your listing at $50Per Month'
         />
       </Row>

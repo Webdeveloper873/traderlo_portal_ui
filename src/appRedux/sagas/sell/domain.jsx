@@ -75,15 +75,16 @@ function* domainSale({ payload }) {
 function* domainTraffic({ payload }) {
   console.log('domainTraffic payload: ', payload);
   try {
-    let resp = yield call(() => request.post(`${base_url}/selling/domain/traffic`,
-      {
-        headers: {
-          ...headers,
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      }
-    ));
+    // let resp = yield call(() => request.post(`${base_url}/selling/domain/traffic`,
+    //   {
+    //     headers: {
+    //       ...headers,
+    //       'content-type': 'application/json'
+    //     },
+    //     body: JSON.stringify(payload)
+    //   }
+    // ));
+    let resp = true;
     console.log('domainTraffic resp: ', resp);
     if (resp) {
       yield put(domain.setTrafficSuccess());
