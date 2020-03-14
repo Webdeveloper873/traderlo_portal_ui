@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Slider, Divider, Card, Typography, Select, Checkbox, Input, Row, Col } from 'antd';
 import { Redirect } from "react-router-dom";
 
@@ -117,6 +117,9 @@ const Filters = () => {
 const SearchKeyword = () => {
   const [viewDetails, setViewDetails] = useState(false);
 
+  console.log( 'domainList');
+  const domainList = useSelector(({ buyDomain }) => buyDomain.domainList);
+  console.log( domainList,'domainListwasdasds');
   if(viewDetails){
     return <Redirect to={routes.DOMAINS_VIEW_PAGE} />;
   }
@@ -141,7 +144,7 @@ const SearchKeyword = () => {
 
       <Row>
         <Col span={18}>
-          <Typography.Title level={4}>Showing 1 - 30 of 12,076 results</Typography.Title>
+          <Typography.Title level={4}>{`Showing 1 - ${domainList.length} of ${domainList.length} results`}</Typography.Title>
         </Col>
         <Col span={6} className={classes.alignEnd}>
           <Select style={{ width: '125px' }} placeholder='Sort By:'>
@@ -153,15 +156,17 @@ const SearchKeyword = () => {
       </Row>
 
       <Row gutter={16}>
+        {domainList.map(itemProps => 
         <Col {...threeCol}>
+          <CardItem onClick={onClickCardItem} {...itemProps} style={{marginBottom:20}}/>
+        </Col>)}
+        
+        {/* <Col {...threeCol}>
           <CardItem onClick={onClickCardItem}/>
         </Col>
         <Col {...threeCol}>
           <CardItem onClick={onClickCardItem}/>
-        </Col>
-        <Col {...threeCol}>
-          <CardItem onClick={onClickCardItem}/>
-        </Col>
+        </Col> */}
       </Row>
     </div>
   );

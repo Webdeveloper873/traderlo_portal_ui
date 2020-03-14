@@ -4,7 +4,8 @@ export const getBuyDomain = () => ({
   type: buyDomainTypes.GET_BUY_DOMAIN,
 })
 
-export const getBuyDomainSuccess = (payload) => ({
+export const getBuyDomainSuccess = (payload) => (
+  {
   type: buyDomainTypes.GET_BUY_DOMAIN_SUCCESS,
   payload
 })

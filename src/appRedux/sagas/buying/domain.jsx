@@ -23,7 +23,7 @@ function* getBuyDomain({payload}) {
   
     if(resp){
       console.log('buy domain resp', resp)
-      yield put(buyingDomain.buyDomainSuccess(resp));
+      yield put(buyingDomain.getBuyDomainSuccess(resp));
     }
   } catch (err) {
     console.log('err: ', err);
