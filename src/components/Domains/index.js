@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Slider, Divider, Card, Typography, Select, Checkbox, Input, Row, Col } from 'antd';
 import { Redirect } from "react-router-dom";
 
@@ -6,6 +7,9 @@ import { Redirect } from "react-router-dom";
 import PageWrapper from 'common/components/PageWrapper';
 import CardItem from 'common/components/CardItem';
 import Banner from 'common/components/Banner';
+
+//actions
+import { buyingDomain } from 'appRedux/actions/buying';
 
 //styles
 import classes from './styles.module.scss';
@@ -164,6 +168,15 @@ const SearchKeyword = () => {
 }
 
 const SearchRecord = ({title}) => {
+ 
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    //this is initial login, fetch user profile
+    console.log('dispatch getBuyDomain');
+    dispatch(buyingDomain.getBuyDomain());
+  }, []);
+
   return(
     <>
       <Banner text={title} />

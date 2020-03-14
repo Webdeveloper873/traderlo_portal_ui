@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Card, Icon, Row, Col } from 'antd';
+import { Card, Icon, Row, Col, Button, message } from 'antd';
 import CountUp from 'react-countup';
 
 //component
@@ -56,6 +56,10 @@ const Dashboards = ({...props}) => {
     dispatch(user.getUserProfile());
   }, []);
 
+  const success = () => {
+    message.success('This is a prompt message for success, and it will disappear in 10 seconds', 10);
+  };
+
   return(
     <>
       <Banner text={'Dashboard'} />
@@ -66,6 +70,7 @@ const Dashboards = ({...props}) => {
 
           <Col span={6}>
             <DashboardItem title ={' Total Posted Ads'} count={16578612}></DashboardItem>
+            <Button onClick={success}>Customized display duration</Button>
           </Col>
           <Col span={6}>
             <DashboardItem title ={' Total Item Sold'} count={54678789}></DashboardItem>
