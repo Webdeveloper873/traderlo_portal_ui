@@ -1,7 +1,8 @@
 import { all, call, fork, put, takeEvery } from "redux-saga/effects";
+import { message } from 'antd';
 
 //actions
-import { domain } from 'appRedux/actions/selling';
+import { bidDomain } from 'appRedux/actions/bidding';
 
 //constants
 import { bidDomainTypes } from 'appRedux/constants/ActionTypes';
@@ -22,9 +23,9 @@ function* setBidDomain({ payload }) {
         body: JSON.stringify(others)
       }
     ));
-    console.log('setBidDomain resp: ', resp)
+    console.log('setBidDomain resp: ', resp);
     if (resp) {
-      yield put(domain.setBidSuccess(resp));
+      yield put(bidDomain.setBidSuccess(payload));
     }
   } catch (err) {
     console.log('err: ', err);

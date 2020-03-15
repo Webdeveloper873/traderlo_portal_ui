@@ -59,8 +59,9 @@ const LeftPane = (domainDetails) => {
 }
 
 const RightPane = (domainDetails) => {
-  const bid = useFormInput();
   const [buyNowVisible, setShowModal] = useState(false);
+  const selectedDomainInfo = useSelector(({ buyDomain }) => buyDomain.selectedDomainInfo);
+  const bid = useFormInput();
   const dispatch = useDispatch();
 
   const showModal = () => {
@@ -72,10 +73,11 @@ const RightPane = (domainDetails) => {
   }
 
   const onBidNow = () => {
+    const { userId, id } = selectedDomainInfo || {};
     const data = {
       amount: parseInt(bid.value),
-      sellerId: 13, //TODO: change
-      id: 352, //TODO: change
+      sellerId: userId,
+      id,
     };
     console.log('data', data);
     dispatch(bidDomain.setBid(data));
@@ -87,7 +89,7 @@ const RightPane = (domainDetails) => {
         <h4>Current price <span>Request for Reserve?</span></h4>
         <h4>{`$ ${domainDetails.startingPrice}`}</h4>
         <p><b>5</b>{` Bids`}<span><Icon type="clock-circle" />{` ${domainDetails.durationDate} Days Left`}</span></p>
-        <Input addonAfter={<span onClick={onBidNow}>Bid Now</span>} placeholder='Enter Amount' />
+        <Input onChange={bid.handleInputChange} addonAfter={<span onClick={onBidNow}>Bid Now</span>} placeholder='Enter Amount' />
         <Row className={classes.rowStyle} gutter={32} align='middle' type='flex'>
           <Col {...twoCol}>
             <Button className={classes.btnStyle} onClick={showModal}>{`Buy Now $${domainDetails.buyNowPrice}`}</Button>
