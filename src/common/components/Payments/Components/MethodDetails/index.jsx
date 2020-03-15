@@ -1,8 +1,15 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, Input, Row, Col, Button, Radio, Checkbox } from 'antd';
 
 //styles
 import classes from '../../styles.module.scss';
+
+//actions
+import * as payment from 'appRedux/actions/payment';
+
+//utils
+import { useFormInput } from 'common/utils/hooks';
 
 //assets
 import bankCheck from 'assets/payments/bankCheck.png';
@@ -10,27 +17,60 @@ import debitCards from 'assets/payments/debitCards.png';
 import paypal from 'assets/payments/paypal.png';
 
 const DebitCredit = ({nextStep}) => {
+  const isDone = useSelector(({ payment }) => payment.isDone);
+  const cardNum = useFormInput();
+  const cardName = useFormInput();
+  const expiryDate = useFormInput();
+  const cvv = useFormInput();
+  const zipcode = useFormInput();
+  const dispatch = useDispatch();
+
+  const onClickVerify = () => {
+    //verify then charge
+    const date = expiryDate.value && expiryDate.value.split('/');
+    const data = { //temp
+      cardNumber: '4242424242424242',
+      cvc: '314',
+      expMonth: 3,
+      expYear: 2021,
+      name: 'string',
+    }
+    // const data = {
+    //   cardNumber: cardNum.value,
+    //   cvc: cvv.value,
+    //   expMonth: date[0] ? parseInt(date[0]) : 0,
+    //   expYear: date[1] ? parseInt(date[1]) : 0,
+    //   name: cardName.value,
+    // }
+    console.log('verifyData', data);
+    dispatch(payment.verifyCard(data));
+  }
+
+  if(isDone){
+    nextStep();
+  }
+
   return(
     <>
       <Avatar shape="square" size={120} icon="user" src={debitCards} />
       <Row className={classes.inputRow} gutter={[32, 16]}>
         <p><strong>Enter Card Details</strong></p>
         <Col span={24}>
-          <Input placeholder='Çard Number' />
+          <Input onChange={cardNum.handleInputChange} placeholder='Çard Number' />
         </Col>
         <Col span={24}>
-          <Input placeholder='Name on card' />
+          <Input onChange={cardName.handleInputChange} placeholder='Name on card' />
         </Col>
         <Col span={16}>
-          <Input placeholder='Expiration Date' />
+          <Input onChange={expiryDate.handleInputChange} placeholder='Expiration Date(MM/YYYY)' />
         </Col>
         <Col span={8}>
-          <Input placeholder='CVV' />
+          <Input onChange={cvv.handleInputChange} type='password' placeholder='CVV' />
         </Col>
         <Col span={24}>
-          <Input placeholder='Zip Code' />
+          <Input onChange={zipcode.handleInputChange} placeholder='Zip Code' />
         </Col>
-        <Button type='primary' onClick={nextStep} size='large'>Verify Card</Button>
+        <Button type='primary' onClick={onClickVerify} size='large'>Verify Card</Button>
       </Row>
     </>
   )
