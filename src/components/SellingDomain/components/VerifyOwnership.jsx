@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { Modal, Card, Row, Button, Col, Avatar, Icon, Input } from 'antd';
+import moment from 'moment';
 
 //components
 import InputField from './InputField';
@@ -55,13 +56,12 @@ const TXTRecordContent = () => {
 
   const onClickNext = () => {
     const data = {
-      createdDate: "2020-03-14T06:00:13.749Z",
+      createdDate: moment().format(moment.defaultFormatUtc),
       domain: url,
       siteId: listingId,
       status: 0,
       txtName: "string",
       txtVal: text.value,
-      userId: 42 //TODO: change to valid userID
     };
     console.log('data ', data);
     dispatch(domain.verifyByTextFile(data));
@@ -146,7 +146,7 @@ const MetaKeyContent = () => {
 
   const onClickNext = () => {
     const data = {
-      createdDate: "2020-03-14T06:00:13.749Z",
+      createdDate: moment().format(moment.defaultFormatUtc),
       domain: url,
       siteId: listingId,
       status: 0,
