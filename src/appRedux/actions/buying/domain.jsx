@@ -25,3 +25,8 @@ export const addToWatchlist = (payload) => ({
   type: buyDomainTypes.ADD_TO_WATCHLIST,
   payload
 })
+
+export const addToWatchlistSuccess = (payload) => ({
+  type: buyDomainTypes.ADD_TO_WATCHLIST_SUCCESS,
+  payload
+})

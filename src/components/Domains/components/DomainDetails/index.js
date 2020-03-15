@@ -66,6 +66,7 @@ const LeftPane = (domainDetails) => {
 const RightPane = (domainDetails) => {
   const [buyNowVisible, setShowModal] = useState(false);
   const selectedDomainInfo = useSelector(({ buyDomain }) => buyDomain.selectedDomainInfo);
+  const alreadyInWatchList = useSelector(({buyDomain}) => buyDomain.alreadyInWatchList)
   const bid = useFormInput();
   const dispatch = useDispatch();
 
@@ -78,9 +79,10 @@ const RightPane = (domainDetails) => {
   }
 
   const onClickAddToWatchlist = () => {
+    console.log('clicked')
     dispatch(buyingDomain.addToWatchlist(domainDetails))
   }
-  
+
   const onBidNow = () => {
     const { userId, id } = selectedDomainInfo || {};
     const data = {
@@ -104,7 +106,7 @@ const RightPane = (domainDetails) => {
             <Button className={classes.btnStyle} onClick={showModal}>{`Buy Now $${domainDetails.buyNowPrice}`}</Button>
           </Col>
           <Col {...twoCol}>
-            <Button type='danger' onClick={onClickAddToWatchlist()}>Add to Watch</Button>
+            <Button type='danger' onClick={() => onClickAddToWatchlist()}>{alreadyInWatchList ? 'Already in Watchlist' :'Add to Watch'}</Button>
           </Col>
         </Row>
       </Card>

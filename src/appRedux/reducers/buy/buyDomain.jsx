@@ -4,6 +4,7 @@ const intialState = {
   domainInfo: null,
   domainList: [],
   selectedDomainInfo: {},
+  alreadyInWatchList:false, // for UI temporary
 };
 
 export default (state = intialState, action) => {
@@ -18,6 +19,8 @@ export default (state = intialState, action) => {
       return { ...state, domainInfo: payload };
     case buyDomainTypes.STORE_SELECTED_DOMAIN:
       return { ...state, selectedDomainInfo: payload };
+      case buyDomainTypes.ADD_TO_WATCHLIST_SUCCESS:
+        return { ...state, alreadyInWatchList: true };
     case bidDomainTypes.SET_BID_SUCCESS:
       const { amount } = payload || {};
       return { ...state, selectedDomainInfo: { ...selectedDomainInfo, startingPrice: amount } };

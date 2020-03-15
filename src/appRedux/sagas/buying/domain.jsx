@@ -54,18 +54,17 @@ function* getBuyDomainById({payload}) {
 function* addToWatchlist({payload}) {
   try{
     console.log(payload,'payload watchlist')
-    const {id, userId, type} = payload || {};
-    const ids = 28
-    const resp = yield call(() => request.post(`${base_url}/watchlist/s/${ids}`, 
+    const {id, userId} = payload || {};
+    const type = 'l' // temporarily 
+    const resp = yield call(() => request.post(`${base_url}/watchlist/${type}/${id}`, 
     {
       headers: { ...headers,
-        uid: '151',
+        uid: userId.toString(),
         authorization: `Bearer ${getAccessToken()}`,
       }
     }));
     if(resp){
-      //yield put(buyingDomain.storeSelectedDomain(resp));
-      console.log('success add')
+      yield put(buyingDomain.addToWatchlistSuccess(resp));
     }
   }catch(err) {
     console.log('err: ', err);
