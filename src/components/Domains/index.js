@@ -81,15 +81,6 @@ const Filters = () => {
 
   const handleApplyFilter = () => {
     
-    console.log(domainPrice,'domainPrice');
-    console.log(domainAge,'domainAge');
-    console.log(domainLength,'domainLength');
-    console.log(timeRemaining,'timeRemaining');
-    console.log(listingType,'listingType');
-    console.log(extension,'extension');
-    console.log(isReverseMet,'reverseMet');
-    console.log(isBuyNow,'buyNow');
-
     const filter = {
       minPrice: domainPrice[0],
       maxPrice: domainPrice[1],
@@ -169,6 +160,7 @@ const Filters = () => {
 
 
 const SearchKeyword = () => {
+  const dispatch = useDispatch();
   const [viewDetails, setViewDetails] = useState(false);
 
   const domainList = useSelector(({ buyDomain }) => buyDomain.domainList);
@@ -177,8 +169,8 @@ const SearchKeyword = () => {
   }
 
   const onClickCardItem = (value) => {
-    console.log(value,'value');
-    //setViewDetails(true);
+    dispatch(buyingDomain.getBuyDomainById(value))
+    setViewDetails(true);
   }
 
 

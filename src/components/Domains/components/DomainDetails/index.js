@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Row, Col, Card, Tabs, Icon, Input, Button, Divider, Modal } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
 
 //components
 import Banner from 'common/components/Banner';
@@ -22,11 +23,11 @@ import SimilarPost from './components/SimilarPost';
 const {TabPane} = Tabs;
 const {twoCol} = responsiveConf;
 
-const LeftPane = () => {
+const LeftPane = (domainDetails) => {
   return(
     <Col xs={24} md={16}>
       <Card className={classes.cardStyle}>
-        <h3>Domain Name</h3>
+        <h3>{domainDetails.appName}</h3>
         <Row clasName={classes.rowStyle} gutter={32}>
           <CardItem imgSrc={BuyerProtection} title={'Buyer Protection Guarantee'}/>
           <CardItem imgSrc={TimeFrame} title={'Time Frame'}/>
@@ -36,7 +37,7 @@ const LeftPane = () => {
       <Card className={classes.marginTop15}>
         <Tabs defaultActiveKey="1">
           <TabPane tab="Description" key="1">
-            Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
+            {domainDetails.description}
           </TabPane>
           <TabPane tab="Financials/Traffic" key="2">
             veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
@@ -50,7 +51,7 @@ const LeftPane = () => {
   );
 }
 
-const RightPane = () => {
+const RightPane = (domainDetails) => {
 
   const [buyNowVisible, setShowModal] = useState(false);
 
@@ -66,12 +67,12 @@ const RightPane = () => {
     <Col xs={24} md={8}>
       <Card className={classes.rightPane}>
         <h4>Current price <span>Request for Reserve?</span></h4>
-        <h4>$600</h4>
-        <p><b>5</b>{` Bids`}<span><Icon type="clock-circle" /> 10 Days Left</span></p>
+        <h4>{`$ ${domainDetails.startingPrice}`}</h4>
+        <p><b>5</b>{` Bids`}<span><Icon type="clock-circle" />{` ${domainDetails.durationDate} Days Left`}</span></p>
         <Input addonAfter="Bid Now" placeholder='Enter Amount' />
         <Row className={classes.rowStyle} gutter={32} align='middle' type='flex'>
           <Col {...twoCol}>
-            <Button className={classes.btnStyle} onClick={showModal}>Buy Now $500</Button>
+            <Button className={classes.btnStyle} onClick={showModal}>{`Buy Now $${domainDetails.buyNowPrice}`}</Button>
           </Col>
           <Col {...twoCol}>
             <Button type='danger'>Add to Watch</Button>
@@ -100,13 +101,14 @@ const RightPane = () => {
 }
 
 const DomainDetails = () => {
+  const domainDetails = useSelector(({ buyDomain }) => buyDomain.selectedDomainInfo);
   return(
     <>
       <Banner text='Payment' />
       <PageWrapper>
         <Row className={classes.rowStyle} gutter={16}>
-          <LeftPane />
-          <RightPane />
+          <LeftPane {...domainDetails}/>
+          <RightPane {...domainDetails}/>
         </Row>
       </PageWrapper>
     </>

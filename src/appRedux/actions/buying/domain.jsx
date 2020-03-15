@@ -11,9 +11,12 @@ export const getBuyDomainSuccess = (payload) => (
   payload
 })
 
-export const getBuyDomainById = (id) => ({
+export const getBuyDomainById = (payload) => ({
   type: buyDomainTypes.GET_BUY_DOMAIN_BY_ID,
-  payload: {
-    id : 1 //TODO: change this one
-  }
+  payload
+})
+
+export const storeSelectedDomain = (payload) => ({
+  type: buyDomainTypes.STORE_SELECTED_DOMAIN,
+  payload
 })

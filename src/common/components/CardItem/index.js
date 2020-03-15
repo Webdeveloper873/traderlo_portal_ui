@@ -19,7 +19,7 @@ const CardsDesc = ({...props}) => {
       <div><span style={{fontWeight:700}}>{`$ ${props.startingPrice}`}</span></div>
       <div><span style={{fontWeight:600}}> {`Category: ${props.category? props.category.listingTypeName : ''}`}</span></div>
       <div>{`Description: ${props.category? props.category.description : ''}`}</div>
-      <div><Icon type="clock-circle" />{`Time Left: ${props.days}`}</div>
+      <div><Icon type="clock-circle" />{`Time Left: ${props.durationDate} Days`}</div>
     </>
   )
 }
