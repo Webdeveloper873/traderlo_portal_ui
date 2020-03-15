@@ -51,3 +51,8 @@ export const buyDomainTypes = {
   STORE_SELECTED_DOMAIN: 'STORE_SELECTED_DOMAIN',
   ADD_TO_WATCHLIST: 'ADD_TO_WATCHLIST',
 }
+
+export const bidDomainTypes = {
+  SET_BID: "SET_BID",
+  SET_BID_SUCCESS: "SET_BID_SUCCESS",
+}

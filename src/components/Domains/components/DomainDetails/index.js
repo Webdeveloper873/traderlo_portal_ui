@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
-import { Row, Col, Card, Tabs, Icon, Input, Button, Divider, Modal } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
+import { Row, Col, Card, Tabs, Icon, Input, Button, Divider, Modal } from 'antd';
 
 //components
 import Banner from 'common/components/Banner';
 import PageWrapper from 'common/components/PageWrapper';
 import CardItem from './components/CardItem';
 import SellerDetails from './components/SellerDetails';
-import Payments from 'common/components/Payments';
+import Payments from 'common/components/Payments'
 
 //styles
 import classes from './styles.module.scss';
+
+//actions
+import { bidDomain } from 'appRedux/actions/bidding';
+
+//utils
+import { useFormInput } from 'common/utils/hooks';
 
 //assets
 import BuyerProtection from 'assets/bidding/buyerprotection.png';
@@ -58,8 +64,10 @@ const LeftPane = (domainDetails) => {
 }
 
 const RightPane = (domainDetails) => {
-  const dispatch = useDispatch();
   const [buyNowVisible, setShowModal] = useState(false);
+  const selectedDomainInfo = useSelector(({ buyDomain }) => buyDomain.selectedDomainInfo);
+  const bid = useFormInput();
+  const dispatch = useDispatch();
 
   const showModal = () => {
     setShowModal(true);
@@ -72,6 +80,17 @@ const RightPane = (domainDetails) => {
   const onClickAddToWatchlist = () => {
     dispatch(buyingDomain.addToWatchlist(domainDetails))
   }
+  
+  const onBidNow = () => {
+    const { userId, id } = selectedDomainInfo || {};
+    const data = {
+      amount: parseInt(bid.value),
+      sellerId: userId,
+      id,
+    };
+    console.log('data', data);
+    dispatch(bidDomain.setBid(data));
+  }
 
   return(
     <Col xs={24} md={8}>
@@ -79,7 +98,7 @@ const RightPane = (domainDetails) => {
         <h4>Current price <span>Request for Reserve?</span></h4>
         <h4>{`$ ${domainDetails.startingPrice}`}</h4>
         <p><b>5</b>{` Bids`}<span><Icon type="clock-circle" />{` ${domainDetails.durationDate} Days Left`}</span></p>
-        <Input addonAfter="Bid Now" placeholder='Enter Amount' />
+        <Input onChange={bid.handleInputChange} addonAfter={<span onClick={onBidNow}>Bid Now</span>} placeholder='Enter Amount' />
         <Row className={classes.rowStyle} gutter={32} align='middle' type='flex'>
           <Col {...twoCol}>
             <Button className={classes.btnStyle} onClick={showModal}>{`Buy Now $${domainDetails.buyNowPrice}`}</Button>
