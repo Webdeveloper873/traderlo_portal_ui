@@ -49,7 +49,6 @@ const Menus = () => {
 const Header = ({onClickSignInUp}) => {
 
   const userLoggedIn = localStorage.getItem("access_token") !== null;
-  console.log(userLoggedIn,'userLoggedIn');
   return (
     <div className={classes.wrapper}>
       <Navbar className={classes.header} bg="light" expand="lg" sticky="top">

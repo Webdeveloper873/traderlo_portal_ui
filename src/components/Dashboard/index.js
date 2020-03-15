@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Card, Icon, Row, Col } from 'antd';
+import { Card, Icon, Row, Col, Button, message } from 'antd';
 import CountUp from 'react-countup';
 
 //component
@@ -55,6 +55,7 @@ const Dashboards = ({...props}) => {
     console.log('dispatch userGetProfile');
     dispatch(user.getUserProfile());
   }, []);
+
 
   return(
     <>

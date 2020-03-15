@@ -20,7 +20,7 @@ import {routes} from 'common/constants';
 
 const SignInForm = ({handleClose}) => {
   const [toLoginPage, setToLoginPage] = useState(false);
-  const loginUser = useFormInput('angecapuz123');
+  const loginUser = useFormInput('angecapuz132');
   const loginPass = useFormInput('asdqwe123');
   const isLoggedIn = useSelector(({user}) => user.isLoggedIn);
   const dispatch = useDispatch();
