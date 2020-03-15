@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Row, Col, Card, Tabs, Icon, Input, Button, Divider, Modal } from 'antd';
 
 //components
@@ -7,8 +8,15 @@ import PageWrapper from 'common/components/PageWrapper';
 import CardItem from './components/CardItem';
 import SellerDetails from './components/SellerDetails';
 import Payments from 'common/components/Payments'
+
 //styles
 import classes from './styles.module.scss';
+
+//actions
+import { bidDomain } from 'appRedux/actions/bidding';
+
+//utils
+import { useFormInput } from 'common/utils/hooks';
 
 //assets
 import BuyerProtection from 'assets/bidding/buyerprotection.png';
@@ -51,8 +59,9 @@ const LeftPane = () => {
 }
 
 const RightPane = () => {
-
+  const bid = useFormInput();
   const [buyNowVisible, setShowModal] = useState(false);
+  const dispatch = useDispatch();
 
   const showModal = () => {
     setShowModal(true);
@@ -62,13 +71,23 @@ const RightPane = () => {
     setShowModal(false);
   }
 
+  const onBidNow = () => {
+    const data = {
+      "amount": parseInt(bid.value),
+      "buyerId": 0,
+      "sellerId": 0
+    };
+    console.log('data', data);
+    dispatch(bidDomain.setBid(data));
+  }
+
   return(
     <Col xs={24} md={8}>
       <Card className={classes.rightPane}>
         <h4>Current price <span>Request for Reserve?</span></h4>
         <h4>$600</h4>
         <p><b>5</b>{` Bids`}<span><Icon type="clock-circle" /> 10 Days Left</span></p>
-        <Input addonAfter="Bid Now" placeholder='Enter Amount' />
+        <Input onChange={bid.handleInputChange} addonAfter={<span onClick={onBidNow}>Bid Now</span>} placeholder='Enter Amount' />
         <Row className={classes.rowStyle} gutter={32} align='middle' type='flex'>
           <Col {...twoCol}>
             <Button className={classes.btnStyle} onClick={showModal}>Buy Now $500</Button>

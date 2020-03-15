@@ -49,3 +49,8 @@ export const buyDomainTypes = {
   GET_BUY_DOMAIN_BY_ID_SUCCESS: 'GET_BUY_DOMAIN_BY_ID_SUCCESS',
   GET_BUY_DOMAIN_BY_ID_FAILED: 'GET_BUY_DOMAIN_BY_ID_FAILED',
 }
+
+export const bidDomainTypes = {
+  SET_BID: "SET_BID",
+  SET_BID_SUCCESS: "SET_BID_SUCCESS",
+}
