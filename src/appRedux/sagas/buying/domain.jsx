@@ -12,18 +12,19 @@ import { request, objToFormData, getAccessToken } from 'common/utils/helpers';
 
 function* getBuyDomain({payload}) {
   try {
-    console.log('buy domain fetch')
+    console.log(payload,'buy domain fetch')
     const resp = yield call(() => request.get(`${base_url}/listing/domains`,
       {
         headers: { ...headers,
           authorization: `Bearer ${getAccessToken()}`
-        }
+        },
+        ...payload
       }
     ));
   
     if(resp){
       console.log('buy domain resp', resp)
-      yield put(buyingDomain.buyDomainSuccess(resp));
+      yield put(buyingDomain.getBuyDomainSuccess(resp));
     }
   } catch (err) {
     console.log('err: ', err);
@@ -34,17 +35,19 @@ function* getBuyDomain({payload}) {
 
 function* getBuyDomainById({payload}) {
   try{
-    const {id} = payload || {};
+    console.log(payload,'payload');
+    const {id, userId} = payload || {};
     const resp = yield call(() => request.get(`${base_url}/listing/domains/${id}`, 
     {
       headers: { ...headers,
+        uid: userId,
         authorization: `Bearer ${getAccessToken()}`
       }
     }));
     console.log('getBuyDomainById', resp);
     if(resp){
       console.log('getBuyDomainByIdSuccess', resp)
-      yield put(buyingDomain.getBuyDomainByIdSuccess(resp));
+      yield put(buyingDomain.storeSelectedDomain(resp));
     }
   }catch(err) {
     console.log('err: ', err);
