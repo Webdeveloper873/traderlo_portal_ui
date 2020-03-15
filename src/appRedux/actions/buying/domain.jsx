@@ -20,3 +20,8 @@ export const storeSelectedDomain = (payload) => ({
   type: buyDomainTypes.STORE_SELECTED_DOMAIN,
   payload
 })
+
+export const addToWatchlist = (payload) => ({
+  type: buyDomainTypes.ADD_TO_WATCHLIST,
+  payload
+})

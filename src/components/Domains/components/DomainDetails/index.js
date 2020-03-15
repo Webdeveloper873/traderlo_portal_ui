@@ -7,7 +7,8 @@ import Banner from 'common/components/Banner';
 import PageWrapper from 'common/components/PageWrapper';
 import CardItem from './components/CardItem';
 import SellerDetails from './components/SellerDetails';
-import Payments from 'common/components/Payments'
+import Payments from 'common/components/Payments';
+
 //styles
 import classes from './styles.module.scss';
 
@@ -19,6 +20,11 @@ import PaymentsImg from 'assets/bidding/payments.png';
 //constants
 import {responsiveConf} from 'common/constants';
 import SimilarPost from './components/SimilarPost';
+
+
+//actions
+import { buyingDomain } from 'appRedux/actions/buying';
+
 
 const {TabPane} = Tabs;
 const {twoCol} = responsiveConf;
@@ -52,7 +58,7 @@ const LeftPane = (domainDetails) => {
 }
 
 const RightPane = (domainDetails) => {
-
+  const dispatch = useDispatch();
   const [buyNowVisible, setShowModal] = useState(false);
 
   const showModal = () => {
@@ -61,6 +67,10 @@ const RightPane = (domainDetails) => {
 
   const hideModal = () => {
     setShowModal(false);
+  }
+
+  const onClickAddToWatchlist = () => {
+    dispatch(buyingDomain.addToWatchlist(domainDetails))
   }
 
   return(
@@ -75,7 +85,7 @@ const RightPane = (domainDetails) => {
             <Button className={classes.btnStyle} onClick={showModal}>{`Buy Now $${domainDetails.buyNowPrice}`}</Button>
           </Col>
           <Col {...twoCol}>
-            <Button type='danger'>Add to Watch</Button>
+            <Button type='danger' onClick={onClickAddToWatchlist()}>Add to Watch</Button>
           </Col>
         </Row>
       </Card>
