@@ -73,9 +73,9 @@ const RightPane = () => {
 
   const onBidNow = () => {
     const data = {
-      "amount": parseInt(bid.value),
-      "buyerId": 0,
-      "sellerId": 0
+      amount: parseInt(bid.value),
+      sellerId: 13, //TODO: change
+      id: 352, //TODO: change
     };
     console.log('data', data);
     dispatch(bidDomain.setBid(data));

@@ -12,14 +12,14 @@ import { request, objToFormData } from 'common/utils/helpers';
 
 function* setBidDomain({ payload }) {
   try {
-    const id='1'; //TODO: replace
+    const { id, ...others } = payload || {};
     const resp = yield call(() => request.post(`${base_url}/listing/${id}/bid`,
       {
         headers: {
           ...headers,
           'content-type': 'application/json'
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(others)
       }
     ));
     console.log('setBidDomain resp: ', resp)
