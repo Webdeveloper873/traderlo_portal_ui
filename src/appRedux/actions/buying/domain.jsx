@@ -30,3 +30,13 @@ export const addToWatchlistSuccess = (payload) => ({
   type: buyDomainTypes.ADD_TO_WATCHLIST_SUCCESS,
   payload
 })
+
+export const removeToWatchlist = (payload) => ({
+  type: buyDomainTypes.REMOVE_TO_WATCHLIST,
+  payload
+})
+
+export const removeToWatchlistSuccess = (payload) => ({
+  type: buyDomainTypes.REMOVE_TO_WATCHLIST_SUCCESS,
+  payload
+})

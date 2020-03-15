@@ -71,7 +71,25 @@ function* addToWatchlist({payload}) {
   }
 }
 
-
+function* removeToWatchlist({payload}) {
+  try{
+    console.log(payload,'payload watchlist')
+    const {id, userId} = payload || {};
+    const type = 'l' // temporarily 
+    const resp = yield call(() => request.delete(`${base_url}/watchlist/${type}/${id}`, 
+    {
+      headers: { ...headers,
+        uid: userId.toString(),
+        authorization: `Bearer ${getAccessToken()}`,
+      }
+    }));
+    if(resp){
+      yield put(buyingDomain.removeToWatchlistSuccess(resp));
+    }
+  }catch(err) {
+    console.log('err: ', err);
+  }
+}
 
 
 export function* buyDomainWatcher() {
@@ -86,11 +104,16 @@ export function* addToWatchlistWatcher() {
   yield takeEvery(buyDomainTypes.ADD_TO_WATCHLIST, addToWatchlist);
 }
 
+export function* removeToWatchlistWatcher() {
+  yield takeEvery(buyDomainTypes.REMOVE_TO_WATCHLIST, removeToWatchlist);
+}
+
 
 export default function* rootSaga() {
   yield all([
     fork(buyDomainWatcher),
     fork(buyDomainByIdWatcher),
     fork(addToWatchlistWatcher),
+    fork(removeToWatchlistWatcher),
   ]);
 }

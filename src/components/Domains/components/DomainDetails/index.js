@@ -83,6 +83,11 @@ const RightPane = (domainDetails) => {
     dispatch(buyingDomain.addToWatchlist(domainDetails))
   }
 
+  const onClickRemoveToWatchlist = () => {
+    console.log('clicked')
+    dispatch(buyingDomain.removeToWatchlist(domainDetails))
+  }
+
   const onBidNow = () => {
     const { userId, id } = selectedDomainInfo || {};
     const data = {
@@ -106,7 +111,11 @@ const RightPane = (domainDetails) => {
             <Button className={classes.btnStyle} onClick={showModal}>{`Buy Now $${domainDetails.buyNowPrice}`}</Button>
           </Col>
           <Col {...twoCol}>
-            <Button type='danger' onClick={() => onClickAddToWatchlist()}>{alreadyInWatchList ? 'Already in Watchlist' :'Add to Watch'}</Button>
+            <Button key type='danger' onClick={() => onClickAddToWatchlist()}>{alreadyInWatchList? 'Already in Watchlist' : 'Add to Watchlist'}</Button>
+            {/* {alreadyInWatchList ? 
+              <Button key type='primary' onClick={() => onClickAddToWatchlist()}>{'Add to Watchlist'}</Button>:
+              <Button key type='danger' onClick={() => onClickRemoveToWatchlist()}>{'Remove to Watchlist'}</Button>} */}
+            
           </Col>
         </Row>
       </Card>

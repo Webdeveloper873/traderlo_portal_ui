@@ -19,8 +19,10 @@ export default (state = intialState, action) => {
       return { ...state, domainInfo: payload };
     case buyDomainTypes.STORE_SELECTED_DOMAIN:
       return { ...state, selectedDomainInfo: payload };
-      case buyDomainTypes.ADD_TO_WATCHLIST_SUCCESS:
-        return { ...state, alreadyInWatchList: true };
+    case buyDomainTypes.ADD_TO_WATCHLIST_SUCCESS:
+      return { ...state, alreadyInWatchList: true };
+    case buyDomainTypes.REMOVE_TO_WATCHLIST_SUCCESS:
+      return { ...state, alreadyInWatchList: false };
     case bidDomainTypes.SET_BID_SUCCESS:
       const { amount } = payload || {};
       return { ...state, selectedDomainInfo: { ...selectedDomainInfo, startingPrice: amount } };
