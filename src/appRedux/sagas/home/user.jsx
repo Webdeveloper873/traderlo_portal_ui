@@ -27,11 +27,9 @@ function* login({payload}) {
   }
 }
 
-function* getUserProfile({payload}) {
+function* getUserProfile() {
   try{
-    const {id} = payload || {};
-    const resp = yield call(() => request.get(`${base_url}/user/${id}/profile`, { headers }));
-    console.log('getUserProfile', resp);
+    const resp = yield call(() => request.get(`${base_url}/user/profile`, { headers: { ...headers, authorization: `Bearer ${getAccessToken()}` } }));
     if(resp){
       yield put(user.getProfileSuccess(resp));
     }
