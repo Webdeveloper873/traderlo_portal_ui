@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Slider, Divider, Card, Typography, Select, Checkbox, Input, Row, Col } from 'antd';
+import { Slider, Divider, Card, Typography, Select, Checkbox, Input, Row, Col, Button } from 'antd';
 import { Redirect } from "react-router-dom";
 
 //components
@@ -37,10 +37,15 @@ const SliderFilter = ({ sliderVal, amtLabel, ...props}) => {
 }
 
 const Filters = () => {
+  const dispatch = useDispatch();
   const [domainPrice, setDomainPrice] = useState([0, 20]);
   const [domainAge, setDomainAge] = useState([0, 20]);
   const [domainLength, setDomainLength] = useState([0, 20]);
   const [timeRemaining, setTimeRemaining] = useState([0, 20]);
+  const [listingType, setListingType] = useState('');
+  const [extension, setExtension] = useState('');
+  const [isReverseMet, setReverseMet] = useState(false);
+  const [isBuyNow, setBuyNow] =useState(false);
 
   const onChangeDomPrice = (value) => {
     setDomainPrice(value);
@@ -56,6 +61,52 @@ const Filters = () => {
 
   const onChangeTimeRem = value => {
     setTimeRemaining(value);
+  }
+
+  const handleChangeListingType = value => {
+    setListingType(value)
+  }
+
+  const handleChangeExtension = value => {
+    setExtension(value)
+  }
+
+  const onChangeReverseMet = value => {
+    setReverseMet(value.target.checked);
+  }
+
+  const onChangeBuyNow = value => {
+    setBuyNow(value.target.checked);
+  }
+
+  const handleApplyFilter = () => {
+    
+    console.log(domainPrice,'domainPrice');
+    console.log(domainAge,'domainAge');
+    console.log(domainLength,'domainLength');
+    console.log(timeRemaining,'timeRemaining');
+    console.log(listingType,'listingType');
+    console.log(extension,'extension');
+    console.log(isReverseMet,'reverseMet');
+    console.log(isBuyNow,'buyNow');
+
+    const filter = {
+      minPrice: domainPrice[0],
+      maxPrice: domainPrice[1],
+      minAge: domainAge[0],
+      maxAge: domainAge[1],
+      minLength: domainLength[0],
+      maxLength: domainLength[1],
+      minTimeRemaining: timeRemaining[0],
+      maxTimeRemaining: timeRemaining[1],
+      listingType: listingType,
+      extension: extension,
+      isReserve: isReverseMet,
+      isBuyNow: isBuyNow,
+    }
+
+    console.log(filter,'filters');
+    dispatch(buyingDomain.getBuyDomain(filter));
   }
 
   return(
@@ -77,7 +128,7 @@ const Filters = () => {
       <Card className={`${classes.filters} ${classes.filterCard}`}>
         <Text strong>Extensions</Text>
         <Divider className={classes.divider} />
-        <Select className={classes.inputField} placeholder='- Select -'>
+        <Select className={classes.inputField} placeholder='- Select -' onChange={handleChangeExtension}>
           <Option value=".com">.com</Option>
           <Option value=".in">.in</Option>
           <Option value=".co">.co</Option>
@@ -87,10 +138,10 @@ const Filters = () => {
         <Divider className={classes.divider} />
         <Checkbox.Group>
           <Col>
-            <Checkbox value='reverseMet'>Reverse Met</Checkbox>
+            <Checkbox value='reverseMet' onChange={onChangeReverseMet}>Reverse Met</Checkbox>
           </Col>
           <Col>
-            <Checkbox value='buyNow'>Buy It Now</Checkbox>
+            <Checkbox value='buyNow' onChange={onChangeBuyNow}>Buy It Now</Checkbox>
           </Col>
         </Checkbox.Group>
       </Card>
@@ -104,10 +155,13 @@ const Filters = () => {
       <Card className={`${classes.filters} ${classes.filterCard}`}>
         <Text strong>Listing Type</Text>
         <Divider className={classes.divider} />
-        <Select className={classes.inputField} placeholder='- Select -'>
+        <Select className={classes.inputField} placeholder='- Select -' onChange={handleChangeListingType}>
           <Option value="editorsChoice">Editor's Choice</Option>
           <Option value="regOption">Regular Options</Option>
         </Select>
+      </Card>
+      <Card className={`${classes.filters} ${classes.filterCard}`}>
+        <Button onClick={handleApplyFilter}> Apply Filter</Button>
       </Card>
     </>
   );
@@ -117,15 +171,14 @@ const Filters = () => {
 const SearchKeyword = () => {
   const [viewDetails, setViewDetails] = useState(false);
 
-  console.log( 'domainList');
   const domainList = useSelector(({ buyDomain }) => buyDomain.domainList);
-  console.log( domainList,'domainListwasdasds');
   if(viewDetails){
     return <Redirect to={routes.DOMAINS_VIEW_PAGE} />;
   }
 
-  const onClickCardItem = () => {
-    setViewDetails(true);
+  const onClickCardItem = (value) => {
+    console.log(value,'value');
+    //setViewDetails(true);
   }
 
 
@@ -158,15 +211,8 @@ const SearchKeyword = () => {
       <Row gutter={16}>
         {domainList.map(itemProps => 
         <Col {...threeCol}>
-          <CardItem onClick={onClickCardItem} {...itemProps} style={{marginBottom:20}}/>
+          <CardItem key={itemProps.id} onClick={() => onClickCardItem(itemProps)} {...itemProps} style={{marginBottom:20}}/>
         </Col>)}
-        
-        {/* <Col {...threeCol}>
-          <CardItem onClick={onClickCardItem}/>
-        </Col>
-        <Col {...threeCol}>
-          <CardItem onClick={onClickCardItem}/>
-        </Col> */}
       </Row>
     </div>
   );

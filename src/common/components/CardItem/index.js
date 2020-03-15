@@ -13,12 +13,12 @@ import classes from './styles.module.scss';
 const {Meta} = Card;
 
 const CardsDesc = ({...props}) => {
-  console.log(props,'propssssxxx card')
+
   return (
     <>
       <div><span style={{fontWeight:700}}>{`$ ${props.startingPrice}`}</span></div>
-      <div><span style={{fontWeight:600}}> {`Category: ${props.category.listingTypeName}`}</span></div>
-      <div>{`Description: ${props.category.description}`}</div>
+      <div><span style={{fontWeight:600}}> {`Category: ${props.category? props.category.listingTypeName : ''}`}</span></div>
+      <div>{`Description: ${props.category? props.category.description : ''}`}</div>
       <div><Icon type="clock-circle" />{`Time Left: ${props.days}`}</div>
     </>
   )

@@ -1,7 +1,8 @@
 import { buyDomainTypes } from 'appRedux/constants/ActionTypes';
 
-export const getBuyDomain = () => ({
+export const getBuyDomain = (payload) => ({
   type: buyDomainTypes.GET_BUY_DOMAIN,
+  payload
 })
 
 export const getBuyDomainSuccess = (payload) => (

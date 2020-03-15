@@ -12,12 +12,13 @@ import { request, objToFormData, getAccessToken } from 'common/utils/helpers';
 
 function* getBuyDomain({payload}) {
   try {
-    console.log('buy domain fetch')
+    console.log(payload,'buy domain fetch')
     const resp = yield call(() => request.get(`${base_url}/listing/domains`,
       {
         headers: { ...headers,
           authorization: `Bearer ${getAccessToken()}`
-        }
+        },
+        ...payload,
       }
     ));
   
