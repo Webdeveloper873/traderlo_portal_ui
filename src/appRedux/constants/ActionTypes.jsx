@@ -55,3 +55,8 @@ export const bidDomainTypes = {
   SET_BID: "SET_BID",
   SET_BID_SUCCESS: "SET_BID_SUCCESS",
 }
+
+export const paymentTypes = {
+  VERIFY_CARD: "VERIFY_CARD",
+  VERIFY_CARD_SUCCESS: "VERIFY_CARD_SUCCESS",
+}
