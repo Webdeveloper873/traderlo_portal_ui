@@ -17,9 +17,6 @@ export const successLogin = (token) => ({
 
 export const getUserProfile = (id) => ({
   type: userActTypes.FETCH_PROFILE,
-  payload: {
-    id : 1 //TODO: change this one
-  }
 })
 
 export const getProfileSuccess = (profile) => ({
