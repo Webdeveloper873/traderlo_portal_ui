@@ -30,12 +30,40 @@ function* verifyCard({ payload }) {
   }
 }
 
+
+function* addAccount({ payload }) {
+  try {
+    const resp = yield call(() => request.post(`${base_url}/stripe/addAccount`,
+      {
+        headers: {
+          ...headers,
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      }
+    ));
+    console.log('addAccount resp: ', resp)
+    if (resp) {
+      yield put(payment.addAccountSuccess(resp));
+    }
+  } catch (err) {
+    console.log('err: ', err);
+  }
+}
+
+
+
 export function* verifyCardWatcher() {
   yield takeEvery(paymentTypes.VERIFY_CARD, verifyCard);
+}
+
+export function* addAccountWatcher() {
+  yield takeEvery(paymentTypes.ADD_ACCOUNT, addAccount);
 }
 
 export default function* rootSaga() {
   yield all([
     fork(verifyCardWatcher),
+    fork(addAccountWatcher),
   ]);
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, Input, Row, Col, Button, Radio, Checkbox } from 'antd';
 
@@ -85,18 +85,57 @@ const CardInfo = ({info}) => {
 }
 
 const BankAccount = ({nextStep}) => {
+  
+  const isDone = useSelector(({ payment }) => payment.isDone);
+  const [checkedAgreement, setToCheck] = useState(true); 
+  const [checkedAccountNumber, setToSelectedAccount] = useState(true); 
+
+  const dispatch = useDispatch();
   const tempCardInfo = ['XXXX-XXXX-XXXX-1234', 'XXXX-XXXX-XXXX-5678'];
+
+
+
+
+
+  const onMakePayment = () => {
+    console.log('makepayment')
+
+    const data = {
+      accountNumber: "4242424242424242",
+      country: "Philippine",
+      currency: "Peso",
+      name: "wokina washimi",
+    }
+    dispatch(payment.addAccount(data));
+  }
+
+  const onClickAgreement = (e) => {
+    setToCheck(!checkedAgreement);
+  }
+
+  const onClickAccountNumber = (e) => {
+    setToSelectedAccount(!checkedAccountNumber);
+  }
+
+
+  if(isDone){
+    nextStep();
+  }
+
+
+
+
   return (
     <>
       <Avatar shape="square" size={120} icon="user" src={bankCheck} />
       <p>Select from the available cards to finish the purchase</p>
       <Row gutter={[0,20]}>
-        {tempCardInfo.map(info => <CardInfo info={info}/>)}
+        {tempCardInfo.map(info => <CardInfo onClick={onClickAccountNumber} info={info}/>)}
         <Col span={24}>
-          <Checkbox>{'I agreeto the terms & conditions, buyer policy of traderlo'}</Checkbox>
+          <Checkbox onClick={onClickAgreement}>{'I agree to the terms & conditions, buyer policy of traderlo'}</Checkbox>
         </Col>
       </Row>
-      <Button type='primary' onClick={nextStep} size='large'>Make Payment</Button>
+      <Button type='primary' onClick={onMakePayment} disabled={checkedAgreement} size='large'>Make Payment</Button>
     </>
   )
 }
