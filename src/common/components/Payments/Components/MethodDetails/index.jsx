@@ -28,20 +28,13 @@ const DebitCredit = ({nextStep}) => {
   const onClickVerify = () => {
     //verify then charge
     const date = expiryDate.value && expiryDate.value.split('/');
-    const data = { //temp
-      cardNumber: '4242424242424242',
-      cvc: '314',
-      expMonth: 3,
-      expYear: 2021,
-      name: 'string',
+    const data = {
+      cardNumber: cardNum.value,
+      cvc: cvv.value,
+      expMonth: date[0] ? parseInt(date[0]) : 0,
+      expYear: date[1] ? parseInt(date[1]) : 0,
+      name: cardName.value,
     }
-    // const data = {
-    //   cardNumber: cardNum.value,
-    //   cvc: cvv.value,
-    //   expMonth: date[0] ? parseInt(date[0]) : 0,
-    //   expYear: date[1] ? parseInt(date[1]) : 0,
-    //   name: cardName.value,
-    // }
     console.log('verifyData', data);
     dispatch(payment.verifyCard(data));
   }
