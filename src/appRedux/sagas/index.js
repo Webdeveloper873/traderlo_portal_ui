@@ -6,6 +6,7 @@ import { domain } from './sell';
 import { buyingDomain } from './buying';
 import { bidDomain } from './bidding';
 import payment from './payment';
+import {watchlist} from './userSidebar'
 
 export default function* rootSaga() {
   yield all([
@@ -16,5 +17,6 @@ export default function* rootSaga() {
     buyingDomain(),
     bidDomain(),
     payment(),
+    watchlist(),
   ]);
 }
