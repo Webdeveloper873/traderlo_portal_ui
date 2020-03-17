@@ -27,6 +27,11 @@ import PaymentsImg from 'assets/bidding/payments.png';
 import {responsiveConf} from 'common/constants';
 import SimilarPost from './components/SimilarPost';
 
+
+//actions
+import { buyingDomain } from 'appRedux/actions/buying';
+
+
 const {TabPane} = Tabs;
 const {twoCol} = responsiveConf;
 
@@ -61,6 +66,7 @@ const LeftPane = (domainDetails) => {
 const RightPane = (domainDetails) => {
   const [buyNowVisible, setShowModal] = useState(false);
   const selectedDomainInfo = useSelector(({ buyDomain }) => buyDomain.selectedDomainInfo);
+  const alreadyInWatchList = useSelector(({buyDomain}) => buyDomain.alreadyInWatchList)
   const bid = useFormInput();
   const dispatch = useDispatch();
 
@@ -70,6 +76,16 @@ const RightPane = (domainDetails) => {
 
   const hideModal = () => {
     setShowModal(false);
+  }
+
+  const onClickAddToWatchlist = () => {
+    console.log('clicked')
+    dispatch(buyingDomain.addToWatchlist(domainDetails))
+  }
+
+  const onClickRemoveToWatchlist = () => {
+    console.log('clicked')
+    dispatch(buyingDomain.removeToWatchlist(domainDetails))
   }
 
   const onBidNow = () => {
@@ -95,7 +111,11 @@ const RightPane = (domainDetails) => {
             <Button className={classes.btnStyle} onClick={showModal}>{`Buy Now $${domainDetails.buyNowPrice}`}</Button>
           </Col>
           <Col {...twoCol}>
-            <Button type='danger'>Add to Watch</Button>
+            <Button key type='danger' onClick={() => onClickAddToWatchlist()}>{alreadyInWatchList? 'Already in Watchlist' : 'Add to Watchlist'}</Button>
+            {/* {alreadyInWatchList ? 
+              <Button key type='primary' onClick={() => onClickAddToWatchlist()}>{'Add to Watchlist'}</Button>:
+              <Button key type='danger' onClick={() => onClickRemoveToWatchlist()}>{'Remove to Watchlist'}</Button>} */}
+            
           </Col>
         </Row>
       </Card>

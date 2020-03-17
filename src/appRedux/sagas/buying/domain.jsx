@@ -23,7 +23,6 @@ function* getBuyDomain({payload}) {
     ));
   
     if(resp){
-      console.log('buy domain resp', resp)
       yield put(buyingDomain.getBuyDomainSuccess(resp));
     }
   } catch (err) {
@@ -35,7 +34,6 @@ function* getBuyDomain({payload}) {
 
 function* getBuyDomainById({payload}) {
   try{
-    console.log(payload,'payload');
     const {id, userId} = payload || {};
     const resp = yield call(() => request.get(`${base_url}/listing/domains/${id}`, 
     {
@@ -44,9 +42,7 @@ function* getBuyDomainById({payload}) {
         authorization: `Bearer ${getAccessToken()}`
       }
     }));
-    console.log('getBuyDomainById', resp);
     if(resp){
-      console.log('getBuyDomainByIdSuccess', resp)
       yield put(buyingDomain.storeSelectedDomain(resp));
     }
   }catch(err) {
@@ -55,8 +51,45 @@ function* getBuyDomainById({payload}) {
 }
 
 
+function* addToWatchlist({payload}) {
+  try{
+    console.log(payload,'payload watchlist')
+    const {id, userId} = payload || {};
+    const type = 'l' // temporarily 
+    const resp = yield call(() => request.post(`${base_url}/watchlist/${type}/${id}`, 
+    {
+      headers: { ...headers,
+        uid: userId.toString(),
+        authorization: `Bearer ${getAccessToken()}`,
+      }
+    }));
+    if(resp){
+      yield put(buyingDomain.addToWatchlistSuccess(resp));
+    }
+  }catch(err) {
+    console.log('err: ', err);
+  }
+}
 
-
+function* removeToWatchlist({payload}) {
+  try{
+    console.log(payload,'payload watchlist')
+    const {id, userId} = payload || {};
+    const type = 'l' // temporarily 
+    const resp = yield call(() => request.delete(`${base_url}/watchlist/${type}/${id}`, 
+    {
+      headers: { ...headers,
+        uid: userId.toString(),
+        authorization: `Bearer ${getAccessToken()}`,
+      }
+    }));
+    if(resp){
+      yield put(buyingDomain.removeToWatchlistSuccess(resp));
+    }
+  }catch(err) {
+    console.log('err: ', err);
+  }
+}
 
 
 export function* buyDomainWatcher() {
@@ -67,10 +100,20 @@ export function* buyDomainByIdWatcher() {
   yield takeEvery(buyDomainTypes.GET_BUY_DOMAIN_BY_ID, getBuyDomainById);
 }
 
+export function* addToWatchlistWatcher() {
+  yield takeEvery(buyDomainTypes.ADD_TO_WATCHLIST, addToWatchlist);
+}
+
+export function* removeToWatchlistWatcher() {
+  yield takeEvery(buyDomainTypes.REMOVE_TO_WATCHLIST, removeToWatchlist);
+}
+
 
 export default function* rootSaga() {
   yield all([
     fork(buyDomainWatcher),
     fork(buyDomainByIdWatcher),
+    fork(addToWatchlistWatcher),
+    fork(removeToWatchlistWatcher),
   ]);
 }

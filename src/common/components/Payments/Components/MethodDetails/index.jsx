@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, Input, Row, Col, Button, Radio, Checkbox } from 'antd';
 
@@ -85,21 +85,146 @@ const CardInfo = ({info}) => {
 }
 
 const BankAccount = ({nextStep}) => {
+  
+  const isDone = useSelector(({ payment }) => payment.isDone);
+  const [checkedAgreement, setToCheck] = useState(true); 
+  const [checkedAccountNumber, setToSelectedAccount] = useState(true); 
+
+  const routingNum = useFormInput();
+  const acctNum = useFormInput();
+  const acctHolderName = useFormInput();
+  const acctType = useFormInput();
+
+  
+
+  const dispatch = useDispatch();
   const tempCardInfo = ['XXXX-XXXX-XXXX-1234', 'XXXX-XXXX-XXXX-5678'];
+
+
+
+
+
+  const onMakePayment = () => {
+    console.log('makepayment')
+
+    const data = {
+      accountNumber: JSON.stringify(acctNum),
+      country: "Philippine",
+      currency: "Peso",
+      name: JSON.stringify(acctHolderName),
+    }
+    dispatch(payment.addAccount(data));
+  }
+
+  const onClickAgreement = (e) => {
+    setToCheck(!checkedAgreement);
+  }
+
+  const onClickAccountNumber = (e) => {
+    setToSelectedAccount(!checkedAccountNumber);
+  }
+
+
+  if(isDone){
+    nextStep();
+  }
+
+
+
+
   return (
     <>
       <Avatar shape="square" size={120} icon="user" src={bankCheck} />
-      <p>Select from the available cards to finish the purchase</p>
-      <Row gutter={[0,20]}>
-        {tempCardInfo.map(info => <CardInfo info={info}/>)}
+      {/* <p>Select from the available cards to finish the purchase</p> */}
+      {/* <Row gutter={[0,20]}>
+        {tempCardInfo.map(info => <CardInfo onClick={onClickAccountNumber} info={info}/>)}
         <Col span={24}>
-          <Checkbox>{'I agreeto the terms & conditions, buyer policy of traderlo'}</Checkbox>
+          <Checkbox onClick={onClickAgreement}>{'I agree to the terms & conditions, buyer policy of traderlo'}</Checkbox>
         </Col>
-      </Row>
-      <Button type='primary' onClick={nextStep} size='large'>Make Payment</Button>
+      </Row> */}
+
+        <Row className={classes.inputRow} gutter={[32, 16]}>
+          <p><strong>Enter Account Details</strong></p>
+          <Col span={24}>
+            <Input onChange={routingNum.handleInputChange} type='password' placeholder='Routing Number' />
+          </Col>
+          <Col span={24}>
+            <Input onChange={acctNum.handleInputChange} type='password' placeholder='Account Number' />
+          </Col>
+          <Col span={24}>
+            <Input onChange={acctHolderName.handleInputChange} placeholder='Account Holder Name' />
+          </Col>
+          <Col span={24}>
+            <Input onChange={acctType.handleInputChange} placeholder='Account Type' />
+          </Col>
+          <Col span={24}>
+            <Checkbox onClick={onClickAgreement}>{'I agree to the terms & conditions, buyer policy of traderlo'}</Checkbox>
+          </Col>
+        </Row>
+      <Button type='primary' onClick={onMakePayment} disabled={checkedAgreement} size='large'>Verify Account</Button>
     </>
   )
 }
+
+
+const Paypal = ({nextStep}) => {
+  
+  const isDone = useSelector(({ payment }) => payment.isDone);
+  const signUpUserPass = useFormInput('');
+  const signUpUserEmail = useFormInput('');
+
+  const dispatch = useDispatch();
+
+
+
+
+
+  const onMakePayment = () => {
+    console.log('makepayment')
+    nextStep();
+  //   const data = {
+  //     accountNumber: JSON.stringify(acctNum),
+  //     country: "Philippine",
+  //     currency: "Peso",
+  //     name: JSON.stringify(acctHolderName),
+  //   }
+  //   dispatch(payment.addAccount(data));
+  // }
+  }
+
+  if(isDone){
+    nextStep();
+  }
+
+
+
+
+  return (
+    <>
+      <Avatar shape="square" size={120} icon="user" src={paypal} />
+
+        <Row className={classes.inputRow} gutter={[32, 16]}>
+          <p><strong>Enter Account Details</strong></p>
+          <Col span={24}>
+            <Input onChange={signUpUserEmail.handleInputChange} placeholder='Email Address' />
+          </Col>
+          <Col span={24}>
+            <Input onChange={signUpUserPass.handleInputChange} type='password' placeholder='Password' />
+          </Col>
+        </Row>
+      <Button type='primary' onClick={onMakePayment} size='large'>Log In</Button>
+    </>
+  )
+}
+
+
+
+
+
+
+
+
+
 
 const MethodDetails = ({selectedOpt, ...props}) => {
   switch(selectedOpt){
@@ -107,6 +232,8 @@ const MethodDetails = ({selectedOpt, ...props}) => {
       return <DebitCredit {...props}/>;
     case 2:
       return <BankAccount {...props}/>;
+    case 3:
+      return <Paypal {...props}/>;
     default:
       return null;
   }

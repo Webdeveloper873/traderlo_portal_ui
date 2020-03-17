@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Col, Card, Input, Icon, Table, Tabs } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
 
 //components
 import Banner from 'common/components/Banner';
@@ -13,6 +14,9 @@ import {domWebCol, sellersCol, favoritesCol} from './constants';
 import classes from './styles.module.scss';
 
 
+//actions
+import { userSidebarInfo } from 'appRedux/actions/userSidebar';
+
 const { TabPane } = Tabs;
 
 function callback(key) {
@@ -25,6 +29,16 @@ const SearchBid = () => {
 }
 
 const UserWatchings = () => {
+
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(userSidebarInfo.getWatchlistDomainWebsite(1));
+    dispatch(userSidebarInfo.getWatchlistFavorites(1));
+    dispatch(userSidebarInfo.getWatchlistSellers(1));
+  }, []);
+
+
   return(
     <>
       <Banner text={'Watchings'} />
