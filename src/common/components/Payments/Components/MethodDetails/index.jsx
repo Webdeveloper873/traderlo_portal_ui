@@ -146,10 +146,10 @@ const BankAccount = ({nextStep}) => {
         <Row className={classes.inputRow} gutter={[32, 16]}>
           <p><strong>Enter Account Details</strong></p>
           <Col span={24}>
-            <Input onChange={routingNum.handleInputChange} placeholder='Routing Number' />
+            <Input onChange={routingNum.handleInputChange} type='password' placeholder='Routing Number' />
           </Col>
           <Col span={24}>
-            <Input onChange={acctNum.handleInputChange} placeholder='Account Number' />
+            <Input onChange={acctNum.handleInputChange} type='password' placeholder='Account Number' />
           </Col>
           <Col span={24}>
             <Input onChange={acctHolderName.handleInputChange} placeholder='Account Holder Name' />
@@ -166,12 +166,74 @@ const BankAccount = ({nextStep}) => {
   )
 }
 
+
+const Paypal = ({nextStep}) => {
+  
+  const isDone = useSelector(({ payment }) => payment.isDone);
+  const signUpUserPass = useFormInput('');
+  const signUpUserEmail = useFormInput('');
+
+  const dispatch = useDispatch();
+
+
+
+
+
+  const onMakePayment = () => {
+    console.log('makepayment')
+    nextStep();
+  //   const data = {
+  //     accountNumber: JSON.stringify(acctNum),
+  //     country: "Philippine",
+  //     currency: "Peso",
+  //     name: JSON.stringify(acctHolderName),
+  //   }
+  //   dispatch(payment.addAccount(data));
+  // }
+  }
+
+  if(isDone){
+    nextStep();
+  }
+
+
+
+
+  return (
+    <>
+      <Avatar shape="square" size={120} icon="user" src={paypal} />
+
+        <Row className={classes.inputRow} gutter={[32, 16]}>
+          <p><strong>Enter Account Details</strong></p>
+          <Col span={24}>
+            <Input onChange={signUpUserEmail.handleInputChange} placeholder='Email Address' />
+          </Col>
+          <Col span={24}>
+            <Input onChange={signUpUserPass.handleInputChange} type='password' placeholder='Password' />
+          </Col>
+        </Row>
+      <Button type='primary' onClick={onMakePayment} size='large'>Log In</Button>
+    </>
+  )
+}
+
+
+
+
+
+
+
+
+
+
 const MethodDetails = ({selectedOpt, ...props}) => {
   switch(selectedOpt){
     case 1:
       return <DebitCredit {...props}/>;
     case 2:
       return <BankAccount {...props}/>;
+    case 3:
+      return <Paypal {...props}/>;
     default:
       return null;
   }
