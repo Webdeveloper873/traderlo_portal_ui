@@ -264,7 +264,7 @@ const RegisteredAccount = ({nextStep, selectedOpt}) => {
 
 const MethodDetails = ({selectedOpt, ...props}) => {
   const registeredDebitCredit = true;
-  const registeredBankAccount = true;
+  const registeredBankAccount = false;
 
   // selectedOpt = registered === true ?  4 : selectedOpt;
 
@@ -272,7 +272,7 @@ const MethodDetails = ({selectedOpt, ...props}) => {
     case 1:
       return (registeredDebitCredit? <RegisteredAccount {...props} selectedOpt={selectedOpt}/> : <DebitCredit {...props}/>);
     case 2:
-      return (registeredDebitCredit? <RegisteredAccount {...props} selectedOpt={selectedOpt}/> : <BankAccount {...props}/>);
+      return (registeredBankAccount? <RegisteredAccount {...props} selectedOpt={selectedOpt}/> : <BankAccount {...props}/>);
     case 3:
       return <Paypal {...props}/>;
     // case 4:
