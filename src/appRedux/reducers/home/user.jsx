@@ -5,6 +5,8 @@ const intialState = {
   isLoggedIn: false,
   token: {},
   profile: {},
+  savedBanks: [],
+  savedCards: [],
 };
 
 export default (state = intialState, action) => {
@@ -33,6 +35,10 @@ export default (state = intialState, action) => {
       return { ...state,
         isLoggedIn: false,
       };
+    case userActTypes.GET_SAVED_BANKS_SUCCESS:
+      return { ...state, savedBanks: payload };
+    case userActTypes.GET_SAVED_CARD_SUCCESS:
+      return { ...state, savedCards: payload };
     default:
       return state;
   }

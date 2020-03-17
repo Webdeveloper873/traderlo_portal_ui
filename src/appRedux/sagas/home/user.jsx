@@ -76,7 +76,7 @@ function* getSavedAccounts() {
   try {
     const resp = yield call(() => request.get(`${base_url}/stripe/getSavedAccounts`, { headers }));
     if (resp) {
-      yield put(user.getSavedAccountsSuccess());
+      yield put(user.getSavedBanksSuccess(resp));
     }
   } catch (err) {
     console.log('err: ', err);
@@ -89,7 +89,7 @@ function* getSavedCards() {
       headers
     }));
     if (resp) {
-      yield put(user.getSavedCardSuccess());
+      yield put(user.getSavedCardSuccess(resp));
     }
   } catch (err) {
     console.log('err: ', err);
@@ -127,7 +127,7 @@ export default function* rootSaga() {
     fork(getProfileWatcher),
     fork(registerUserWatcher),
     fork(logOutWatcher),
-    fork(getSavedAccounts),
+    fork(getSavedAccountsWatcher),
     // fork(getSavedCardsWatcher)
   ]);
 }
