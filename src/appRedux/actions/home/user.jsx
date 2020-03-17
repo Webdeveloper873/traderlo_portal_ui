@@ -55,9 +55,9 @@ export const getSavedBanksSuccess = () => ({
 });
 
 export const getSavedCard = () => ({
-  type: userActTypes.GET_SAVED_CARD
+  type: userActTypes.GET_SAVED_CARDS
 });
 
 export const getSavedCardSuccess = () => ({
-  type: userActTypes.GET_SAVED_CARD_SUCCESS
+  type: userActTypes.GET_SAVED_CARDS_SUCCESS
 });

@@ -37,7 +37,7 @@ export default (state = intialState, action) => {
       };
     case userActTypes.GET_SAVED_BANKS_SUCCESS:
       return { ...state, savedBanks: payload };
-    case userActTypes.GET_SAVED_CARD_SUCCESS:
+    case userActTypes.GET_SAVED_CARDS_SUCCESS:
       return { ...state, savedCards: payload };
     default:
       return state;

@@ -128,6 +128,6 @@ export default function* rootSaga() {
     fork(registerUserWatcher),
     fork(logOutWatcher),
     fork(getSavedAccountsWatcher),
-    // fork(getSavedCardsWatcher)
+    fork(getSavedCardsWatcher)
   ]);
 }
