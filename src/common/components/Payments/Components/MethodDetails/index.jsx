@@ -90,6 +90,13 @@ const BankAccount = ({nextStep}) => {
   const [checkedAgreement, setToCheck] = useState(true); 
   const [checkedAccountNumber, setToSelectedAccount] = useState(true); 
 
+  const routingNum = useFormInput();
+  const acctNum = useFormInput();
+  const acctHolderName = useFormInput();
+  const acctType = useFormInput();
+
+  
+
   const dispatch = useDispatch();
   const tempCardInfo = ['XXXX-XXXX-XXXX-1234', 'XXXX-XXXX-XXXX-5678'];
 
@@ -101,10 +108,10 @@ const BankAccount = ({nextStep}) => {
     console.log('makepayment')
 
     const data = {
-      accountNumber: "4242424242424242",
+      accountNumber: JSON.stringify(acctNum),
       country: "Philippine",
       currency: "Peso",
-      name: "wokina washimi",
+      name: JSON.stringify(acctHolderName),
     }
     dispatch(payment.addAccount(data));
   }
@@ -128,14 +135,33 @@ const BankAccount = ({nextStep}) => {
   return (
     <>
       <Avatar shape="square" size={120} icon="user" src={bankCheck} />
-      <p>Select from the available cards to finish the purchase</p>
-      <Row gutter={[0,20]}>
+      {/* <p>Select from the available cards to finish the purchase</p> */}
+      {/* <Row gutter={[0,20]}>
         {tempCardInfo.map(info => <CardInfo onClick={onClickAccountNumber} info={info}/>)}
         <Col span={24}>
           <Checkbox onClick={onClickAgreement}>{'I agree to the terms & conditions, buyer policy of traderlo'}</Checkbox>
         </Col>
-      </Row>
-      <Button type='primary' onClick={onMakePayment} disabled={checkedAgreement} size='large'>Make Payment</Button>
+      </Row> */}
+
+        <Row className={classes.inputRow} gutter={[32, 16]}>
+          <p><strong>Enter Account Details</strong></p>
+          <Col span={24}>
+            <Input onChange={routingNum.handleInputChange} placeholder='Routing Number' />
+          </Col>
+          <Col span={24}>
+            <Input onChange={acctNum.handleInputChange} placeholder='Account Number' />
+          </Col>
+          <Col span={24}>
+            <Input onChange={acctHolderName.handleInputChange} placeholder='Account Holder Name' />
+          </Col>
+          <Col span={24}>
+            <Input onChange={acctType.handleInputChange} placeholder='Account Type' />
+          </Col>
+          <Col span={24}>
+            <Checkbox onClick={onClickAgreement}>{'I agree to the terms & conditions, buyer policy of traderlo'}</Checkbox>
+          </Col>
+        </Row>
+      <Button type='primary' onClick={onMakePayment} disabled={checkedAgreement} size='large'>Verify Account</Button>
     </>
   )
 }
