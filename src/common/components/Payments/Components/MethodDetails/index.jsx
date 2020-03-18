@@ -168,29 +168,14 @@ const Paypal = ({nextStep}) => {
 
   const dispatch = useDispatch();
 
-
-
-
-
   const onMakePayment = () => {
     console.log('makepayment')
     nextStep();
-  //   const data = {
-  //     accountNumber: JSON.stringify(acctNum),
-  //     country: "Philippine",
-  //     currency: "Peso",
-  //     name: JSON.stringify(acctHolderName),
-  //   }
-  //   dispatch(payment.addAccount(data));
-  // }
   }
 
   if(isDone){
     nextStep();
   }
-
-
-
 
   return (
     <>
@@ -213,20 +198,85 @@ const Paypal = ({nextStep}) => {
 
 
 
+const RegisteredAccount = ({nextStep, selectedOpt}) => {
+  console.log('selectedOpt',selectedOpt)
+  
+  const debitCreditInfo = {
+    img : debitCards,
+    instruction: 'Select from the available cards to finish the purchase',
+  } 
 
+  const bankAcctInfo = {
+    img : bankCheck,
+    instruction: 'Select your bank to finish payment',
+  } 
+  const selectedInfo = selectedOpt === 1 ? debitCreditInfo : bankAcctInfo
+  const isDone = useSelector(({ payment }) => payment.isDone);
+  const [checkedAgreement, setToCheck] = useState(true); 
+  const [checkedAccountNumber, setToSelectedAccount] = useState(true); 
+
+  const dispatch = useDispatch();
+  const tempCardInfo = ['XXXX-XXXX-XXXX-1234', 'XXXX-XXXX-XXXX-5678'];
+
+
+  const onMakePayment = () => {
+    console.log('makepayment')
+
+    // const data = {
+    //   accountNumber: JSON.stringify(acctNum),
+    //   country: "Philippine",
+    //   currency: "Peso",
+    //   name: JSON.stringify(acctHolderName),
+    // }
+    //dispatch(payment.addAccount(data)); -> need to have checker
+  }
+
+  const onClickAgreement = (e) => {
+    setToCheck(!checkedAgreement);
+  }
+
+  const onClickAccountNumber = (e) => {
+    setToSelectedAccount(!checkedAccountNumber);
+  }
+
+  if(isDone){
+    nextStep();
+  }
+
+  return (
+    <>
+      <Avatar shape="square" size={120} icon="user" src={selectedInfo.img} />
+      <p>{selectedInfo.instruction}</p>
+      <Row gutter={[0,20]}>
+        {tempCardInfo.map(info => <CardInfo onClick={onClickAccountNumber} info={info}/>)}
+        <Col span={24}>
+          <Checkbox onClick={onClickAgreement}>{'I agree to the terms & conditions, buyer policy of traderlo'}</Checkbox>
+        </Col>
+      </Row>
+      <Button type='primary' onClick={onMakePayment} disabled={checkedAgreement} size='large'>Make Payment</Button>
+    </>
+  )
+}
 
 
 
 
 
 const MethodDetails = ({selectedOpt, ...props}) => {
+  const registeredDebitCredit = true;
+  const registeredBankAccount = false;
+
+  // selectedOpt = registered === true ?  4 : selectedOpt;
+
   switch(selectedOpt){
     case 1:
-      return <DebitCredit {...props}/>;
+      return (registeredDebitCredit? <RegisteredAccount {...props} selectedOpt={selectedOpt}/> : <DebitCredit {...props}/>);
     case 2:
-      return <BankAccount {...props}/>;
+      return (registeredBankAccount? <RegisteredAccount {...props} selectedOpt={selectedOpt}/> : <BankAccount {...props}/>);
     case 3:
       return <Paypal {...props}/>;
+    // case 4:
+    //   return <RegisteredAccount {...props} selectedOpt={selectedOpt}/>;
     default:
       return null;
   }
