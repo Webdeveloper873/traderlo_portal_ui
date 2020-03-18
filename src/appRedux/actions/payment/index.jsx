@@ -26,3 +26,23 @@ export const addAccountSuccess = () => ({
 export const addAccountFailed = () => ({
   type: paymentTypes.ADD_ACCOUNT_FAILED,
 });
+
+export const charge = (payload) => ({
+  type: paymentTypes.CHARGE,
+  payload
+})
+
+export const chargeSuccess = (payload) => ({
+  type: paymentTypes.CHARGE_SUCCESS,
+  payload
+})
+
+export const chargeFailed = (payload) => ({
+  type: paymentTypes.CHARGE_FAILED,
+  payload
+})
+
+export const clearPaymentSteps = (payload) => ({
+  type: paymentTypes.CLEAR_PAYMENT_STEPS,
+  payload
+})

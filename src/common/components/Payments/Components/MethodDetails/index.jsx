@@ -128,14 +128,6 @@ const BankAccount = ({nextStep}) => {
   return (
     <>
       <Avatar shape="square" size={120} icon="user" src={bankCheck} />
-      {/* <p>Select from the available cards to finish the purchase</p> */}
-      {/* <Row gutter={[0,20]}>
-        {tempCardInfo.map(info => <CardInfo onClick={onClickAccountNumber} info={info}/>)}
-        <Col span={24}>
-          <Checkbox onClick={onClickAgreement}>{'I agree to the terms & conditions, buyer policy of traderlo'}</Checkbox>
-        </Col>
-      </Row> */}
-
         <Row className={classes.inputRow} gutter={[32, 16]}>
           <p><strong>Enter Account Details</strong></p>
           <Col span={24}>
@@ -204,13 +196,13 @@ const RegisteredAccount = ({nextStep, selectedOpt}) => {
   const debitCreditInfo = {
     img : debitCards,
     instruction: 'Select from the available cards to finish the purchase',
-    accountList: [],
+    accountList: useSelector(({ user }) => user.savedCards), // input account here
   } 
 
   const bankAcctInfo = {
     img : bankCheck,
     instruction: 'Select your bank to finish payment',
-    accountList: [],
+    accountList: useSelector(({ user }) => user.savedBanks), // input account here
   } 
   const selectedInfo = selectedOpt === 1 ? debitCreditInfo : bankAcctInfo
   const isDone = useSelector(({ payment }) => payment.isDone);
@@ -218,19 +210,20 @@ const RegisteredAccount = ({nextStep, selectedOpt}) => {
   const [checkedAccountNumber, setToSelectedAccount] = useState(true); 
 
   const dispatch = useDispatch();
-  const tempCardInfo = ['XXXX-XXXX-XXXX-1234', 'XXXX-XXXX-XXXX-5678'];
+  const tempCardInfo = ['XXXX-XXXX-XXXX-1234', 'XXXX-XXXX-XXXX-5678']; // i use this becasue there is no sample output
 
 
   const onMakePayment = () => {
     console.log('makepayment')
 
-    // const data = {
-    //   accountNumber: JSON.stringify(acctNum),
-    //   country: "Philippine",
-    //   currency: "Peso",
-    //   name: JSON.stringify(acctHolderName),
-    // }
-    //dispatch(payment.addAccount(data)); -> need to have checker
+    const data = {
+      amount: 11111120,
+      paymentId: 12,
+      currency: "eur",
+      type: 'CARD', // "card" or "account"
+    }
+
+    dispatch(payment.charge(data));
   }
 
   const onClickAgreement = (e) => {
@@ -265,20 +258,21 @@ const RegisteredAccount = ({nextStep, selectedOpt}) => {
 
 
 const MethodDetails = ({selectedOpt, ...props}) => {
-  const registeredDebitCredit = true;
-  const registeredBankAccount = false;
+  
+  const savedBanks = useSelector(({ user }) => user.savedBanks);
+  const savedCards = useSelector(({ user }) => user.savedCards);
 
-  // selectedOpt = registered === true ?  4 : selectedOpt;
+  // check if there are available cards and bank account then show either verification process or payment process
+  const hasSavedCards = savedCards.length > 0 ? true : false;  
+  const hasSavedBanks = savedBanks.length > 0 ? true : false;
 
   switch(selectedOpt){
     case 1:
-      return (registeredDebitCredit? <RegisteredAccount {...props} selectedOpt={selectedOpt}/> : <DebitCredit {...props}/>);
+      return (hasSavedCards ? <RegisteredAccount {...props} selectedOpt={selectedOpt}/> : <DebitCredit {...props}/>);
     case 2:
-      return (registeredBankAccount? <RegisteredAccount {...props} selectedOpt={selectedOpt}/> : <BankAccount {...props}/>);
+      return (hasSavedBanks ? <RegisteredAccount {...props} selectedOpt={selectedOpt}/> : <BankAccount {...props}/>);
     case 3:
       return <Paypal {...props}/>;
-    // case 4:
-    //   return <RegisteredAccount {...props} selectedOpt={selectedOpt}/>;
     default:
       return null;
   }
