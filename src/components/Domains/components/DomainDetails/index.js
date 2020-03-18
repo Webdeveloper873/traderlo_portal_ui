@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col, Card, Tabs, Icon, Input, Button, Divider, Modal } from 'antd';
 
@@ -14,6 +14,7 @@ import classes from './styles.module.scss';
 
 //actions
 import { bidDomain } from 'appRedux/actions/bidding';
+import { user } from 'appRedux/actions/home';
 
 //utils
 import { useFormInput } from 'common/utils/hooks';
@@ -112,10 +113,10 @@ const RightPane = (domainDetails) => {
           </Col>
           <Col {...twoCol}>
             <Button key type='danger' onClick={() => onClickAddToWatchlist()}>{alreadyInWatchList? 'Already in Watchlist' : 'Add to Watchlist'}</Button>
-            {/* {alreadyInWatchList ? 
+            {/* {alreadyInWatchList ?
               <Button key type='primary' onClick={() => onClickAddToWatchlist()}>{'Add to Watchlist'}</Button>:
               <Button key type='danger' onClick={() => onClickRemoveToWatchlist()}>{'Remove to Watchlist'}</Button>} */}
-            
+
           </Col>
         </Row>
       </Card>
@@ -142,6 +143,17 @@ const RightPane = (domainDetails) => {
 
 const DomainDetails = () => {
   const domainDetails = useSelector(({ buyDomain }) => buyDomain.selectedDomainInfo);
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    //TODO: change
+    const access_token = window.localStorage.getItem('access_token');
+    if(access_token){
+      dispatch(user.getSavedBanks());
+      dispatch(user.getSavedCard());
+    }
+  }, []);
+
   return(
     <>
       <Banner text='Payment' />

@@ -45,3 +45,19 @@ export const logout = () => ({
 export const successLogout = () => ({
   type: userActTypes.LOGOUT_SUCCESS
 });
+
+export const getSavedBanks = () => ({
+  type: userActTypes.GET_SAVED_BANKS
+});
+
+export const getSavedBanksSuccess = () => ({
+  type: userActTypes.GET_SAVED_BANKS_SUCCESS
+});
+
+export const getSavedCard = () => ({
+  type: userActTypes.GET_SAVED_CARDS
+});
+
+export const getSavedCardSuccess = () => ({
+  type: userActTypes.GET_SAVED_CARDS_SUCCESS
+});
