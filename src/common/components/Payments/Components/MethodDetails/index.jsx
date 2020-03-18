@@ -204,11 +204,13 @@ const RegisteredAccount = ({nextStep, selectedOpt}) => {
   const debitCreditInfo = {
     img : debitCards,
     instruction: 'Select from the available cards to finish the purchase',
+    accountList: [],
   } 
 
   const bankAcctInfo = {
     img : bankCheck,
     instruction: 'Select your bank to finish payment',
+    accountList: [],
   } 
   const selectedInfo = selectedOpt === 1 ? debitCreditInfo : bankAcctInfo
   const isDone = useSelector(({ payment }) => payment.isDone);

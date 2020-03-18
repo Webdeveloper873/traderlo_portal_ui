@@ -63,8 +63,10 @@ export const bidDomainTypes = {
 export const paymentTypes = {
   VERIFY_CARD: "VERIFY_CARD",
   VERIFY_CARD_SUCCESS: "VERIFY_CARD_SUCCESS",
+  VERIFY_CARD_FAILED: 'VERIFY_CARD_FAILED',
   ADD_ACCOUNT: 'ADD_ACCOUNT',
   ADD_ACCOUNT_SUCCESS: 'ADD_ACCOUNT_SUCCESS',
+  ADD_ACCOUNT_FAILED: 'ADD_ACCOUNT_FAILED',
 }
 
 export const userSidebarInfoTypes ={
