@@ -89,10 +89,10 @@ const BankAccount = ({nextStep}) => {
   const onClickVerifyBankAccount = () => {
 
     const data = { // need to update this one
-      accountNumber: JSON.stringify(acctNum.value),
+      accountNumber: acctNum.value, //this is aleready string
       country: "Philippine",
-      currency: "Peso",
-      name: JSON.stringify(acctHolderName.value),
+      currency: "eur",
+      name: acctHolderName.value, //already string
     }
     dispatch(payment.addAccount(data));
   }
@@ -211,7 +211,7 @@ const RegisteredAccount = ({nextStep, selectedOpt}) => {
       amount: 5555555555554444,
       paymentId: 12,
       currency: "eur",
-      type: 'CARD', // "card" or "account"
+      type: selectedOpt === 1 ? "CARD" : "ACCOUNT" // "card" or "account"
     }
 
     dispatch(payment.charge(data));
