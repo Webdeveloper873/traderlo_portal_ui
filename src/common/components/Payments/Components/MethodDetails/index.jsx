@@ -172,7 +172,7 @@ const Paypal = ({nextStep}) => {
 const CardInfo = ({info}) => {
   return(
     <Col span={24}>
-      <Radio className={classes.inputBlock} value={info.accountNumber}>{info.accountNumber}</Radio>
+      <Radio className={classes.inputBlock} value={info}>{info}</Radio>
     </Col>
   );
 }
@@ -185,16 +185,14 @@ const RegisteredAccount = ({nextStep, selectedOpt}) => {
   const debitCreditInfo = {
     img : debitCards,
     instruction: 'Select from the available cards to finish the purchase',
-    accountList: useSelector(({ user }) => user.savedCards), 
+    fetchedList: useSelector(({ user }) => user.savedCards), 
   } 
-  //debitCreditInfo.accountList = useSelector(({ user }) => user.savedCards); // input account here
 
   const bankAcctInfo = {
     img : bankCheck,
     instruction: 'Select your bank to finish payment',
-    accountList:  useSelector(({ user }) => user.savedBanks),
+    fetchedList:  useSelector(({ user }) => user.savedBanks),
   } 
-  //bankAcctInfo.accountList = useSelector(({ user }) => user.savedBanks); // input account here
 
   console.log(debitCreditInfo,'debitCreditInfo');
   console.log(bankAcctInfo,'debitCreditInfo');
@@ -213,7 +211,7 @@ const RegisteredAccount = ({nextStep, selectedOpt}) => {
       amount: 120,
       paymentId: 12,
       currency: "eur",
-      type: selectedOpt === 1 ? "CARD" : "ACCOUNT" // "card" or "account"
+      type: selectedOpt === 1 ? "CARD" : "ACCOUNT" 
     }
     console.log(data,'data payment')
     dispatch(payment.charge(data));
@@ -237,9 +235,9 @@ const RegisteredAccount = ({nextStep, selectedOpt}) => {
       <p>{selectedInfo.instruction}</p>
       <Row gutter={[0,20]}>
         <Radio.Group onChange={onChangeSelected} value={selectedAccountNumber}>
-          {selectedInfo.accountList.length > 0 ? 
-          selectedInfo.accountList.map(info => <CardInfo info={info}/>) :
-          tempCardInfo.map(info => <CardInfo info={info}/>)}
+          {selectedInfo.fetchedList.length > 0 && selectedOpt === 1 ?  // 1 = card , 2 = bank account
+          selectedInfo.fetchedList.map(info => <CardInfo info={info.cardId}/>) :
+          selectedInfo.fetchedList.map(info => <CardInfo info={info.accountNumber}/>)}
           <Col span={24}>
             <Checkbox onClick={onClickAgreement}>{'I agree to the terms & conditions, buyer policy of traderlo'}</Checkbox>
           </Col>

@@ -85,9 +85,7 @@ function* getSavedAccounts() {
 
 function* getSavedCards() {
   try {
-    const resp = yield call(() => request.get(`${base_url}/stripe/getSavedCards`, {
-      headers
-    }));
+    const resp = yield call(() => request.get(`${base_url}/stripe/getSavedCards`, { headers }));
     if (resp) {
       yield put(user.getSavedCardSuccess(resp));
     }
