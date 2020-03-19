@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col, Card, Tabs, Icon, Input, Button, Divider, Modal } from 'antd';
 
 //components
@@ -7,8 +8,16 @@ import PageWrapper from 'common/components/PageWrapper';
 import CardItem from './components/CardItem';
 import SellerDetails from './components/SellerDetails';
 import Payments from 'common/components/Payments'
+
 //styles
 import classes from './styles.module.scss';
+
+//actions
+import { bidDomain } from 'appRedux/actions/bidding';
+import { user } from 'appRedux/actions/home';
+
+//utils
+import { useFormInput } from 'common/utils/hooks';
 
 //assets
 import BuyerProtection from 'assets/bidding/buyerprotection.png';
@@ -19,14 +28,19 @@ import PaymentsImg from 'assets/bidding/payments.png';
 import {responsiveConf} from 'common/constants';
 import SimilarPost from './components/SimilarPost';
 
+
+//actions
+import { buyingDomain } from 'appRedux/actions/buying';
+
+
 const {TabPane} = Tabs;
 const {twoCol} = responsiveConf;
 
-const LeftPane = () => {
+const LeftPane = (domainDetails) => {
   return(
     <Col xs={24} md={16}>
       <Card className={classes.cardStyle}>
-        <h3>Domain Name</h3>
+        <h3>{domainDetails.appName}</h3>
         <Row clasName={classes.rowStyle} gutter={32}>
           <CardItem imgSrc={BuyerProtection} title={'Buyer Protection Guarantee'}/>
           <CardItem imgSrc={TimeFrame} title={'Time Frame'}/>
@@ -36,7 +50,7 @@ const LeftPane = () => {
       <Card className={classes.marginTop15}>
         <Tabs defaultActiveKey="1">
           <TabPane tab="Description" key="1">
-            Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
+            {domainDetails.description}
           </TabPane>
           <TabPane tab="Financials/Traffic" key="2">
             veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
@@ -50,9 +64,12 @@ const LeftPane = () => {
   );
 }
 
-const RightPane = () => {
-
+const RightPane = (domainDetails) => {
   const [buyNowVisible, setShowModal] = useState(false);
+  const selectedDomainInfo = useSelector(({ buyDomain }) => buyDomain.selectedDomainInfo);
+  const alreadyInWatchList = useSelector(({buyDomain}) => buyDomain.alreadyInWatchList)
+  const bid = useFormInput();
+  const dispatch = useDispatch();
 
   const showModal = () => {
     setShowModal(true);
@@ -62,19 +79,44 @@ const RightPane = () => {
     setShowModal(false);
   }
 
+  const onClickAddToWatchlist = () => {
+    console.log('clicked')
+    dispatch(buyingDomain.addToWatchlist(domainDetails))
+  }
+
+  const onClickRemoveToWatchlist = () => {
+    console.log('clicked')
+    dispatch(buyingDomain.removeToWatchlist(domainDetails))
+  }
+
+  const onBidNow = () => {
+    const { userId, id } = selectedDomainInfo || {};
+    const data = {
+      amount: parseInt(bid.value),
+      sellerId: userId,
+      id,
+    };
+    console.log('data', data);
+    dispatch(bidDomain.setBid(data));
+  }
+
   return(
     <Col xs={24} md={8}>
       <Card className={classes.rightPane}>
         <h4>Current price <span>Request for Reserve?</span></h4>
-        <h4>$600</h4>
-        <p><b>5</b>{` Bids`}<span><Icon type="clock-circle" /> 10 Days Left</span></p>
-        <Input addonAfter="Bid Now" placeholder='Enter Amount' />
+        <h4>{`$ ${domainDetails.startingPrice}`}</h4>
+        <p><b>5</b>{` Bids`}<span><Icon type="clock-circle" />{` ${domainDetails.durationDate} Days Left`}</span></p>
+        <Input onChange={bid.handleInputChange} addonAfter={<span onClick={onBidNow}>Bid Now</span>} placeholder='Enter Amount' />
         <Row className={classes.rowStyle} gutter={32} align='middle' type='flex'>
           <Col {...twoCol}>
-            <Button className={classes.btnStyle} onClick={showModal}>Buy Now $500</Button>
+            <Button className={classes.btnStyle} onClick={showModal}>{`Buy Now $${domainDetails.buyNowPrice}`}</Button>
           </Col>
           <Col {...twoCol}>
-            <Button type='danger'>Add to Watch</Button>
+            <Button key type='danger' onClick={() => onClickAddToWatchlist()}>{alreadyInWatchList? 'Already in Watchlist' : 'Add to Watchlist'}</Button>
+            {/* {alreadyInWatchList ?
+              <Button key type='primary' onClick={() => onClickAddToWatchlist()}>{'Add to Watchlist'}</Button>:
+              <Button key type='danger' onClick={() => onClickRemoveToWatchlist()}>{'Remove to Watchlist'}</Button>} */}
+
           </Col>
         </Row>
       </Card>
@@ -100,13 +142,25 @@ const RightPane = () => {
 }
 
 const DomainDetails = () => {
+  const domainDetails = useSelector(({ buyDomain }) => buyDomain.selectedDomainInfo);
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    //TODO: change
+    const access_token = window.localStorage.getItem('access_token');
+    if(access_token){
+      dispatch(user.getSavedBanks());
+      dispatch(user.getSavedCard());
+    }
+  }, []);
+
   return(
     <>
       <Banner text='Payment' />
       <PageWrapper>
         <Row className={classes.rowStyle} gutter={16}>
-          <LeftPane />
-          <RightPane />
+          <LeftPane {...domainDetails}/>
+          <RightPane {...domainDetails}/>
         </Row>
       </PageWrapper>
     </>

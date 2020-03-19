@@ -1,13 +1,37 @@
-import React, {useState} from 'react';
-import { Card, Row, Button, Col, Avatar, Icon, Input } from 'antd';
+import React, {useState, useEffect} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { Modal, Card, Row, Button, Col, Avatar, Icon, Input } from 'antd';
+import moment from 'moment';
+
+//components
+import InputField from './InputField';
+
+//actions
+import { domain } from 'appRedux/actions/selling';
+
+//utils
+import { useFormInput } from 'common/utils/hooks';
 
 //styles
 import classes from '../styles.module.scss';
+
+//constants
+import { routes } from 'common/constants';
 
 //resources
 import HtmlImage from 'assets/selling/html.png';
 import KeyImage from 'assets/selling/key.png';
 import TxtImage from 'assets/selling/txt.png';
+
+const SuccessModal = (setVerifyDone) => {
+  Modal.success({
+    content: 'Your domain verification is under process we will notify you via email as soon as its verified. Generally it takes 10 minutes to 24 hours.',
+    onOk: () => {
+      setVerifyDone(true);
+    }
+  });
+}
 
 const HtmlFileContent = () => {
 
@@ -22,6 +46,37 @@ const HtmlFileContent = () => {
 }
 
 const TXTRecordContent = () => {
+  const [ verifyDone, setVerifyDone ] = useState(false);
+  const url = useSelector(({ sellDomain }) => sellDomain.url);
+  const listingId = useSelector(({ sellDomain }) => sellDomain.listingId);
+  const verifyOwnership = useSelector(({ sellDomain }) => sellDomain.verifyOwnership);
+  const randomText = useSelector(({ sellDomain }) => sellDomain.randomText);
+  const text = useFormInput(randomText);
+  const dispatch = useDispatch();
+
+  const onClickNext = () => {
+    const data = {
+      createdDate: moment().format(moment.defaultFormatUtc),
+      domain: url,
+      siteId: listingId,
+      status: 0,
+      txtName: "string",
+      txtVal: text.value,
+    };
+    console.log('data ', data);
+    dispatch(domain.verifyByTextFile(data));
+  }
+
+  if(verifyDone){
+    return <Redirect to={routes.DASHBOARD_PAGE} />
+  }
+
+  if(verifyOwnership){
+    SuccessModal(setVerifyDone);
+  }
+
+  console.log('randomText: ', randomText);
+
 
   return (<>
     <Row className={classes.tXTRecordContent}>
@@ -33,12 +88,14 @@ const TXTRecordContent = () => {
             <Input
               size="large"
               placeholder="URL"
+              defaultValue={url}
             />
             </Col>
             <Col span={11} className={classes.txtContentInputBox}>
-            <Input
-              size="large"
+            <Input size="large"
               placeholder="Text Record"
+              onChange={text.handleInputChange}
+              defaultValue={randomText}
             />
             </Col>
           </Row>
@@ -72,13 +129,42 @@ const TXTRecordContent = () => {
         </Card>
       </Row>
       <Row className={classes.btnContainer}>
-        <Button size='large' className={classes.btnStyle}>Next</Button>
+        <Button onClick={onClickNext} size='large' className={classes.btnStyle}>Next</Button>
       </Row>
     </Row>
   </>)
 }
 
 const MetaKeyContent = () => {
+  const url = useSelector(({ sellDomain }) => sellDomain.url);
+  const metaTag = useSelector(({ sellDomain }) => sellDomain.meta);
+  const listingId = useSelector(({ sellDomain }) => sellDomain.listingId);
+  const verifyOwnership = useSelector(({ sellDomain }) => sellDomain.verifyOwnership);
+  const [verifyDone, setVerifyDone] = useState(false);
+  const text = useFormInput(metaTag);
+  const dispatch = useDispatch();
+
+  const onClickNext = () => {
+    const data = {
+      createdDate: moment().format(moment.defaultFormatUtc),
+      domain: url,
+      siteId: listingId,
+      status: 0,
+      txtName: "string",
+      txtVal: "string",
+      userId: 42, //TODO: change to valid userID
+      metaTag: text.value,
+    };
+    dispatch(domain.verifyByMetaTag(data));
+  };
+
+  if (verifyDone) {
+    return <Redirect to={routes.DASHBOARD_PAGE} />
+  }
+
+  if (verifyOwnership) {
+    SuccessModal(setVerifyDone);
+  }
 
   return (<>
     <Row className={classes.metaKeyContent}>
@@ -88,10 +174,12 @@ const MetaKeyContent = () => {
           size="large"
           placeholder="Meta Key"
           style={{width:500}}
+          defaultValue={metaTag}
+          onChange={text.handleInputChange}
         />
       </Row>
       <Row className={classes.btnContainer}>
-        <Button size='large' className={classes.btnStyle}>Next</Button>
+        <Button onClick={onClickNext} size='large' className={classes.btnStyle}>Next</Button>
       </Row>
     </Row>
   </>)
@@ -105,10 +193,10 @@ const VerifyOwnershipCard = ({imgSrc, details, itemKey, onClickContent, isSelect
   // className={`${classes.separator} ${children ? classes.midText : ''} ${className}`}
   return(
     <Col xs={24} md={8}>
-      <Card hoverable onClick={() => onClickContent(itemKey)}> 
+      <Card hoverable onClick={() => onClickContent(itemKey)}>
         <div className={classes.verifyOwnershipCard}>
-          <Row style={{textAlign:'center'}}> 
-            <Avatar size={64} icon="user" src={imgSrc} alt='...loading' 
+          <Row style={{textAlign:'center'}}>
+            <Avatar size={64} icon="user" src={imgSrc} alt='...loading'
               className={` ${isSelected === true ? classes.activeCard :  classes.inactiveCard}`}/>
           </Row>
           <Row className={classes.rowSubDetails}>
@@ -128,6 +216,7 @@ const VerifyOwnership = () => {
   const [oneSelected, setSelectedOne] = useState(true);
   const [twoSelected, setSelectedTwo] = useState(false);
   const [threeSelected, setSelectedThree] = useState(false);
+  const dispatch = useDispatch();
 
   const onClickContent = value => {
     console.log(value);
@@ -150,14 +239,19 @@ const VerifyOwnership = () => {
     }
   }
 
+  useEffect(()=>{
+    //call getText and get Meta
+    dispatch(domain.getRandText());
+    dispatch(domain.getMetaKey());
+  }, []);
+
 
   return(
     <Card className={classes.verifyOwnership}>
       <Row className={classes.selectOptionFont}>
-            <span className={classes.fontDecor}>We Have Three Methods To verify Ownership. (Choose one)</span>
+        <span className={classes.fontDecor}>We Have Three Methods To verify Ownership. (Choose one)</span>
+      </Row>
 
-          </Row>
-   
       <Row gutter={16}>
         <VerifyOwnershipCard imgSrc={HtmlImage} itemKey={1} onClickContent={onClickContent} isSelected={oneSelected}
           details='1. Verify Domain using HTML File'
@@ -171,9 +265,8 @@ const VerifyOwnership = () => {
       </Row>
       <Row>
         <div>{content}</div>
-        
       </Row>
-     
+
     </Card>
   );
 }

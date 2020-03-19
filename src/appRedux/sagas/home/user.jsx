@@ -27,11 +27,9 @@ function* login({payload}) {
   }
 }
 
-function* getUserProfile({payload}) {
+function* getUserProfile() {
   try{
-    const {id} = payload || {};
-    const resp = yield call(() => request.get(`${base_url}/user/${id}/profile`, { headers }));
-    console.log('getUserProfile', resp);
+    const resp = yield call(() => request.get(`${base_url}/user/profile`, { headers: { ...headers, authorization: `Bearer ${getAccessToken()}` } }));
     if(resp){
       yield put(user.getProfileSuccess(resp));
     }
@@ -74,6 +72,38 @@ function* logout({payload}) {
   }
 }
 
+function* getSavedAccounts() {
+  try {
+    const resp = yield call(() => request.get(`${base_url}/stripe/getSavedAccounts`, { headers }));
+    if (resp) {
+      yield put(user.getSavedBanksSuccess(resp));
+    }
+  } catch (err) {
+    console.log('err: ', err);
+  }
+}
+
+function* getSavedCards() {
+  try {
+    const resp = yield call(() => request.get(`${base_url}/stripe/getSavedCards`, {
+      headers
+    }));
+    if (resp) {
+      yield put(user.getSavedCardSuccess(resp));
+    }
+  } catch (err) {
+    console.log('err: ', err);
+  }
+}
+
+export function* getSavedCardsWatcher() {
+  yield takeEvery(userActTypes.GET_SAVED_CARDS, getSavedCards);
+}
+
+export function* getSavedAccountsWatcher() {
+  yield takeEvery(userActTypes.GET_SAVED_BANKS, getSavedAccounts);
+}
+
 export function* registerUserWatcher() {
   yield takeEvery(userActTypes.REGISTER_USER, registerUser);
 }
@@ -97,5 +127,7 @@ export default function* rootSaga() {
     fork(getProfileWatcher),
     fork(registerUserWatcher),
     fork(logOutWatcher),
+    fork(getSavedAccountsWatcher),
+    fork(getSavedCardsWatcher)
   ]);
 }
