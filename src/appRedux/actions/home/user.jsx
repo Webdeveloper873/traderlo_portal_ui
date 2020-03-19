@@ -13,7 +13,11 @@ export const login = ({username, password}) => ({
 export const successLogin = (token) => ({
   type: userActTypes.LOGIN_SUCCESS,
   payload: { token }
-})
+});
+
+export const failedLogin = () => ({
+  type: userActTypes.LOGIN_FAILED
+});
 
 export const getUserProfile = (id) => ({
   type: userActTypes.FETCH_PROFILE,
