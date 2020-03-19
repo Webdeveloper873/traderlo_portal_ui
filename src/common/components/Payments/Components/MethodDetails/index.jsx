@@ -25,7 +25,7 @@ const DebitCredit = ({nextStep}) => {
   const zipcode = useFormInput();
   const dispatch = useDispatch();
 
-  const onClickVerify = () => {
+  const onClickVerifyCard = () => {
     //verify then charge
     const date = expiryDate.value && expiryDate.value.split('/');
     const data = {
@@ -63,25 +63,21 @@ const DebitCredit = ({nextStep}) => {
         <Col span={24}>
           <Input onChange={zipcode.handleInputChange} placeholder='Zip Code' />
         </Col>
-        <Button type='primary' onClick={onClickVerify} size='large'>Verify Card</Button>
+        <Button type='primary' onClick={onClickVerifyCard} size='large'>Verify Card</Button>
       </Row>
     </>
   )
 }
 
-const CardInfo = ({info}) => {
-  return(
-    <Col span={24}>
-      <Radio className={classes.inputBlock}>{info}</Radio>
-    </Col>
-  );
-}
+
 
 const BankAccount = ({nextStep}) => {
+  const dispatch = useDispatch();
   
   const isDone = useSelector(({ payment }) => payment.isDone);
+
+
   const [checkedAgreement, setToCheck] = useState(true); 
-  const [checkedAccountNumber, setToSelectedAccount] = useState(true); 
 
   const routingNum = useFormInput();
   const acctNum = useFormInput();
@@ -90,21 +86,13 @@ const BankAccount = ({nextStep}) => {
 
   
 
-  const dispatch = useDispatch();
-  const tempCardInfo = ['XXXX-XXXX-XXXX-1234', 'XXXX-XXXX-XXXX-5678'];
+  const onClickVerifyBankAccount = () => {
 
-
-
-
-
-  const onMakePayment = () => {
-    console.log('makepayment')
-
-    const data = {
-      accountNumber: JSON.stringify(acctNum),
+    const data = { // need to update this one
+      accountNumber: JSON.stringify(acctNum.value),
       country: "Philippine",
       currency: "Peso",
-      name: JSON.stringify(acctHolderName),
+      name: JSON.stringify(acctHolderName.value),
     }
     dispatch(payment.addAccount(data));
   }
@@ -113,16 +101,10 @@ const BankAccount = ({nextStep}) => {
     setToCheck(!checkedAgreement);
   }
 
-  const onClickAccountNumber = (e) => {
-    setToSelectedAccount(!checkedAccountNumber);
-  }
-
 
   if(isDone){
     nextStep();
   }
-
-
 
 
   return (
@@ -142,26 +124,25 @@ const BankAccount = ({nextStep}) => {
           <Col span={24}>
             <Input onChange={acctType.handleInputChange} placeholder='Account Type' />
           </Col>
-          <Col span={24}>
+          {/* <Col span={24}>
             <Checkbox onClick={onClickAgreement}>{'I agree to the terms & conditions, buyer policy of traderlo'}</Checkbox>
-          </Col>
+          </Col> */}
         </Row>
-      <Button type='primary' onClick={onMakePayment} disabled={checkedAgreement} size='large'>Verify Account</Button>
+      <Button type='primary' onClick={onClickVerifyBankAccount} size='large'>Verify Account</Button>
     </>
   )
 }
 
 
 const Paypal = ({nextStep}) => {
+  const dispatch = useDispatch();
   
   const isDone = useSelector(({ payment }) => payment.isDone);
   const signUpUserPass = useFormInput('');
   const signUpUserEmail = useFormInput('');
 
-  const dispatch = useDispatch();
 
   const onMakePayment = () => {
-    console.log('makepayment')
     nextStep();
   }
 
@@ -188,11 +169,19 @@ const Paypal = ({nextStep}) => {
 }
 
 
+const CardInfo = ({info}) => {
+  return(
+    <Col span={24}>
+      <Radio className={classes.inputBlock} value={info}>{info}</Radio>
+    </Col>
+  );
+}
 
 
 const RegisteredAccount = ({nextStep, selectedOpt}) => {
   console.log('selectedOpt',selectedOpt)
-  
+  const dispatch = useDispatch();
+
   const debitCreditInfo = {
     img : debitCards,
     instruction: 'Select from the available cards to finish the purchase',
@@ -204,20 +193,22 @@ const RegisteredAccount = ({nextStep, selectedOpt}) => {
     instruction: 'Select your bank to finish payment',
     accountList: useSelector(({ user }) => user.savedBanks), // input account here
   } 
+
+
   const selectedInfo = selectedOpt === 1 ? debitCreditInfo : bankAcctInfo
   const isDone = useSelector(({ payment }) => payment.isDone);
   const [checkedAgreement, setToCheck] = useState(true); 
-  const [checkedAccountNumber, setToSelectedAccount] = useState(true); 
+  const [selectedAccountNumber, setToSelectedAcct] = useState(''); 
 
-  const dispatch = useDispatch();
   const tempCardInfo = ['XXXX-XXXX-XXXX-1234', 'XXXX-XXXX-XXXX-5678']; // i use this becasue there is no sample output
 
 
   const onMakePayment = () => {
-    console.log('makepayment')
+    console.log('add Card')
 
     const data = {
-      amount: 11111120,
+      // amount: selectedAccountNumber,    -> temporary commented
+      amount: 5555555555554444,
       paymentId: 12,
       currency: "eur",
       type: 'CARD', // "card" or "account"
@@ -230,23 +221,27 @@ const RegisteredAccount = ({nextStep, selectedOpt}) => {
     setToCheck(!checkedAgreement);
   }
 
-  const onClickAccountNumber = (e) => {
-    setToSelectedAccount(!checkedAccountNumber);
-  }
-
   if(isDone){
     nextStep();
   }
 
+  const onChangeSelected = (e) => {
+    setToSelectedAcct(e.target.value);
+  }
+  
   return (
     <>
       <Avatar shape="square" size={120} icon="user" src={selectedInfo.img} />
       <p>{selectedInfo.instruction}</p>
       <Row gutter={[0,20]}>
-        {tempCardInfo.map(info => <CardInfo onClick={onClickAccountNumber} info={info}/>)}
-        <Col span={24}>
-          <Checkbox onClick={onClickAgreement}>{'I agree to the terms & conditions, buyer policy of traderlo'}</Checkbox>
-        </Col>
+        <Radio.Group onChange={onChangeSelected} value={selectedAccountNumber}>
+          {selectedInfo.accountList.length > 0 ? 
+          selectedInfo.accountList.map(info => <CardInfo info={info}/>) :
+          tempCardInfo.map(info => <CardInfo info={info}/>)}
+          <Col span={24}>
+            <Checkbox onClick={onClickAgreement}>{'I agree to the terms & conditions, buyer policy of traderlo'}</Checkbox>
+          </Col>
+        </Radio.Group>
       </Row>
       <Button type='primary' onClick={onMakePayment} disabled={checkedAgreement} size='large'>Make Payment</Button>
     </>
@@ -263,7 +258,7 @@ const MethodDetails = ({selectedOpt, ...props}) => {
   const savedCards = useSelector(({ user }) => user.savedCards);
 
   // check if there are available cards and bank account then show either verification process or payment process
-  const hasSavedCards = savedCards.length > 0 ? true : false;  
+  const hasSavedCards = savedCards.length > 0 ? true : true;  
   const hasSavedBanks = savedBanks.length > 0 ? true : false;
 
   switch(selectedOpt){
