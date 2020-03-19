@@ -1,7 +1,9 @@
 import { paymentTypes } from 'appRedux/constants/ActionTypes';
 
 const intialState = {
-  isDone: false,
+  isDone: false,        // take to the next step
+  hasError: false,      //show the exclamation icon
+  isPayment: false,     //show either payment or verification
 };
 
 export default (state = intialState, action) => {
@@ -11,6 +13,16 @@ export default (state = intialState, action) => {
       return { ...state, isDone: true };
     case paymentTypes.ADD_ACCOUNT_SUCCESS:
       return { ...state, isDone: true };
+    case paymentTypes.VERIFY_CARD_FAILED:
+      return { ...state, isDone: true, hasError: true };
+    case paymentTypes.ADD_ACCOUNT_FAILED:
+      return { ...state, isDone: true, hasError: true };
+    case paymentTypes.CHARGE_SUCCESS:
+      return { ...state,isDone: true, isPayment: true };
+    case paymentTypes.CHARGE_FAILED:
+      return { ...state,isDone: true, isPayment: true, hasError: true};
+    case paymentTypes.CLEAR_PAYMENT_STEPS:
+      return { ...state,isDone: false, isPayment: false, hasError: false};
     default:
       return state;
   }

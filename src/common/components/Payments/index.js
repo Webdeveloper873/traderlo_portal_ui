@@ -1,5 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, Divider, Row, Col, Button, Steps } from 'antd';
+
+
+//actions
+import * as payment from 'appRedux/actions/payment';
+
 
 //components
 import ChooseMethod from './Components/ChooseMethod';
@@ -18,7 +24,7 @@ const PageRouter = ({ selectedOpt, onClickOpt, stepNo, nextStep}) => {
     case 1:
       return <MethodDetails selectedOpt={selectedOpt} nextStep={nextStep}/>;
     case 2:
-      return <PaymentResult />;
+      return <PaymentResult selectedOpt={selectedOpt} />;
     default:
       return <ChooseMethod />;
   }
@@ -28,7 +34,15 @@ const PageRouter = ({ selectedOpt, onClickOpt, stepNo, nextStep}) => {
 const Payments = () => {
   const [stepNo, setStepNo] = useState(0);
   const [selectedOpt, setSelectedOpt] = useState();
+  const dispatch = useDispatch();
 
+  useEffect(()=>{
+    setStepNo(0);
+    return () => {
+      setStepNo(0);
+      dispatch(payment.clearPaymentSteps());
+    };
+  }, []);
   const nextStep = () => {
     setStepNo(stepNo+1);
   }

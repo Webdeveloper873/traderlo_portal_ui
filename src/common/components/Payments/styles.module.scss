@@ -65,3 +65,15 @@
 .paymentResult {
   font-size: 64px;
 }
+
+.paymentResultFailed {
+  font-size: 64px;
+  color:#ff9933;
+  margin-bottom:15px;
+}
+
+.paymentResultSuccess {
+  font-size: 64px;
+  color:#13da76;
+  margin-bottom:15px;
+}

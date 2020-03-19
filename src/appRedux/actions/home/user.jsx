@@ -50,14 +50,16 @@ export const getSavedBanks = () => ({
   type: userActTypes.GET_SAVED_BANKS
 });
 
-export const getSavedBanksSuccess = () => ({
-  type: userActTypes.GET_SAVED_BANKS_SUCCESS
+export const getSavedBanksSuccess = (payload) => ({
+  type: userActTypes.GET_SAVED_BANKS_SUCCESS,
+  payload
 });
 
 export const getSavedCard = () => ({
   type: userActTypes.GET_SAVED_CARDS
 });
 
-export const getSavedCardSuccess = () => ({
-  type: userActTypes.GET_SAVED_CARDS_SUCCESS
+export const getSavedCardSuccess = (payload) => ({
+  type: userActTypes.GET_SAVED_CARDS_SUCCESS,
+  payload
 });
