@@ -90,8 +90,8 @@ const BankAccount = ({nextStep}) => {
 
     const data = { // need to update this one
       accountNumber: acctNum.value, //this is aleready string
-      country: "Philippine",
-      currency: "eur",
+      routingNumber: parseInt(routingNum.value),
+      currency: "individual",
       name: acctHolderName.value, //already string
     }
     dispatch(payment.addAccount(data));
@@ -172,7 +172,7 @@ const Paypal = ({nextStep}) => {
 const CardInfo = ({info}) => {
   return(
     <Col span={24}>
-      <Radio className={classes.inputBlock} value={info}>{info}</Radio>
+      <Radio className={classes.inputBlock} value={info.accountNumber}>{info.accountNumber}</Radio>
     </Col>
   );
 }
@@ -185,16 +185,19 @@ const RegisteredAccount = ({nextStep, selectedOpt}) => {
   const debitCreditInfo = {
     img : debitCards,
     instruction: 'Select from the available cards to finish the purchase',
-    accountList: useSelector(({ user }) => user.savedCards), // input account here
+    accountList: useSelector(({ user }) => user.savedCards), 
   } 
+  //debitCreditInfo.accountList = useSelector(({ user }) => user.savedCards); // input account here
 
   const bankAcctInfo = {
     img : bankCheck,
     instruction: 'Select your bank to finish payment',
-    accountList: useSelector(({ user }) => user.savedBanks), // input account here
+    accountList:  useSelector(({ user }) => user.savedBanks),
   } 
+  //bankAcctInfo.accountList = useSelector(({ user }) => user.savedBanks); // input account here
 
-
+  console.log(debitCreditInfo,'debitCreditInfo');
+  console.log(bankAcctInfo,'debitCreditInfo');
   const selectedInfo = selectedOpt === 1 ? debitCreditInfo : bankAcctInfo
   const isDone = useSelector(({ payment }) => payment.isDone);
   const [checkedAgreement, setToCheck] = useState(true); 
