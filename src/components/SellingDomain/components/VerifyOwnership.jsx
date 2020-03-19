@@ -140,6 +140,7 @@ const MetaKeyContent = () => {
   const metaTag = useSelector(({ sellDomain }) => sellDomain.meta);
   const listingId = useSelector(({ sellDomain }) => sellDomain.listingId);
   const verifyOwnership = useSelector(({ sellDomain }) => sellDomain.verifyOwnership);
+  const userProfile = useSelector(({ user }) => user.profile);
   const [verifyDone, setVerifyDone] = useState(false);
   const text = useFormInput(metaTag);
   const dispatch = useDispatch();
@@ -152,7 +153,7 @@ const MetaKeyContent = () => {
       status: 0,
       txtName: "string",
       txtVal: "string",
-      userId: 42, //TODO: change to valid userID
+      userId: userProfile.id,
       metaTag: text.value,
     };
     dispatch(domain.verifyByMetaTag(data));

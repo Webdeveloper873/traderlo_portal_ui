@@ -1,12 +1,13 @@
 import React from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
 //components
 import Routes from 'components/Routes';
 import Viewport from 'common/components/Viewport';
 
 //utils
-import configureStore from 'appRedux/store';
+import { store, persistor } from 'appRedux/store';
 
 //styles
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -18,15 +19,15 @@ const propTypes = {
 const defaultProps = {
 }
 
-const store = configureStore();
-
 //eslint-disable-next-line
 const App = ({ }) => {
   return (
     <ReduxProvider store={store}>
-      <Viewport>
-        <Routes />
-      </Viewport>
+      <PersistGate loading={null} persistor={persistor}>
+        <Viewport>
+          <Routes />
+        </Viewport>
+      </PersistGate>
     </ReduxProvider>
   );
 }
