@@ -258,7 +258,7 @@ const MethodDetails = ({selectedOpt, ...props}) => {
   const savedCards = useSelector(({ user }) => user.savedCards);
 
   // check if there are available cards and bank account then show either verification process or payment process
-  const hasSavedCards = savedCards.length > 0 ? true : true;  
+  const hasSavedCards = savedCards.length > 0 ? true : false;  
   const hasSavedBanks = savedBanks.length > 0 ? true : false;
 
   switch(selectedOpt){
