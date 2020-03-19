@@ -200,20 +200,19 @@ const RegisteredAccount = ({nextStep, selectedOpt}) => {
   const [checkedAgreement, setToCheck] = useState(true); 
   const [selectedAccountNumber, setToSelectedAcct] = useState(''); 
 
-  const tempCardInfo = ['XXXX-XXXX-XXXX-1234', 'XXXX-XXXX-XXXX-5678']; // i use this becasue there is no sample output
+  const tempCardInfo = [5555555555554444, 4242424242424242]; // i use this becasue there is no sample output
 
 
   const onMakePayment = () => {
     console.log('add Card')
 
     const data = {
-      // amount: selectedAccountNumber,    -> temporary commented
-      amount: 5555555555554444,
+      amount: 120,
       paymentId: 12,
       currency: "eur",
       type: selectedOpt === 1 ? "CARD" : "ACCOUNT" // "card" or "account"
     }
-
+    console.log(data,'data payment')
     dispatch(payment.charge(data));
   }
 
