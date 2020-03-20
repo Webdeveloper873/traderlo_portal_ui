@@ -5,7 +5,7 @@ import { Avatar, Divider, Row, Col, Button, Steps } from 'antd';
 
 //actions
 import * as payment from 'appRedux/actions/payment';
-
+import { user } from 'appRedux/actions/home';
 
 //components
 import ChooseMethod from './Components/ChooseMethod';
@@ -39,7 +39,10 @@ const Payments = () => {
   useEffect(()=>{
     setStepNo(0);
     return () => {
+
       setStepNo(0);
+      dispatch(user.getSavedBanks());
+      dispatch(user.getSavedCard());
       dispatch(payment.clearPaymentSteps());
     };
   }, []);

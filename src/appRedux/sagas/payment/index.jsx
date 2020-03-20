@@ -24,9 +24,9 @@ function* verifyCard({ payload }) {
     ));
     console.log('verifyCard resp: ', resp)
     if (resp) {
-      console.log('done 1 card ')
-      yield put(user.getSavedCard(resp));
-      console.log('done 2')
+      // console.log('done 1 card ')
+      // yield put(user.getSavedCard(resp));
+      // console.log('done 2')
       yield put(payment.verifyCardSuccess(resp));
     }
   } catch (err) {

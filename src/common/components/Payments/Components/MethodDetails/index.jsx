@@ -90,8 +90,8 @@ const BankAccount = ({nextStep}) => {
 
     const data = { // need to update this one
       accountNumber: acctNum.value, //this is aleready string
-      country: "Philippine",
-      currency: "eur",
+      routingNumber: parseInt(routingNum.value),
+      currency: "individual",
       name: acctHolderName.value, //already string
     }
     dispatch(payment.addAccount(data));
@@ -185,35 +185,35 @@ const RegisteredAccount = ({nextStep, selectedOpt}) => {
   const debitCreditInfo = {
     img : debitCards,
     instruction: 'Select from the available cards to finish the purchase',
-    accountList: useSelector(({ user }) => user.savedCards), // input account here
+    fetchedList: useSelector(({ user }) => user.savedCards), 
   } 
 
   const bankAcctInfo = {
     img : bankCheck,
     instruction: 'Select your bank to finish payment',
-    accountList: useSelector(({ user }) => user.savedBanks), // input account here
+    fetchedList:  useSelector(({ user }) => user.savedBanks),
   } 
 
-
+  console.log(debitCreditInfo,'debitCreditInfo');
+  console.log(bankAcctInfo,'debitCreditInfo');
   const selectedInfo = selectedOpt === 1 ? debitCreditInfo : bankAcctInfo
   const isDone = useSelector(({ payment }) => payment.isDone);
   const [checkedAgreement, setToCheck] = useState(true); 
   const [selectedAccountNumber, setToSelectedAcct] = useState(''); 
 
-  const tempCardInfo = ['XXXX-XXXX-XXXX-1234', 'XXXX-XXXX-XXXX-5678']; // i use this becasue there is no sample output
+  const tempCardInfo = [5555555555554444, 4242424242424242]; // i use this becasue there is no sample output
 
 
   const onMakePayment = () => {
     console.log('add Card')
 
     const data = {
-      // amount: selectedAccountNumber,    -> temporary commented
-      amount: 5555555555554444,
+      amount: 120,
       paymentId: 12,
       currency: "eur",
-      type: selectedOpt === 1 ? "CARD" : "ACCOUNT" // "card" or "account"
+      type: selectedOpt === 1 ? "CARD" : "ACCOUNT" 
     }
-
+    console.log(data,'data payment')
     dispatch(payment.charge(data));
   }
 
@@ -235,9 +235,9 @@ const RegisteredAccount = ({nextStep, selectedOpt}) => {
       <p>{selectedInfo.instruction}</p>
       <Row gutter={[0,20]}>
         <Radio.Group onChange={onChangeSelected} value={selectedAccountNumber}>
-          {selectedInfo.accountList.length > 0 ? 
-          selectedInfo.accountList.map(info => <CardInfo info={info}/>) :
-          tempCardInfo.map(info => <CardInfo info={info}/>)}
+          {selectedInfo.fetchedList.length > 0 && selectedOpt === 1 ?  // 1 = card , 2 = bank account
+          selectedInfo.fetchedList.map(info => <CardInfo info={info.cardId}/>) :
+          selectedInfo.fetchedList.map(info => <CardInfo info={info.accountNumber}/>)}
           <Col span={24}>
             <Checkbox onClick={onClickAgreement}>{'I agree to the terms & conditions, buyer policy of traderlo'}</Checkbox>
           </Col>

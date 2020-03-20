@@ -23,6 +23,7 @@ function* login({payload}) {
       yield put(user.successLogin(resp));
     }
   } catch (err) {
+    yield put(user.failedLogin());
     console.log('err: ', err);
   }
 }
@@ -85,9 +86,7 @@ function* getSavedAccounts() {
 
 function* getSavedCards() {
   try {
-    const resp = yield call(() => request.get(`${base_url}/stripe/getSavedCards`, {
-      headers
-    }));
+    const resp = yield call(() => request.get(`${base_url}/stripe/getSavedCards`, { headers }));
     if (resp) {
       yield put(user.getSavedCardSuccess(resp));
     }

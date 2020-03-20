@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Modal, Row, Form, Button } from 'react-bootstrap';
+import { Modal, Row, Form as TempForm, Button as TempButton } from 'react-bootstrap';
+import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { Redirect } from "react-router-dom";
 
 //components
@@ -18,12 +19,14 @@ import classes from './styles.module.scss';
 //constants
 import {routes} from 'common/constants';
 
-const SignInForm = ({handleClose}) => {
+const SignInForm = ({form, handleClose}) => {
   const [toLoginPage, setToLoginPage] = useState(false);
+  const loginFailed = useSelector(({user})=>user.loginFailed);
   const loginUser = useFormInput('angecapuz132');
   const loginPass = useFormInput('asdqwe123');
   const isLoggedIn = useSelector(({user}) => user.isLoggedIn);
   const dispatch = useDispatch();
+  const {getFieldDecorator} = form || {};
 
   useEffect(()=>{
     if(isLoggedIn){
@@ -34,37 +37,57 @@ const SignInForm = ({handleClose}) => {
     }
   }, [isLoggedIn]);
 
-  const onSignIn = () => {
-    const userDetails = {
-      username: loginUser.value,
-      password: loginPass.value
-    }
-    dispatch(user.login(userDetails));
-  }
+  const handleSubmit = e => {
+    e.preventDefault();
+    form.validateFields((err, values) => {
+      if (!err) {
+        console.log('Received values of form: ', values);
+        const userDetails = {
+          username: values.username,
+          password: values.password
+        }
+        dispatch(user.login(userDetails));
+      }
+    });
+  };
 
   if (toLoginPage){
     return <Redirect to={routes.DASHBOARD_PAGE} />
   }
 
   return(
-    <Form className={classes.formWrapper}>
-      <Row className="justify-content-md-center">
-        {/* <div class="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="true"></div> */}
-      </Row>
+    <Form onSubmit={handleSubmit} className={classes.formWrapper}>
       <Divider className={classes.divStyle}>
         <Divider.text>OR</Divider.text>
       </Divider>
-      <br />
-        <Form.Group>
-          <Form.Control type='text' placeholder="Email/Username"
-            onChange={loginUser.handleInputChange}
-            /> <br />
-          <Form.Control type='password' placeholder="Password"
-            onChange={loginPass.handleInputChange}
-          /> <br />
-          <Form.Check type="checkbox" label="Remember me" />
-        </Form.Group>
-      <Button variant="primary" onClick={onSignIn}>Submit</Button>
+      <Form.Item validateStatus={loginFailed ? 'error' : ''}>
+        {getFieldDecorator('username', {
+          rules: [{ required: true, message: 'Please input your username!' }],
+        })(
+          <Input size="large"
+            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+            placeholder="Username"
+          />,
+        )}
+      </Form.Item>
+      <Form.Item validateStatus={loginFailed ? 'error' : ''} help={loginFailed ? "Invalid login credentials" : ""}>
+        {getFieldDecorator('password', {
+          rules: [{ required: true, message: 'Please input your Password!' }],
+        })(
+          <Input size="large" 
+            prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+            type="password"
+            placeholder="Password"
+          />,
+        )}
+      </Form.Item>
+      <Form.Item>
+        {getFieldDecorator('remember', {
+          valuePropName: 'checked',
+          initialValue: true,
+        })(<Checkbox>Remember me</Checkbox>)}<br/>
+        <Button type="primary" htmlType="submit" className="login-form-button">Submit</Button>
+      </Form.Item>
     </Form>
   )
 }
@@ -77,7 +100,7 @@ const SignUpForm = ({handleClose}) => {
   const signUpUserConfirmPass = useFormInput('');
   const isLoggedIn = useSelector(({user}) => user.isLoggedIn);
   const dispatch = useDispatch();
-  
+
 
   useEffect(()=>{
     if(isLoggedIn){
@@ -103,7 +126,7 @@ const SignUpForm = ({handleClose}) => {
   }
 
   return (
-    <Form className={classes.formWrapper}>
+    <TempForm className={classes.formWrapper}>
       <Row className="justify-content-md-center">
         {/* <div class="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="true"></div> */}
       </Row>
@@ -111,23 +134,23 @@ const SignUpForm = ({handleClose}) => {
         <Divider.text>OR</Divider.text>
       </Divider>
       <br />
-      <Form.Group>
-        <Form.Control type="text" placeholder="Username" 
+      <TempForm.Group>
+        <TempForm.Control type="text" placeholder="Username"
           onChange={signUpUsername.handleInputChange}/> <br />
-        <Form.Control type="text" placeholder="Email Id"
+        <TempForm.Control type="text" placeholder="Email Id"
           onChange={signUpUserEmail.handleInputChange}/> <br />
-        <Form.Control type="text" placeholder="Password"
+        <TempForm.Control type="text" placeholder="Password"
           onChange={signUpUserPass.handleInputChange}/> <br />
-        <Form.Control type="text" placeholder="Confirm Password" 
+        <TempForm.Control type="text" placeholder="Confirm Password"
           onChange={signUpUserConfirmPass.handleInputChange}/>
-      </Form.Group>
-      <Button variant="primary" disabled={signUpUserConfirmPass.value !== signUpUserPass.value} onClick={onSignUp}>Sign Up</Button>
-    </Form>
+      </TempForm.Group>
+      <TempButton variant="primary" disabled={signUpUserConfirmPass.value !== signUpUserPass.value} onClick={onSignUp}>Sign Up</TempButton>
+    </TempForm>
   )
 }
 
 const SignUp = ({show, handleClose, toggleIsSignUp}) => {
-  
+
   return (
     <Modal centered
       aria-labelledby="contained-modal-title-vcenter"
@@ -146,7 +169,7 @@ const SignUp = ({show, handleClose, toggleIsSignUp}) => {
   );
 }
 
-const Login = ({show, handleClose}) => {
+const Login = ({show, handleClose, form}) => {
   const [isSignUp, setIsSignUp] = useState(false);
 
   const toggleIsSignUp = () => setIsSignUp(!isSignUp)
@@ -163,7 +186,7 @@ const Login = ({show, handleClose}) => {
         <Modal.Title>SIGN IN</Modal.Title>
       </Modal.Header>
       <Modal.Body className="justify-content-md-center">
-        <SignInForm handleClose={handleClose}/>
+        <SignInForm form={form} handleClose={handleClose}/>
       </Modal.Body>
       <Modal.Footer className="justify-content-md-center">
         <span>Don't have an account?</span>
@@ -173,4 +196,6 @@ const Login = ({show, handleClose}) => {
   );
 }
 
-export default Login;
+const WrappedLogin = Form.create({ name: 'loginPage' })(Login);
+
+export default WrappedLogin;
