@@ -23,6 +23,7 @@ function* login({payload}) {
       yield put(user.successLogin(resp));
     }
   } catch (err) {
+    yield put(user.failedLogin());
     console.log('err: ', err);
   }
 }

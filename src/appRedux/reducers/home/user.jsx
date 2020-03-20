@@ -3,6 +3,7 @@ import { routes } from 'common/constants';
 
 const intialState = {
   isLoggedIn: false,
+  loginFailed: false,
   token: {},
   profile: {},
   savedBanks: [],
@@ -22,8 +23,10 @@ export default (state = intialState, action) => {
         accessToken: access_token,
         refreshToken: refresh_token
       };
+    case userActTypes.LOGIN_FAILED:
+      return { ...state, loginFailed: true };
     case userActTypes.FETCH_PROFILE_SUCCESS:
-      return { ...state, profile };
+      return { ...state, profile, loginFailed: false };
     case userActTypes.REGISTER_USER_SUCCESS:
       return { ...state,
         isLoggedIn: true,
