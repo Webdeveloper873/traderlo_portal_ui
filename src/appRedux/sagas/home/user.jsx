@@ -14,7 +14,7 @@ const newHeaders = { ...headers, authorization: `Bearer ${getAccessToken()}` };
 
 function* login({payload}) {
   try {
-    let resp = yield call(() => request.post(`${login_url}/oauth/token`, {
+    let resp = yield call(() => request.post(`${base_url}/user/login`, {
       headers: loginHeaders,
       body: objToFormData(payload),
     }));
