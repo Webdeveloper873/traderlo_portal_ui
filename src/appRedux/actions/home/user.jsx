@@ -67,3 +67,7 @@ export const getSavedCardSuccess = (payload) => ({
   type: userActTypes.GET_SAVED_CARDS_SUCCESS,
   payload
 });
+
+export const resetUserState = () => ({
+  type: userActTypes.RESET
+});

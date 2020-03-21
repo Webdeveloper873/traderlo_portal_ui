@@ -1,5 +1,9 @@
 import { sellDomainTypes } from 'appRedux/constants/ActionTypes';
 
+export const initializeSelling = () => ({
+  type: sellDomainTypes.INITIALIZE_SELL,
+});
+
 export const sellDomain = (url) => ({
   type: sellDomainTypes.SELL_DOMAIN,
   payload: { url }

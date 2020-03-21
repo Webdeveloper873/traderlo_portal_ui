@@ -12,7 +12,7 @@ import { request, objToFormData, getAccessToken } from 'common/utils/helpers';
 
 const newHeaders = { ...headers, authorization: `Bearer ${getAccessToken()}` };
 
- function* login({payload}) {
+function* login({payload}) {
   try {
     let resp = yield call(() => request.post(`${base_url}/user/login`, {
        headers: noAuthHeaders,
@@ -26,7 +26,7 @@ const newHeaders = { ...headers, authorization: `Bearer ${getAccessToken()}` };
     yield put(user.failedLogin());
     console.log('err: ', err);
   }
-} 
+}
 
 function* getUserProfile() {
   try{
@@ -43,13 +43,13 @@ function* getUserProfile() {
 function* registerUser({payload}) {
   try{
     const {profile} = payload || {};
-    const { userName, password, email } = profile || {};
-    const resp = yield call(() => request.post(`${base_url}/user/register`,
-      {
-        headers: noAuthHeaders,
-        body: JSON.stringify(profile),
-      }));
-    if(resp){
+    // const resp = yield call(() => request.post(`${base_url}/user/register`,
+    //   {
+    //     headers: noAuthHeaders,
+    //     body: JSON.stringify(profile),
+    //   }));
+    const resp = true;
+    if(true){
       yield put(user.registerUserSuccess(resp));
     }
   }catch(err) {

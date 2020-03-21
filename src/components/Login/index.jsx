@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal, Row, Form as TempForm, Button as TempButton } from 'react-bootstrap';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 import { Redirect } from "react-router-dom";
 
 //components
@@ -99,8 +99,8 @@ const SignUpForm = ({handleClose}) => {
   const signUpUserPass = useFormInput('');
   const signUpUserConfirmPass = useFormInput('');
   const isLoggedIn = useSelector(({user}) => user.isLoggedIn);
+  const register = useSelector(({user}) => user.register);
   const dispatch = useDispatch();
-
 
   useEffect(()=>{
     if(isLoggedIn){
@@ -110,6 +110,14 @@ const SignUpForm = ({handleClose}) => {
       }, 100);
     }
   }, [isLoggedIn]);
+
+  useEffect(()=>{
+    if(register){
+      setTimeout(()=>{
+        handleClose();
+      }, 100);
+    }
+  }, [register]);
 
 
   const onSignUp = () => {
@@ -139,9 +147,9 @@ const SignUpForm = ({handleClose}) => {
           onChange={signUpUsername.handleInputChange}/> <br />
         <TempForm.Control type="text" placeholder="Email Id"
           onChange={signUpUserEmail.handleInputChange}/> <br />
-        <TempForm.Control type="text" placeholder="Password"
+        <TempForm.Control type='password' placeholder="Password"
           onChange={signUpUserPass.handleInputChange}/> <br />
-        <TempForm.Control type="text" placeholder="Confirm Password"
+        <TempForm.Control type='password' placeholder="Confirm Password"
           onChange={signUpUserConfirmPass.handleInputChange}/>
       </TempForm.Group>
       <TempButton variant="primary" disabled={signUpUserConfirmPass.value !== signUpUserPass.value} onClick={onSignUp}>Sign Up</TempButton>
