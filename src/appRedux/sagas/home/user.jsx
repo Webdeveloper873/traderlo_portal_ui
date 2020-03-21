@@ -12,7 +12,7 @@ import { request, objToFormData, getAccessToken } from 'common/utils/helpers';
 
 const newHeaders = { ...headers, authorization: `Bearer ${getAccessToken()}` };
 
-function* login({payload}) {
+/* function* login({payload}) {
   try {
     let resp = yield call(() => request.post(`${base_url}/user/login`, {
       headers: loginHeaders,
@@ -24,6 +24,21 @@ function* login({payload}) {
     }
   } catch (err) {
     yield put(user.failedLogin());
+    console.log('err: ', err);
+  }
+} */
+
+function* login({payload})
+{
+ try {
+  let resp = yield call(() => request.post(`${base_url}/user/login`, {
+      headers: noAuthHeaders,
+      body: JSON.stringify(payload),
+    }));
+    if (resp) {
+      yield put(user.successLogin(resp));
+    }
+  } catch (err) {
     console.log('err: ', err);
   }
 }
