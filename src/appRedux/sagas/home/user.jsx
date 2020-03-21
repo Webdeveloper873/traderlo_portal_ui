@@ -12,11 +12,11 @@ import { request, objToFormData, getAccessToken } from 'common/utils/helpers';
 
 const newHeaders = { ...headers, authorization: `Bearer ${getAccessToken()}` };
 
-function* login({payload}) {
+ function* login({payload}) {
   try {
     let resp = yield call(() => request.post(`${base_url}/user/login`, {
-      headers: loginHeaders,
-      body: objToFormData(payload),
+       headers: noAuthHeaders,
+       body: JSON.stringify(payload),
     }));
 
     if (resp) {
@@ -26,7 +26,7 @@ function* login({payload}) {
     yield put(user.failedLogin());
     console.log('err: ', err);
   }
-}
+} 
 
 function* getUserProfile() {
   try{
