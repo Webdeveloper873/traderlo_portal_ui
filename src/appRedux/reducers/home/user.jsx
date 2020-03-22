@@ -30,6 +30,8 @@ export default (state = initialState, action) => {
       return { ...state, profile, loginFailed: false };
     case userActTypes.REGISTER_USER_SUCCESS:
       return {...initialState, register: true};
+    case userActTypes.REGISTER_USER_FAILED:
+      return {...initialState, register: false};
     case userActTypes.LOGOUT_SUCCESS:
       window.localStorage.clear();
       window.location.reload();

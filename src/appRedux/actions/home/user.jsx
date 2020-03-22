@@ -39,6 +39,10 @@ export const registerUserSuccess = (profile) => ({
   payload: { profile }
 });
 
+export const registerUserFailed = () => ({
+  type: userActTypes.REGISTER_USER_FAILED,
+});
+
 export const logout = () => ({
   type: userActTypes.LOGOUT,
   payload: {

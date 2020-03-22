@@ -112,7 +112,7 @@ const SignUpForm = ({handleClose}) => {
   }, [isLoggedIn]);
 
   useEffect(()=>{
-    if(register){
+    if(register != null){
       setTimeout(()=>{
         handleClose();
       }, 100);

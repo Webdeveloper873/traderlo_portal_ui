@@ -43,16 +43,17 @@ function* getUserProfile() {
 function* registerUser({payload}) {
   try{
     const {profile} = payload || {};
-    // const resp = yield call(() => request.post(`${base_url}/user/register`,
-    //   {
-    //     headers: noAuthHeaders,
-    //     body: JSON.stringify(profile),
-    //   }));
-    const resp = true;
+    const resp = yield call(() => request.post(`${base_url}/user/register`,
+      {
+        headers: noAuthHeaders,
+        body: JSON.stringify(profile),
+      }));
+    // const resp = true;
     if(true){
       yield put(user.registerUserSuccess(resp));
     }
   }catch(err) {
+    yield put(user.registerUserFailed());
     console.log('err: ', err);
   }
 }
