@@ -26,6 +26,11 @@ const Menus = () => {
   return (
     <Menu>
     <Menu.Item>
+      <Button type="link" href={routes.DASHBOARD_PAGE}>
+        Dashboard
+      </Button>
+    </Menu.Item>
+    <Menu.Item>
       <Button type="link" onClick={onClickLogout}>
         Log out
       </Button>
