@@ -10,7 +10,6 @@ const intialState = {
 export default (state = intialState, action) => {
   const { type, payload } = action || {};
   const { selectedDomainInfo } = state || {};
-  console.log(payload,'payload reducer');
   switch (type) {
     case buyDomainTypes.GET_BUY_DOMAIN_SUCCESS:
       //const {id} = payload || {};

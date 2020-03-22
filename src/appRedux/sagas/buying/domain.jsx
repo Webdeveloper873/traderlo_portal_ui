@@ -53,7 +53,6 @@ function* getBuyDomainById({payload}) {
 
 function* addToWatchlist({payload}) {
   try{
-    console.log(payload,'payload watchlist')
     const {id, userId} = payload || {};
     const type = 'l' // temporarily 
     const resp = yield call(() => request.post(`${base_url}/watchlist/${type}/${id}`, 
