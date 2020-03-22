@@ -27,6 +27,7 @@ function* setBidDomain({ payload }) {
       yield put(bidDomain.setBidSuccess(payload));
     }
   } catch (err) {
+    yield put(bidDomain.setBidFailed());
     console.log('err: ', err);
   }
 }

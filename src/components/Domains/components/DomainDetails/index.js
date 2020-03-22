@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Row, Col, Card, Tabs, Icon, Input, Button, Divider, Modal } from 'antd';
+import { Row, Col, Card, Tabs, Icon, Input, Button, Divider, Modal, notification } from 'antd';
 
 //components
 import Banner from 'common/components/Banner';
@@ -67,7 +67,8 @@ const LeftPane = (domainDetails) => {
 const RightPane = (domainDetails) => {
   const [buyNowVisible, setShowModal] = useState(false);
   const selectedDomainInfo = useSelector(({ buyDomain }) => buyDomain.selectedDomainInfo);
-  const alreadyInWatchList = useSelector(({buyDomain}) => buyDomain.alreadyInWatchList)
+  const alreadyInWatchList = useSelector(({buyDomain}) => buyDomain.alreadyInWatchList);
+  const bidFailed = useSelector(({ bidding }) => bidding.bidFailed);
   const bid = useFormInput();
   const dispatch = useDispatch();
 
@@ -100,13 +101,25 @@ const RightPane = (domainDetails) => {
     dispatch(bidDomain.setBid(data));
   }
 
+  useEffect(()=>{
+    if(bidFailed){
+      notification.error({
+        className: classes.notif,
+        message: 'Bid Failed!',
+        description: 'Please try again.',
+      });
+    }
+    bid.reset();
+    dispatch(bidDomain.resetBid());
+  }, [bidFailed]);
+
   return(
     <Col xs={24} md={8}>
       <Card className={classes.rightPane}>
         <h4>Current price <span>Request for Reserve?</span></h4>
         <h4>{`$ ${domainDetails.startingPrice}`}</h4>
         <p><b>5</b>{` Bids`}<span><Icon type="clock-circle" />{` ${domainDetails.durationDate} Days Left`}</span></p>
-        <Input onChange={bid.handleInputChange} addonAfter={<span onClick={onBidNow}>Bid Now</span>} placeholder='Enter Amount' />
+        <Input onChange={bid.handleInputChange} addonAfter={<span onClick={onBidNow} className={classes.bidNowStyle}>Bid Now</span>} placeholder='Enter Amount' />
         <Row className={classes.rowStyle} gutter={32} align='middle' type='flex'>
           <Col {...twoCol}>
             <Button className={classes.btnStyle} onClick={showModal}>{`Buy Now $${domainDetails.buyNowPrice}`}</Button>

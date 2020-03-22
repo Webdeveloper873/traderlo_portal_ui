@@ -109,6 +109,7 @@ const Selling = () => {
 
   useEffect(()=>{
     //reset listing id
+    dispatch(domainActions.initializeSelling());
   }, [])
 
   useEffect(()=>{
