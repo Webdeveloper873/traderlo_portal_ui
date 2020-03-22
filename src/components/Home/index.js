@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Col as ColTemp, Row as RowTemp} from 'react-bootstrap';
-import { Col, Row } from 'antd';
+import { Col, Row, message, notification } from 'antd';
 
 //components
 import PageWrapper from 'common/components/PageWrapper';
@@ -16,19 +16,47 @@ import BlogCards from './BlogCards';
 
 //actions
 import { getFeaturedBlogs } from 'appRedux/actions/home/blogs';
+import { user } from 'appRedux/actions/home';
 
 //styles
 import classes from './styles.module.scss';
 
 
 const Home = () => {
-  const featBlogs = useSelector(({blogs})=>blogs.featBlogs);
+  const featBlogs = useSelector(({ blogs }) => blogs.featBlogs);
+  const [regSuccess, setRegSuccess] = useState(false);
   const dispatch = useDispatch();
+  const register = useSelector(({ user }) => user.register);
+
+  const displaySuccess = () => {
+    message.success('This is a success message');
+  }
+
+  useEffect(() => {
+    if(register) {
+      notification.success({
+        className: classes.successNotif,
+        message: 'Sign up success!',
+        description: 'You can now login using your new account.',
+      });
+    }else if(register === false){
+      notification.error({
+        className: classes.successNotif,
+        message: 'Sign up failed!',
+        description: 'Please try again.',
+      });
+    }
+    dispatch(user.resetUserState());
+  }, [register]);
 
   useEffect(()=>{
     //add fetching on initialization
     dispatch(getFeaturedBlogs());
   }, []);
+
+  if(regSuccess){
+    displaySuccess();
+  }
 
   return(
     <>

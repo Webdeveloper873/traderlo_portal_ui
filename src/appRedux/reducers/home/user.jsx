@@ -1,16 +1,17 @@
 import { userActTypes } from 'appRedux/constants/ActionTypes';
 import { routes } from 'common/constants';
 
-const intialState = {
+const initialState = {
   isLoggedIn: false,
   loginFailed: false,
   token: {},
   profile: {},
   savedBanks: [],
   savedCards: [],
+  register: null,
 };
 
-export default (state = intialState, action) => {
+export default (state = initialState, action) => {
   const { type, payload } = action || {};
   const { profile, token } = payload || {};
   switch (type) {
@@ -28,20 +29,19 @@ export default (state = intialState, action) => {
     case userActTypes.FETCH_PROFILE_SUCCESS:
       return { ...state, profile, loginFailed: false };
     case userActTypes.REGISTER_USER_SUCCESS:
-      return { ...state,
-        isLoggedIn: true,
-        profile
-      };
+      return {...initialState, register: true};
+    case userActTypes.REGISTER_USER_FAILED:
+      return {...initialState, register: false};
     case userActTypes.LOGOUT_SUCCESS:
       window.localStorage.clear();
       window.location.reload();
-      return { ...state,
-        isLoggedIn: false,
-      };
+      return initialState;
     case userActTypes.GET_SAVED_BANKS_SUCCESS:
       return { ...state, savedBanks: payload };
     case userActTypes.GET_SAVED_CARDS_SUCCESS:
       return { ...state, savedCards: payload };
+    case userActTypes.RESET:
+      return initialState;
     default:
       return state;
   }

@@ -39,6 +39,10 @@ export const registerUserSuccess = (profile) => ({
   payload: { profile }
 });
 
+export const registerUserFailed = () => ({
+  type: userActTypes.REGISTER_USER_FAILED,
+});
+
 export const logout = () => ({
   type: userActTypes.LOGOUT,
   payload: {
@@ -66,4 +70,8 @@ export const getSavedCard = () => ({
 export const getSavedCardSuccess = (payload) => ({
   type: userActTypes.GET_SAVED_CARDS_SUCCESS,
   payload
+});
+
+export const resetUserState = () => ({
+  type: userActTypes.RESET
 });

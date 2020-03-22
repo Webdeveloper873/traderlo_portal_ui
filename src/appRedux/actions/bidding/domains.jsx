@@ -9,3 +9,11 @@ export const setBidSuccess = (payload) => ({
   type: bidDomainTypes.SET_BID_SUCCESS,
   payload
 });
+
+export const setBidFailed = () => ({
+  type: bidDomainTypes.SET_BID_FAILED,
+});
+
+export const resetBid = () => ({
+  type: bidDomainTypes.RESET_BID,
+});

@@ -1,6 +1,6 @@
 import { sellDomainTypes } from 'appRedux/constants/ActionTypes';
 
-const intialState = {
+const initialState = {
   listingId: null,
   pitch: false,
   sale: false,
@@ -11,7 +11,7 @@ const intialState = {
   meta: null,
 };
 
-export default (state = intialState, action) => {
+export default (state = initialState, action) => {
   const { type, payload } = action || {};
   switch (type) {
     case sellDomainTypes.SELL_DOMAIN_SUCCESS:
@@ -32,11 +32,11 @@ export default (state = intialState, action) => {
     case sellDomainTypes.VERIFY_META_SUCCESS:
       return { ...state, verifyOwnership: true};
     case sellDomainTypes.GET_TEXT_SUCCESS:
-      console.log('text payload', payload);
       return { ...state, randomText: payload};
     case sellDomainTypes.GET_META_SUCCESS:
-      console.log('meta payload', payload);
       return { ...state, meta: payload};
+    case sellDomainTypes.INITIALIZE_SELL:
+      return initialState;
     default:
       return state;
   }
