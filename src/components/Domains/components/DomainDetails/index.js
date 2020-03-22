@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Row, Col, Card, Tabs, Icon, Input, Button, Divider, Modal, message } from 'antd';
+import { Row, Col, Card, Tabs, Icon, Input, Button, Divider, Modal, notification } from 'antd';
 
 //components
 import Banner from 'common/components/Banner';
@@ -103,8 +103,13 @@ const RightPane = (domainDetails) => {
 
   useEffect(()=>{
     if(bidFailed){
-      message.error('Bid failed!');
+      notification.error({
+        className: classes.notif,
+        message: 'Bid Failed!',
+        description: 'Please try again.',
+      });
     }
+    bid.reset();
     dispatch(bidDomain.resetBid());
   }, [bidFailed]);
 
