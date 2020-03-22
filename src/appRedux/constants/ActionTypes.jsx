@@ -66,6 +66,8 @@ export const buyDomainTypes = {
 export const bidDomainTypes = {
   SET_BID: "SET_BID",
   SET_BID_SUCCESS: "SET_BID_SUCCESS",
+  SET_BID_FAILED: "SET_BID_FAILED",
+  RESET_BID: "RESET_BID",
 }
 
 export const paymentTypes = {
