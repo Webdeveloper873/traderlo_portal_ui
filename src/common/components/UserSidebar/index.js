@@ -119,7 +119,7 @@ const CollapsibleItems = () => {
       </Panel>
       <Panel header={<DropdownSelection image={myFinance} title = {'My Finance'}></DropdownSelection>} key="3" >
       <SubItemSelection title={'Payment Activity'} ></SubItemSelection>
-        <SubItemSelection title={'Accounts And Cards'} ></SubItemSelection>
+        <SubItemSelection title={'Accounts And Cards'} redirectPath='/traderlo/user/accounts_and_cards'></SubItemSelection>
       </Panel>
       <Panel header={<DropdownSelection image={myProfileAndAccount} title = {'My Profile And Account'}></DropdownSelection>} key="4" >
         <SubItemSelection title={'User Profile'} ></SubItemSelection>
