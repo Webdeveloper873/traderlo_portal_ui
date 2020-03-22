@@ -60,7 +60,6 @@ function* registerUser({payload}) {
 
 function* logout({payload}) {
   try{
-    console.log('logout payload', payload);
     const resp = yield call(() => request.delete(`${base_url}/user/logout`, {
       headers: { ...headers,
         authorization: `Bearer ${getAccessToken()}`
@@ -70,7 +69,8 @@ function* logout({payload}) {
       yield put(user.successLogout());
     }
   }catch(err) {
-    console.log('err: ', err);
+    //still logout and remove cookie
+    yield put(user.successLogout());
   }
 }
 
