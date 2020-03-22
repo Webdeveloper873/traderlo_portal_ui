@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Col, Row, Card, Input } from 'antd';
+import { Col, Row, Card, Input, Checkbox } from 'antd';
 import { Redirect } from 'react-router-dom';
 
 //components
@@ -35,36 +35,43 @@ const stepList = [
     title: 'Domains',
     imgSrc: domain,
     details: 'Lorem are many variations of passages of Lorem Ipsum available',
+    value: 1,
   },
   {
     title: 'Websites',
     imgSrc: websites,
     details: 'Lorem are many variations of passages of Lorem Ipsum available',
+    value: 2,
   },
   {
     title: 'Templates/Graphics',
     imgSrc: themesplugins,
     details: 'Lorem are many variations of passages of Lorem Ipsum available',
+    value: 3,
   },
   {
     title: 'Clone Scripts',
     imgSrc: clonescripts,
     details: 'Lorem are many variations of passages of Lorem Ipsum available',
+    value: 4,
   },
   {
     title: 'Themes & Plugins',
     imgSrc: tmpltsGrphcs,
     details: 'Lorem are many variations of passages of Lorem Ipsum available',
+    value: 5,
   },
 ]
 
-const Step1Card = ({title, imgSrc, details}) => {
+const Step1Card = ({title, imgSrc, details, ...props}) => {
+  const { selectedItem, value } = props || {};
+  console.log('selectedItem: ', selectedItem);
+  console.log('value: ', value);
   return(
-    <Card className={classes.card}>
+    <Card className={`${classes.card} ${selectedItem === value ? classes.isSelected : ''}`}>
       <h5 className={classes.title}>{title}</h5>
       <img src={imgSrc} alt={'...loading'}/>
       <p>{details}</p>
-
     </Card>
   )
 }
@@ -76,7 +83,8 @@ const Step2Card = () => {
       title={<>
         <img src={bids} alt='...loading' />
         <div className={classes.details}>
-          <span>Auction - 14</span><br/>
+          <Checkbox><span>Auction - 14</span></Checkbox>
+          <br/>
           <a href="https://www.freedomainauctions.com/content/learn-more-auction">Learn More.</a>
         </div>
       </>}>
@@ -99,6 +107,7 @@ const SellingStep = ({subtitle, sublink, children}) => {
 
 const Selling = () => {
   const [toNextStep, setToNextStep] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(1);
   const listingId = useSelector(({ sellDomain })=>sellDomain.listingId);
   const dispatch = useDispatch();
 
@@ -130,7 +139,7 @@ const Selling = () => {
         <SellingStep subtitle='(Choose one)'>1. What would you like to sell?</SellingStep>
         <Row gutter={16} className={classes.rowStyle}>
           {stepList.map(itemProps => <Col {...fiveCol} className={classes.colStyle}>
-            <Step1Card {...itemProps}/>
+            <Step1Card selectedItem={selectedItem} {...itemProps}/>
           </Col>)}
         </Row>
         <SellingStep
