@@ -39,6 +39,10 @@
   border-radius: 10px !important;
   cursor: pointer;
 
+  &.isSelected {
+    background: #00bcd461;
+  }
+
   &:hover {
     background: #00bcd461;
   }
