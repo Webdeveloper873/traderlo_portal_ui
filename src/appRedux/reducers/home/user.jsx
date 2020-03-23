@@ -9,6 +9,7 @@ const initialState = {
   savedBanks: [],
   savedCards: [],
   register: null,
+  activeSidebarKey: '',
 };
 
 export default (state = initialState, action) => {
@@ -42,6 +43,8 @@ export default (state = initialState, action) => {
       return { ...state, savedCards: payload };
     case userActTypes.RESET:
       return initialState;
+    case userActTypes.CHANGE_SIDEBAR_ACTIVE_KEY:
+      return { ...state, activeSidebarKey: payload };
     default:
       return state;
   }
