@@ -5,6 +5,7 @@ import * as sell from './sell';
 import * as buy from './buy';
 import bidding from './bidding';
 import payment from './payment';
+import * as user from './user';
 
 export default combineReducers({
   ...home,
@@ -12,4 +13,5 @@ export default combineReducers({
   ...buy,
   bidding,
   payment,
+  user,
 });
