@@ -13,5 +13,5 @@ export default combineReducers({
   ...buy,
   bidding,
   payment,
-  user,
+  ...user,
 });
