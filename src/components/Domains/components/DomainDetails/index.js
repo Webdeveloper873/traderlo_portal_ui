@@ -14,7 +14,7 @@ import classes from './styles.module.scss';
 
 //actions
 import { bidDomain } from 'appRedux/actions/bidding';
-import { user } from 'appRedux/actions/home';
+import { user } from 'appRedux/actions/user';
 
 //utils
 import { useFormInput } from 'common/utils/hooks';

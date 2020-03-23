@@ -2,7 +2,7 @@ import { all, call, fork, put, takeEvery } from "redux-saga/effects";
 
 //actions
 import * as payment from 'appRedux/actions/payment';
-import { user } from 'appRedux/actions/home';
+import { user } from 'appRedux/actions/user';
 
 //constants
 import { paymentTypes } from 'appRedux/constants/ActionTypes';

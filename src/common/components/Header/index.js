@@ -4,7 +4,7 @@ import {Button, Dropdown, Menu, Avatar} from 'antd'
 import { useDispatch, useSelector } from 'react-redux';
 
 //actions
-import { user } from 'appRedux/actions/home';
+import { user } from 'appRedux/actions/user';
 
 //styles
 import classes from './styles.module.scss';
