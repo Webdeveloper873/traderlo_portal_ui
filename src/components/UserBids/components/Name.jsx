@@ -11,7 +11,9 @@ const Name = ({ name, type }) => {
   return(
     <Row className={classes.container}>
       <Col span={8}>
-        <img src={domainLogo} alt='loading' />
+        <div className={classes.imgContainer}>
+          <img src={domainLogo} alt='loading' />
+        </div>
       </Col>
       <Col span={16}>
         <b>{name}</b><br/>

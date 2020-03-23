@@ -1,3 +1,18 @@
 .container {
   width: 170px;
+
+  .imgContainer {
+    border: 1px solid #eee;
+    background: #fcfcfc;
+    padding: 8px;
+    width: 47px;
+    border-radius: 5px;
+    height: 47px;
+
+    img {
+      border-radius: 6px;
+      width: 30px;
+      height: 30px;
+    }
+  }
 }
