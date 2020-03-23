@@ -7,7 +7,7 @@ import PageWrapper from 'common/components/PageWrapper';
 import UserSidebar from 'common/components/UserSidebar';
 
 //constants
-import {myBidsCol} from './constants';
+import {myBidsCol, bidsTempData} from './constants';
 
 //styles
 import classes from './styles.module.scss';
@@ -26,7 +26,7 @@ const UserBids = () => {
         </Col>
         <Col xs={24} sm={24} md={18} lg={18} className={classes.customPadding}>
           <Card type="inner" title={'My Bids'} extra={<SearchBid />} className={classes.tableContainer}>
-            <Table columns={myBidsCol} dataSource={[]}/>
+            <Table columns={myBidsCol} dataSource={bidsTempData.bids}/>
           </Card>
         </Col>
       </PageWrapper>
