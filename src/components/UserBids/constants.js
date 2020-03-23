@@ -9,8 +9,7 @@ export const myBidsCol = [
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
-    render: (text, record, index) => {
-      console.log('record', record);
+    render: (text, record) => {
       const { listingName, listingCategory } = record || {};
       return <Name name={listingName} type={listingCategory} />;
     }

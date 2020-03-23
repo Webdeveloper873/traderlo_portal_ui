@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Col, Card, Input, Icon, Table } from 'antd';
 
 //components
@@ -17,6 +18,12 @@ const SearchBid = () => {
 }
 
 const UserBids = () => {
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    //fetch bids
+  }, []);
+
   return(
     <>
       <Banner text={'Bids'} />
