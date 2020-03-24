@@ -7,13 +7,14 @@ import { buyingDomain } from './buying';
 import { bidDomain } from './bidding';
 import payment from './payment';
 import {watchlist} from './userSidebar'
-import { user } from './user';
+import { user, buyActivities } from './user';
 
 export default function* rootSaga() {
   yield all([
     subscribeNews(),
     blogs(),
     user(),
+    buyActivities(),
     domain(),
     buyingDomain(),
     bidDomain(),

@@ -26,6 +26,7 @@ const UserBids = () => {
 
   useEffect(()=>{
     //fetch bids
+    console.log('useEffect getUserBids');
     dispatch(buyActivities.getUserBids());
   }, []);
 

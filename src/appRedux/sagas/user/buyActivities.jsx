@@ -10,18 +10,19 @@ import { base_url, headers, noAuthHeaders } from 'appRedux/constants/configs';
 //utils
 import { request, objToFormData, getAccessToken } from 'common/utils/helpers';
 
-function* getUserBids({ payload }) {
+function* getUserBids() {
+  console.log('saga getUserBids');
   try {
-    let resp = yield call(() => request.post(`${base_url}/user/login`, {
-      headers,
-      body: JSON.stringify(payload),
+    let resp = yield call(() => request.post(`${base_url}/bid/buying?pageNum=1&pageSize=25`, {
+      headers
     }));
 
+    console.log('getUserBids resp ', resp);
     if (resp) {
-      yield put(user.successLogin(resp));
+      // yield put(user.successLogin(resp));
     }
   } catch (err) {
-    yield put(user.failedLogin());
+    // yield put(user.failedLogin());
     console.log('err: ', err);
   }
 }
