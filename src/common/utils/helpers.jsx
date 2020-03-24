@@ -1,3 +1,5 @@
+import { notification  } from 'antd';
+
 // export const request = async (url, params) => {
 //   const response = await fetch(url, params).then(resp => resp.json());
 //   console.log('api response', response);
@@ -43,3 +45,11 @@ export const objToFormData = (obj) => {
 }
 
 export const getAccessToken = () => window.localStorage.getItem('access_token');
+
+export const openNotification = ({status, message , description}) => {
+  return notification[status]({
+    message: message,
+    description: description,
+    placement: 'bottomRight',
+  });
+};

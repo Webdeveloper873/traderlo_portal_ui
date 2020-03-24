@@ -1,11 +1,17 @@
-import React, { useEffect } from 'react';
-import { Col, Card, Input, Icon, Table, Tabs, Button, Row, Divider } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Col, Card, Input, Icon, Table, Tabs, Button, Row, Divider, Modal, notification  } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 
 //components
 import Banner from 'common/components/Banner';
 import PageWrapper from 'common/components/PageWrapper';
 import UserSidebar from 'common/components/UserSidebar';
+import Payments from 'common/components/Payments';
+import MyCardTable from './MyCardTable';
+import MyBankAccTable from './MyBankAccTable';
+import MyPaypalTable from './MyPaypalTable';
+// util
+import { openNotification } from 'common/utils/helpers';
 
 //constants
 import {myCardCol, myBankAcctCol, paypalCol} from './constants';
@@ -19,57 +25,15 @@ import * as payment from 'appRedux/actions/payment';
 import { user } from 'appRedux/actions/home';
 
 
-
-const AddButton = () => {
-  return( <Button type="primary" size ={'large'}>Add Account/Card</Button>);
-}
-
-const MyCardTable = ({savedCards}) => {
-  return(
-    <>
-      <Row style={{marginTop:25, marginLeft:20, marginBottom:7}}>
-        <span style={{color:'#00bcd4', fontSize:15, fontWeight:600}}>My Cards:</span>
-      </Row>
-      <Divider style={{margin:0}}/>
-      <Row>
-        <Table columns={myCardCol} dataSource={savedCards} />
-      </Row>
-    </>
-  )
-}
-
-const MyBankAccTable = ({savedBanks}) => {
-  return(
-    <>
-      <Row style={{marginTop:25, marginLeft:20, marginBottom:7}}>
-        <span style={{color:'#00bcd4', fontSize:15, fontWeight:600}}>My Bank Accounts:</span>
-      </Row>
-      <Divider style={{margin:0}}/>
-      <Row>
-        <Table columns={myBankAcctCol} dataSource={savedBanks}/>
-      </Row>
-    </>
-  )
-}
-
-
-const MyPaypalTable = () => {
-  return(
-    <>
-      <Row style={{marginTop:25, marginLeft:20, marginBottom:7}}>
-        <span style={{color:'#00bcd4', fontSize:15, fontWeight:600}}>My Paypal:</span>
-      </Row>
-      <Divider style={{margin:0}}/>
-      <Row>
-        <Table columns={paypalCol} />
-      </Row>
-    </>
-  )
+const AddButton = ({showModal}) => {
+  return( <Button type="primary" size ={'large'}  onClick={showModal}>Add Account/Card</Button>);
 }
 
 
 const AccountsAndCards = () => {
   const dispatch = useDispatch();
+  
+  const [buyNowVisible, setShowModal] = useState(false);
   const savedCards = useSelector(({ user }) => user.savedCards);
   const savedBanks = useSelector(({ user }) => user.savedBanks);
 
@@ -78,7 +42,16 @@ const AccountsAndCards = () => {
   useEffect(()=>{
     dispatch(user.getSavedBanks());
     dispatch(user.getSavedCard());
+    dispatch(payment.clearPaymentSteps());
   }, []);
+
+  const showModal = () => {
+    setShowModal(true);
+  }
+
+  const hideModal = () => {
+    setShowModal(false);
+  }
 
 
   return(
@@ -89,13 +62,19 @@ const AccountsAndCards = () => {
           <UserSidebar />
         </Col>
         <Col xs={24} sm={24} md={18} lg={18} className={classes.customPadding}>
-          <Card type="inner" title={'Accounts and Cards'} extra={<AddButton />} className={classes.tableContainer}>
+          <Card type="inner" title={'Accounts and Cards'} extra={<AddButton showModal={showModal} />} className={classes.tableContainer}>
             <MyCardTable savedCards={savedCards}/>
             <MyBankAccTable savedBanks ={savedBanks}/>
             <MyPaypalTable />
           </Card>
         </Col>
       </PageWrapper>
+      <Modal destroyOnClose
+        visible={buyNowVisible}
+        onCancel = {hideModal}
+        footer={null}>
+        <Payments isAddOnly={true}/>
+      </Modal>
     </>
   );
 }
