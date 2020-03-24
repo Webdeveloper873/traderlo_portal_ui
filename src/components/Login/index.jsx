@@ -11,7 +11,7 @@ import Divider from 'common/components/Divider';
 import { useFormInput } from 'common/utils/hooks';
 
 //actions
-import { user } from 'appRedux/actions/home';
+import { user } from 'appRedux/actions/user';
 
 //styles
 import classes from './styles.module.scss';

@@ -1,7 +1,7 @@
 import { all, call, fork, put, takeEvery } from "redux-saga/effects";
 
 //actions
-import { user } from 'appRedux/actions/home';
+import { user } from 'appRedux/actions/user';
 
 //constants
 import { userActTypes } from 'appRedux/constants/ActionTypes';

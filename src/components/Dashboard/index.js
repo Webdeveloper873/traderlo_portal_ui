@@ -9,7 +9,7 @@ import Banner from 'common/components/Banner';
 import UserSidebar from 'common/components/UserSidebar';
 
 //actions
-import { user } from 'appRedux/actions/home';
+import { user } from 'appRedux/actions/user';
 
 //styles
 import classes from './styles.module.scss';

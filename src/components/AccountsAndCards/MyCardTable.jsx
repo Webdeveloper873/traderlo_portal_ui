@@ -10,7 +10,7 @@ import classes from './styles.module.scss';
 
 //actions
 import * as payment from 'appRedux/actions/payment';
-import { user } from 'appRedux/actions/home';
+import { user } from 'appRedux/actions/user';
 
 
 
@@ -20,36 +20,36 @@ const MyCardTable = ({savedCards}) => {
     const [deleteCardVisible, setShowModal] = useState(false);
     const [loading, setLoading] = useState(false);
     const [selectedItem, setSelectedItem] = useState({});
-  
+
     const deleteCard = (e) => {
       setSelectedItem(e);
       showDeleteModal();
     }
-  
+
     const onClickDelete = () => {
       setLoading(true);
       console.log(selectedItem,'selectedItem');
-      
+
       //dispatch(payment.deleteCard(selectedItem));  ----> continue on delete API
       setTimeout(() => {
         setLoading(false);
         setShowModal(false);
       }, 1000);
-  
+
       setTimeout(() => {
         openNotification({status:'success', message:'delete success'});
       }, 500);
     }
-  
+
     const showDeleteModal = () => {
       setShowModal(true);
     }
-  
+
     const hideModal = () => {
       setShowModal(false);
     }
-  
-    
+
+
     const myCardCol = [
     {
       title: 'Card Number',
@@ -78,8 +78,8 @@ const MyCardTable = ({savedCards}) => {
       render: (cardData) => <Icon type="delete" style={{fontSize:18, color:'red'}} onClick={() => deleteCard(cardData)}  /> ,
     },
   ]
-  
-  
+
+
     return(
       <>
         <Row style={{marginTop:25, marginLeft:20, marginBottom:7}}>
@@ -89,7 +89,7 @@ const MyCardTable = ({savedCards}) => {
         <Row>
           <Table columns={myCardCol} dataSource={savedCards} />
         </Row>
-        <Modal 
+        <Modal
           destroyOnClose
           title=" Delete Card"
           visible={deleteCardVisible}
@@ -105,7 +105,7 @@ const MyCardTable = ({savedCards}) => {
           ]}>
             <div className={classes.paymentResult}>
                 <Row>
-                    <Icon type='delete' style={{color:'red' , marginBottom:15, fontSize:64}}/>    
+                    <Icon type='delete' style={{color:'red' , marginBottom:15, fontSize:64}}/>
                 </Row>
                 <Row>
                     <span style={{fontSize:15}}> {`Delete ${selectedItem.cardId} ?`}</span>

@@ -20,7 +20,7 @@ import classes from './styles.module.scss';
 
 //actions
 import * as payment from 'appRedux/actions/payment';
-import { user } from 'appRedux/actions/home';
+import { user } from 'appRedux/actions/user';
 
 
 const MyBankAccTable = ({savedBanks}) => {

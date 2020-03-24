@@ -6,7 +6,7 @@ import {Col, Row, Card, Avatar, Collapse} from 'antd';
 import classes from './styles.module.scss';
 
 //actions
-import { user } from 'appRedux/actions/home';
+import { user } from 'appRedux/actions/user';
 
 //assets
 import UserImgTemp from 'assets/user-img.jpg';

@@ -16,7 +16,7 @@ import BlogCards from './BlogCards';
 
 //actions
 import { getFeaturedBlogs } from 'appRedux/actions/home/blogs';
-import { user } from 'appRedux/actions/home';
+import { user } from 'appRedux/actions/user';
 
 //styles
 import classes from './styles.module.scss';

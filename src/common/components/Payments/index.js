@@ -5,7 +5,7 @@ import { Avatar, Divider, Row, Col, Button, Steps } from 'antd';
 
 //actions
 import * as payment from 'appRedux/actions/payment';
-import { user } from 'appRedux/actions/home';
+import { user } from 'appRedux/actions/user';
 
 //components
 import ChooseMethod from './Components/ChooseMethod';

@@ -26,6 +26,7 @@ export const userActTypes = {
   GET_SAVED_CARDS_SUCCESS: 'GET_SAVED_CARD_SUCCESS',
   RESET: 'RESET_USER',
   CHANGE_SIDEBAR_ACTIVE_KEY: 'CHANGE_SIDEBAR_ACTIVE_KEY',
+  GET_USER_BIDS: 'GET_USER_BIDS',
 }
 
 export const sellDomainTypes = {
