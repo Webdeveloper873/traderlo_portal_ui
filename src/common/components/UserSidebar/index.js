@@ -1,9 +1,12 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {Col, Row, Card, Avatar, Collapse} from 'antd';
 
 //styles
 import classes from './styles.module.scss';
+
+//actions
+import { user } from 'appRedux/actions/user';
 
 //assets
 import UserImgTemp from 'assets/user-img.jpg';
@@ -20,9 +23,7 @@ const {Meta} = Card;
 
 const customPanelStyle = {backgroundColor:'white', borderRadius:0, padding:0, width: 270};
 
-function callback(key) {
-  console.log(key);
-}
+
 
 
 const CardsDesc = ({aboutMe}) => (
@@ -91,8 +92,21 @@ const test = () => {
 }
 
 const CollapsibleItems = () => {
+  const dispatch = useDispatch();
+  const activeSidebarKey = useSelector(({ user }) => user.activeSidebarKey);
+
+  const callback= (key) => {
+
+    if (key && key.length > 0 ) {
+      dispatch(user.changeUserSidebarActiveKey(key[0]));
+
+    } else dispatch(user.changeUserSidebarActiveKey(''));
+  
+    
+  }
+
   return (
-    <Collapse defaultActiveKey={[]} onChange={callback} expandIconPosition={'right'} style={customPanelStyle}>
+    <Collapse defaultActiveKey={[activeSidebarKey]} onChange={callback} expandIconPosition={'right'} style={customPanelStyle} accordion>
       <Panel header={<DropdownSelection image={buyingActivities} title = {'Buying Activities'}></DropdownSelection>} key="1" style={{padding:0}}>
         <SubItemSelection title={'My Bids'} redirectPath='/traderlo/user/bids'></SubItemSelection>
         <SubItemSelection title={'My Orders'} redirectPath='/traderlo/user/orders'></SubItemSelection>
@@ -105,7 +119,7 @@ const CollapsibleItems = () => {
       </Panel>
       <Panel header={<DropdownSelection image={myFinance} title = {'My Finance'}></DropdownSelection>} key="3" >
       <SubItemSelection title={'Payment Activity'} ></SubItemSelection>
-        <SubItemSelection title={'Accounts And Cards'} ></SubItemSelection>
+        <SubItemSelection title={'Accounts And Cards'} redirectPath='/traderlo/user/accounts_and_cards'></SubItemSelection>
       </Panel>
       <Panel header={<DropdownSelection image={myProfileAndAccount} title = {'My Profile And Account'}></DropdownSelection>} key="4" >
         <SubItemSelection title={'User Profile'} ></SubItemSelection>

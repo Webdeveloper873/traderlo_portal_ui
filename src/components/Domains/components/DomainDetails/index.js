@@ -148,7 +148,7 @@ const RightPane = (domainDetails) => {
         visible={buyNowVisible}
         onCancel = {hideModal}
         footer={null}>
-        <Payments />
+        <Payments isAddOnly={false}/>
       </Modal>
     </Col>
   );

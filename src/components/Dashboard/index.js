@@ -56,7 +56,7 @@ const Dashboards = ({...props}) => {
     dispatch(user.getUserProfile());
   }, []);
 
-
+  
   return(
     <>
       <Banner text={'Dashboard'} />

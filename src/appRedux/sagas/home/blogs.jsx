@@ -11,10 +11,8 @@ import { base_url, noAuthHeaders } from 'appRedux/constants/configs';
 import { request } from 'common/utils/helpers';
 
 function* fetchFeatBlogs(){
-  console.log('fetchfeatblogs');
   try{
     let resp = yield call(()=> request.get(`${base_url}/blog/featured`, { noAuthHeaders, uid: 1 }));
-    console.log('fetchFeatBlogs resp: ', resp);
     if(resp){
       yield put(saveFeatBlogs(resp));
     }

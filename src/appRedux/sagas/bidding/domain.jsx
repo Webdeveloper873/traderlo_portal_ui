@@ -22,7 +22,6 @@ function* setBidDomain({ payload }) {
         body: JSON.stringify(others)
       }
     ));
-    console.log('setBidDomain resp: ', resp);
     if (resp) {
       yield put(bidDomain.setBidSuccess(payload));
     }
