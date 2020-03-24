@@ -14,6 +14,17 @@ export const verifyCardFailed = () => ({
   type: paymentTypes.VERIFY_CARD_FAILED,
 });
 
+export const deleteCard = (payload) => ({
+  type: paymentTypes.DELETE_CARD,
+  payload,
+})
+
+export const deleteCardSuccess = (payload) => ({
+  type: paymentTypes.DELETE_CARD_SUCCESS,
+  payload,
+})
+
+
 export const addAccount = (payload) => ({
   type: paymentTypes.ADD_ACCOUNT,
   payload,

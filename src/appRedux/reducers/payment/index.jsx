@@ -11,12 +11,16 @@ export default (state = intialState, action) => {
   switch (type) {
     case paymentTypes.VERIFY_CARD_SUCCESS:
       return { ...state, isDone: true };
-    case paymentTypes.ADD_ACCOUNT_SUCCESS:
-      return { ...state, isDone: true };
     case paymentTypes.VERIFY_CARD_FAILED:
       return { ...state, isDone: true, hasError: true };
+    case paymentTypes.DELETE_CARD_SUCCESS:
+      return { ...state };
+    case paymentTypes.ADD_ACCOUNT_SUCCESS:
+      return { ...state, isDone: true };
     case paymentTypes.ADD_ACCOUNT_FAILED:
       return { ...state, isDone: true, hasError: true };
+    case paymentTypes.DELETE_ACCOUNT_SUCCESS:
+      return { ...state };
     case paymentTypes.CHARGE_SUCCESS:
       return { ...state,isDone: true, isPayment: true };
     case paymentTypes.CHARGE_FAILED:
