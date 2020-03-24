@@ -38,7 +38,7 @@ function* deleteCard({ payload }) {
   try {
     console.log(payload,'peload delete card');
     const {id, userId} = payload || {};
-    const resp = yield call(() => request.delete(`${base_url}/stripe/deleteCard?card=${id}`,
+    const resp = yield call(() => request.delete(`${base_url}/stripe/deleteCard?id=${id}`,
       {
         headers: { 
           ...headers,
@@ -85,7 +85,7 @@ function* deleteAccount({ payload }) {
   try {
     console.log(payload,'peload delete card');
     const {id, userId} = payload || {};
-    const resp = yield call(() => request.delete(`${base_url}/stripe/deleteCard?card=${id}`,
+    const resp = yield call(() => request.delete(`${base_url}/stripe/deleteAccount?id=${id}`,
       {
         headers: { 
           ...headers,

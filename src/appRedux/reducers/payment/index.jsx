@@ -1,9 +1,10 @@
 import { paymentTypes } from 'appRedux/constants/ActionTypes';
 
 const intialState = {
-  isDone: false,        // take to the next step
-  hasError: false,      //show the exclamation icon
-  isPayment: false,     //show either payment or verification
+  isDone: false,          // take to the next step
+  hasError: false,        //show the exclamation icon
+  isPayment: false,       //show either payment or verification
+  hasNotification: false, // show notification after a transaction
 };
 
 export default (state = intialState, action) => {
