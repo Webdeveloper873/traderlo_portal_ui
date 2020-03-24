@@ -7,6 +7,9 @@ import Banner from 'common/components/Banner';
 import PageWrapper from 'common/components/PageWrapper';
 import UserSidebar from 'common/components/UserSidebar';
 
+//actions
+import { buyActivities } from 'appRedux/actions/user';
+
 //constants
 import {myBidsCol, bidsTempData} from './constants';
 
@@ -18,10 +21,12 @@ const SearchBid = () => {
 }
 
 const UserBids = () => {
+
   const dispatch = useDispatch();
 
   useEffect(()=>{
     //fetch bids
+    dispatch(buyActivities.getUserBids());
   }, []);
 
   return(

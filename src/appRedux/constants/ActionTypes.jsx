@@ -27,6 +27,7 @@ export const userActTypes = {
   RESET: 'RESET_USER',
   CHANGE_SIDEBAR_ACTIVE_KEY: 'CHANGE_SIDEBAR_ACTIVE_KEY',
   GET_USER_BIDS: 'GET_USER_BIDS',
+  GET_USER_BIDS_SUCCESS: 'GET_USER_BIDS_SUCCESS',
 }
 
 export const sellDomainTypes = {

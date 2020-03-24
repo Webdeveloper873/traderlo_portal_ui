@@ -7,7 +7,7 @@ import domainLogo from 'assets/listings/domainLogo.png';
 //styles
 import classes from './styles.module.scss';
 
-const Name = ({ name, type }) => {
+const TableNameCol = ({ name, type }) => {
   return(
     <Row className={classes.container}>
       <Col span={8}>
@@ -23,4 +23,4 @@ const Name = ({ name, type }) => {
   )
 }
 
-export default Name;
+export default TableNameCol;

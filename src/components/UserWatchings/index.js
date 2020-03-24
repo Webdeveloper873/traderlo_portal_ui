@@ -8,7 +8,7 @@ import PageWrapper from 'common/components/PageWrapper';
 import UserSidebar from 'common/components/UserSidebar';
 
 //constants
-import {domWebCol, sellersCol, favoritesCol} from './constants';
+import { domWebCol, domWebData, sellersCol, favoritesCol} from './constants';
 
 //styles
 import classes from './styles.module.scss';
@@ -50,7 +50,7 @@ const UserWatchings = () => {
           <Card type="inner" title={'Watching/Favorites'} extra={<SearchBid />} className={classes.tableContainer}>
             <Tabs defaultActiveKey="1" onChange={callback} tabBarGutter={250} size={'large'}>
             <TabPane tab="Domain/Websites" key="1">
-              <Table columns={domWebCol} dataSource={[]}/>
+              <Table columns={domWebCol} dataSource={domWebData}/>
             </TabPane>
             <TabPane tab="Favorites" key="2">
               <Table columns={favoritesCol} dataSource={[]}/>

@@ -17,3 +17,19 @@
 .customPadding {
   padding-left: 10px !important;
 }
+
+.deleteCol {
+  cursor: pointer;
+
+  .deleteIcon {
+    font-size: 1.125rem;
+    color: #ec008c;
+  }
+
+  .deleteText {
+    color: #ec008c;
+    margin-left: 5px;
+    position: absolute;
+    margin-top: 4px;
+  }
+}
