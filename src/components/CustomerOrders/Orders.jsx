@@ -24,7 +24,7 @@ const NameCard = () => {
     <>
       <Row>
         <Col span={5}>
-          <Avatar size={50} src={domainImg} /> 
+          <Avatar size={50} src={domainImg} />
         </Col>
         <Col span={19}>
           <span className={classes.nameDecor}>{'cardealsnearme.com'}</span>
@@ -56,25 +56,25 @@ const OrderStatus = () => {
 const ItemDetails = () => {
   return (
     <Row>
-    <Col span={2} className={classes.itemDetails}>
-      <span >{'#123456'}</span>
-    </Col>
-    <Col span={8}>
-      <NameCard></NameCard>
-    </Col>
-    <Col span={4} className={classes.itemDetails}>
-      <span >{'$60.00 '}</span>
-    </Col>
-    <Col span={4} className={classes.itemDetails}>
-      {moment().format('MMMM DD, YYYY')}
-    </Col>
-    <Col span={3}>
-      <Avatar size={50} src={paymentsImg} shape="square"/> 
-    </Col>
-    <Col span={3}>
-      <OrderStatus></OrderStatus>
-    </Col>
-  </Row>
+      <Col span={2} className={classes.itemDetails}>
+        <span >{'#123456'}</span>
+      </Col>
+      <Col span={8}>
+        <NameCard></NameCard>
+      </Col>
+      <Col span={4} className={classes.itemDetails}>
+        <span >{'$60.00 '}</span>
+      </Col>
+      <Col span={4} className={classes.itemDetails}>
+        {moment().format('MMMM DD, YYYY')}
+      </Col>
+      <Col span={3}>
+        <Avatar size={50} src={paymentsImg} shape="square"/>
+      </Col>
+      <Col span={3}>
+        <OrderStatus></OrderStatus>
+      </Col>
+    </Row>
   )
 }
 
@@ -95,7 +95,7 @@ const TrackProgress = () => {
               </> } icon={<Icon type="lock" theme="filled" />} />
           </Steps>
           <Row className={classes.bottomComment}> <span> Something did not go as expected? </span> <span className={classes.linkDecor}> Dispute Transaction? </span></Row>
-          
+
         </Panel>
       </Collapse>
     </Row>
