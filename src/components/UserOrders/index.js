@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Col, Card, Input, Icon, Table, Select } from 'antd';
 
 //components
@@ -6,6 +7,8 @@ import Banner from 'common/components/Banner';
 import PageWrapper from 'common/components/PageWrapper';
 import UserSidebar from 'common/components/UserSidebar';
 import OrderTracker from 'common/components/OrderTracker';
+
+import { buyActivities } from 'appRedux/actions/user';
 
 //constants
 import { myBidsCol, tempData } from './constants';
@@ -28,6 +31,11 @@ const SearchBid = () => {
 }
 
 const UserOrders = () => {
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(buyActivities.getUserOrders());
+  }, [])
 
   return(
     <>
