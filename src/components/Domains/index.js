@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Slider, Divider, Card, Typography, Select, Checkbox, Input, Row, Col, Button } from 'antd';
@@ -80,7 +81,7 @@ const Filters = () => {
   }
 
   const handleApplyFilter = () => {
-    
+
     const filter = {
       minPrice: domainPrice[0],
       maxPrice: domainPrice[1],
@@ -201,7 +202,7 @@ const SearchKeyword = () => {
       </Row>
 
       <Row gutter={16}>
-        {domainList.map(itemProps => 
+        {domainList.map(itemProps =>
         <Col {...threeCol}>
           <CardItem key={itemProps.id} onClick={() => onClickCardItem(itemProps)} {...itemProps} style={{marginBottom:20}}/>
         </Col>)}
@@ -211,7 +212,7 @@ const SearchKeyword = () => {
 }
 
 const SearchRecord = ({title}) => {
- 
+
   const dispatch = useDispatch();
 
   useEffect(()=>{

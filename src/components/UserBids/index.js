@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Col, Card, Input, Icon, Table } from 'antd';
@@ -6,6 +7,9 @@ import { Col, Card, Input, Icon, Table } from 'antd';
 import Banner from 'common/components/Banner';
 import PageWrapper from 'common/components/PageWrapper';
 import UserSidebar from 'common/components/UserSidebar';
+
+//actions
+import { buyActivities } from 'appRedux/actions/user';
 
 //constants
 import {myBidsCol, bidsTempData} from './constants';
@@ -18,10 +22,13 @@ const SearchBid = () => {
 }
 
 const UserBids = () => {
+
   const dispatch = useDispatch();
 
   useEffect(()=>{
     //fetch bids
+    console.log('useEffect getUserBids');
+    dispatch(buyActivities.getUserBids());
   }, []);
 
   return(

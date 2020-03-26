@@ -17,7 +17,7 @@ const TemplatesList = () => {
           <ListGroup.Item className={classes.greyBackground}>
             <div>
               <span className={classes.content}>
-                <a>hellographic.com</a>
+                <a href='/'>hellographic.com</a>
               </span>
               <span className={classes.daysLeftDecor}>2 days left</span>
             </div>
@@ -25,7 +25,7 @@ const TemplatesList = () => {
           <ListGroup.Item className={classes.whiteBackground}>
             <div>
               <span className={classes.content}>
-                <a>hellographic.com</a>
+                <a href='/'>hellographic.com</a>
               </span>
               <span className={classes.daysLeftDecor}>2 days left</span>
             </div>
@@ -33,7 +33,7 @@ const TemplatesList = () => {
           <ListGroup.Item className={classes.greyBackground}>
             <div>
               <span className={classes.content}>
-                <a>hellographic.com</a>
+                <a href='/'>hellographic.com</a>
               </span>
               <span className={classes.daysLeftDecor}>2 days left</span>
             </div>
@@ -41,7 +41,7 @@ const TemplatesList = () => {
           <ListGroup.Item className={classes.whiteBackground}>
             <div>
               <span className={classes.content}>
-                <a>hellographic.com</a>
+                <a href='/'>hellographic.com</a>
               </span>
               <span className={classes.daysLeftDecor}>2 days left</span>
             </div>
@@ -49,7 +49,7 @@ const TemplatesList = () => {
           <ListGroup.Item>
             <div className={classes.viewAllDecor}>
               <span className={classes.fontDecor}>
-                <a>View All <Icon type="arrow-right" style={{ fontSize:14}}/></a> 
+                <a href='/'>View All <Icon type="arrow-right" style={{ fontSize:14}}/></a> 
               </span>
             </div>
           </ListGroup.Item>
@@ -67,7 +67,7 @@ const TemplatesList = () => {
           <ListGroup.Item className={classes.greyBackground}>
             <div>
               <span className={classes.content}>
-                <a>hellographic.com</a>
+                <a href='/'>hellographic.com</a>
               </span>
               <span className={classes.daysLeftDecor}>2 days left</span>
             </div>
@@ -75,7 +75,7 @@ const TemplatesList = () => {
           <ListGroup.Item className={classes.whiteBackground}>
             <div>
               <span className={classes.content}>
-                <a>hellographic.com</a>
+                <a href='/'>hellographic.com</a>
               </span>
               <span className={classes.daysLeftDecor}>2 days left</span>
             </div>
@@ -83,7 +83,7 @@ const TemplatesList = () => {
           <ListGroup.Item className={classes.greyBackground}>
             <div>
               <span className={classes.content}>
-                <a>hellographic.com</a>
+                <a href='/'>hellographic.com</a>
               </span>
               <span className={classes.daysLeftDecor}>2 days left</span>
             </div>
@@ -91,7 +91,7 @@ const TemplatesList = () => {
           <ListGroup.Item className={classes.whiteBackground}>
             <div>
               <span className={classes.content}>
-                <a>hellographic.com</a>
+                <a href='/'>hellographic.com</a>
               </span>
               <span className={classes.daysLeftDecor}>2 days left</span>
             </div>
@@ -99,7 +99,7 @@ const TemplatesList = () => {
           <ListGroup.Item>
             <div className={classes.viewAllDecor}>
               <span className={classes.fontDecor}>
-                <a>View All <Icon type="arrow-right" style={{ fontSize:14}}/></a> 
+                <a href='/'>View All <Icon type="arrow-right" style={{ fontSize:14}}/></a> 
               </span>
             </div>
           </ListGroup.Item>
@@ -118,7 +118,7 @@ const TemplatesList = () => {
           <ListGroup.Item className={classes.greyBackground}>
             <div>
               <span className={classes.content}>
-                <a>hellographic.com</a>
+                <a href='/'>hellographic.com</a>
               </span>
               <span className={classes.daysLeftDecor}>2 days left</span>
             </div>
@@ -126,7 +126,7 @@ const TemplatesList = () => {
           <ListGroup.Item className={classes.whiteBackground}>
             <div>
               <span className={classes.content}>
-                <a>hellographic.com</a>
+                <a href='/'>hellographic.com</a>
               </span>
               <span className={classes.daysLeftDecor}>2 days left</span>
             </div>
@@ -134,7 +134,7 @@ const TemplatesList = () => {
           <ListGroup.Item className={classes.greyBackground}>
             <div>
               <span className={classes.content}>
-                <a>hellographic.com</a>
+                <a href='/'>hellographic.com</a>
               </span>
               <span className={classes.daysLeftDecor}>2 days left</span>
             </div>
@@ -142,7 +142,7 @@ const TemplatesList = () => {
           <ListGroup.Item className={classes.whiteBackground}>
             <div>
               <span className={classes.content}>
-                <a>hellographic.com</a>
+                <a href='/'>hellographic.com</a>
               </span>
               <span className={classes.daysLeftDecor}>2 days left</span>
             </div>
@@ -150,7 +150,7 @@ const TemplatesList = () => {
           <ListGroup.Item>
             <div className={classes.viewAllDecor}>
               <span className={classes.fontDecor}>
-                <a>View All <Icon type="arrow-right" style={{ fontSize:14}}/></a> 
+                <a href='/'>View All <Icon type="arrow-right" style={{ fontSize:14}}/></a> 
               </span>
             </div>
           </ListGroup.Item>

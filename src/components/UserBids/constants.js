@@ -2,7 +2,7 @@ import React from 'react';
 import { Tag } from 'antd';
 
 //components
-import Name from './components/Name';
+import TableNameCol from 'common/components/TableNameCol';
 
 export const myBidsCol = [
   {
@@ -11,7 +11,7 @@ export const myBidsCol = [
     key: 'name',
     render: (text, record) => {
       const { listingName, listingCategory } = record || {};
-      return <Name name={listingName} type={listingCategory} />;
+      return <TableNameCol name={listingName} type={listingCategory} />;
     }
   },
   {

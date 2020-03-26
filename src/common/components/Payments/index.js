@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Avatar, Divider, Row, Col, Button, Steps } from 'antd';
+import { useDispatch } from 'react-redux';
+import { Divider } from 'antd';
 
 
 //actions
@@ -14,8 +15,6 @@ import PaymentResult from './Components/PaymentResult';
 
 //styles
 import classes from './styles.module.scss';
-
-const {Step} = Steps;
 
 const PageRouter = ({ selectedOpt, onClickOpt, stepNo, nextStep, isAddOnly}) => {
   switch(stepNo){
@@ -47,6 +46,7 @@ const Payments = ({isAddOnly}) => {
       dispatch(payment.clearPaymentSteps());
     };
   }, []);
+
   const nextStep = () => {
     setStepNo(stepNo+1);
   }

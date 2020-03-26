@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal, Row, Form as TempForm, Button as TempButton } from 'react-bootstrap';
-import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
+import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { Redirect } from "react-router-dom";
 
 //components
@@ -22,8 +23,6 @@ import {routes} from 'common/constants';
 const SignInForm = ({form, handleClose}) => {
   const [toLoginPage, setToLoginPage] = useState(false);
   const loginFailed = useSelector(({user})=>user.loginFailed);
-  const loginUser = useFormInput('angecapuz132');
-  const loginPass = useFormInput('asdqwe123');
   const isLoggedIn = useSelector(({user}) => user.isLoggedIn);
   const dispatch = useDispatch();
   const {getFieldDecorator} = form || {};

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Card, Input, Icon, Table, Row, Avatar, Badge, Button } from 'antd';
+import { Col, Card, Input, Icon, Row, Avatar, Badge, Button } from 'antd';
 import moment from 'moment';
 //components
 import Banner from 'common/components/Banner';
@@ -9,9 +9,6 @@ import UserSidebar from 'common/components/UserSidebar';
 
 // Assets
 import UserImgTemp from 'assets/user-img2.jpg';
-
-//constants
-import {myBidsCol} from './constants';
 
 //styles
 import classes from './styles.module.scss';
@@ -27,8 +24,7 @@ const SearchBid = () => {
 
 const ChattedUserInfo = () => {
   return (
-   
-     <Card style={{padding:12}}>
+    <Card style={{padding:12}}>
      <Col span={5}>
        <Badge dot>
          <Avatar size="large" src={UserImgTemp}/>
@@ -38,7 +34,6 @@ const ChattedUserInfo = () => {
        <Row><span>Sample User</span></Row>
       <Row><span>{moment().format('MMMM DD, YYYY')}</span></Row>
      </Col>
-
    </Card>
   )
 }
@@ -55,7 +50,7 @@ const SelectedUser = () => {
           <Row><span>Last Online: {moment().format('MMMM DD, YYYY')} </span></Row>
         </Col>
         <Col className={classes.selectedUserDelete} span={4}>
-          <Icon type="delete" className={{fontSize:30, color:'red'}} /> 
+          <Icon type="delete" className={{fontSize:30, color:'red'}} />
         </Col>
       </Card>
     </Row>
@@ -67,7 +62,7 @@ const Messages = () => {
     <Row>
       <Card>
         {/* Row will be done per message with variation of designs base on receiver or sender */}
-        <Row > 
+        <Row >
           <div className={classes.chatSender}>
             <span >
               Nostrud exercitation ullam aeco laboris nisi utae commodo consequat duis aute. </span>
@@ -86,7 +81,7 @@ const Messages = () => {
       </Card>
       <Card>
         <Row>
-          <TextArea rows={4} /> 
+          <TextArea rows={4} />
         </Row>
         <Row className={classes.btnContainer}>
           <Button size='large' className={classes.btnStyle}>Send</Button>
@@ -114,7 +109,7 @@ const Chat = () => {
             </Row>
             <Row style={{marginLeft:5}}>
               <Col span={8}>
-                <ChattedUserInfo/>   
+                <ChattedUserInfo/>
                 <ChattedUserInfo/>
                 <ChattedUserInfo/>
               </Col>

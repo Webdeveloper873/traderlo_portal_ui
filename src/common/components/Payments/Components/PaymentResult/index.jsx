@@ -1,12 +1,11 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Icon } from 'antd';
 
 //styles
 import classes from '../../styles.module.scss';
 
-const PaymentResult = ({selectedOpt}) => {
-  
+const PaymentResult = () => {
   const hasError = useSelector(({ payment }) => payment.hasError);
   const isPayment = useSelector(({ payment }) => payment.isPayment);
 

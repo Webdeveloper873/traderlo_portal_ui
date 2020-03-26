@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col, Card, Tabs, Icon, Input, Button, Divider, Modal, notification } from 'antd';
@@ -85,10 +86,10 @@ const RightPane = (domainDetails) => {
     dispatch(buyingDomain.addToWatchlist(domainDetails))
   }
 
-  const onClickRemoveToWatchlist = () => {
-    console.log('clicked')
-    dispatch(buyingDomain.removeToWatchlist(domainDetails))
-  }
+  // const onClickRemoveToWatchlist = () => {
+  //   console.log('clicked')
+  //   dispatch(buyingDomain.removeToWatchlist(domainDetails))
+  // }
 
   const onBidNow = () => {
     const { userId, id } = selectedDomainInfo || {};

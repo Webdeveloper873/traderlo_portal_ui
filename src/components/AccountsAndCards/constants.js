@@ -1,12 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Icon, Button } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
-
-
-//actions
-import * as payment from 'appRedux/actions/payment';
-
-
 
 // export const myCardCol = [
 //   {

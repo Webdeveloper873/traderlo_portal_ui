@@ -8,7 +8,7 @@ import { bidDomainTypes } from 'appRedux/constants/ActionTypes';
 import { base_url, headers } from 'appRedux/constants/configs';
 
 //utils
-import { request, objToFormData } from 'common/utils/helpers';
+import { request } from 'common/utils/helpers';
 
 function* setBidDomain({ payload }) {
   try {
