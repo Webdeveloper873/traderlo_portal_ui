@@ -1,0 +1,30 @@
+.tableContainer {
+  :global {
+    .ant-card-body{
+      padding: 0 !important;
+    }
+
+    .ant-table-thead {
+      tr {
+        th {
+          background: inherit !important;
+        }
+      }
+    }
+  }
+}
+
+.customPadding {
+  padding-left: 10px !important;
+}
+
+.tableStyle {
+  margin-top:25px;
+  margin-left:20p;
+  margin-bottom:7px;
+}
+
+.paymentResult {
+  text-align:center;
+  
+}

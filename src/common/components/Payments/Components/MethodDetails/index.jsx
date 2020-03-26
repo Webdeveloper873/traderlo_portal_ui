@@ -73,18 +73,15 @@ const DebitCredit = ({nextStep}) => {
 
 const BankAccount = ({nextStep}) => {
   const dispatch = useDispatch();
-  
+
   const isDone = useSelector(({ payment }) => payment.isDone);
-
-
-  const [checkedAgreement, setToCheck] = useState(true); 
 
   const routingNum = useFormInput();
   const acctNum = useFormInput();
   const acctHolderName = useFormInput();
   const acctType = useFormInput();
 
-  
+
 
   const onClickVerifyBankAccount = () => {
 
@@ -96,11 +93,6 @@ const BankAccount = ({nextStep}) => {
     }
     dispatch(payment.addAccount(data));
   }
-
-  const onClickAgreement = (e) => {
-    setToCheck(!checkedAgreement);
-  }
-
 
   if(isDone){
     nextStep();
@@ -124,9 +116,6 @@ const BankAccount = ({nextStep}) => {
           <Col span={24}>
             <Input onChange={acctType.handleInputChange} placeholder='Account Type' />
           </Col>
-          {/* <Col span={24}>
-            <Checkbox onClick={onClickAgreement}>{'I agree to the terms & conditions, buyer policy of traderlo'}</Checkbox>
-          </Col> */}
         </Row>
       <Button type='primary' onClick={onClickVerifyBankAccount} size='large'>Verify Account</Button>
     </>
@@ -135,12 +124,9 @@ const BankAccount = ({nextStep}) => {
 
 
 const Paypal = ({nextStep}) => {
-  const dispatch = useDispatch();
-  
   const isDone = useSelector(({ payment }) => payment.isDone);
   const signUpUserPass = useFormInput('');
   const signUpUserEmail = useFormInput('');
-
 
   const onMakePayment = () => {
     nextStep();
@@ -153,7 +139,6 @@ const Paypal = ({nextStep}) => {
   return (
     <>
       <Avatar shape="square" size={120} icon="user" src={paypal} />
-
         <Row className={classes.inputRow} gutter={[32, 16]}>
           <p><strong>Enter Account Details</strong></p>
           <Col span={24}>
@@ -177,43 +162,35 @@ const CardInfo = ({info}) => {
   );
 }
 
-
+// this is for PAYMENT
 const RegisteredAccount = ({nextStep, selectedOpt}) => {
-  console.log('selectedOpt',selectedOpt)
   const dispatch = useDispatch();
 
   const debitCreditInfo = {
     img : debitCards,
     instruction: 'Select from the available cards to finish the purchase',
-    fetchedList: useSelector(({ user }) => user.savedCards), 
-  } 
+    fetchedList: useSelector(({ user }) => user.savedCards),
+  }
 
   const bankAcctInfo = {
     img : bankCheck,
     instruction: 'Select your bank to finish payment',
     fetchedList:  useSelector(({ user }) => user.savedBanks),
-  } 
+  }
 
-  console.log(debitCreditInfo,'debitCreditInfo');
-  console.log(bankAcctInfo,'debitCreditInfo');
   const selectedInfo = selectedOpt === 1 ? debitCreditInfo : bankAcctInfo
   const isDone = useSelector(({ payment }) => payment.isDone);
-  const [checkedAgreement, setToCheck] = useState(true); 
-  const [selectedAccountNumber, setToSelectedAcct] = useState(''); 
-
-  const tempCardInfo = [5555555555554444, 4242424242424242]; // i use this becasue there is no sample output
-
+  const [checkedAgreement, setToCheck] = useState(true);
+  const [selectedAccountNumber, setToSelectedAcct] = useState('');
 
   const onMakePayment = () => {
-    console.log('add Card')
 
     const data = {
       amount: 120,
       paymentId: 12,
       currency: "eur",
-      type: selectedOpt === 1 ? "CARD" : "ACCOUNT" 
+      type: selectedOpt === 1 ? "CARD" : "ACCOUNT"
     }
-    console.log(data,'data payment')
     dispatch(payment.charge(data));
   }
 
@@ -228,7 +205,7 @@ const RegisteredAccount = ({nextStep, selectedOpt}) => {
   const onChangeSelected = (e) => {
     setToSelectedAcct(e.target.value);
   }
-  
+
   return (
     <>
       <Avatar shape="square" size={120} icon="user" src={selectedInfo.img} />
@@ -252,20 +229,34 @@ const RegisteredAccount = ({nextStep, selectedOpt}) => {
 
 
 
-const MethodDetails = ({selectedOpt, ...props}) => {
-  
+const MethodDetails = ({selectedOpt, isAddOnly, ...props}) => {
+
   const savedBanks = useSelector(({ user }) => user.savedBanks);
   const savedCards = useSelector(({ user }) => user.savedCards);
 
   // check if there are available cards and bank account then show either verification process or payment process
-  const hasSavedCards = savedCards.length > 0 ? true : false;  
+  const hasSavedCards = savedCards.length > 0 ? true : false;
   const hasSavedBanks = savedBanks.length > 0 ? true : false;
 
-  switch(selectedOpt){
+  let toRegisteredCard = false;
+  let toRegisteredAcct = false;
+
+  if (isAddOnly) {
+    // this will set to ADD FEATURE (card/accout)
+    toRegisteredCard = false;
+    toRegisteredAcct = false;
+  } else {
+    toRegisteredCard = hasSavedCards;
+    toRegisteredAcct = hasSavedBanks;
+  }
+
+
+
+  switch(selectedOpt){ // 1 = card , 2 = bank account
     case 1:
-      return (hasSavedCards ? <RegisteredAccount {...props} selectedOpt={selectedOpt}/> : <DebitCredit {...props}/>);
+      return (toRegisteredCard ? <RegisteredAccount {...props} selectedOpt={selectedOpt}/> : <DebitCredit {...props}/>);
     case 2:
-      return (hasSavedBanks ? <RegisteredAccount {...props} selectedOpt={selectedOpt}/> : <BankAccount {...props}/>);
+      return (toRegisteredAcct ? <RegisteredAccount {...props} selectedOpt={selectedOpt}/> : <BankAccount {...props}/>);
     case 3:
       return <Paypal {...props}/>;
     default:

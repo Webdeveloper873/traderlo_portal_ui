@@ -1,5 +1,5 @@
 import React from 'react';
-import {Col, Row, Card, Avatar, Collapse, Input, Icon,} from 'antd';
+import {Col, Row, Card, Input, Icon,} from 'antd';
 
 //components
 import Banner from 'common/components/Banner';

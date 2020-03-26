@@ -75,3 +75,9 @@ export const getSavedCardSuccess = (payload) => ({
 export const resetUserState = () => ({
   type: userActTypes.RESET
 });
+
+
+export const changeUserSidebarActiveKey = (payload) => ({
+  type: userActTypes.CHANGE_SIDEBAR_ACTIVE_KEY,
+  payload
+})

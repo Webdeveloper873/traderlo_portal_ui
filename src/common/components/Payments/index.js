@@ -1,11 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Avatar, Divider, Row, Col, Button, Steps } from 'antd';
+import { useDispatch } from 'react-redux';
+import { Divider } from 'antd';
 
 
 //actions
 import * as payment from 'appRedux/actions/payment';
-import { user } from 'appRedux/actions/home';
+import { user } from 'appRedux/actions/user';
 
 //components
 import ChooseMethod from './Components/ChooseMethod';
@@ -15,14 +16,12 @@ import PaymentResult from './Components/PaymentResult';
 //styles
 import classes from './styles.module.scss';
 
-const {Step} = Steps;
-
-const PageRouter = ({ selectedOpt, onClickOpt, stepNo, nextStep}) => {
+const PageRouter = ({ selectedOpt, onClickOpt, stepNo, nextStep, isAddOnly}) => {
   switch(stepNo){
     case 0:
       return <ChooseMethod selectedOpt={selectedOpt} nextStep={nextStep} onClickOpt={onClickOpt} />;
     case 1:
-      return <MethodDetails selectedOpt={selectedOpt} nextStep={nextStep}/>;
+      return <MethodDetails selectedOpt={selectedOpt} nextStep={nextStep} isAddOnly={isAddOnly}/>;
     case 2:
       return <PaymentResult selectedOpt={selectedOpt} />;
     default:
@@ -31,7 +30,8 @@ const PageRouter = ({ selectedOpt, onClickOpt, stepNo, nextStep}) => {
 }
 
 
-const Payments = () => {
+const Payments = ({isAddOnly}) => {
+  console.log(isAddOnly,'isAddOnly');
   const [stepNo, setStepNo] = useState(0);
   const [selectedOpt, setSelectedOpt] = useState();
   const dispatch = useDispatch();
@@ -46,6 +46,7 @@ const Payments = () => {
       dispatch(payment.clearPaymentSteps());
     };
   }, []);
+
   const nextStep = () => {
     setStepNo(stepNo+1);
   }
@@ -64,6 +65,7 @@ const Payments = () => {
         nextStep={nextStep}
         onClickOpt={onClickOpt}
         selectedOpt={selectedOpt}
+        isAddOnly={isAddOnly}
       />
     </div>
   );

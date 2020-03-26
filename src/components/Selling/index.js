@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Col, Row, Card, Input, Checkbox } from 'antd';
@@ -119,6 +120,7 @@ const Selling = () => {
   useEffect(()=>{
     //reset listing id
     dispatch(domainActions.initializeSelling());
+    setSelectedItem(1); //TEMP: for the sake of removing the warning of unused var
   }, [])
 
   useEffect(()=>{

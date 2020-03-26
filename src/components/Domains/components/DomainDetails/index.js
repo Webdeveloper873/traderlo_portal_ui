@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col, Card, Tabs, Icon, Input, Button, Divider, Modal, notification } from 'antd';
@@ -14,7 +15,7 @@ import classes from './styles.module.scss';
 
 //actions
 import { bidDomain } from 'appRedux/actions/bidding';
-import { user } from 'appRedux/actions/home';
+import { user } from 'appRedux/actions/user';
 
 //utils
 import { useFormInput } from 'common/utils/hooks';
@@ -85,10 +86,10 @@ const RightPane = (domainDetails) => {
     dispatch(buyingDomain.addToWatchlist(domainDetails))
   }
 
-  const onClickRemoveToWatchlist = () => {
-    console.log('clicked')
-    dispatch(buyingDomain.removeToWatchlist(domainDetails))
-  }
+  // const onClickRemoveToWatchlist = () => {
+  //   console.log('clicked')
+  //   dispatch(buyingDomain.removeToWatchlist(domainDetails))
+  // }
 
   const onBidNow = () => {
     const { userId, id } = selectedDomainInfo || {};
@@ -148,7 +149,7 @@ const RightPane = (domainDetails) => {
         visible={buyNowVisible}
         onCancel = {hideModal}
         footer={null}>
-        <Payments />
+        <Payments isAddOnly={false}/>
       </Modal>
     </Col>
   );

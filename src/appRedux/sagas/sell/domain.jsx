@@ -8,7 +8,7 @@ import { sellDomainTypes } from 'appRedux/constants/ActionTypes';
 import { base_url, headers } from 'appRedux/constants/configs';
 
 //utils
-import { request, objToFormData } from 'common/utils/helpers';
+import { request } from 'common/utils/helpers';
 
 function* sellDomain({payload}) {
   try {
@@ -21,7 +21,6 @@ function* sellDomain({payload}) {
         body: JSON.stringify(payload)
       }
     ));
-    console.log('sellDomain resp: ', resp)
     if(resp){
       yield put(domain.sellDomainSuccess(resp));
     }
@@ -32,7 +31,6 @@ function* sellDomain({payload}) {
 
 function* pitchDomain({ payload }) {
   try {
-    console.log('payload: ', payload);
     const resp = yield call(() => request.post(`${base_url}/selling/domain/pitch`,
       {
         headers: {
@@ -42,7 +40,6 @@ function* pitchDomain({ payload }) {
         body: JSON.stringify(payload)
       }
     ));
-    console.log('pitchDomain resp: ', resp)
     if (resp) {
       yield put(domain.setPitchSuccess());
     }
@@ -52,7 +49,6 @@ function* pitchDomain({ payload }) {
 }
 
 function* domainSale({ payload }) {
-  console.log('domainSale payload: ', payload);
   try {
     let resp = yield call(() => request.post(`${base_url}/selling/domain/sale`,
       {
@@ -63,7 +59,6 @@ function* domainSale({ payload }) {
         body: JSON.stringify(payload)
       }
     ));
-    console.log('domainSale resp: ', resp);
     if(resp){
       yield put(domain.setSaleSuccess());
     }
@@ -73,7 +68,6 @@ function* domainSale({ payload }) {
 }
 
 function* domainTraffic({ payload }) {
-  console.log('domainTraffic payload: ', payload);
   try {
     let resp = yield call(() => request.post(`${base_url}/selling/domain/traffic`,
       {
@@ -85,7 +79,6 @@ function* domainTraffic({ payload }) {
       }
     ));
     // let resp = true;
-    console.log('domainTraffic resp: ', resp);
     if (resp) {
       yield put(domain.setTrafficSuccess());
     }
@@ -95,7 +88,6 @@ function* domainTraffic({ payload }) {
 }
 
 function* domainPromote({ payload }) {
-  console.log('domainPromote payload: ', payload);
   try {
     let resp = yield call(() => request.post(`${base_url}/selling/domain/promote`,
       {
@@ -106,7 +98,6 @@ function* domainPromote({ payload }) {
         body: JSON.stringify(payload)
       }
     ));
-    console.log('domainPromote resp: ', resp);
     if (resp) {
       yield put(domain.setPromoteSuccess());
     }
@@ -116,7 +107,6 @@ function* domainPromote({ payload }) {
 }
 
 function* verifyByText({ payload }) {
-  console.log('verifyByText payload: ', payload);
   try {
     let resp = yield call(() => request.post(`${base_url}/domain/verifyDomain`,
       {
@@ -127,7 +117,6 @@ function* verifyByText({ payload }) {
         body: JSON.stringify(payload)
       }
     ));
-    console.log('verifyByText resp: ', resp);
     if (resp) {
       yield put(domain.verifyTextFileSuccess(resp));
     }
@@ -137,7 +126,6 @@ function* verifyByText({ payload }) {
 }
 
 function* verifyByMetaTag({ payload }) {
-  console.log('verifyByMetaTag payload: ', payload);
   const { metaTag, ...others } = payload;
   try {
     let resp = yield call(() => request.post(`${base_url}/domain/verifyMeta?metaTag=${metaTag}`,
@@ -149,7 +137,6 @@ function* verifyByMetaTag({ payload }) {
         body: JSON.stringify(others)
       }
     ));
-    console.log('verifyByMetaTag resp: ', resp);
     if (resp) {
       yield put(domain.verifyByMetaSuccess(resp));
     }
@@ -168,7 +155,6 @@ function* getRandText() {
         },
       }
     ));
-    console.log('getRandText resp: ', resp);
     if (resp) {
       yield put(domain.getRandTextSuccess(resp.value));
     }
@@ -187,7 +173,6 @@ function* getMetaText() {
         },
       }
     ));
-    console.log('getRandText resp: ', resp);
     if (resp) {
       yield put(domain.getMetaSuccess(resp.value));
     }

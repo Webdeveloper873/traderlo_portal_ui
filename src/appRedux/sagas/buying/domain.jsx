@@ -8,7 +8,7 @@ import { buyDomainTypes } from 'appRedux/constants/ActionTypes';
 import { base_url, headers } from 'appRedux/constants/configs';
 
 //utils
-import { request, objToFormData, getAccessToken } from 'common/utils/helpers';
+import { request, getAccessToken } from 'common/utils/helpers';
 
 function* getBuyDomain({payload}) {
   try {
@@ -21,7 +21,7 @@ function* getBuyDomain({payload}) {
         ...payload
       }
     ));
-  
+
     if(resp){
       yield put(buyingDomain.getBuyDomainSuccess(resp));
     }
@@ -35,7 +35,7 @@ function* getBuyDomain({payload}) {
 function* getBuyDomainById({payload}) {
   try{
     const {id, userId} = payload || {};
-    const resp = yield call(() => request.get(`${base_url}/listing/domains/${id}`, 
+    const resp = yield call(() => request.get(`${base_url}/listing/domains/${id}`,
     {
       headers: { ...headers,
         uid: userId,
@@ -53,10 +53,9 @@ function* getBuyDomainById({payload}) {
 
 function* addToWatchlist({payload}) {
   try{
-    console.log(payload,'payload watchlist')
     const {id, userId} = payload || {};
-    const type = 'l' // temporarily 
-    const resp = yield call(() => request.post(`${base_url}/watchlist/${type}/${id}`, 
+    const type = 'l' // temporarily
+    const resp = yield call(() => request.post(`${base_url}/watchlist/${type}/${id}`,
     {
       headers: { ...headers,
         uid: userId.toString(),
@@ -75,8 +74,8 @@ function* removeToWatchlist({payload}) {
   try{
     console.log(payload,'payload watchlist')
     const {id, userId} = payload || {};
-    const type = 'l' // temporarily 
-    const resp = yield call(() => request.delete(`${base_url}/watchlist/${type}/${id}`, 
+    const type = 'l' // temporarily
+    const resp = yield call(() => request.delete(`${base_url}/watchlist/${type}/${id}`,
     {
       headers: { ...headers,
         uid: userId.toString(),

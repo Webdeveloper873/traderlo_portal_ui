@@ -1,15 +1,4 @@
-// export const request = async (url, params) => {
-//   const response = await fetch(url, params).then(resp => resp.json());
-//   console.log('api response', response);
-//   return response;
-// }
-
-const handleError = (resp) => {
-  if(resp.ok){
-    return resp.json();
-  }
-  throw Error(resp.statusMessage);
-}
+import { notification  } from 'antd';
 
 const handleResponse = (resp) => {   // if empty return {}
   if (resp.ok) {
@@ -38,8 +27,17 @@ export const objToFormData = (obj) => {
 
   objKeys.map(key => {
     formData.append(key, obj[key]);
+    return 0;
   });
   return formData;
 }
 
 export const getAccessToken = () => window.localStorage.getItem('access_token');
+
+export const openNotification = ({status, message , description}) => {
+  return notification[status]({
+    message: message,
+    description: description,
+    placement: 'bottomRight',
+  });
+};

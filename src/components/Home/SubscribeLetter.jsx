@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {Row, Jumbotron, InputGroup, Form, Button, Col, Image} from 'react-bootstrap';
@@ -56,7 +57,7 @@ const SubscribeLetter = () => {
     }
     emailInput.reset();
     dispatch(resetSubscribeResult());
-  }, [subscribeResult]);
+  }, [ subscribeResult ]);
 
   const onSubscribe = () => {
     dispatch(subscribeToNewsletter(emailInput.value));

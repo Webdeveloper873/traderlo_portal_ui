@@ -78,7 +78,7 @@
 
   .details {
     display: flex;
-    
+
     .detailsList {
       // display: inline-block;
       flex: 1 1 30%;
@@ -90,7 +90,7 @@
 .blogDetails {
   display: flex;
   flex-flow: column wrap;
-  align-items: start;
+  align-items: flex-start;
   padding: 22px 29px;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
@@ -149,7 +149,7 @@
 
   .viewAllDecor {
     text-align: center;
-    align-items: center; 
+    align-items: center;
 
     .fontDecor {
       color:#ec008c;

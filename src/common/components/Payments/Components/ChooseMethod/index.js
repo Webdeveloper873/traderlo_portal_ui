@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, Divider, Row, Col, Button, Steps } from 'antd';
+import { Avatar, Row, Col, Button } from 'antd';
 
 //styles
 import classes from '../../styles.module.scss';

@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Card, Icon, Row, Col, Button, message } from 'antd';
+import { Card, Icon, Row, Col } from 'antd';
 import CountUp from 'react-countup';
 
 //component
@@ -9,7 +10,7 @@ import Banner from 'common/components/Banner';
 import UserSidebar from 'common/components/UserSidebar';
 
 //actions
-import { user } from 'appRedux/actions/home';
+import { user } from 'appRedux/actions/user';
 
 //styles
 import classes from './styles.module.scss';

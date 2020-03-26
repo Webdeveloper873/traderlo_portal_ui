@@ -1,4 +1,6 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Col, Card, Input, Icon, Table } from 'antd';
 
 //components
@@ -6,8 +8,11 @@ import Banner from 'common/components/Banner';
 import PageWrapper from 'common/components/PageWrapper';
 import UserSidebar from 'common/components/UserSidebar';
 
+//actions
+import { buyActivities } from 'appRedux/actions/user';
+
 //constants
-import {myBidsCol} from './constants';
+import {myBidsCol, bidsTempData} from './constants';
 
 //styles
 import classes from './styles.module.scss';
@@ -17,6 +22,15 @@ const SearchBid = () => {
 }
 
 const UserBids = () => {
+
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    //fetch bids
+    console.log('useEffect getUserBids');
+    dispatch(buyActivities.getUserBids());
+  }, []);
+
   return(
     <>
       <Banner text={'Bids'} />
@@ -26,7 +40,7 @@ const UserBids = () => {
         </Col>
         <Col xs={24} sm={24} md={18} lg={18} className={classes.customPadding}>
           <Card type="inner" title={'My Bids'} extra={<SearchBid />} className={classes.tableContainer}>
-            <Table columns={myBidsCol} dataSource={[]}/>
+            <Table columns={myBidsCol} dataSource={bidsTempData.bids}/>
           </Card>
         </Col>
       </PageWrapper>
