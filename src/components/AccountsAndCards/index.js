@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import { Col, Card, Input, Icon, Table, Tabs, Button, Row, Divider, Modal, notification  } from 'antd';
+import { Col, Card, Button, Modal } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 
 //components
@@ -10,11 +11,6 @@ import Payments from 'common/components/Payments';
 import MyCardTable from './MyCardTable';
 import MyBankAccTable from './MyBankAccTable';
 import MyPaypalTable from './MyPaypalTable';
-// util
-import { openNotification } from 'common/utils/helpers';
-
-//constants
-import {myCardCol, myBankAcctCol, paypalCol} from './constants';
 
 //styles
 import classes from './styles.module.scss';
@@ -31,14 +27,11 @@ const AddButton = ({showModal}) => {
 
 
 const AccountsAndCards = () => {
-  const dispatch = useDispatch();
-  
   const [buyNowVisible, setShowModal] = useState(false);
   const savedCards = useSelector(({ user }) => user.savedCards);
   const savedBanks = useSelector(({ user }) => user.savedBanks);
+  const dispatch = useDispatch();
 
-  console.log(savedBanks,'savedBanks');
-  console.log(savedCards,'savedCards');
   useEffect(()=>{
     dispatch(user.getSavedBanks());
     dispatch(user.getSavedCard());

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Col, Card, Input, Icon, Table, Tabs, Button, Row, Divider, Modal, notification  } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import {  Icon, Table, Button, Row, Divider, Modal } from 'antd';
 
 // util
 import { openNotification } from 'common/utils/helpers';
@@ -8,15 +7,7 @@ import { openNotification } from 'common/utils/helpers';
 //styles
 import classes from './styles.module.scss';
 
-//actions
-import * as payment from 'appRedux/actions/payment';
-import { user } from 'appRedux/actions/user';
-
-
-
-
 const MyCardTable = ({savedCards}) => {
-    const dispatch = useDispatch();
     const [deleteCardVisible, setShowModal] = useState(false);
     const [loading, setLoading] = useState(false);
     const [selectedItem, setSelectedItem] = useState({});

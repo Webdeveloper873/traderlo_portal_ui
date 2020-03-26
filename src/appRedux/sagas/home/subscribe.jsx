@@ -5,7 +5,7 @@ import { successSubscribeNewsletter, failedSubscribeNewsletter } from 'appRedux/
 
 //constants
 import { homeActions } from 'appRedux/constants/ActionTypes';
-import { base_url, noAuthHeaders } from 'appRedux/constants/configs';
+import { base_url } from 'appRedux/constants/configs';
 
 //utils
 import { request } from 'common/utils/helpers';

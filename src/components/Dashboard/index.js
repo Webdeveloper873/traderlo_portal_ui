@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Card, Icon, Row, Col, Button, message } from 'antd';
+import { Card, Icon, Row, Col } from 'antd';
 import CountUp from 'react-countup';
 
 //component
@@ -56,7 +57,7 @@ const Dashboards = ({...props}) => {
     dispatch(user.getUserProfile());
   }, []);
 
-  
+
   return(
     <>
       <Banner text={'Dashboard'} />

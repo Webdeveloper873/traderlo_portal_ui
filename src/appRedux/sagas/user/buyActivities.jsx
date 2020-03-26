@@ -5,10 +5,10 @@ import { buyActivities } from 'appRedux/actions/user';
 
 //constants
 import { userActTypes } from 'appRedux/constants/ActionTypes';
-import { base_url, headers, noAuthHeaders } from 'appRedux/constants/configs';
+import { base_url, headers } from 'appRedux/constants/configs';
 
 //utils
-import { request, objToFormData, getAccessToken } from 'common/utils/helpers';
+import { request } from 'common/utils/helpers';
 
 function* getUserBids() {
   console.log('saga getUserBids');

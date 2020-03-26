@@ -1,18 +1,5 @@
 import { notification  } from 'antd';
 
-// export const request = async (url, params) => {
-//   const response = await fetch(url, params).then(resp => resp.json());
-//   console.log('api response', response);
-//   return response;
-// }
-
-const handleError = (resp) => {
-  if(resp.ok){
-    return resp.json();
-  }
-  throw Error(resp.statusMessage);
-}
-
 const handleResponse = (resp) => {   // if empty return {}
   if (resp.ok) {
     return resp.text().then(function(respText) {
@@ -40,6 +27,7 @@ export const objToFormData = (obj) => {
 
   objKeys.map(key => {
     formData.append(key, obj[key]);
+    return 0;
   });
   return formData;
 }

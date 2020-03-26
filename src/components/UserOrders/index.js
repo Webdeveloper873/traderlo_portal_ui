@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Col, Card, Input, Icon, Table, Select } from 'antd';
+import { Col, Card, Table, Select } from 'antd';
 
 //components
 import Banner from 'common/components/Banner';

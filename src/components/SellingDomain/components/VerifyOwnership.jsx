@@ -1,11 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { Modal, Card, Row, Button, Col, Avatar, Icon, Input } from 'antd';
 import moment from 'moment';
-
-//components
-import InputField from './InputField';
 
 //actions
 import { domain } from 'appRedux/actions/selling';

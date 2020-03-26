@@ -1,5 +1,4 @@
 import { userActTypes } from 'appRedux/constants/ActionTypes';
-import { routes } from 'common/constants';
 
 const initialState = {
   myBids: []

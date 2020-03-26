@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tag, Icon } from 'antd';
+import { Icon } from 'antd';
 
 //components
 import TableNameCol from 'common/components/TableNameCol';
@@ -12,7 +12,7 @@ export const domWebCol = [
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
-    render: (text, record) => {
+    render: (text) => {
       return <TableNameCol name={text} type={''} />;
     }
   },

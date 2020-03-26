@@ -1,14 +1,11 @@
-import { all, call, fork, put, takeEvery } from "redux-saga/effects";
-
-//actions
-import { userSidebar } from 'appRedux/actions/userSidebar';
+import { all, call, fork, takeEvery } from "redux-saga/effects";
 
 //constants
 import { userSidebarInfoTypes } from 'appRedux/constants/ActionTypes';
 import { base_url, headers } from 'appRedux/constants/configs';
 
 //utils
-import { request, objToFormData, getAccessToken } from 'common/utils/helpers';
+import { request, getAccessToken } from 'common/utils/helpers';
 
 function* getWatchlistDomainWebsite({payload}) {
     try {

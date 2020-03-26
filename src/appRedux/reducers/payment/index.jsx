@@ -8,7 +8,7 @@ const intialState = {
 };
 
 export default (state = intialState, action) => {
-  const { type, payload } = action || {};
+  const { type } = action || {};
   switch (type) {
     case paymentTypes.VERIFY_CARD_SUCCESS:
       return { ...state, isDone: true };

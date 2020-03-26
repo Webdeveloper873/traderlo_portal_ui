@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import {Button, Dropdown, Menu, Avatar} from 'antd'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 //actions
 import { user } from 'appRedux/actions/user';
@@ -21,7 +21,7 @@ const Menus = () => {
 
   const onClickLogout = () => {
     dispatch(user.logout());
-  } 
+  }
 
   return (
     <Menu>

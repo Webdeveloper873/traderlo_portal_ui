@@ -2,14 +2,13 @@ import { all, call, fork, put, takeEvery } from "redux-saga/effects";
 
 //actions
 import * as payment from 'appRedux/actions/payment';
-import { user } from 'appRedux/actions/user';
 
 //constants
 import { paymentTypes } from 'appRedux/constants/ActionTypes';
 import { base_url, headers } from 'appRedux/constants/configs';
 
 //utils
-import { request, objToFormData, getAccessToken } from 'common/utils/helpers';
+import { request, getAccessToken } from 'common/utils/helpers';
 
 
 
@@ -40,7 +39,7 @@ function* deleteCard({ payload }) {
     const {id, userId} = payload || {};
     const resp = yield call(() => request.delete(`${base_url}/stripe/deleteCard?id=${id}`,
       {
-        headers: { 
+        headers: {
           ...headers,
           uid: userId.toString(),
           authorization: `Bearer ${getAccessToken()}`,
@@ -87,7 +86,7 @@ function* deleteAccount({ payload }) {
     const {id, userId} = payload || {};
     const resp = yield call(() => request.delete(`${base_url}/stripe/deleteAccount?id=${id}`,
       {
-        headers: { 
+        headers: {
           ...headers,
           uid: userId.toString(),
           authorization: `Bearer ${getAccessToken()}`,

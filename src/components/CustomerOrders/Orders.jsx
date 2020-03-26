@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Col, Row, Card, Avatar, Collapse, Icon, Steps} from 'antd';
 import moment from 'moment'
 
@@ -91,7 +91,7 @@ const TrackProgress = () => {
             <Step size="small" status="wait" title="waiting" description={
               <>
                 <div><span>{"Domain Received"}</span></div>
-                <div> <a> <span className={classes.doneColor}>{`Click Here to Confirm`}</span></a></div>
+                <div> <a href='/'> <span className={classes.doneColor}>{`Click Here to Confirm`}</span></a></div>
               </> } icon={<Icon type="lock" theme="filled" />} />
           </Steps>
           <Row className={classes.bottomComment}> <span> Something did not go as expected? </span> <span className={classes.linkDecor}> Dispute Transaction? </span></Row>
