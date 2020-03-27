@@ -14,7 +14,8 @@ export const routes = {
   BIDS_PERFORMANCE: '/traderlo/user/bids_performance',
   LISTING_AND_STATUS: '/traderlo/user/listing_and_status',
   CHAT: '/traderlo/user/chat',
-  ACCOUNTS_AND_CARDS: '/traderlo/user/accounts_and_cards'
+  ACCOUNTS_AND_CARDS: '/traderlo/user/accounts_and_cards',
+  PAYMENT_ACTIVITY: '/traderlo/user/payment_activity'
 };
 
 export const responsiveConf = {
