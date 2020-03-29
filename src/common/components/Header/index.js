@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Button, Dropdown, Menu, Avatar } from 'antd'
 import { useDispatch } from 'react-redux';
@@ -26,14 +27,10 @@ const Menus = () => {
   return (
     <Menu>
     <Menu.Item>
-      <Button type="link" href={routes.DASHBOARD_PAGE}>
-        Dashboard
-      </Button>
+      <Link className={classes.linkStyle} to={routes.DASHBOARD_PAGE}>Dashboard</Link>
     </Menu.Item>
     <Menu.Item>
-      <Button type="link" onClick={onClickLogout}>
-        Log out
-      </Button>
+      <Link  onClick={onClickLogout} className={classes.linkStyle} to={routes.DASHBOARD_PAGE}>Logout</Link>
     </Menu.Item>
   </Menu>
   )
@@ -41,7 +38,7 @@ const Menus = () => {
 
  const UserAvatar = () => {
    return(
-    <Dropdown overlay={<Menus></Menus>} placement="bottomRight" trigger={['click']}>
+    <Dropdown overlay={<Menus></Menus>} placement="bottomRight" trigger={['click']} className={classes.avatar}>
       <Button type="link">
         <Avatar size='large' src={userImg} />
       </Button>
@@ -61,12 +58,12 @@ const Header = ({onClickSignInUp}) => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
           <Nav className={classes.font} >
-            <Nav.Link href="/websites">Websites</Nav.Link>
-            <Nav.Link href={routes.DOMAINS_PAGE}>Domains</Nav.Link>
-            <Nav.Link href="/templates">Template/Graphics</Nav.Link>
-            <Nav.Link href="/script">Clone script</Nav.Link>
-            <Nav.Link href="/plugins">Plugins/Themes</Nav.Link>
-            { userLoggedIn ? <UserAvatar/> : <Nav.Link onClick={onClickSignInUp}>Sign in/Signup</Nav.Link>}
+            <Link className={classes.linkStyle} to="/websites">Websites</Link>
+            <Link className={classes.linkStyle} to={routes.DOMAINS_PAGE}>Domains</Link>
+            <Link className={classes.linkStyle} to="/templates">Template/Graphics</Link>
+            <Link className={classes.linkStyle} to="/script">Clone script</Link>
+            <Link className={classes.linkStyle} to="/plugins">Plugins/Themes</Link>
+            {userLoggedIn ? <UserAvatar /> : <Link onClick={onClickSignInUp} className={classes.linkStyle}>Sign in/Signup</Link>}
             {/* <Dropdown overlay={<Menus></Menus>} placement="bottomRight" trigger={['click']}>
               <Button type="link">
                 <Avatar size='large' src={userImg} />
