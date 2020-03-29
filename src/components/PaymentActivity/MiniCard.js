@@ -22,7 +22,7 @@ function MiniCard({ amount, label, icon }) {
 MiniCard.propTypes = {
   amount: PropTypes.number.isRequired,
   label: PropTypes.string.isRequired,
-  icon: PropTypes.symbol
+  icon: PropTypes.string
 };
 
 export default MiniCard;

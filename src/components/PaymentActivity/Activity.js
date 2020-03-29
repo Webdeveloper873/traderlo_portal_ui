@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Button } from "antd";
+import PropTypes from "prop-types";
 
 const buttonStyle = {
   backgroundColor: "#00bcd4",
@@ -8,22 +9,19 @@ const buttonStyle = {
   height: "42px"
 };
 
-function Activities() {
+function Activities({ data }) {
   return (
     <Card bordered={true}>
       <div className="d-flex flex-row justify-content-around activity">
-        <div className="p-1">
-          <h3>$5000</h3>
-          <p className="text-muted">Life Time Earnings</p>
-        </div>
-        <div className="p-1">
-          <h3>$4000</h3>
-          <p className="text-muted">Life Time Withdrawls</p>
-        </div>
-        <div className="p-1">
-          <h3>$1000</h3>
-          <p className="text-muted">Active Balance</p>
-        </div>
+        {data &&
+          data.map(value => {
+            return (
+              <div className="p-1">
+                <h3>${value.amount}</h3>
+                <p className="text-muted">{value.label}</p>
+              </div>
+            );
+          })}
       </div>
       <div className="d-flex flex-column align-items-center justify-content-middle p-2">
         <Button className="pl-3 pr-3 pt-2 pb-2" style={buttonStyle}>
@@ -33,5 +31,9 @@ function Activities() {
     </Card>
   );
 }
+
+Activities.propTypes = {
+  data: PropTypes.array.isRequired
+};
 
 export default Activities;
