@@ -119,7 +119,7 @@ const CollapsibleItems = () => {
         <SubItemSelection title={'Customer Orders'} redirectPath={routes.CUSTOMER_ORDERS} />
       </Panel>
       <Panel header={<DropdownSelection image={myFinance} title = {'My Finance'} />} key="3" >
-        <SubItemSelection title={'Payment Activity'} ></SubItemSelection>
+        <SubItemSelection title={'Payment Activity'} redirectPath={routes.PAYMENT_ACTIVITY}></SubItemSelection>
         <SubItemSelection title={'Accounts And Cards'} redirectPath={routes.ACCOUNTS_AND_CARDS} />
       </Panel>
       <Panel header={<DropdownSelection image={myProfileAndAccount} title = {'My Profile And Account'} />} key="4" >
