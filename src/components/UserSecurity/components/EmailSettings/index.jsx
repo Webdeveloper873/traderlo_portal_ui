@@ -1,8 +1,11 @@
 import React from 'react';
-import { Checkbox, Row, Col } from 'antd';
+import { Checkbox, Row, Col, Button } from 'antd';
 
 //components
 import Panel from 'common/components/Panel';
+
+//styles
+import classes from './styles.module.scss';
 
 const settingsOpt = [
   {
@@ -64,6 +67,9 @@ const EmailSettings = () => {
           </Checkbox.Group>
         </Row>
       </Panel>
+      <Button type="primary" size={'large'} className={classes.saveBtn}>
+        Download
+      </Button>
     </>
   );
 }
