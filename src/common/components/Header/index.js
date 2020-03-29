@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
-import {Button, Dropdown, Menu, Avatar} from 'antd'
+import { Button, Dropdown, Menu, Avatar } from 'antd'
 import { useDispatch } from 'react-redux';
 
 //actions

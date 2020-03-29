@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Input, Typography, Switch } from 'antd';
+import { Row, Col, Input, Switch } from 'antd';
 
 //components
 import Panel from 'common/components/Panel';
@@ -11,7 +11,6 @@ import classes from './styles.module.scss';
 import { responsiveConf } from 'common/constants';
 
 const { threeCol } = responsiveConf;
-const { Title } = Typography;
 
 const PassAndSecurity = () => {
   return(

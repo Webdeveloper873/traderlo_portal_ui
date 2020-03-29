@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 import { Col, Tabs } from 'antd';
 
 //components
@@ -8,6 +7,7 @@ import Banner from 'common/components/Banner';
 import PageWrapper from 'common/components/PageWrapper';
 import UserSidebar from 'common/components/UserSidebar';
 import PassAndSecurity from './components/PassAndSecurity';
+import EmailSettings from './components/EmailSettings';
 
 //actions
 
@@ -30,7 +30,7 @@ const UserSecurity = () => {
               <PassAndSecurity />
             </TabPane>
             <TabPane tab={`Email Notification Settings`} key="2">
-              Content of Tab Pane 2
+              <EmailSettings />
             </TabPane>
           </Tabs>,
         </Col>
