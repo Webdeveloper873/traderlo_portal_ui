@@ -14,9 +14,9 @@ function Activities({ data }) {
     <Card bordered={true}>
       <div className="d-flex flex-row justify-content-around activity">
         {data &&
-          data.map(value => {
+          data.map((value, idx) => {
             return (
-              <div className="p-1">
+              <div className="p-1" key={idx}>
                 <h3>${value.amount}</h3>
                 <p className="text-muted">{value.label}</p>
               </div>

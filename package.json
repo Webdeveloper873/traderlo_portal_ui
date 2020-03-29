@@ -2,7 +2,7 @@
   "name": "traderlo-portal",
   "version": "0.1.0",
   "private": true,
-  "homepage": "./",
+  "homepage": "/",
   "dependencies": {
     "@antv/g2plot": "^1.0.2",
     "antd": "^3.26.8",

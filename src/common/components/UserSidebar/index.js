@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {Col, Row, Card, Avatar, Collapse} from 'antd';
 
@@ -16,6 +17,9 @@ import dashboard from 'assets/userSideBar/dashboard.png';
 import myFinance from 'assets/userSideBar/myFinance.png';
 import myProfileAndAccount from 'assets/userSideBar/myProfileAndAccount.png';
 import sellingActivities from 'assets/userSideBar/sellingActivities.png';
+
+//constants
+import { routes } from 'common/constants';
 
 
 const { Panel } = Collapse;
@@ -54,12 +58,12 @@ const UsersCard = () => {
 const ItemSelection = ({image, title, redirectPath, ...props}) => {
   return (
     <div className={classes.itemSelection} onClick={test}>
-      <a href={redirectPath}>
+      <Link to={redirectPath}>
         <Col span={24} className={classes.colDecor}>
           <Avatar size={35} src={image} className={classes.avatarStyle} shape="square"/>
           <span className={classes.fontDecor}>{title}</span>
         </Col>
-      </a>
+      </Link>
   </div>
   )
 }
@@ -79,11 +83,11 @@ const DropdownSelection = ({image, title}) => {
 
 const SubItemSelection = ({title, redirectPath, ...props}) => {
   return(
-    <a href={redirectPath}>
+    <Link to={redirectPath}>
       <div className={classes.subItemSelection} {...props}>
         <span className={classes.fontDecor}>{title}</span>
       </div>
-    </a>
+    </Link>
   )
 }
 
@@ -96,34 +100,31 @@ const CollapsibleItems = () => {
   const activeSidebarKey = useSelector(({ user }) => user.activeSidebarKey);
 
   const callback= (key) => {
-
     if (key && key.length > 0 ) {
       dispatch(user.changeUserSidebarActiveKey(key[0]));
 
     } else dispatch(user.changeUserSidebarActiveKey(''));
-  
-    
   }
 
   return (
     <Collapse defaultActiveKey={[activeSidebarKey]} onChange={callback} expandIconPosition={'right'} style={customPanelStyle} accordion>
-      <Panel header={<DropdownSelection image={buyingActivities} title = {'Buying Activities'}></DropdownSelection>} key="1" style={{padding:0}}>
-        <SubItemSelection title={'My Bids'} redirectPath='/traderlo/user/bids'></SubItemSelection>
-        <SubItemSelection title={'My Orders'} redirectPath='/traderlo/user/orders'></SubItemSelection>
-        <SubItemSelection title={'Watching'} redirectPath='/traderlo/user/watchings'></SubItemSelection>
+      <Panel header={<DropdownSelection image={buyingActivities} title={'Buying Activities'} />} key="1" style={{padding:0}}>
+        <SubItemSelection title={'My Bids'} redirectPath={routes.MY_BIDS} />
+        <SubItemSelection title={'My Orders'} redirectPath={routes.MY_ORDERS} />
+        <SubItemSelection title={'Watching'} redirectPath={routes.MY_WATCHINGS} />
       </Panel>
-      <Panel header={<DropdownSelection image={sellingActivities} title = {'Selling Activities'}></DropdownSelection>} key="2" >
-        <SubItemSelection title={'Listing And Status'} redirectPath='/traderlo/user/listing_and_status' ></SubItemSelection>
-        <SubItemSelection title={'Bids'} redirectPath='/traderlo/user/bids_performance' ></SubItemSelection>
-        <SubItemSelection title={'Customer Orders'} redirectPath='/traderlo/user/customer_orders' ></SubItemSelection>
+      <Panel header={<DropdownSelection image={sellingActivities} title = {'Selling Activities'} />} key="2" >
+        <SubItemSelection title={'Listing And Status'} redirectPath={routes.LISTING_AND_STATUS} />
+        <SubItemSelection title={'Bids'} redirectPath={routes.BIDS_PERFORMANCE} />
+        <SubItemSelection title={'Customer Orders'} redirectPath={routes.CUSTOMER_ORDERS} />
       </Panel>
-      <Panel header={<DropdownSelection image={myFinance} title = {'My Finance'}></DropdownSelection>} key="3" >
-      <SubItemSelection title={'Payment Activity'} redirectPath='/traderlo/user/payment_activity'></SubItemSelection>
-        <SubItemSelection title={'Accounts And Cards'} redirectPath='/traderlo/user/accounts_and_cards'></SubItemSelection>
+      <Panel header={<DropdownSelection image={myFinance} title = {'My Finance'} />} key="3" >
+        <SubItemSelection title={'Payment Activity'} redirectPath={routes.PAYMENT_ACTIVITY}></SubItemSelection>
+        <SubItemSelection title={'Accounts And Cards'} redirectPath={routes.ACCOUNTS_AND_CARDS} />
       </Panel>
-      <Panel header={<DropdownSelection image={myProfileAndAccount} title = {'My Profile And Account'}></DropdownSelection>} key="4" >
+      <Panel header={<DropdownSelection image={myProfileAndAccount} title = {'My Profile And Account'} />} key="4" >
         <SubItemSelection title={'User Profile'} ></SubItemSelection>
-        <SubItemSelection title={'Password And Security'} ></SubItemSelection>
+        <SubItemSelection title={'Account And Security'} redirectPath={routes.ACCOUNTS_AND_SECURITY}></SubItemSelection>
         <SubItemSelection title={'Identify And Verification'} ></SubItemSelection>
       </Panel>
     </Collapse>
@@ -136,8 +137,8 @@ const UserSideBar = () => {
        <Row>
          <Col span={5} style={{paddingLeft:20}}>
           <UsersCard></UsersCard>
-          <ItemSelection image={dashboard} title={'Dashboard'} redirectPath='/traderlo/user/dashboard'></ItemSelection>
-          <ItemSelection image={chat} title={'Chat'} redirectPath='/traderlo/user/chat'></ItemSelection>
+          <ItemSelection image={dashboard} title={'Dashboard'} redirectPath={routes.DASHBOARD_PAGE}></ItemSelection>
+          <ItemSelection image={chat} title={'Chat'} redirectPath={routes.CHAT}></ItemSelection>
           <CollapsibleItems></CollapsibleItems>
          </Col>
        </Row>

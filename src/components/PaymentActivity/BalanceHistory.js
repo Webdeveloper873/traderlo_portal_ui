@@ -34,6 +34,7 @@ function BalanceHistory({ data }) {
   };
   useEffect(() => {
     renderChart();
+    // eslint-disable-next-line
   }, []);
   return <div id="balaceHistoryCanvas"></div>;
 }
