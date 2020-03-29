@@ -1,0 +1,21 @@
+.panelHeader {
+  width: 100%;
+  display: flex !important;
+  min-height: 58px;
+  align-items: center;
+  background: #fcfcfc;
+  padding: 0 10px 0 20px;
+  border-radius: 6px 6px 0 0;
+  border: 1px solid #eee;
+  overflow: hidden;
+  font-size: 1.125rem !important;
+  margin-top: 7px;
+  color: #333333;
+  font-family: "Mukta", sans-serif !important;
+}
+
+.panelBody {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 0px 0px 6px 6px;
+}

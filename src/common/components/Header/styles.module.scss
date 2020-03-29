@@ -19,16 +19,40 @@
     .logo {
       height: 32px;
     }
+
     .font {
       position: relative;
       padding: 40px 12px;
       font-size: 1rem !important;
       font-family: "Mukta", sans-serif !important;
     }
+
+    .linkStyle {
+      position: relative;
+      padding: 48px 12px;
+      font-size: 1rem !important;
+      font-family: "Mukta", sans-serif !important;
+      color: #333333;
+      font-weight: 700;
+    }
+
+    .avatar {
+      position: relative;
+      padding: 40px 12px;
+      font-size: 1rem !important;
+      font-family: "Mukta", sans-serif !important;
+      color: #333333;
+      font-weight: 700;
+    }
+
     .buttonStyle {
       background-color:#00bcd4;
       color: white;
-      text-align:center
+      text-align:center;
+      position: relative;
+      margin: 40px 12px;
+      font-size: 1rem !important;
+      font-family: "Mukta", sans-serif !important;
     }
   }
 }
