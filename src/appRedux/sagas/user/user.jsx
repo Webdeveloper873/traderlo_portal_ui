@@ -37,6 +37,27 @@ function* getUserProfile() {
   }
 }
 
+function* updateUserProfile({payload}) {
+  
+  const {profile} = payload || {};
+  console.log(payload,'payload');
+  console.log(profile.id,'id');
+  try{
+    const resp = yield call(() => request.put(`${base_url}/user/profile`,
+     { headers: {
+        ...headers,
+        uid: profile.id.toString(),
+        authorization: `Bearer ${getAccessToken()}` },
+        body: JSON.stringify(profile)
+       }));
+    if(resp){
+      yield put(user.updateUserProfileSuccess(resp));
+    }
+  }catch(err) {
+    console.log('err: ', err);
+  }
+}
+
 
 function* registerUser({payload}) {
   try{
@@ -110,6 +131,10 @@ export function* getProfileWatcher() {
   yield takeEvery(userActTypes.FETCH_PROFILE, getUserProfile);
 }
 
+export function* updateProfileWatcher() {
+  yield takeEvery(userActTypes.UPDATE_PROFILE, updateUserProfile);
+}
+
 export function* loginWatcher() {
   yield takeEvery(userActTypes.LOGIN, login);
 }
@@ -123,6 +148,7 @@ export default function* rootSaga() {
   yield all([
     fork(loginWatcher),
     fork(getProfileWatcher),
+    fork(updateProfileWatcher),
     fork(registerUserWatcher),
     fork(logOutWatcher),
     fork(getSavedAccountsWatcher),

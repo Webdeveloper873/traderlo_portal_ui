@@ -38,6 +38,11 @@ export const addAccountFailed = () => ({
   type: paymentTypes.ADD_ACCOUNT_FAILED,
 });
 
+export const deleteAccount = (payload) => ({
+  type: paymentTypes.DELETE_ACCOUNT,
+  payload,
+})
+
 export const deleteAccountSuccess = (payload) => ({
   type: paymentTypes.DELETE_ACCOUNT_SUCCESS,
   payload,

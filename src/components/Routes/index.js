@@ -22,12 +22,13 @@ import BidPerformance from 'components/BidPerformance';
 import Chat from 'components/Chat';
 import AccountsAndCards from 'components/AccountsAndCards';
 import UserSecurity from 'components/UserSecurity';
-
+import UserProfile from 'components/UserProfile';
 //subroute component
 import DomainDetails from 'components/Domains/components/DomainDetails'
 
 //constants
 import { routes } from 'common/constants';
+
 
 
 
@@ -61,6 +62,7 @@ const Routes = ({ }) => {
           <Route exact path={routes.CHAT} render={() => <Chat />} />
           <Route exact path={routes.ACCOUNTS_AND_CARDS} render={() => <AccountsAndCards />} />
           <Route exact path={routes.ACCOUNTS_AND_SECURITY} render={() => <UserSecurity />} />
+          <Route exact path={routes.USER_PROFILE} render={() => <UserProfile />} />
           <Route path="*" render={
             () => (<Redirect to={routes.HOME_PAGE} />)
           } />

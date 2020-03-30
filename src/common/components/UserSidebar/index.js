@@ -123,7 +123,7 @@ const CollapsibleItems = () => {
         <SubItemSelection title={'Accounts And Cards'} redirectPath={routes.ACCOUNTS_AND_CARDS} />
       </Panel>
       <Panel header={<DropdownSelection image={myProfileAndAccount} title = {'My Profile And Account'} />} key="4" >
-        <SubItemSelection title={'User Profile'} ></SubItemSelection>
+        <SubItemSelection title={'User Profile'} redirectPath={routes.USER_PROFILE} ></SubItemSelection>
         <SubItemSelection title={'Account And Security'} redirectPath={routes.ACCOUNTS_AND_SECURITY}></SubItemSelection>
         <SubItemSelection title={'Identify And Verification'} ></SubItemSelection>
       </Panel>

@@ -16,6 +16,7 @@ export const routes = {
   CHAT: '/user/chat',
   ACCOUNTS_AND_CARDS: '/user/accounts_and_cards',
   ACCOUNTS_AND_SECURITY: '/user/security',
+  USER_PROFILE: '/user/profile',
 };
 
 export const responsiveConf = {
