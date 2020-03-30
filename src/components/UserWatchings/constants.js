@@ -51,27 +51,22 @@ export const domWebCol = [
   },
 ];
 
-export const domWebData = [
-  {
-    "askingPrice": 0,
-    "bidEndDate": "2020-03-24T14:37:52.940Z",
-    "currentTopBid": 0,
-    "name": "string",
-    "type": 0
-  }
-]
-
-
 export const favoritesCol = [
   {
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
+    render: (text) => {
+      return <TableNameCol name={text} type={''} />;
+    }
   },
   {
     title: 'Asking Price',
-    dataIndex: 'askingPrice',
-    key: 'askingPrice',
+    dataIndex: 'price',
+    key: 'price',
+    render: (text) => {
+      return text ? `$${text}` : '$0';
+    }
   },
   {
     title: 'Seller Name',
@@ -82,6 +77,14 @@ export const favoritesCol = [
     title: 'Action',
     dataIndex: 'action',
     key: 'action',
+    render: () => {
+      return (
+        <div className={classes.deleteCol}>
+          <Icon className={classes.deleteIcon} type="delete" style={{ color: '#ec008c' }} />
+          <span className={classes.deleteText}>Delete</span>
+        </div>
+      );
+    }
   },
 ]
 
@@ -93,17 +96,26 @@ export const sellersCol = [
   },
   {
     title: 'Member Since',
-    dataIndex: 'memberSince',
-    key: 'memberSince',
-  },
-  {
-    title: 'Seller Rating',
-    dataIndex: 'sellerRating',
-    key: 'sellerRating',
+    dataIndex: 'sellerCreatedDate',
+    key: 'sellerCreatedDate',
   },
   {
     title: 'Action',
     dataIndex: 'action',
     key: 'action',
+    render: () => {
+      return (
+        <div className={classes.deleteCol}>
+          <Icon className={classes.deleteIcon} type="delete" style={{ color: '#ec008c' }} />
+          <span className={classes.deleteText}>Delete</span>
+        </div>
+      );
+    }
+  },
+  {
+    key: 'viewListings',
+    render: () => {
+      return (<span className={classes.viewListings}>View Listings</span>);
+    }
   },
 ]
