@@ -7,11 +7,11 @@ import TableNameCol from 'common/components/TableNameCol';
 export const myBidsCol = [
   {
     title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
+    dataIndex: 'listingName',
+    key: 'listingName',
     render: (text, record) => {
-      const { listingName, listingCategory } = record || {};
-      return <TableNameCol name={listingName} type={listingCategory} />;
+      const { listingCategory } = record || {};
+      return <TableNameCol name={text} type={listingCategory} />;
     }
   },
   {
@@ -62,7 +62,7 @@ export const myBidsCol = [
       }else if(seconds>0){
         return `${seconds} sec`;
       }else{
-        return 'wala'
+        return 'n/a'
       }
     }
   },

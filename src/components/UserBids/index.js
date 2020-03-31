@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Col, Card, Input, Icon, Table } from 'antd';
 
 //components
@@ -22,7 +22,7 @@ const SearchBid = () => {
 }
 
 const UserBids = () => {
-
+  const bids = useSelector(({ buyActivities })=> buyActivities.myBids);
   const dispatch = useDispatch();
 
   useEffect(()=>{
@@ -40,7 +40,7 @@ const UserBids = () => {
         </Col>
         <Col xs={24} sm={24} md={18} lg={18} className={classes.customPadding}>
           <Card type="inner" title={'My Bids'} extra={<SearchBid />} className={classes.tableContainer}>
-            <Table columns={myBidsCol} dataSource={bidsTempData.bids}/>
+            <Table columns={myBidsCol} dataSource={bids}/>
           </Card>
         </Col>
       </PageWrapper>
