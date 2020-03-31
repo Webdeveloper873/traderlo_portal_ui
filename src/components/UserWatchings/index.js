@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Col, Card, Input, Icon, Table, Tabs } from 'antd';
-import { useDispatch } from 'react-redux';
 
 //components
 import Banner from 'common/components/Banner';
@@ -9,14 +9,14 @@ import PageWrapper from 'common/components/PageWrapper';
 import UserSidebar from 'common/components/UserSidebar';
 
 //constants
-import { domWebCol, domWebData, sellersCol, favoritesCol} from './constants';
+import { domWebCol, sellersCol, favoritesCol} from './constants';
 
 //styles
 import classes from './styles.module.scss';
 
 
 //actions
-import { userSidebarInfo } from 'appRedux/actions/userSidebar';
+import { buyActivities } from 'appRedux/actions/user';
 
 const { TabPane } = Tabs;
 
@@ -30,13 +30,15 @@ const SearchBid = () => {
 }
 
 const UserWatchings = () => {
-
+  const auction = useSelector(({ buyActivities }) => buyActivities.auction);
+  const favorites = useSelector(({ buyActivities }) => buyActivities.favorites);
+  const sellers = useSelector(({ buyActivities }) => buyActivities.sellers);
   const dispatch = useDispatch();
 
   useEffect(()=>{
-    dispatch(userSidebarInfo.getWatchlistDomainWebsite(1));
-    dispatch(userSidebarInfo.getWatchlistFavorites(1));
-    dispatch(userSidebarInfo.getWatchlistSellers(1));
+    dispatch(buyActivities.getWatchlistAuction(1));
+    dispatch(buyActivities.getWatchlistClassified(1));
+    dispatch(buyActivities.getWatchlistSellers(1));
   }, []);
 
 
@@ -51,13 +53,13 @@ const UserWatchings = () => {
           <Card type="inner" title={'Watching/Favorites'} extra={<SearchBid />} className={classes.tableContainer}>
             <Tabs defaultActiveKey="1" onChange={callback} tabBarGutter={250} size={'large'}>
             <TabPane tab="Domain/Websites" key="1">
-              <Table columns={domWebCol} dataSource={domWebData}/>
+              <Table columns={domWebCol} dataSource={auction}/>
             </TabPane>
             <TabPane tab="Favorites" key="2">
-              <Table columns={favoritesCol} dataSource={[]}/>
+              <Table columns={favoritesCol} dataSource={favorites}/>
             </TabPane>
             <TabPane tab="Sellers" key="3">
-              <Table columns={sellersCol} dataSource={[]}/>
+              <Table columns={sellersCol} dataSource={sellers}/>
             </TabPane>
             </Tabs>
           </Card>

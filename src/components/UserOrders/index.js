@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Col, Card, Table, Select } from 'antd';
 
 //components
@@ -32,6 +32,7 @@ const SearchBid = () => {
 }
 
 const UserOrders = () => {
+  const orders = useSelector(({ buyActivities }) => buyActivities.myOrders);
   const dispatch = useDispatch();
 
   useEffect(()=>{
@@ -49,7 +50,7 @@ const UserOrders = () => {
           <Card type="inner" title={'My Orders'} extra={<SearchBid />} className={classes.tableContainer}>
             <Table
               columns={myBidsCol}
-              dataSource={tempData}
+              dataSource={orders}
               expandedRowRender={record => <OrderTracker />}
               expandIconColumnIndex={5}
               expandIconAsCell={false}
