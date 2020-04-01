@@ -17,7 +17,8 @@ export const routes = {
   ACCOUNTS_AND_CARDS: '/user/accounts_and_cards',
   ACCOUNTS_AND_SECURITY: '/user/security',
   USER_PROFILE: '/user/profile',
-  PAYMENT_ACTIVITY: '/user/payment_activity'
+  PAYMENT_ACTIVITY: '/user/payment_activity',
+  PUBLIC_PROFILE:'/public_profile',
 };
 
 export const responsiveConf = {
