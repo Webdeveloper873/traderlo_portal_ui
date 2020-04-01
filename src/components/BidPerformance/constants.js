@@ -45,13 +45,3 @@ export const bidPerfCol = [
     }
   },
 ];
-
-export const sampleData = [
-  {
-    "bidCount": 0,
-    "endDate": "2020-04-01T11:06:21.128Z",
-    "listingCategory": "string",
-    "listingName": "string",
-    "topBid": 0
-  }
-]
