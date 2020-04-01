@@ -1,5 +1,5 @@
 import React from 'react';
-import {Col, Row, Card, Input, Icon, Table} from 'antd';
+import {Col, Card, Input, Icon, Table} from 'antd';
 
 //components
 import Banner from 'common/components/Banner';
@@ -12,9 +12,6 @@ import { columns, sampleData } from './constants';
 
 //styles
 import classes from './styles.module.scss';
-
-//styles
-import Orders from './Orders';
 
 const SearchBid = () => {
   return(<Input addonAfter={<Icon type={'search'} />} size='large' />);

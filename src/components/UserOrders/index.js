@@ -12,7 +12,7 @@ import OrderTracker from 'common/components/OrderTracker';
 import { buyActivities } from 'appRedux/actions/user';
 
 //constants
-import { myBidsCol, tempData } from './constants';
+import { myBidsCol } from './constants';
 
 //styles
 import classes from './styles.module.scss';
