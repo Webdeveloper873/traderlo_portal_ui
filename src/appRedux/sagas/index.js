@@ -6,7 +6,7 @@ import { domain } from './sell';
 import { buyingDomain } from './buying';
 import { bidDomain } from './bidding';
 import payment from './payment';
-import { user, buyActivities } from './user';
+import { user, buyActivities, sellingActivities } from './user';
 import { paymentActivity } from "./myFinance";
 
 export default function* rootSaga() {
@@ -15,6 +15,7 @@ export default function* rootSaga() {
     blogs(),
     user(),
     buyActivities(),
+    sellingActivities(),
     domain(),
     buyingDomain(),
     bidDomain(),

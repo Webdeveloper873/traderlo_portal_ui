@@ -1,7 +1,9 @@
 import user from './user';
-import buyActivities from './buyActivities';
+import buyActivities from './sellingActivities';
+import sellingActivities from './sellingActivities';
 
 export {
   user,
   buyActivities,
+  sellingActivities,
 }

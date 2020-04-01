@@ -12,19 +12,25 @@ export const bidPerfCol = [
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
-    render: (text) => {
-      return <TableNameCol name={text} type={''} />;
+    render: (text, record) => {
+      const { listingCategory, listingName } = record || {};
+      return <TableNameCol name={listingName || ''} type={listingCategory || ''} />;
     },
   },
   {
     title: 'No Of Bids',
-    dataIndex: 'noOfBids',
-    key: 'noOfBids',
+    dataIndex: 'bidCount',
+    key: 'bidCount',
   },
   {
     title: 'Current Top bid',
-    dataIndex: 'currTopBid',
-    key: 'currTopBid',
+    dataIndex: 'topBid',
+    key: 'topBid',
+  },
+  {
+    title: 'Bid End Date',
+    dataIndex: 'endDate',
+    key: 'endDate',
   },
   {
     title: 'Action',
@@ -42,6 +48,10 @@ export const bidPerfCol = [
 
 export const sampleData = [
   {
-    name: 'test',
+    "bidCount": 0,
+    "endDate": "2020-04-01T11:06:21.128Z",
+    "listingCategory": "string",
+    "listingName": "string",
+    "topBid": 0
   }
 ]
