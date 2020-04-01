@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Input, Switch } from 'antd';
+import { Row, Col, Input, Switch, Button } from 'antd';
 
 //components
 import Panel from 'common/components/Panel';
@@ -15,7 +15,7 @@ const { threeCol } = responsiveConf;
 const PassAndSecurity = () => {
   return(
     <>
-      <Panel header='Change Password'>
+      <Panel header='Change Password' headerRight={<Button type="primary" size={'large'} className={classes.saveChanges}>Save Changes</Button>}>
         <Row gutter={24}>
           <Col {...threeCol}>
             <Input size='large' placeholder='Old Password' />

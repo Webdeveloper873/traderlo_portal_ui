@@ -7,7 +7,7 @@ import PageWrapper from 'common/components/PageWrapper';
 import UserSidebar from 'common/components/UserSidebar';
 
 //constants
-import {bidPerfCol} from './constants';
+import { bidPerfCol, sampleData } from './constants';
 
 //styles
 import classes from './styles.module.scss';
@@ -21,14 +21,14 @@ const SearchBid = () => {
 const BidPerformance = () => {
   return(
     <>
-      <Banner text={'Bid Performance'} />
+      <Banner text={'Bids Performance'} />
       <PageWrapper addTopMargin>
         <Col xs={24} sm={24} md={6} lg={6} >
           <UserSidebar />
         </Col>
         <Col xs={24} sm={24} md={18} lg={18} className={classes.customPadding}>
-          <Card type="inner" title={'Bid Performance'} extra={<SearchBid />} className={classes.tableContainer}>
-            <Table columns={bidPerfCol} dataSource={[]}/>
+          <Card type="inner" title={'Bids Performance'} extra={<SearchBid />} className={classes.tableContainer}>
+            <Table columns={bidPerfCol} dataSource={sampleData}/>
           </Card>
         </Col>
       </PageWrapper>
