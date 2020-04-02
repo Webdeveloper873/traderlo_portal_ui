@@ -5,6 +5,7 @@ import moment from 'moment';
 import Banner from 'common/components/Banner';
 import PageWrapper from 'common/components/PageWrapper';
 import UserSidebar from 'common/components/UserSidebar';
+import MessageBox from './components/MessageBox';
 
 
 // Assets
@@ -13,10 +14,6 @@ import UserImgTemp from 'assets/user-img2.jpg';
 //styles
 import classes from './styles.module.scss';
 
-
-const selectedUserAvatar = {paddingLeft:15, paddingTop:5, paddingBottom:5}
-
-const { TextArea } = Input;
 
 const SearchBid = () => {
   return(<Input addonAfter={<Icon type={'search'} />} size='large' />);
@@ -38,58 +35,6 @@ const ChattedUserInfo = () => {
   )
 }
 
-const SelectedUser = () => {
-  return (
-    <Row>
-      <Card>
-        <Col span={6} style={selectedUserAvatar}>
-          <Avatar size={55} src={UserImgTemp}/>
-        </Col>
-        <Col span={14} className={classes.selectedUserInfo}>
-          <Row><span><h6>Amee Kinkead</h6></span></Row>
-          <Row><span>Last Online: {moment().format('MMMM DD, YYYY')} </span></Row>
-        </Col>
-        <Col className={classes.selectedUserDelete} span={4}>
-          <Icon type="delete" className={{fontSize:30, color:'red'}} />
-        </Col>
-      </Card>
-    </Row>
-  )
-}
-
-const Messages = () => {
-  return (
-    <Row>
-      <Card>
-        {/* Row will be done per message with variation of designs base on receiver or sender */}
-        <Row >
-          <div className={classes.chatSender}>
-            <span >
-              Nostrud exercitation ullam aeco laboris nisi utae commodo consequat duis aute. </span>
-            </div>
-        </Row>
-        <Row >
-          <div className={classes.chatSender}>
-            <span >Is that OK? </span>
-          </div>
-        </Row>
-          <Row>
-            <div className={classes.chatReceiver}>
-              <span >Consectetur adipisicing elied diod taempor incint labore dolore ainare Ut enim ad minim veni ame quis nostrud exercitation ullamco laboris.</span>
-            </div>
-          </Row>
-      </Card>
-      <Card>
-        <Row>
-          <TextArea rows={4} />
-        </Row>
-        <Row className={classes.btnContainer}>
-          <Button size='large' className={classes.btnStyle}>Send</Button>
-        </Row>
-      </Card>
-    </Row>
-  )
-}
 
 
 const Chat = () => {
@@ -103,19 +48,18 @@ const Chat = () => {
         <Col xs={24} sm={24} md={18} lg={18} className={classes.customPadding}>
           <Card type="inner" title={'Offers/Messages'} className={classes.tableContainer}>
             <Row>
-              <Col span={10} style={{margin:5}}>
+              <Col span={9} style={{margin:5}}>
                 <SearchBid />
               </Col>
             </Row>
             <Row style={{marginLeft:5}}>
-              <Col span={8}>
+              <Col span={9}>
                 <ChattedUserInfo/>
                 <ChattedUserInfo/>
                 <ChattedUserInfo/>
               </Col>
-              <Col span={14}>
-                <SelectedUser></SelectedUser>
-                <Messages></Messages>
+              <Col span={15}>
+                <MessageBox />
               </Col>
             </Row>
           </Card>

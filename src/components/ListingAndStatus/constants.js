@@ -53,13 +53,3 @@ export const listAndStatusCol = [
     }
   },
 ];
-
-export const sampleData = [
-  {
-    name: 'test',
-    price: '$123',
-    status: 'APPROVED',
-    listedDate: 'August 18, 2019'
-  }
-];
-

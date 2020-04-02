@@ -12,7 +12,7 @@ import UserSidebar from 'common/components/UserSidebar';
 import { sellingActivities } from 'appRedux/actions/user';
 
 //constants
-import { listAndStatusCol, sampleData} from './constants';
+import { listAndStatusCol } from './constants';
 
 //styles
 import classes from './styles.module.scss';
