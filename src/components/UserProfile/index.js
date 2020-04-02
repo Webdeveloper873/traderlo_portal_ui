@@ -30,13 +30,15 @@ const { TextArea } = Input;
 const UserProfile = () => {
 
   const dispatch = useDispatch();
-  const userProfile = useSelector(({user}) => user.profile);
-  const updateUserSuccess = useSelector(({user}) => user.updateUserSuccess);
-  console.log(userProfile,'userProfile')
-
+  
   useEffect(()=>{
     dispatch(user.getUserProfile());
   },[]);
+  
+  const userFetchedInfo = useSelector(({user}) => user.profile);
+  const updateUserSuccess = useSelector(({user}) => user.updateUserSuccess);
+  //console.log(userProfile,'userProfile')
+
 
   useEffect(() =>{
     if (updateUserSuccess) {
@@ -49,70 +51,24 @@ const UserProfile = () => {
     }
   })
 
+  const [userProfile, setUserProfile] = useState(userFetchedInfo); 
 
 
-  const [firstName, setFirstName] = useState(userProfile.firstName);
-  const [lastName, setLastName] = useState(userProfile.lastName);
-  const [contactNo, setContactNumber] = useState(userProfile.contactNo);
-  const [birthDate, setBirthDate] = useState(userProfile.birthDate);
-  const [location, setLocation] = useState(userProfile.location);
-  const [gender, setGrender] = useState(userProfile.gender);
-  const [aboutMe,setAboutMe] = useState(userProfile.aboutMe);
-  const [email, setEmail] = useState(userProfile.email);
-
-
-
-  const onChangeBirthdate = (date, dateString) => {
-    console.log(date, dateString);
-    setBirthDate(dateString);
+  const onChangeUserProfile = (e) => {
+    setUserProfile({...userProfile,
+      [e.target.name]: e.target.value
+    })
   }
 
-   const onChangeGender = (e) => {
-    setGrender(e.target.value)
-   }
 
-   const onChangeFirstName = (e) => {
-    setFirstName(e.target.value);
-   }
-
-   const onChangeLastName = (e) => {
-    setLastName(e.target.value);
-  }
-
-  const onChangeContactNumber = (e) => {
-    setContactNumber(e.target.value);
-  }
-  
-
-  const onChangeLocation = (e) => {
-    setLocation(e.target.value);
-  }
-
-  const onChangeAboutMe = (e) => {
-    setAboutMe(e.target.value);
-  }
-
-  const onChangeEmail = (e) => {
-    setEmail(e.target.value);
+  const onChangeBirthdate = (date) => {
+    setUserProfile({...userProfile,
+      birthDate: date,
+    })
   }
 
   const updateProfile = () => {
-
-    let updatedUserProfile = {
-      id: userProfile.id,
-      firstName:firstName,
-      lastName:lastName,
-      contactNo:contactNo,
-      birthDate:birthDate,
-      location:location,
-      gender:gender,
-      aboutMe:aboutMe,
-      email:email,
-
-    };
-
-    console.log(updatedUserProfile,'updatedUserProfile')
-    dispatch(user.updateUserProfile(updatedUserProfile));
+    dispatch(user.updateUserProfile(userProfile));
   }
 
 
@@ -131,23 +87,23 @@ const UserProfile = () => {
                 //onFinish={onFinish}
                 //onFinishFailed={onFinishFailed}
               >         
-              <Row>
-                <Col span={11} style={{margin:15, marginBottom:0}}>
+              <Row >
+                <Col span={11} style={{margin:15, marginBottom:0}} >
                   <Form.Item
                     label="First Name"
-                    name="First Name"
+                    name="firstName"
                     rules={[{ required: true, message: 'Please input your First Name' }]}
                   >
-                    <Input value ={firstName} onChange={onChangeFirstName}/>
+                    <Input name="firstName" value ={userProfile.firstName} onChange={onChangeUserProfile}/>
                   </Form.Item>
                 </Col>
                 <Col span={11} style={{margin:15, marginBottom:0}}>
                   <Form.Item
                       label="Last Name"
-                      name="Last Name"
+                      name="lastName"
                       rules={[{ required: true, message: 'Please input your Last Name' }]}
                     >
-                    <Input value ={lastName} onChange={onChangeLastName}/>
+                    <Input name="lastName" value ={userProfile.lastName} onChange={onChangeUserProfile}/>
                   </Form.Item>
                 </Col>
               </Row>
@@ -155,19 +111,19 @@ const UserProfile = () => {
                 <Col span={11} style={{margin:15, marginBottom:0, marginTop:0}}>
                   <Form.Item
                     label="Contact Number"
-                    name="Contact Number"
+                    name="contactNo"
                     rules={[{ required: true, message: 'Please input your Contact Number' }]}
                   >
-                    <Input value ={contactNo} onChange={onChangeContactNumber}/>
+                    <Input value ={userProfile.contactNo} name="contactNo" onChange={onChangeUserProfile}/>
                   </Form.Item>
                 </Col>
                 <Col span={11} style={{margin:15, marginBottom:0, marginTop:0}}>
                   <Form.Item
                       label="Email"
-                      name="Email"
+                      name="email"
                       rules={[{ required: true, message: 'Please input your email' }]}
                     >
-                    <Input value ={email} onChange={onChangeEmail}/>
+                    <Input value ={userProfile.email} name="email" onChange={onChangeUserProfile}/>
                   </Form.Item>
                 </Col>
               </Row>
@@ -184,17 +140,16 @@ const UserProfile = () => {
                  <Col span={7} style={{margin:15, marginBottom:0}}>
                   <Form.Item
                     label="Birth Date"
-                    name="Birth Date"
+                    name="birthDate"
                     rules={[{ required: true, message: 'Please input your First Name' }]}
                   >
-                    <DatePicker onChange={onChangeBirthdate} defaultValue={moment(birthDate)} format={'MMMM DD, YYYY'}/>
+                    <DatePicker onChange={onChangeBirthdate} name="birthDate" defaultValue={moment(userProfile.birthDate)} format={'MMMM DD, YYYY'}/>
                   </Form.Item>
                 </Col>
                 <Col span={7} style={{margin:15, marginBottom:0}}>
                   <Form.Item
                       label="Registered On"
                       name="Registered On"
-                      //rules={[{ required: true, message: 'Please input your Last Name' }]}
                     >
                     <span>{moment(userProfile.createdDate).format('MMMM DD, YYYY')}</span>
                   </Form.Item>
@@ -202,15 +157,15 @@ const UserProfile = () => {
                 <Col span={7} style={{margin:15, marginBottom:0}}>
                   <Form.Item
                       label="Location"
-                      name="Location"
+                      name="location"
                       rules={[{ required: true, message: 'Please input your Location' }]}
                     >
-                    <Input value={location} onChange={onChangeLocation}/>
+                    <Input value={userProfile.location} name="location" onChange={onChangeUserProfile}/>
                   </Form.Item>
                 </Col>
               </Row>
               <Row style={{margin:15, marginBottom:0}}>
-                <Radio.Group onChange={onChangeGender} value={gender}>
+                <Radio.Group onChange={onChangeUserProfile} value={userProfile.gender} name="gender">
                   <Radio value={'m'}>Male</Radio>
                   <Radio value={'f'}>Female</Radio>
                 </Radio.Group>
@@ -218,10 +173,10 @@ const UserProfile = () => {
               <Row style={{margin:15, marginBottom:0}}>
               <Form.Item
                   label="About Me"
-                  name="About Me"
+                  name="aboutMe"
                   rules={[{ required: true, message: 'Please input your Description' }]}
                 >
-                <TextArea rows={6}  value ={aboutMe} onChange={onChangeAboutMe}/>
+                <TextArea rows={6}  value ={userProfile.aboutMe} name="aboutMe" onChange={onChangeUserProfile}/>
               </Form.Item>
               </Row>
               <Row style={{margin:15, marginBottom:0}}>

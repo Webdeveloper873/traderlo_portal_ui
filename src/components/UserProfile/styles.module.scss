@@ -1,21 +1,29 @@
-.tableContainer {
-  :global {
-    .ant-card-body{
-      padding: 0 !important;
-    }
 
-    .ant-table-thead {
-      tr {
-        th {
-          background: inherit !important;
+.customPadding {
+  padding-left: 10px !important;
+
+  .tableContainer {
+    :global {
+      .ant-card-body{
+        padding: 0 !important;
+      }
+  
+      .ant-table-thead {
+        tr {
+          th {
+            background: inherit !important;
+          }
         }
       }
     }
   }
+
+ 
 }
 
-.customPadding {
-  padding-left: 10px !important;
+.formHeader {
+  margin:15;
+  margin-bottom:0;
 }
 
 .deleteCol {
