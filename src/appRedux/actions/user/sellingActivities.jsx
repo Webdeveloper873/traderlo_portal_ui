@@ -19,3 +19,13 @@ export const getCstmrOrderSuccess = (payload) => ({
   type: userActTypes.GET_SELLING_ORDERS_SUCCESS,
   payload
 });
+
+export const getListingStatus = (payload) => ({
+  type: userActTypes.GET_LISTING_STATUS,
+  payload
+});
+
+export const getListingStatusSuccess = (payload) => ({
+  type: userActTypes.GET_LISTING_STATUS_SUCCESS,
+  payload
+});

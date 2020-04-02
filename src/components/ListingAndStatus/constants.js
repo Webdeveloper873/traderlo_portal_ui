@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { Tag, Icon } from 'antd';
 
 //components
@@ -28,6 +29,7 @@ export const listAndStatusCol = [
     title: 'Listed Date',
     dataIndex: 'listedDate',
     key: 'listedDate',
+    render: (text) => moment(text).format('LL')
   },
   {
     title: 'Status',
