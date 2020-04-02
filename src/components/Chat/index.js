@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Col, Card, Input, Icon, Row, Avatar, Badge, Button } from 'antd';
 import moment from 'moment';
+
 //components
 import Banner from 'common/components/Banner';
 import PageWrapper from 'common/components/PageWrapper';
 import UserSidebar from 'common/components/UserSidebar';
 import MessageBox from './components/MessageBox';
 
+//actions
+import { chat } from 'appRedux/actions/user';
 
 // Assets
 import UserImgTemp from 'assets/user-img2.jpg';
@@ -35,9 +39,13 @@ const ChattedUserInfo = () => {
   )
 }
 
-
-
 const Chat = () => {
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(chat.getChatUsers());
+  }, []);
+
   return(
     <>
       <Banner text={'Chat'} />
