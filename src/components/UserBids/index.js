@@ -12,7 +12,7 @@ import UserSidebar from 'common/components/UserSidebar';
 import { buyActivities } from 'appRedux/actions/user';
 
 //constants
-import {myBidsCol, bidsTempData} from './constants';
+import { myBidsCol } from './constants';
 
 //styles
 import classes from './styles.module.scss';

@@ -67,24 +67,3 @@ export const myBidsCol = [
     }
   },
 ];
-
-export const bidsTempData = {
-  "bids": [
-    {
-      "buyNowPrice": 0,
-      "daysLeft": {
-        "day": 20,
-        "hour": 0,
-        "minute": 0,
-        "seconds": 0
-      },
-      "lastBid": 0,
-      "listingCategory": "string",
-      "listingName": "string",
-      "status": "WINNING",
-      "topBid": 0
-    },
-  ],
-  "pageNum": 0,
-  "totalPage": 0
-};

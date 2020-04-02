@@ -1,13 +1,28 @@
+import React from 'react';
+import { Tag, Icon } from 'antd';
+
+//components
+import TableNameCol from 'common/components/TableNameCol';
+
+//styles
+import classes from './styles.module.scss';
+
 export const listAndStatusCol = [
   {
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
+    render: (text) => {
+      return <TableNameCol name={text} type={''} />;
+    },
   },
   {
     title: 'Price',
-    dataIndex: 'Price',
-    key: 'Price',
+    dataIndex: 'price',
+    key: 'price',
+    render: (text) => {
+      return text ? `$${text}` : '$0';
+    }
   },
   {
     title: 'Listed Date',
@@ -18,6 +33,31 @@ export const listAndStatusCol = [
     title: 'Status',
     dataIndex: 'status',
     key: 'status',
+    render: (text) => {
+      const color = text === 'APPROVED' ? '#28a745' : '#ec008c';
+      return <Tag color={color}>{text}</Tag>
+    }
   },
-]
+  {
+    title: 'Action',
+    dataIndex: 'action',
+    key: 'action',
+    render: () => {
+      return(
+        <>
+          <Icon type="edit" theme="twoTone" className={classes.actionStyle}/>{`  /  `}<Icon type="delete" theme='twoTone' twoToneColor='#eb2f96' className={classes.actionStyle}/>
+        </>
+      );
+    }
+  },
+];
+
+export const sampleData = [
+  {
+    name: 'test',
+    price: '$123',
+    status: 'APPROVED',
+    listedDate: 'August 18, 2019'
+  }
+];
 

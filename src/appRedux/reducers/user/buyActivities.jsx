@@ -5,16 +5,7 @@ const initialState = {
   myOrders: [],
   auction: [],
   favorites: [],
-  sellers: [
-    {
-      "id": 0,
-      "location": "string",
-      "seller": 0,
-      "sellerCreatedDate": "2020-03-30T12:03:07.338Z",
-      "sellerName": "string",
-      "sellerProfile": "string"
-    }
-  ],
+  sellers: [],
 };
 
 export default (state = initialState, action) => {
@@ -29,17 +20,7 @@ export default (state = initialState, action) => {
     case userActTypes.GET_WATCHLIST_FAVORITES_SUCCESS:
       return { ...state, favorites: payload };
     case userActTypes.GET_WATCHLIST_SELLERS_SUCCESS:
-      return {
-        ...state, sellers: [
-          {
-            "id": 0,
-            "location": "string",
-            "seller": 0,
-            "sellerCreatedDate": "2020-03-30T12:03:07.338Z",
-            "sellerName": "string",
-            "sellerProfile": "string"
-          }
-        ] };
+      return { ...state, sellers: payload };
     default:
       return state;
   }
