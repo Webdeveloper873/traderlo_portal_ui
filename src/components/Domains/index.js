@@ -131,7 +131,7 @@ const Filters = () => {
         <Divider className={classes.divider} />
         <Checkbox.Group>
           <Col>
-            <Checkbox value='reverseMet' onChange={onChangeReverseMet}>Reverse Met</Checkbox>
+            <Checkbox value='reverseMet' onChange={onChangeReverseMet}>Reserve Met</Checkbox>
           </Col>
           <Col>
             <Checkbox value='buyNow' onChange={onChangeBuyNow}>Buy It Now</Checkbox>

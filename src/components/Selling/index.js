@@ -96,13 +96,17 @@ const Step2Card = () => {
   );
 }
 
-const SellingStep = ({subtitle, sublink, children}) => {
+const SellingStep = ({subtitle, nextLineSubtitle, sublink, children}) => {
   return(
-    <div className={classes.steps} >
-      {children}
-      {subtitle? <span>{subtitle}</span> : null}
-      {sublink ? <p>{sublink}</p> : null}
-    </div>
+    <>
+      <div className={classes.steps} >
+        {children}
+        {subtitle? <span>{subtitle}</span> : null}
+        {sublink ? <p>{sublink}</p> : null}
+        <br/>
+        {nextLineSubtitle? <div className={classes.stepDetails}>{nextLineSubtitle}</div> : null}
+      </div>
+    </>
   );
 }
 
@@ -146,21 +150,27 @@ const Selling = () => {
         </Row>
         <SellingStep
           subtitle='(Choose one)'
-          sublink='Learn more about selling on Free Domain Auctions'
+          nextLineSubtitle='Learn more about selling on Free Domain Auctions'
         >
           2. How do you want to sell your asset?
         </SellingStep>
         <Row gutter={16} className={classes.rowStyle}>
-          {[1,2,3].map(idx => (
+          {[1].map(idx => (
             <Col {...threeCol} className={classes.colStyle}>
               <Step2Card />
             </Col>
           ))}
         </Row>
-        <SellingStep sublink='The URL of your website *'>3. Basic details to get it started</SellingStep>
+        <SellingStep nextLineSubtitle='Your Domain Name (ex. cardealsnearme.com)'>3. Basic details to get it started</SellingStep>
+        <Row gutter={16} className={classes.rowStyle}>
+          <Col xs={24} md={18}>
+            <Input placeholder="Enter Domain Name" />
+          </Col>
+        </Row>
+        <SellingStep nextLineSubtitle='Please Enter Your Domain Keyword (ex. Car Deals Near Me)'>4. Domain Keyword</SellingStep>
         <Row gutter={16} className={classes.rowStyle}>
           <Col xs={24} md={12}>
-            <Search placeholder="Enter The URL"
+            <Search placeholder="Enter How You Pronounce Domain Name?"
               onSearch={onGetStarted}
               enterButton='Getting Started'
             />
