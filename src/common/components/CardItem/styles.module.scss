@@ -17,3 +17,38 @@
     height: 161px;
   }
 }
+
+
+.horizontalList {
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #eee;
+  font-size: 1.125rem;
+  cursor: pointer;
+
+  .imgStyle {
+    height: 100px !important;
+    border-radius: 6px 0 0 6px !important;
+  }
+
+  .leftCol {
+    border-radius: 6px 0 0 6px;
+  }
+
+  .rightCol {
+    border-radius: 0 6px 6px 0;
+        text-align: center;
+  }
+
+  .colStyle {
+    padding: 20px 0;
+  }
+
+  .boldLabel {
+    font-weight: 700;
+  }
+
+  .watchBtn {
+    text-align: center;
+  }
+}
