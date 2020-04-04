@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Col, Card, Input, Icon, Row, Avatar, Badge, Button } from 'antd';
 import moment from 'moment';
 
@@ -23,7 +23,8 @@ const SearchBid = () => {
   return(<Input addonAfter={<Icon type={'search'} />} size='large' />);
 }
 
-const ChattedUserInfo = () => {
+const ChattedUserInfo = ({ details }) => {
+  const { firstName, lastName, latestDate} = details || {};
   return (
     <Card style={{padding:12}}>
      <Col span={5}>
@@ -32,8 +33,8 @@ const ChattedUserInfo = () => {
        </Badge>
      </Col>
      <Col span={12}>
-       <Row><span>Sample User</span></Row>
-      <Row><span>{moment().format('MMMM DD, YYYY')}</span></Row>
+        <Row><span>{`${firstName} ${lastName}`}</span></Row>
+        <Row><span>{moment(latestDate).format('LL')}</span></Row>
      </Col>
    </Card>
   )
@@ -41,6 +42,7 @@ const ChattedUserInfo = () => {
 
 const Chat = () => {
   const dispatch = useDispatch();
+  const chatContacts = useSelector(({ chat }) => chat.chatContacts);
 
   useEffect(()=>{
     dispatch(chat.getChatUsers());
@@ -62,9 +64,7 @@ const Chat = () => {
             </Row>
             <Row style={{marginLeft:5}}>
               <Col span={9}>
-                <ChattedUserInfo/>
-                <ChattedUserInfo/>
-                <ChattedUserInfo/>
+                {chatContacts.map(details => <ChattedUserInfo details={details} />)}
               </Col>
               <Col span={15}>
                 <MessageBox />
