@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Col, Row, Card, Input, Checkbox } from 'antd';
+import { Col, Row, Card, Input, Checkbox, Button } from 'antd';
 import { Redirect } from 'react-router-dom';
 
 //components
@@ -22,8 +22,8 @@ import clonescripts from 'assets/selling/clonescripts.png';
 import tmpltsGrphcs from 'assets/selling/tmpltsGrphcs.png';
 import bids from 'assets/selling/bids.png';
 
-//utils
-// import { useFormInput } from 'common/utils/hooks';
+// utils
+import { useFormInput } from 'common/utils/hooks';
 
 //constants
 import { responsiveConf, routes } from 'common/constants';
@@ -111,14 +111,16 @@ const SellingStep = ({subtitle, nextLineSubtitle, sublink, children}) => {
 }
 
 const Selling = () => {
+  const domainName = useFormInput();
+  const domainKeyword = useFormInput();
   const [toNextStep, setToNextStep] = useState(false);
   const [selectedItem, setSelectedItem] = useState(1);
   const listingId = useSelector(({ sellDomain })=>sellDomain.listingId);
   const dispatch = useDispatch();
 
-  const onGetStarted = value => {
-    console.log('value: ', value);
-    dispatch(domainActions.sellDomain(value));
+  const onGetStarted = () => {
+    console.log('domainName.value: ', domainName.value);
+    dispatch(domainActions.sellDomain(domainName.value));
   }
 
   useEffect(()=>{
@@ -164,16 +166,18 @@ const Selling = () => {
         <SellingStep nextLineSubtitle='Your Domain Name (ex. cardealsnearme.com)'>3. Basic details to get it started</SellingStep>
         <Row gutter={16} className={classes.rowStyle}>
           <Col xs={24} md={18}>
-            <Input placeholder="Enter Domain Name" />
+            <Input placeholder="Enter Domain Name" onChange={domainName.handleInputChange} />
           </Col>
         </Row>
         <SellingStep nextLineSubtitle='Please Enter Your Domain Keyword (ex. Car Deals Near Me)'>4. Domain Keyword</SellingStep>
         <Row gutter={16} className={classes.rowStyle}>
-          <Col xs={24} md={12}>
-            <Search placeholder="Enter How You Pronounce Domain Name?"
-              onSearch={onGetStarted}
-              enterButton='Getting Started'
+          <Col xs={24} md={10}>
+            <Input placeholder="Enter How You Pronounce Domain Name?" 
+              onChange={domainKeyword.handleInputChange}
             />
+          </Col>
+          <Col xs={24} md={2}>
+            <Button type='primary' onClick={onGetStarted}>Getting Started</Button>
           </Col>
         </Row>
       </PageWrapper>
