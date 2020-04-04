@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import {  Icon, Table, Button, Row, Divider, Modal } from 'antd';
+import { useDispatch } from 'react-redux';
 
-// util
-import { openNotification } from 'common/utils/helpers';
+
+//actions
+import * as payment from 'appRedux/actions/payment';
 
 //styles
 import classes from './styles.module.scss';
 
 const MyCardTable = ({savedCards}) => {
+    const dispatch = useDispatch();
     const [deleteCardVisible, setShowModal] = useState(false);
     const [loading, setLoading] = useState(false);
     const [selectedItem, setSelectedItem] = useState({});
@@ -19,17 +22,13 @@ const MyCardTable = ({savedCards}) => {
 
     const onClickDelete = () => {
       setLoading(true);
-      console.log(selectedItem,'selectedItem');
 
-      //dispatch(payment.deleteCard(selectedItem));  ----> continue on delete API
+      dispatch(payment.deleteCard(selectedItem)); // ----> continue on delete API
       setTimeout(() => {
         setLoading(false);
         setShowModal(false);
       }, 1000);
 
-      setTimeout(() => {
-        openNotification({status:'success', message:'delete success'});
-      }, 500);
     }
 
     const showDeleteModal = () => {

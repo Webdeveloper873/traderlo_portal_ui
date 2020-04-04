@@ -26,7 +26,6 @@ const CardsDesc = ({...props}) => {
 }
 
 const CardDisplay = ({...props}) => {
-  console.log('cardDisplay props', props);
   return(
     <Card className={classes.cardStyle}
       hoverable

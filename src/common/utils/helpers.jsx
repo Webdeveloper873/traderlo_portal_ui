@@ -19,6 +19,9 @@ export const request = {
   delete: async (url, params) => {
     return await fetch(url, {method: 'DELETE', ...params}).then(handleResponse);
   },
+  put: async (url, params) => {
+    return await fetch(url, {method: 'PUT', ...params}).then(handleResponse);
+  },
 }
 
 export const objToFormData = (obj) => {

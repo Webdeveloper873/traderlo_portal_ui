@@ -5,6 +5,7 @@ const intialState = {
   hasError: false,        //show the exclamation icon
   isPayment: false,       //show either payment or verification
   hasNotification: false, // show notification after a transaction
+  deleteSuccess: false,
 };
 
 export default (state = intialState, action) => {
@@ -15,19 +16,24 @@ export default (state = intialState, action) => {
     case paymentTypes.VERIFY_CARD_FAILED:
       return { ...state, isDone: true, hasError: true };
     case paymentTypes.DELETE_CARD_SUCCESS:
-      return { ...state };
+      return { ...state, deleteSuccess: true };
     case paymentTypes.ADD_ACCOUNT_SUCCESS:
       return { ...state, isDone: true };
     case paymentTypes.ADD_ACCOUNT_FAILED:
       return { ...state, isDone: true, hasError: true };
     case paymentTypes.DELETE_ACCOUNT_SUCCESS:
-      return { ...state };
+      return { ...state, deleteSuccess: true };
     case paymentTypes.CHARGE_SUCCESS:
       return { ...state,isDone: true, isPayment: true };
     case paymentTypes.CHARGE_FAILED:
       return { ...state,isDone: true, isPayment: true, hasError: true};
     case paymentTypes.CLEAR_PAYMENT_STEPS:
-      return { ...state,isDone: false, isPayment: false, hasError: false};
+      return { ...state,
+        isDone: false,
+        isPayment: false,
+        hasError: false,
+        deleteSuccess: false
+      };
     default:
       return state;
   }
