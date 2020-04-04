@@ -33,7 +33,7 @@ const LeftCol = () => {
   return(
     <Col md={3}>
       <h6>Newsletter</h6>
-      <p>Eiusmod tempor incididunt utbor etian dolm magna aliqua enim minim</p>
+      <p>Be the first to get notified about the latest updates.</p>
       <InputGroup className="mb-3">
         <Form.Control
           placeholder="Your Email"

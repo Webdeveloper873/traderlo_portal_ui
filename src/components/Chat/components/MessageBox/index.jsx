@@ -1,6 +1,11 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
-import { Col, Card, Input, Icon, Row, Avatar, Badge, Button } from 'antd';
+import { Col, Card, Input, Icon, Row, Avatar, Button } from 'antd';
+
+//actions
+import { chat } from 'appRedux/actions/user';
 
 //styles
 import classes from './styles.module.scss';
@@ -12,7 +17,7 @@ const { TextArea } = Input;
 
 const selectedUserAvatar = { paddingLeft: 15, paddingTop: 5, paddingBottom: 5 }
 
-const SelectedUser = ({ userName }) => {
+const SelectedUser = ({ userName, latestDate }) => {
   return (
     <Row>
       <Card>
@@ -21,7 +26,7 @@ const SelectedUser = ({ userName }) => {
         </Col>
         <Col span={14} className={classes.selectedUserInfo}>
           <Row><span><h6>{userName}</h6></span></Row>
-          <Row><span>Last Online: {moment().format('MMMM DD, YYYY')} </span></Row>
+          <Row><span>{`Last Online: ${latestDate}`}</span></Row>
         </Col>
         <Col className={classes.selectedUserDelete} span={4}>
           <Icon type="delete" className={{ fontSize: 30, color: 'red' }} />
@@ -51,16 +56,52 @@ const ChatReceived = ({ text }) => {
   )
 }
 
-const MessageBox = () => {
+const RenderMessages = ({ msgArr, profile }) => {
+  return msgArr && msgArr.map(msg => {
+    const { messageDesc, senderId } = msg || {};
+    const { id } = profile || {};
+    if(senderId == id){
+      return <ChatSent text={messageDesc} />;
+    }else{
+      return <ChatReceived text={messageDesc} />;
+    }
+  });
+
+  return null;
+}
+
+const MessageBox = ({ activeChatUser }) => {
+  const dispatch = useDispatch();
+  const profile = useSelector(({ user }) => user.profile);
+  const activeChatMsg = useSelector(({ chat }) => chat.activeChatMsg);
+  const { firstName, lastName, latestDate } = activeChatUser || {};
+
+  useEffect(()=>{
+    //getMessage based on activeChatId
+    if (activeChatUser && activeChatUser.id){
+      dispatch(chat.getChatMsg(activeChatUser.id));
+    }
+  }, []);
+
+  if(!activeChatMsg  && !activeChatUser) {
+    return null;
+  }
+
   return (
     <>
-      <SelectedUser userName='Amee Kinkead' />
+      <SelectedUser userName={`${firstName} ${lastName}`} latestDate={latestDate} />
       <Row>
         <Card>
           {/* Row will be done per message with variation of designs base on receiver or sender */}
-          <ChatSent text='Nostrud exercitation ullam aeco laboris nisi utae commodo consequat duis aute.' />
-          <ChatSent text='Is that OK?' />
-          <ChatReceived text='Consectetur adipisicing elied diod taempor incint labore dolore ainare Ut enim ad minim veni ame quis nostrud exercitation ullamco laboris.' />
+          {activeChatMsg && activeChatMsg.map(msg => {
+            const { messageDesc, senderId } = msg || {};
+            const { id } = profile || {};
+            if(senderId == id){
+              return <ChatSent text={messageDesc} />;
+            }else{
+              return <ChatReceived text={messageDesc} />;
+            }
+          })}
         </Card>
         <Card>
           <Row>

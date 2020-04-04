@@ -64,11 +64,6 @@ const Header = ({onClickSignInUp}) => {
             <Link className={classes.linkStyle} to="/script">Clone script</Link>
             <Link className={classes.linkStyle} to="/plugins">Plugins/Themes</Link>
             {userLoggedIn ? <UserAvatar /> : <Link onClick={onClickSignInUp} className={classes.linkStyle}>Sign in/Signup</Link>}
-            {/* <Dropdown overlay={<Menus></Menus>} placement="bottomRight" trigger={['click']}>
-              <Button type="link">
-                <Avatar size='large' src={userImg} />
-              </Button>
-            </Dropdown> */}
             <Button size='large' className={classes.buttonStyle} href={routes.SELLING_PAGE}>Start Selling</Button>
           </Nav>
         </Navbar.Collapse>

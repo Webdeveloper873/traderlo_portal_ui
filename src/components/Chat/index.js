@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Col, Card, Input, Icon, Row, Avatar, Badge, Button } from 'antd';
 import moment from 'moment';
@@ -43,10 +44,18 @@ const ChattedUserInfo = ({ details }) => {
 const Chat = () => {
   const dispatch = useDispatch();
   const chatContacts = useSelector(({ chat }) => chat.chatContacts);
+  const [activeChatUser, setactiveChatUser] = useState(null);
+
 
   useEffect(()=>{
     dispatch(chat.getChatUsers());
   }, []);
+
+  useEffect(()=>{
+    if (activeChatUser && activeChatUser.length > 0){
+      setactiveChatUser(chatContacts[0]); //default is first user in array
+    }
+  }, [chatContacts]);
 
   return(
     <>
@@ -67,7 +76,7 @@ const Chat = () => {
                 {chatContacts.map(details => <ChattedUserInfo details={details} />)}
               </Col>
               <Col span={15}>
-                <MessageBox />
+                <MessageBox activeChatUser={activeChatUser}/>
               </Col>
             </Row>
           </Card>
