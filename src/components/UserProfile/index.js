@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import { Col, Card, Input, Icon, Table, Tabs, Row, Form, Checkbox, Button, Avatar, DatePicker, Radio } from 'antd';
+import { Col, Card, Input, Row, Form, Button, Avatar, DatePicker, Radio } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 
@@ -8,9 +8,6 @@ import moment from 'moment';
 import Banner from 'common/components/Banner';
 import PageWrapper from 'common/components/PageWrapper';
 import UserSidebar from 'common/components/UserSidebar';
-
-//constants
-import { domWebCol, domWebData, sellersCol, favoritesCol} from './constants';
 
 //styles
 import classes from './styles.module.scss';
@@ -22,7 +19,6 @@ import { user } from 'appRedux/actions/user';
 // util
 import { openNotification } from 'common/utils/helpers';
 
-const CheckboxGroup = Checkbox.Group;
 const { TextArea } = Input;
 
 

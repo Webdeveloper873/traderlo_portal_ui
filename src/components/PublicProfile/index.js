@@ -1,29 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
-import { Col, Card, Input, Icon, Table, Tabs, Row, Form, Checkbox, Button, Avatar, DatePicker, Radio, Divider } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
-import moment from 'moment';
+import React from 'react';
+import { Col, Card, Tabs, Row, Checkbox, Button, Avatar, Divider } from 'antd';
 
 //components
 import Banner from 'common/components/Banner';
 import PageWrapper from 'common/components/PageWrapper';
-import UserSidebar from 'common/components/UserSidebar';
-
-//constants
-import { domWebCol, domWebData, sellersCol, favoritesCol} from './constants';
 
 //styles
 import classes from './styles.module.scss';
 
 
-//actions
-import { user } from 'appRedux/actions/user';
-
-// util
-import { openNotification } from 'common/utils/helpers';
-
-const CheckboxGroup = Checkbox.Group;
-const { TextArea } = Input;
 const { TabPane } = Tabs;
 
 function callback(key) {
@@ -32,50 +18,11 @@ function callback(key) {
 
 const PublicProfile = () => {
 
-  const dispatch = useDispatch();
-  // const userProfile = useSelector(({user}) => user.profile);
-  // const updateUserSuccess = useSelector(({user}) => user.updateUserSuccess);
-  // console.log(userProfile,'userProfile')
-
-  // useEffect(()=>{
-  //   dispatch(user.getUserProfile());
-  // },[]);
-
-  // useEffect(() =>{
-  //   if (updateUserSuccess) {
-  //     console.log(updateUserSuccess);
-  //     setTimeout(() => {
-  //       openNotification({status:'success', message:'user update success'});
-  //     }, 500);
-  //     dispatch(user.clearUserNotifStatus());
-  //     dispatch(user.getUserProfile());
-  //   }
-  // })
-
-
-
-  // const [firstName, setFirstName] = useState(userProfile.firstName);
-
-
-
-  // const onChangeBirthdate = (date, dateString) => {
-  //   console.log(date, dateString);
-  //   setBirthDate(dateString);
-  // }
-
-
-
   return(
     <>
       <Banner text={'User Profile'} />
       <PageWrapper addTopMargin>
-        {/* <Col xs={24} sm={24} md={6} lg={6} >
-          <UserSidebar />
-        </Col> */}
         <Col xs={24} sm={24} md={24} lg={24} className={classes.customPadding}>
-          {/* <Card type="inner" title={'User Profile'} className={classes.tableContainer}>
-            asdsaddddasd
-          </Card> */}
           <Row>
             <Card>
               <Col span={6}> <Avatar shape="square" size={230} icon='user' /></Col>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {  Icon, Table, Button, Row, Divider, Modal } from 'antd';
 import { useDispatch } from 'react-redux';
 
@@ -22,7 +22,6 @@ const MyCardTable = ({savedCards}) => {
 
     const onClickDelete = () => {
       setLoading(true);
-      console.log(selectedItem,'selectedItem');
 
       dispatch(payment.deleteCard(selectedItem)); // ----> continue on delete API
       setTimeout(() => {

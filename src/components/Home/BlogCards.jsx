@@ -33,7 +33,6 @@ const CardItem = ({blog}) => {
 }
 
 const BlogCards = ({ featBlogs }) => {
-  console.log('featBlogs', featBlogs)
   return(
       <PageWrapper center>
         <div className={`${classes.fullWidth} ${classes.contentRow}`}>
@@ -41,7 +40,7 @@ const BlogCards = ({ featBlogs }) => {
           <span className={classes.subTitle}>Consectetur adipisicing eliteiuim set eiusmod tempor incididunt labore etnalom dolore magna aliqua udiminimate veniam quistan norud.</span>
         </div>
         <Row className={classes.contentRow} gutter={24}>
-          {featBlogs && featBlogs.map(blog => <CardItem blog={blog} />)}
+          {featBlogs && featBlogs.map(blog => <CardItem key={blog.id} blog={blog} />)}
           {/* <CardItem />
           <CardItem />
           <CardItem /> */}

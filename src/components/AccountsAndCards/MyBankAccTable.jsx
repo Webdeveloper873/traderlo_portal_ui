@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import { Icon, Table, Button, Row, Divider, Modal  } from 'antd';
 import { useDispatch } from 'react-redux';
 
-// util
-import { openNotification } from 'common/utils/helpers';
-
 //actions
 import * as payment from 'appRedux/actions/payment';
 
