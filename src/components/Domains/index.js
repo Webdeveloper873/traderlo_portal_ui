@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Slider, Divider, Card, Typography, Select, Checkbox, Input, Row, Col, Button } from 'antd';
+import { Slider, Divider, Card, Typography, Select, Checkbox, Input, Row, Col, Button, Icon } from 'antd';
 import { Redirect } from "react-router-dom";
 
 //components
@@ -18,9 +18,10 @@ import classes from './styles.module.scss';
 //constants
 import {responsiveConf, routes} from 'common/constants';
 
-const {Text} = Typography;
-const {Option} = Select;
-const {threeCol} = responsiveConf || {};
+const { Text } = Typography;
+const { Option } = Select;
+const { threeCol } = responsiveConf || {};
+const { HorizontalList } = CardItem || {};
 
 
 const SliderFilter = ({ sliderVal, amtLabel, ...props}) => {
@@ -163,6 +164,7 @@ const Filters = () => {
 const SearchKeyword = () => {
   const dispatch = useDispatch();
   const [viewDetails, setViewDetails] = useState(false);
+  const [viewMode, setViewMode] = useState('card-list'); //default card list view
 
   const domainList = useSelector(({ buyDomain }) => buyDomain.domainList);
   if(viewDetails){
@@ -188,24 +190,32 @@ const SearchKeyword = () => {
       </Input.Group>
       <Divider/>
 
-      <Row>
-        <Col span={18}>
+      <Row gutter={16}>
+        <Col span={14}>
           <Typography.Title level={4}>{`Showing 1 - ${domainList.length} of ${domainList.length} results`}</Typography.Title>
         </Col>
         <Col span={6} className={classes.alignEnd}>
           <Select style={{ width: '125px' }} placeholder='Sort By:'>
-            <Option value="beginning">opt1</Option>
-            <Option value="anywhere">opt2</Option>
-            <Option value="ending">opt3</Option>
+            <Option value="beginning">beginning</Option>
+            <Option value="anywhere">anywhere</Option>
+            <Option value="ending">ending</Option>
           </Select>
         </Col>
+        <Col span={2}>
+          <Button type='primary'><Icon type="appstore" className={classes.iconSize}/></Button>
+        </Col>
+        <Col span={2}>
+          <Button type='primary'>
+            <Icon type="unordered-list" className={classes.iconSize}/>
+          </Button>
+        </Col>
       </Row>
-
       <Row gutter={16}>
-        {domainList.map(itemProps =>
-        <Col {...threeCol}>
-          <CardItem key={itemProps.id} onClick={() => onClickCardItem(itemProps)} {...itemProps} style={{marginBottom:20}}/>
-        </Col>)}
+        {/* {domainList.map(itemProps =>
+          <Col {...threeCol}>
+            <CardItem key={itemProps.id} onClick={() => onClickCardItem(itemProps)} {...itemProps} style={{marginBottom:20}}/>
+          </Col>)} */}
+        {domainList.map(itemProps => <HorizontalList key={itemProps.id} onClick={() => onClickCardItem(itemProps)} {...itemProps} style={{marginBottom:20}}/>)}
       </Row>
     </div>
   );
