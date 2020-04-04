@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Col, Card, Input, Icon, Row, Avatar, Badge, Button } from 'antd';
+import { Col, Card, Input, Icon, Row, Avatar, Badge } from 'antd';
 import moment from 'moment';
 
 //components
@@ -52,7 +52,7 @@ const Chat = () => {
   }, []);
 
   useEffect(()=>{
-    if (activeChatUser && activeChatUser.length > 0){
+    if (chatContacts && chatContacts.length > 0){
       setactiveChatUser(chatContacts[0]); //default is first user in array
     }
   }, [chatContacts]);

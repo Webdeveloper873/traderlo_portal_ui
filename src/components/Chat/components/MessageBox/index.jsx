@@ -26,7 +26,7 @@ const SelectedUser = ({ userName, latestDate }) => {
         </Col>
         <Col span={14} className={classes.selectedUserInfo}>
           <Row><span><h6>{userName}</h6></span></Row>
-          <Row><span>{`Last Online: ${latestDate}`}</span></Row>
+          <Row><span>{`Last Online: ${moment(latestDate).format('LL')}`}</span></Row>
         </Col>
         <Col className={classes.selectedUserDelete} span={4}>
           <Icon type="delete" className={{ fontSize: 30, color: 'red' }} />
@@ -56,20 +56,6 @@ const ChatReceived = ({ text }) => {
   )
 }
 
-const RenderMessages = ({ msgArr, profile }) => {
-  return msgArr && msgArr.map(msg => {
-    const { messageDesc, senderId } = msg || {};
-    const { id } = profile || {};
-    if(senderId == id){
-      return <ChatSent text={messageDesc} />;
-    }else{
-      return <ChatReceived text={messageDesc} />;
-    }
-  });
-
-  return null;
-}
-
 const MessageBox = ({ activeChatUser }) => {
   const dispatch = useDispatch();
   const profile = useSelector(({ user }) => user.profile);
@@ -92,11 +78,10 @@ const MessageBox = ({ activeChatUser }) => {
       <SelectedUser userName={`${firstName} ${lastName}`} latestDate={latestDate} />
       <Row>
         <Card>
-          {/* Row will be done per message with variation of designs base on receiver or sender */}
           {activeChatMsg && activeChatMsg.map(msg => {
             const { messageDesc, senderId } = msg || {};
             const { id } = profile || {};
-            if(senderId == id){
+            if(senderId === id){
               return <ChatSent text={messageDesc} />;
             }else{
               return <ChatReceived text={messageDesc} />;
