@@ -28,6 +28,16 @@ export const getProfileSuccess = (profile) => ({
   payload: { profile }
 })
 
+export const updateUserProfile = (profile) => ({
+  type: userActTypes.UPDATE_PROFILE,
+  payload: { profile }
+})
+
+export const updateUserProfileSuccess = (profile) => ({
+  type: userActTypes.UPDATE_PROFILE_SUCCESS,
+  payload: { profile }
+})
+
 export const registerUser = (profile) => (
   {
   type: userActTypes.REGISTER_USER,
@@ -80,4 +90,8 @@ export const resetUserState = () => ({
 export const changeUserSidebarActiveKey = (payload) => ({
   type: userActTypes.CHANGE_SIDEBAR_ACTIVE_KEY,
   payload
+})
+
+export const clearUserNotifStatus = () => ({
+  type: userActTypes.CLEAR_USER_NOTIF_STATUS,
 })

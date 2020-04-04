@@ -15,6 +15,9 @@ import MyPaypalTable from './MyPaypalTable';
 //styles
 import classes from './styles.module.scss';
 
+// util
+import { openNotification } from 'common/utils/helpers';
+
 
 //actions
 import * as payment from 'appRedux/actions/payment';
@@ -30,13 +33,27 @@ const AccountsAndCards = () => {
   const [buyNowVisible, setShowModal] = useState(false);
   const savedCards = useSelector(({ user }) => user.savedCards);
   const savedBanks = useSelector(({ user }) => user.savedBanks);
+  const deleteSuccess = useSelector(({ payment }) => payment.deleteSuccess);
   const dispatch = useDispatch();
 
   useEffect(()=>{
     dispatch(user.getSavedBanks());
     dispatch(user.getSavedCard());
-    dispatch(payment.clearPaymentSteps());
-  }, []);
+  },[]);
+
+  useEffect(() =>{
+    if (deleteSuccess) {
+      setTimeout(() => {
+        openNotification({status:'success', message:'delete success'});
+      }, 500);
+      dispatch(payment.clearPaymentSteps());
+      dispatch(user.getSavedBanks());
+      dispatch(user.getSavedCard());
+    }
+  })
+
+
+
 
   const showModal = () => {
     setShowModal(true);

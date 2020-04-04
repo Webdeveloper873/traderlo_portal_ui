@@ -37,7 +37,7 @@ function* deleteCard({ payload }) {
   try {
     console.log(payload,'peload delete card');
     const {id, userId} = payload || {};
-    const resp = yield call(() => request.delete(`${base_url}/stripe/deleteCard?id=${id}`,
+    const resp = yield call(() => request.delete(`${base_url}/stripe/deleteCard?cardId=${id}`,
       {
         headers: {
           ...headers,
@@ -84,14 +84,13 @@ function* deleteAccount({ payload }) {
   try {
     console.log(payload,'peload delete card');
     const {id, userId} = payload || {};
-    const resp = yield call(() => request.delete(`${base_url}/stripe/deleteAccount?id=${id}`,
+    const resp = yield call(() => request.delete(`${base_url}/stripe/deleteAccount?accountId=${id}`,
       {
         headers: {
           ...headers,
           uid: userId.toString(),
           authorization: `Bearer ${getAccessToken()}`,
         }
-        //body: JSON.stringify(payload)
       }
     ));
     if (resp) {
