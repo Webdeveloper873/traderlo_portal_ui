@@ -176,6 +176,10 @@ const SearchKeyword = () => {
     setViewDetails(true);
   }
 
+  const onClickChangeView = (view) => {
+    setViewMode(view);
+  }
+
 
   return(
     <div className={classes.searchKeyword}>
@@ -202,20 +206,22 @@ const SearchKeyword = () => {
           </Select>
         </Col>
         <Col span={2}>
-          <Button type='primary'><Icon type="appstore" className={classes.iconSize}/></Button>
+          <Button type='primary' onClick={()=>onClickChangeView('card-list')}>
+            <Icon type="appstore" className={classes.iconSize}/>
+          </Button>
         </Col>
         <Col span={2}>
-          <Button type='primary'>
+          <Button type='primary' onClick={()=>onClickChangeView('horizontal-list')}>
             <Icon type="unordered-list" className={classes.iconSize}/>
           </Button>
         </Col>
       </Row>
       <Row gutter={16}>
-        {/* {domainList.map(itemProps =>
-          <Col {...threeCol}>
-            <CardItem key={itemProps.id} onClick={() => onClickCardItem(itemProps)} {...itemProps} style={{marginBottom:20}}/>
-          </Col>)} */}
-        {domainList.map(itemProps => <HorizontalList key={itemProps.id} onClick={() => onClickCardItem(itemProps)} {...itemProps} style={{marginBottom:20}}/>)}
+        {domainList.map(itemProps => {
+            return viewMode === 'card-list'? <Col {...threeCol}>
+              <CardItem key={itemProps.id} onClick={() => onClickCardItem(itemProps)} {...itemProps} style={{marginBottom:20}}/>
+            </Col> : <HorizontalList key={itemProps.id} onClick={() => onClickCardItem(itemProps)} {...itemProps} style={{marginBottom:20}}/>
+        })}
       </Row>
     </div>
   );

@@ -10,10 +10,10 @@ import classes from './styles.module.scss';
 
 const HorizontalList = ({...props}) => {
   console.log('HorizontalList props', props);
-  const { durationDate, appName, startingPrice, buyNowPrice, } = props || {};
+  const { durationDate, appName, startingPrice, buyNowPrice, onClick } = props || {};
   
   return(
-    <Row className={classes.horizontalList}>
+    <Row className={classes.horizontalList} {...props}>
       <Col span={5} className={classes.leftCol}>
         <img alt="example" src={WebsiteTemp} className={classes.imgStyle} />
       </Col>
