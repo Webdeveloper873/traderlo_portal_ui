@@ -56,7 +56,7 @@ const Home = () => {
         <RowTemp className={classes.contentRow}>
           <ColTemp xs={12} lg={6} className={`sticky-top ${classes.globalSearch}`}>
             <div className={classes.title}>No listing fee! Pay only when you Sell</div>
-            <div className={classes.marginBot}>Buy/Sell Domains, Websites, Online Business and Apps</div>
+            <div className={classes.marginBot}>Buy/sell websites, domains, and more!</div>
             <GlobalSearch />
           </ColTemp>
           <ColTemp xs={12} lg={6} className={`fized-right`}>

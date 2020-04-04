@@ -8,7 +8,7 @@ const GlobalSearch = () => {
       <DropdownButton
         as={InputGroup.Prepend}
         variant="outline-secondary"
-        title="Dropdown"
+        title="Domains"
         id="input-group-dropdown-1"
         
       >

@@ -3,6 +3,7 @@ import { userActTypes } from 'appRedux/constants/ActionTypes';
 const initialState = {
   bidPerf: [],
   sellOrders: [],
+  listingStatus: [],
 };
 
 export default (state = initialState, action) => {
@@ -12,6 +13,8 @@ export default (state = initialState, action) => {
       return { ...state, bidPerf: payload };
     case userActTypes.GET_SELLING_ORDERS_SUCCESS:
       return { ...state, sellOrders: payload };
+    case userActTypes.GET_LISTING_STATUS_SUCCESS:
+      return { ...state, listingStatus: payload };
     default:
       return state;
   }

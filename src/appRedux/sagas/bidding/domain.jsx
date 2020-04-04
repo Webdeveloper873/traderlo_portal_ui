@@ -8,7 +8,7 @@ import { bidDomainTypes } from 'appRedux/constants/ActionTypes';
 import { base_url, headers } from 'appRedux/constants/configs';
 
 //utils
-import { request } from 'common/utils/helpers';
+import { request, getAccessToken } from 'common/utils/helpers';
 
 function* setBidDomain({ payload }) {
   try {
@@ -17,6 +17,7 @@ function* setBidDomain({ payload }) {
       {
         headers: {
           ...headers,
+          authorization: `Bearer ${getAccessToken()}`,
           'content-type': 'application/json'
         },
         body: JSON.stringify(others)

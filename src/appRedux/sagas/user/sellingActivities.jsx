@@ -40,8 +40,27 @@ function* getCstmrOrders() {
   }
 }
 
+function* getListingStatus() {
+  console.log('saga getListingStatus');
+  try {
+    let resp = yield call(() => request.get(`${base_url}/listing/user`, { headers: { ...headers, authorization: `Bearer ${getAccessToken()}` } }));
+
+    console.log('getListingStatus resp ', resp);
+    if (resp) {
+      yield put(sellingActivities.getListingStatusSuccess(resp));
+    }
+  } catch (err) {
+    // yield put(user.failedLogin());
+    console.log('err: ', err);
+  }
+}
+
 export function* getBidsPerfWatcher() {
   yield takeEvery(userActTypes.GET_SELLING_BIDS, getBidsPerf);
+}
+
+export function* getListingStatusWatcher() {
+  yield takeEvery(userActTypes.GET_SELLING_BIDS, getListingStatus);
 }
 
 export function* getCstmrOrdersWatcher() {
@@ -52,5 +71,6 @@ export default function* rootSaga() {
   yield all([
     fork(getBidsPerfWatcher),
     fork(getCstmrOrdersWatcher),
+    fork(getListingStatusWatcher),
   ]);
 }
