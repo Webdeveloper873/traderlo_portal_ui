@@ -19,6 +19,7 @@ export const routes = {
   USER_PROFILE: '/user/profile',
   PAYMENT_ACTIVITY: '/user/payment_activity',
   PUBLIC_PROFILE:'/public_profile',
+  OAUTH2_REDIRECT_HANDLER:'/oauth2/redirect',
 };
 
 export const responsiveConf = {
