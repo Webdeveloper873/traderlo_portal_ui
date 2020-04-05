@@ -50,7 +50,7 @@ const SignInForm = ({form, handleClose}) => {
       if (!err) {
         console.log('Received values of form: ', values);
         const userDetails = {
-          username: values.username,
+          email: values.username,
           password: values.password
         }
         console.log(userDetails,'userDetails');
@@ -67,7 +67,7 @@ const SignInForm = ({form, handleClose}) => {
     <Form onSubmit={handleSubmit} className={classes.formWrapper}>
       <Row className="justify-content-md-center">
         <Col>
-          <a className="btn btn-block social-btn google" href={GOOGLE_AUTH_URL}> <GoogleButton/> </a>
+          <a className="btn btn-block social-btn google" href={GOOGLE_AUTH_URL}> <GoogleButton /> </a>
         </Col>
       </Row>
       <Divider className={classes.divStyle}>
