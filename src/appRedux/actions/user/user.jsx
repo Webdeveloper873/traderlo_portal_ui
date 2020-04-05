@@ -1,11 +1,11 @@
 import { userActTypes } from 'appRedux/constants/ActionTypes';
 
-export const login = ({username, password}) => ({
+export const login = ({email, password}) => ({
   type: userActTypes.LOGIN,
   payload: {
-    grant_type: 'password',
-    scope: 'any',
-    username,
+    // grant_type: 'password',
+    // scope: 'any',
+    email,
     password,
   },
 });
@@ -40,6 +40,11 @@ export const updateUserProfile = (profile) => ({
 
 export const updateUserProfileSuccess = (profile) => ({
   type: userActTypes.UPDATE_PROFILE_SUCCESS,
+  payload: { profile }
+})
+
+export const changeUserPassword = (profile) => ({
+  type: userActTypes.UPDATE_PROFILE,
   payload: { profile }
 })
 
