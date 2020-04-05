@@ -4,9 +4,9 @@ export const initializeSelling = () => ({
   type: sellDomainTypes.INITIALIZE_SELL,
 });
 
-export const sellDomain = (url) => ({
+export const sellDomain = (payload) => ({
   type: sellDomainTypes.SELL_DOMAIN,
-  payload: { url }
+  payload
 });
 
 export const sellDomainSuccess = (payload) => ({

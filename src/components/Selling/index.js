@@ -121,7 +121,11 @@ const Selling = () => {
 
   const onGetStarted = () => {
     console.log('domainName.value: ', domainName.value);
-    dispatch(domainActions.sellDomain(domainName.value));
+    const payload = {
+      keywords: domainKeyword.value,
+      url: domainName.value,
+    }
+    dispatch(domainActions.sellDomain(payload));
   }
 
   useEffect(()=>{
