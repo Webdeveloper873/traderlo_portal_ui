@@ -50,6 +50,7 @@ const DashboardItem = ({count ,title}) => {
 
 const Dashboards = ({...props}) => {
   const dispatch = useDispatch();
+  const bannerPath = ['Home', 'Dashboard'];
 
   useEffect(()=>{
     //this is initial login, fetch user profile
@@ -60,7 +61,7 @@ const Dashboards = ({...props}) => {
 
   return(
     <>
-      <Banner text={'Dashboard'} />
+      <Banner text={'Dashboard'} path={bannerPath}/>
       <PageWrapper className={classes.pageWrapper}>
           <Col span={6} className={classes.userSidebar}>
             <UserSidebar></UserSidebar>

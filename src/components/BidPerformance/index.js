@@ -24,6 +24,7 @@ const SearchBid = () => {
 const BidPerformance = () => {
   const dispatch = useDispatch();
   const bidsPerf = useSelector(({ sellingActivities }) => sellingActivities.bidsPerf);
+  const bannerPath = ['Dashboard', 'Selling Activities', 'Bids Performance'];
 
   useEffect(()=>{
     dispatch(sellingActivities.getBidsPerf());
@@ -31,7 +32,7 @@ const BidPerformance = () => {
 
   return(
     <>
-      <Banner text={'Bids Performance'} />
+      <Banner text={'Bids Performance'} path={bannerPath} />
       <PageWrapper addTopMargin>
         <Col xs={24} sm={24} md={6} lg={6} >
           <UserSidebar />

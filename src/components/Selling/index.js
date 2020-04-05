@@ -117,6 +117,7 @@ const Selling = () => {
   const [selectedItem, setSelectedItem] = useState(1);
   const listingId = useSelector(({ sellDomain })=>sellDomain.listingId);
   const dispatch = useDispatch();
+  const bannerPath = ['Home', 'Start Selling'];
 
   const onGetStarted = () => {
     console.log('domainName.value: ', domainName.value);
@@ -142,7 +143,7 @@ const Selling = () => {
 
   return(
     <>
-      <Banner text={'Selling'} />
+      <Banner text={'Selling'} path={bannerPath}/>
       <PageWrapper className={classes.pageWrapper}>
         <SellingStep subtitle='(Choose one)'>1. What would you like to sell?</SellingStep>
         <Row gutter={16} className={classes.rowStyle}>

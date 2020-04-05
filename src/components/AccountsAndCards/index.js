@@ -35,6 +35,7 @@ const AccountsAndCards = () => {
   const savedBanks = useSelector(({ user }) => user.savedBanks);
   const deleteSuccess = useSelector(({ payment }) => payment.deleteSuccess);
   const dispatch = useDispatch();
+  const bannerPath = ['Dashboard', 'My Profile and Account', 'Password and Security'];
 
   useEffect(()=>{
     dispatch(user.getSavedBanks());
@@ -52,9 +53,6 @@ const AccountsAndCards = () => {
     }
   })
 
-
-
-
   const showModal = () => {
     setShowModal(true);
   }
@@ -66,7 +64,7 @@ const AccountsAndCards = () => {
 
   return(
     <>
-      <Banner text={'Accounts & Cards'} />
+      <Banner text={'Accounts & Cards'} path={bannerPath}/>
       <PageWrapper addTopMargin>
         <Col xs={24} sm={24} md={6} lg={6} >
           <UserSidebar />

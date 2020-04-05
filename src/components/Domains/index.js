@@ -228,8 +228,8 @@ const SearchKeyword = () => {
 }
 
 const SearchRecord = ({title}) => {
-
   const dispatch = useDispatch();
+  const bannerPath = ['Home', 'Domains']
 
   useEffect(()=>{
     //this is initial login, fetch user profile
@@ -239,7 +239,7 @@ const SearchRecord = ({title}) => {
 
   return(
     <>
-      <Banner text={title} />
+      <Banner text={'Domains'} path={bannerPath}/>
       <PageWrapper className={classes.pageWrapper}>
         <Col xs={24} md={6}>
           <Filters />
