@@ -49,9 +49,7 @@ const Menus = () => {
 
 
 const Header = ({onClickSignInUp}) => {
-
   const isLoggedIn = useSelector(({user}) => user.isLoggedIn);
-  const userLoggedIn = localStorage.getItem("access_token") !== null;
 
   useEffect(()=>{
     if(isLoggedIn){

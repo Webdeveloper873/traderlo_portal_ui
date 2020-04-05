@@ -29,7 +29,6 @@ import { useFormInput } from 'common/utils/hooks';
 import { responsiveConf, routes } from 'common/constants';
 
 const {fiveCol, threeCol} = responsiveConf || {};
-const {Search} = Input;
 
 const stepList = [
   {

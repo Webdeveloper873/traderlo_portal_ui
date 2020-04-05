@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import React from 'react';
 import { Redirect } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
@@ -16,8 +17,8 @@ const OAuth2RedirectHandler  = () => {
         return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     };
 
-    
-        
+
+
         const token = getUrlParameter('token');
         const error = getUrlParameter('error');
         console.log(error,'error')
@@ -30,16 +31,16 @@ const OAuth2RedirectHandler  = () => {
             return <Redirect to={{
                 pathname: "/user/dashboard",
                 //state: { from: this.props.location }
-            }}/>; 
+            }}/>;
         } else {
             return <Redirect to={{
                 pathname: "/public_profile",
-                // state: { 
+                // state: {
                 //     from: this.props.location,
-                //     error: error 
+                //     error: error
                 // }
-            }}/>; 
+            }}/>;
         }
-    
+
 }
 export default OAuth2RedirectHandler;
