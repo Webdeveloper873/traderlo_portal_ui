@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Button, Dropdown, Menu, Avatar } from 'antd'
-import { useDispatch } from 'react-redux';
 
 //actions
 import { user } from 'appRedux/actions/user';
@@ -50,7 +50,15 @@ const Menus = () => {
 
 const Header = ({onClickSignInUp}) => {
 
+  const isLoggedIn = useSelector(({user}) => user.isLoggedIn);
   const userLoggedIn = localStorage.getItem("access_token") !== null;
+
+  useEffect(()=>{
+    if(isLoggedIn){
+      console.log('loggedIn')
+    }
+  }, [isLoggedIn]);
+
   return (
     <div className={classes.wrapper}>
       <Navbar className={classes.header} bg="light" expand="lg" sticky="top">
@@ -63,7 +71,7 @@ const Header = ({onClickSignInUp}) => {
             <Link className={classes.linkStyle} to="/templates">Template/Graphics</Link>
             <Link className={classes.linkStyle} to="/script">Clone script</Link>
             <Link className={classes.linkStyle} to="/plugins">Plugins/Themes</Link>
-            {userLoggedIn ? <UserAvatar /> : <Link onClick={onClickSignInUp} className={classes.linkStyle}>Sign in/Signup</Link>}
+            {isLoggedIn ? <UserAvatar /> : <Link onClick={onClickSignInUp} className={classes.linkStyle}>Sign in/Signup</Link>}
             <Button size='large' className={classes.buttonStyle} href={routes.SELLING_PAGE}>Start Selling</Button>
           </Nav>
         </Navbar.Collapse>

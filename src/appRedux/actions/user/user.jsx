@@ -15,6 +15,11 @@ export const successLogin = (token) => ({
   payload: { token }
 });
 
+export const successViaGoogleLogin = (googleToken) => ({
+  type: userActTypes.LOGIN_VIA_GOOGLE_SUCCESS,
+  payload: { googleToken }
+});
+
 export const failedLogin = () => ({
   type: userActTypes.LOGIN_FAILED
 });

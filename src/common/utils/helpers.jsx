@@ -1,6 +1,7 @@
 import { notification  } from 'antd';
 
 const handleResponse = (resp) => {   // if empty return {}
+  console.log(resp,'resp');
   if (resp.ok) {
     return resp.text().then(function(respText) {
       return respText ? JSON.parse(respText) : {}

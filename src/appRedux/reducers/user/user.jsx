@@ -10,11 +10,12 @@ const initialState = {
   register: null,
   activeSidebarKey: '',
   updateUserSuccess:false,
+  googleToken :null,
 };
 
 export default (state = initialState, action) => {
   const { type, payload } = action || {};
-  const { profile, token } = payload || {};
+  const { profile, token, googleToken } = payload || {};
   switch (type) {
     case userActTypes.LOGIN_SUCCESS:
       const { access_token, refresh_token } = token || {};
@@ -24,6 +25,12 @@ export default (state = initialState, action) => {
         isLoggedIn: true,
         accessToken: access_token,
         refreshToken: refresh_token
+      };
+    case userActTypes.LOGIN_VIA_GOOGLE_SUCCESS:
+      window.localStorage.setItem('access_token', googleToken);
+      return { ...state,
+        isLoggedIn: true,
+        googleToken: googleToken,
       };
     case userActTypes.LOGIN_FAILED:
       return { ...state, loginFailed: true };
