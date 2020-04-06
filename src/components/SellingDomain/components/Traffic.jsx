@@ -20,23 +20,23 @@ import { responsiveConf } from 'common/constants';
 //resources
 import Graph from 'assets/selling/graph.png'
 
-const {Text} = Typography;
-const {Label} = InputField;
-const {twoCol} = responsiveConf;
+const { Text } = Typography;
+const { Label } = InputField;
+const { twoCol } = responsiveConf;
+const { Dragger } = Upload;
 
 const uploadBtnProps = {
   name: 'file',
-  // action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-  headers: {
-    authorization: 'authorization-text',
-  },
+  multiple: true,
+  action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
   onChange(info) {
-    if (info.file.status !== 'uploading') {
+    const { status } = info.file;
+    if (status !== 'uploading') {
       console.log(info.file, info.fileList);
     }
-    if (info.file.status === 'done') {
-      message.success(`${info.file.name} file uploaded successfully`);
-    } else if (info.file.status === 'error') {
+    if (status === 'done') {
+      message.success(`${info.file.name} file uploaded successfully.`);
+    } else if (status === 'error') {
       message.error(`${info.file.name} file upload failed.`);
     }
   },
@@ -83,11 +83,17 @@ const Traffic = ({ setActiveKey }) => {
           </Row>
           <Row>
             <Label text={`Upload Files (Revenue Proof's & Traffic Products)`} />
-            <Upload {...uploadBtnProps}>
+            {/* <Upload {...uploadBtnProps}>
               <Button size='large'>
                 <Icon type="upload" /> Click to Upload
               </Button>
-            </Upload>
+            </Upload> */}
+            <Dragger {...uploadBtnProps}>
+              <p className="ant-upload-drag-icon">
+                <Icon type="cloud-upload" />
+              </p>
+              <p className={classes.boldLabel}>{`Drag&Drop files here`}</p>
+            </Dragger>
           </Row>
         </Col>
         <Col xs={24} md={6} className={classes.imgContainer}>
