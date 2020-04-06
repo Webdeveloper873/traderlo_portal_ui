@@ -17,9 +17,10 @@ import classes from './styles.module.scss';
 const { TabPane } = Tabs;
 
 const UserSecurity = () => {
+  const bannerPath = ['Dashboard', 'My Profile and Account', 'Password and Security'];
   return(
     <>
-      <Banner text={'Bids'} />
+      <Banner text={'Account and Security'} path={bannerPath}/>
       <PageWrapper addTopMargin>
         <Col xs={24} sm={24} md={6} lg={6} >
           <UserSidebar />

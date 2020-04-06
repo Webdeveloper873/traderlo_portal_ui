@@ -17,10 +17,11 @@ function callback(key) {
 }
 
 const PublicProfile = () => {
+  const bannerPath = ['Dashboard', 'My Profile and Account', 'User Profile'];
 
   return(
     <>
-      <Banner text={'User Profile'} />
+      <Banner text={'User Profile'} path={bannerPath}/>
       <PageWrapper addTopMargin>
         <Col xs={24} sm={24} md={24} lg={24} className={classes.customPadding}>
           <Row>

@@ -24,6 +24,7 @@ function PaymentActivity() {
     ({ paymentActivity }) => paymentActivity || {}
   );
   const { values, balanceHistory } = paymentActivities;
+  const bannerPath = ['Dashboard', 'My Finance', 'Payment Activity'];
 
   useMemo(() => {
     dispatch(paymentActivity.getPaymentActivities(id));
@@ -32,7 +33,7 @@ function PaymentActivity() {
 
   return (
     <React.Fragment>
-      <Banner text={"Payment Activity"} />
+      <Banner text={"Payment Activity"} path={bannerPath}/>
       <PageWrapper addTopMargin>
         <Col xs={24} sm={24} md={6} lg={6}>
           <UserSideBar />

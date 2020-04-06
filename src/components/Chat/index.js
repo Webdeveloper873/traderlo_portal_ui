@@ -45,6 +45,7 @@ const Chat = () => {
   const dispatch = useDispatch();
   const chatContacts = useSelector(({ chat }) => chat.chatContacts);
   const [activeChatUser, setactiveChatUser] = useState(null);
+  const bannerPath = ['Dashboard', 'Çhat'];
 
 
   useEffect(()=>{
@@ -59,7 +60,7 @@ const Chat = () => {
 
   return(
     <>
-      <Banner text={'Chat'} />
+      <Banner text={'Chat'} path={bannerPath} />
       <PageWrapper addTopMargin>
         <Col xs={24} sm={24} md={6} lg={6} >
           <UserSidebar />

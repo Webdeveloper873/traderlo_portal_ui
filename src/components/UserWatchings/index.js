@@ -34,6 +34,7 @@ const UserWatchings = () => {
   const favorites = useSelector(({ buyActivities }) => buyActivities.favorites);
   const sellers = useSelector(({ buyActivities }) => buyActivities.sellers);
   const dispatch = useDispatch();
+  const bannerPath = ['Dashboard', 'Buying Activities', 'Watching'];
 
   useEffect(()=>{
     dispatch(buyActivities.getWatchlistAuction(1));
@@ -44,7 +45,7 @@ const UserWatchings = () => {
 
   return(
     <>
-      <Banner text={'Watchings'} />
+      <Banner text={'Watchings'} path={bannerPath}/>
       <PageWrapper addTopMargin>
         <Col xs={24} sm={24} md={6} lg={6} >
           <UserSidebar />

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Col, Row, Card, Input, Checkbox } from 'antd';
+import { Col, Row, Card, Input, Checkbox, Button } from 'antd';
 import { Redirect } from 'react-router-dom';
 
 //components
@@ -22,14 +22,13 @@ import clonescripts from 'assets/selling/clonescripts.png';
 import tmpltsGrphcs from 'assets/selling/tmpltsGrphcs.png';
 import bids from 'assets/selling/bids.png';
 
-//utils
-// import { useFormInput } from 'common/utils/hooks';
+// utils
+import { useFormInput } from 'common/utils/hooks';
 
 //constants
 import { responsiveConf, routes } from 'common/constants';
 
 const {fiveCol, threeCol} = responsiveConf || {};
-const {Search} = Input;
 
 const stepList = [
   {
@@ -96,25 +95,36 @@ const Step2Card = () => {
   );
 }
 
-const SellingStep = ({subtitle, sublink, children}) => {
+const SellingStep = ({subtitle, nextLineSubtitle, sublink, children}) => {
   return(
-    <div className={classes.steps} >
-      {children}
-      {subtitle? <span>{subtitle}</span> : null}
-      {sublink ? <p>{sublink}</p> : null}
-    </div>
+    <>
+      <div className={classes.steps} >
+        {children}
+        {subtitle? <span>{subtitle}</span> : null}
+        {sublink ? <p>{sublink}</p> : null}
+        <br/>
+        {nextLineSubtitle? <div className={classes.stepDetails}>{nextLineSubtitle}</div> : null}
+      </div>
+    </>
   );
 }
 
 const Selling = () => {
+  const domainName = useFormInput();
+  const domainKeyword = useFormInput();
   const [toNextStep, setToNextStep] = useState(false);
   const [selectedItem, setSelectedItem] = useState(1);
   const listingId = useSelector(({ sellDomain })=>sellDomain.listingId);
   const dispatch = useDispatch();
+  const bannerPath = ['Home', 'Start Selling'];
 
-  const onGetStarted = value => {
-    console.log('value: ', value);
-    dispatch(domainActions.sellDomain(value));
+  const onGetStarted = () => {
+    console.log('domainName.value: ', domainName.value);
+    const payload = {
+      keywords: domainKeyword.value,
+      url: domainName.value,
+    }
+    dispatch(domainActions.sellDomain(payload));
   }
 
   useEffect(()=>{
@@ -136,7 +146,7 @@ const Selling = () => {
 
   return(
     <>
-      <Banner text={'Selling'} />
+      <Banner text={'Selling'} path={bannerPath}/>
       <PageWrapper className={classes.pageWrapper}>
         <SellingStep subtitle='(Choose one)'>1. What would you like to sell?</SellingStep>
         <Row gutter={16} className={classes.rowStyle}>
@@ -146,24 +156,32 @@ const Selling = () => {
         </Row>
         <SellingStep
           subtitle='(Choose one)'
-          sublink='Learn more about selling on Free Domain Auctions'
+          nextLineSubtitle='Learn more about selling on Free Domain Auctions'
         >
           2. How do you want to sell your asset?
         </SellingStep>
         <Row gutter={16} className={classes.rowStyle}>
-          {[1,2,3].map(idx => (
+          {[1].map(idx => (
             <Col {...threeCol} className={classes.colStyle}>
               <Step2Card />
             </Col>
           ))}
         </Row>
-        <SellingStep sublink='The URL of your website *'>3. Basic details to get it started</SellingStep>
+        <SellingStep nextLineSubtitle='Your Domain Name (ex. cardealsnearme.com)'>3. Basic details to get it started</SellingStep>
         <Row gutter={16} className={classes.rowStyle}>
-          <Col xs={24} md={12}>
-            <Search placeholder="Enter The URL"
-              onSearch={onGetStarted}
-              enterButton='Getting Started'
+          <Col xs={24} md={18}>
+            <Input placeholder="Enter Domain Name" onChange={domainName.handleInputChange} />
+          </Col>
+        </Row>
+        <SellingStep nextLineSubtitle='Please Enter Your Domain Keyword (ex. Car Deals Near Me)'>4. Domain Keyword</SellingStep>
+        <Row gutter={16} className={classes.rowStyle}>
+          <Col xs={24} md={10}>
+            <Input placeholder="Enter How You Pronounce Domain Name?" 
+              onChange={domainKeyword.handleInputChange}
             />
+          </Col>
+          <Col xs={24} md={2}>
+            <Button type='primary' onClick={onGetStarted}>Getting Started</Button>
           </Col>
         </Row>
       </PageWrapper>
