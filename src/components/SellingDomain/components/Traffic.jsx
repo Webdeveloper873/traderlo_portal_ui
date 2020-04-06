@@ -83,11 +83,6 @@ const Traffic = ({ setActiveKey }) => {
           </Row>
           <Row>
             <Label text={`Upload Files (Revenue Proof's & Traffic Products)`} />
-            {/* <Upload {...uploadBtnProps}>
-              <Button size='large'>
-                <Icon type="upload" /> Click to Upload
-              </Button>
-            </Upload> */}
             <Dragger {...uploadBtnProps}>
               <p className="ant-upload-drag-icon">
                 <Icon type="cloud-upload" />
