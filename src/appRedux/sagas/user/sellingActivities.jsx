@@ -60,7 +60,7 @@ export function* getBidsPerfWatcher() {
 }
 
 export function* getListingStatusWatcher() {
-  yield takeEvery(userActTypes.GET_SELLING_BIDS, getListingStatus);
+  yield takeEvery(userActTypes.GET_LISTING_STATUS, getListingStatus);
 }
 
 export function* getCstmrOrdersWatcher() {

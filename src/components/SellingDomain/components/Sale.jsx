@@ -14,8 +14,6 @@ import { useFormInput } from 'common/utils/hooks';
 //styles
 import classes from '../styles.module.scss';
 
-const {Text} = Typography;
-
 const Sale = ({ setActiveKey }) => {
   const [enableReserve, setEnableReserve] = useState(true);
   const [enableBuyNow, setEnableBuyNow] = useState(true);
