@@ -71,10 +71,11 @@ const ThePitch = ({ setActiveKey }) => {
       <Card className={classes.cardStyle}>
         <h5 className={classes.fontDecorH5}>Describe Your Product</h5>
         <div className={classes.subDetails}>
-          <span className={classes.fontDecor}>Get in front of buyers looking for website like your by categorizing it accurately, and letting them know how long the website has been live.</span>
+          <div className={classes.fontDecor}>Get in front of buyers looking for website like your by categorizing it accurately, and letting them know how long the website has been live.</div>
         </div>
         <div>
           <Row>
+            <h5 className={classes.fontDecorH5}>Sublisting Category *</h5>
             <Dropdown overlay={listCategoryMenu}>
               <Button size="large" className={classes.listCategory}>
                 List Category <Icon type="down" />
@@ -82,17 +83,19 @@ const ThePitch = ({ setActiveKey }) => {
             </Dropdown>
           </Row>
           <Row>
+            <h5 className={classes.fontDecorH5}>Description Heading *</h5>
             <Input
               size="large"
               className={classes.descriptionHeading}
-              placeholder="Description Heading"
+              placeholder="Enter description heading"
               onChange={tagline.handleInputChange}
             />
           </Row>
           <Row>
+            <h5 className={classes.fontDecorH5}>Description *</h5>
             <TextArea rows={8} className={classes.description}
               onChange={description.handleInputChange}
-              placeholder="Description"
+              placeholder="Enter description"
             />
           </Row>
           <Row className={classes.btnContainer}>
