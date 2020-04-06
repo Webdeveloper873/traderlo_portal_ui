@@ -30,6 +30,11 @@ const CardDisplay = ({...props}) => {
     <Card className={classes.cardStyle}
       hoverable
       cover={<img alt="example" src={WebsiteTemp} />}
+      actions={[
+        '',
+        '',
+        <Icon type="eye" className={classes.iconStyle}/>
+      ]}
       {...props}
     >
       <Avatar size={52} src={props.image? props.image : UserImgTemp} className={classes.avatarStyle}/>

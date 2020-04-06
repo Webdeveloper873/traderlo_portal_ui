@@ -24,7 +24,7 @@ const SearchBid = () => {
 const ListingAndStatus = () => {
   const dispatch = useDispatch();
   const listingStatus = useSelector(({ sellingActivities }) => sellingActivities.listingStatus);
-
+  const bannerPath = ['Dashboard', 'Selling Activities', 'Listing and Status']
 
   useEffect(()=>{
     dispatch(sellingActivities.getListingStatus());
@@ -32,7 +32,7 @@ const ListingAndStatus = () => {
 
   return(
     <>
-      <Banner text={'Listing And Status'} />
+      <Banner text={'Listing And Status'} path={bannerPath}/>
       <PageWrapper addTopMargin>
         <Col xs={24} sm={24} md={6} lg={6} >
           <UserSidebar />

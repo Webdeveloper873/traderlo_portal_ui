@@ -1,11 +1,11 @@
 import { userActTypes } from 'appRedux/constants/ActionTypes';
 
-export const login = ({username, password}) => ({
+export const login = ({email, password}) => ({
   type: userActTypes.LOGIN,
   payload: {
-    grant_type: 'password',
-    scope: 'any',
-    username,
+    // grant_type: 'password',
+    // scope: 'any',
+    email,
     password,
   },
 });
@@ -13,6 +13,11 @@ export const login = ({username, password}) => ({
 export const successLogin = (token) => ({
   type: userActTypes.LOGIN_SUCCESS,
   payload: { token }
+});
+
+export const successViaGoogleLogin = (googleToken) => ({
+  type: userActTypes.LOGIN_VIA_GOOGLE_SUCCESS,
+  payload: { googleToken }
 });
 
 export const failedLogin = () => ({
@@ -35,6 +40,11 @@ export const updateUserProfile = (profile) => ({
 
 export const updateUserProfileSuccess = (profile) => ({
   type: userActTypes.UPDATE_PROFILE_SUCCESS,
+  payload: { profile }
+})
+
+export const changeUserPassword = (profile) => ({
+  type: userActTypes.UPDATE_PROFILE,
   payload: { profile }
 })
 

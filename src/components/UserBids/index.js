@@ -24,6 +24,7 @@ const SearchBid = () => {
 const UserBids = () => {
   const bids = useSelector(({ buyActivities })=> buyActivities.myBids);
   const dispatch = useDispatch();
+  const bannerPath = ['Dashboard', 'Buying Activities', 'My Bids'];
 
   useEffect(()=>{
     //fetch bids
@@ -33,7 +34,7 @@ const UserBids = () => {
 
   return(
     <>
-      <Banner text={'Bids'} />
+      <Banner text={'Bids'} path={bannerPath}/>
       <PageWrapper addTopMargin>
         <Col xs={24} sm={24} md={6} lg={6} >
           <UserSidebar />

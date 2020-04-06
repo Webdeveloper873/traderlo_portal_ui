@@ -79,7 +79,7 @@ function* registerUser({payload}) {
 
 function* logout({payload}) {
   try{
-    const resp = yield call(() => request.delete(`${base_url}/user/logout`, {
+    const resp = yield call(() => request.post(`${base_url}/user/logout`, {  // as updated in swagger
       headers: { ...headers,
         authorization: `Bearer ${getAccessToken()}`
       }
@@ -152,6 +152,6 @@ export default function* rootSaga() {
     fork(registerUserWatcher),
     fork(logOutWatcher),
     fork(getSavedAccountsWatcher),
-    fork(getSavedCardsWatcher)
+    fork(getSavedCardsWatcher),
   ]);
 }

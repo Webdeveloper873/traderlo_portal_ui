@@ -2,15 +2,15 @@
 import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal, Row, Form as TempForm, Button as TempButton } from 'react-bootstrap';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, Col } from 'antd';
 import { Redirect } from "react-router-dom";
-
+import GoogleButton from 'react-google-button'
 //components
 import Divider from 'common/components/Divider';
 
 //utils
 import { useFormInput } from 'common/utils/hooks';
-
+import { base_url } from 'appRedux/constants/configs';
 //actions
 import { user } from 'appRedux/actions/user';
 
@@ -20,12 +20,20 @@ import classes from './styles.module.scss';
 //constants
 import {routes} from 'common/constants';
 
+
+
 const SignInForm = ({form, handleClose}) => {
   const [toLoginPage, setToLoginPage] = useState(false);
   const loginFailed = useSelector(({user})=>user.loginFailed);
   const isLoggedIn = useSelector(({user}) => user.isLoggedIn);
   const dispatch = useDispatch();
   const {getFieldDecorator} = form || {};
+
+  const url = window.location.href; 
+  const hashes = url.split("?")[0];  // if deployed https://traderlo-portal-api.herokuapp.com/ || if local  http://localhost:3000/
+  const OAUTH2_REDIRECT_URI = `${hashes}oauth2/redirect`;
+  const GOOGLE_AUTH_URL = `${base_url}/user/googleLogin?redirectUri=` + OAUTH2_REDIRECT_URI;
+
 
   useEffect(()=>{
     if(isLoggedIn){
@@ -42,9 +50,10 @@ const SignInForm = ({form, handleClose}) => {
       if (!err) {
         console.log('Received values of form: ', values);
         const userDetails = {
-          username: values.username,
+          email: values.username,
           password: values.password
         }
+        console.log(userDetails,'userDetails');
         dispatch(user.login(userDetails));
       }
     });
@@ -56,6 +65,11 @@ const SignInForm = ({form, handleClose}) => {
 
   return(
     <Form onSubmit={handleSubmit} className={classes.formWrapper}>
+      <Row className="justify-content-md-center">
+        <Col>
+          <a className="btn btn-block social-btn google" href={GOOGLE_AUTH_URL}> <GoogleButton /> </a>
+        </Col>
+      </Row>
       <Divider className={classes.divStyle}>
         <Divider.text>OR</Divider.text>
       </Divider>
@@ -101,6 +115,13 @@ const SignUpForm = ({handleClose}) => {
   const register = useSelector(({user}) => user.register);
   const dispatch = useDispatch();
 
+
+  const url = window.location.href; 
+  const hashes = url.split("?")[0];  // if deployed https://traderlo-portal-api.herokuapp.com/ || if local  http://localhost:3000/
+  const OAUTH2_REDIRECT_URI = `${hashes}oauth2/redirect`;
+  const GOOGLE_AUTH_URL = `${base_url}/user/googleLogin?redirectUri=` + OAUTH2_REDIRECT_URI;
+
+
   useEffect(()=>{
     if(isLoggedIn){
       setTimeout(()=>{
@@ -136,6 +157,9 @@ const SignUpForm = ({handleClose}) => {
     <TempForm className={classes.formWrapper}>
       <Row className="justify-content-md-center">
         {/* <div class="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="true"></div> */}
+        <Col>
+          <a className="btn btn-block social-btn google" href={GOOGLE_AUTH_URL}> <GoogleButton/> </a>
+        </Col>
       </Row>
       <Divider className={classes.divStyle}>
         <Divider.text>OR</Divider.text>

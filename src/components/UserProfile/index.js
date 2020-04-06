@@ -24,8 +24,8 @@ const { TextArea } = Input;
 
 
 const UserProfile = () => {
-
   const dispatch = useDispatch();
+  const bannerPath = ['Dashboard', 'My Profile and Account', 'User Profile'];
   
   useEffect(()=>{
     dispatch(user.getUserProfile());
@@ -70,7 +70,7 @@ const UserProfile = () => {
 
   return(
     <>
-      <Banner text={'User Profile'} />
+      <Banner text={'User Profile'} path={bannerPath}/>
       <PageWrapper addTopMargin>
         <Col xs={24} sm={24} md={6} lg={6} >
           <UserSidebar />

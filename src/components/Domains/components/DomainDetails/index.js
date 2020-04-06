@@ -158,6 +158,7 @@ const RightPane = (domainDetails) => {
 const DomainDetails = () => {
   const domainDetails = useSelector(({ buyDomain }) => buyDomain.selectedDomainInfo);
   const dispatch = useDispatch();
+  const bannerPath = ['Home', 'Domains', 'Listing Details'];
 
   useEffect(()=>{
     //TODO: change
@@ -170,7 +171,7 @@ const DomainDetails = () => {
 
   return(
     <>
-      <Banner text='Payment' />
+      <Banner text='Domain Keyword' path={bannerPath}/>
       <PageWrapper>
         <Row className={classes.rowStyle} gutter={16}>
           <LeftPane {...domainDetails}/>
