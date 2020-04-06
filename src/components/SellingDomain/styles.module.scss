@@ -3,6 +3,15 @@
   width: max-content;
 }
 
+.boldLabel {
+  font-weight: bold;
+  font-size: 1.125rem !important;
+}
+
+.normalLabel {
+  font-size: 1rem !important;
+}
+
 .tabStyle {
   font-size: 1.125rem !important;
 
@@ -87,7 +96,9 @@
 }
 
 .tabDetail {
-  font-size: 16px;
+  font-weight: bold;
+  font-size: 1.125rem !important;
+  color: #222;
   margin-bottom: 10px;
   display: block;
 }

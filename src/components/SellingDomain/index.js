@@ -33,7 +33,7 @@ const SellingSub = () => {
     <>
       <Banner text={'Selling'} path={bannerPath}/>
       <PageWrapper className={classes.pageWrapper}>
-        <Tabs className={classes.tabStyle} activeKey={JSON.stringify(activeKey)} onNextClick={moveToNextTab} defaultActiveKey="1" onChange={callback} size="large" tabBarGutter={120} tabBarStyle={{fontWeight:600}}>
+        <Tabs className={classes.tabStyle} activeKey={"2"} onNextClick={moveToNextTab} defaultActiveKey="1" onChange={callback} size="large" tabBarGutter={120} tabBarStyle={{fontWeight:600}}>
           <TabPane tab="1.The Pitch" key="1">
             <ThePitch setActiveKey={setActiveKey} />
           </TabPane>

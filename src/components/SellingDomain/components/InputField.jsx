@@ -10,7 +10,7 @@ import {responsiveConf} from 'common/constants';
 const {Text} = Typography;
 const {threeCol} = responsiveConf || {};
 
-const Label = ({text}) => <Text strong className={classes.tabDetail}>{text}</Text>;
+const Label = ({text}) => <span className={classes.tabDetail}>{text}</span>;
 
 const InputField = ({ label, icon, colStyle, ...props }) => {
   return (
