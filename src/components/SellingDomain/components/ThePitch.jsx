@@ -80,11 +80,6 @@ const ThePitch = ({ setActiveKey }) => {
                 List Category <Icon type="down" />
               </Button>
             </Dropdown>
-            <Dropdown overlay={listCategoryMenu}>
-              <Button size="large" className={classes.listSubCategory}>
-                List Sub Category <Icon type="down" />
-              </Button>
-            </Dropdown>
           </Row>
           <Row>
             <Input
