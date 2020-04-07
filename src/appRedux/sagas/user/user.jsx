@@ -63,20 +63,21 @@ function* changeUserPassword({payload}) {
   
   const { userPassword } = payload || {};
   try{
-    console.log(payload,'payloadpayloadpayload')
-    console.log(userPassword,'userpassword')
+
     const resp = yield call(() => request.put(`${base_url}/user/changePassword`,
      { headers: {
         ...headers,
+        uid: userPassword.id.toString(),
         authorization: `Bearer ${getAccessToken()}` },
-        body: JSON.stringify(userPassword)
+        body: JSON.stringify(userPassword.passwordInfo)
        }));
     if(resp){
       //yield put(user.updateUserProfileSuccess(resp));
-      put (user.changeUserPasswordSuccess())
+      yield put (user.changeUserPasswordSuccess())
     }
   }catch(err) {
     console.log('err: ', err);
+    yield put (user.changeUserPasswordSuccess())
   }
 }
 

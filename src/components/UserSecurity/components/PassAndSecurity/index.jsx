@@ -27,7 +27,7 @@ const PassAndSecurity = () => {
 
   const dispatch = useDispatch();
   const changePasswordSuccess = useSelector(({user}) => user.changePasswordSuccess);
-
+  const userFetchedInfo = useSelector(({user}) => user.profile);
   const [userPassword, setUserPassword] = useState({oldPassword:'', newPassword: '', reTypeNewPassword:''}); 
 
 
@@ -38,18 +38,24 @@ const PassAndSecurity = () => {
         openNotification({status:'success', message:'change password success'});
       }, 500);
       dispatch(user.clearUserNotifStatus());
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
+      
     }
   },[changePasswordSuccess])
 
   const changePassword = () => {
 
-    const password = {
-      newPassword: userPassword.newPassword,
-      oldPassword: userPassword.oldPassword,
+    const changePwRequest = {
+      id: userFetchedInfo.id,
+      passwordInfo: {
+        newPassword: userPassword.newPassword,
+        oldPassword: userPassword.oldPassword,
+      }
+      
     }
-    console.log(userPassword);
-    console.log(password);
-    dispatch(user.changeUserPassword(password));
+    dispatch(user.changeUserPassword(changePwRequest));
   }
 
   const onChangeUserPassword = (e) => {
@@ -63,7 +69,7 @@ const PassAndSecurity = () => {
   return(
     <>
       <Panel header='Change Password' headerRight= {
-        <Button type="primary" size={'large'} className={classes.saveChanges} onClick={changePassword} disabled ={userPassword.newPassword !== userPassword.reTypeNewPassword || userPassword.newPassword === '' || userPassword.reTypeNewPassword === ''}>Save Changes</Button>}>
+        <Button type="primary" size={'large'} className={classes.saveChanges} onClick={changePassword} disabled ={(userPassword.newPassword !== userPassword.reTypeNewPassword || userPassword.newPassword === '' || userPassword.reTypeNewPassword === '') || userPassword.oldPassword === ''}>Save Changes</Button>}>
         <Row gutter={24}>
           <Col {...threeCol}>
             <Input.Password size='large' placeholder='Old Password' name="oldPassword" onChange={onChangeUserPassword}/>
