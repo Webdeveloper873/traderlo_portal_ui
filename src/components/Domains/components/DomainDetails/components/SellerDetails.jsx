@@ -4,6 +4,11 @@ import { List, Avatar, Card, Icon, Button, Row, Col } from 'antd';
 //styles
 import classes from '../styles.module.scss';
 
+//constants
+import { responsiveConf } from 'common/constants';
+
+const { twoCol } = responsiveConf;
+
 const Description = () => {
   return(
     <>
@@ -34,13 +39,12 @@ const SellerDetails = () => {
         <Icon type="pushpin" className={classes.padlock} />
         <span className={classes.number}>ManChester, Uk</span>
       </Card>
-      <Row justify='space-between' className={classes.rowStyle} type='flex'>
-        <Col span={12}>
-          <Button type='primary'>View All Listings</Button>
+      <Row className={classes.rowStyle} gutter={24}>
+        <Col {...twoCol}>
+          <Button size='large' className={classes.btnStyle}>View All Listings</Button>
         </Col>
-        <Col span={12}>
-          <Icon type="message" theme='twoTone' className={classes.messageIcon}/>
-          <span className={classes.chat}>CHAT</span>
+        <Col {...twoCol}>
+          <Button size='large' key className={classes.traderloPink}>Watch</Button>
         </Col>
       </Row>
     </>

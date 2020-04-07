@@ -1,3 +1,9 @@
+.boldLabel {
+  font-size: 1.125rem !important;
+  color: #333333;
+  font-weight: 700;
+}
+
 .rowStyle {
   margin-top: 20px;
   width: 100%;
@@ -13,12 +19,31 @@
     padding: 0px 15px;
     color: white;
   }
+
+  .traderloPink {
+    background-color: #ec008c;
+    color: white;
+    width: 120%;
+  }
 }
 
 .cardStyle {
   text-align: center;
 
+  :global {
+    .ant-card-body {
+      padding: 18px !important;
+      padding-bottom: 44px !important;
+      padding-top: 24px !important;
+    }
+  }
+
   h3 {
+    color: #333333;
+    font-size: 28px;
+    font-weight: 700;
+    font-family: "Mukta", sans-serif !important;
+    margin-bottom: 31px;
 
     &:after {
       content: '';
@@ -36,14 +61,14 @@
   text-align: center;
 
   img {
-    width: 25%;
+    width: 60px;
+    height: 60px;
     margin: 0 90px;
     margin-bottom: 10px;
   }
 
   .title {
-    font-size: 14px;
-    margin: 10px;
+    font-size: 1.125rem;
     text-align: center;
     font-weight: 700;
   }
@@ -54,15 +79,19 @@
 }
 
 .rightPane {
-  height: 250px;
+  // height: 250px;
 
   h4 {
     font-size: 22px !important;
 
+    &.currBid {
+      font-size: 2rem !important;
+    }
+
     span {
+      font-size: 1.125rem !important;
       text-align: right !important;
       float: right;
-      font-size: 14px;
       margin-top: 8px;
       color: #888 !important;
       cursor: pointer;
@@ -70,6 +99,9 @@
   }
 
   p {
+    font-size: 16px;
+    font-weight: 400;
+
     span {
       margin-left: 10px;
     }
@@ -172,4 +204,29 @@
 
 .notif {
   margin-top: 50px !important;
+}
+
+
+.tabStyle {
+  color: #333333;
+
+  :global {
+    .ant-tabs-content {
+      font-size: 16px;
+    }
+  }
+}
+
+.blueLink {
+  color: #00bcd4;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.report {
+  :global {
+    .ant-card-body {
+      font-size: 16px;
+    }
+  }
 }

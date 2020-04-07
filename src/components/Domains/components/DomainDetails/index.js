@@ -42,16 +42,17 @@ const LeftPane = (domainDetails) => {
     <Col xs={24} md={16}>
       <Card className={classes.cardStyle}>
         <h3>{domainDetails.appName}</h3>
-        <Row clasName={classes.rowStyle} gutter={32}>
+        <Row clasName={classes.rowStyle} gutter={12}>
           <CardItem imgSrc={BuyerProtection} title={'Buyer Protection Guarantee'}/>
           <CardItem imgSrc={TimeFrame} title={'Time Frame'}/>
           <CardItem imgSrc={PaymentsImg} title={'Payments'}/>
         </Row>
       </Card>
       <Card className={classes.marginTop15}>
-        <Tabs defaultActiveKey="1">
+        <Tabs defaultActiveKey="1" className={classes.tabStyle}>
           <TabPane tab="Description" key="1">
-            {domainDetails.description}
+            <div className={classes.boldLabel}>Description Heading</div>
+            <p className={classes.marginTop15}>{domainDetails.description}</p>
           </TabPane>
           <TabPane tab="Financials/Traffic" key="2">
             veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
@@ -60,6 +61,11 @@ const LeftPane = (domainDetails) => {
             eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex. Exercitation mollit sit culpa nisi culpa non adipisicing alsoAmet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
           </TabPane>
         </Tabs>
+      </Card>
+      <Card className={classes.report}>
+        <div className={classes.boldLabel}>Report</div>
+        <p className={classes.marginTop15}>{`Does this listing violate the Free Domain Auction `}<span className={classes.blueLink}>Terms and Conditions</span>{`?`}</p>
+        <p className={classes.marginTop15}>{`If so, anonymously `}<span className={classes.blueLink}>report it here</span>{`.`}</p>
       </Card>
     </Col>
   );
@@ -117,20 +123,19 @@ const RightPane = (domainDetails) => {
   return(
     <Col xs={24} md={8}>
       <Card className={classes.rightPane}>
-        <h4>Current price <span>Request for Reserve?</span></h4>
-        <h4>{`$ ${domainDetails.startingPrice}`}</h4>
+        <h4 className={classes.boldLabel}>Current Bid <span>Request for Reserve?</span></h4>
+        <h4 className={`${classes.boldLabel} ${classes.currBid}`}>{`$${domainDetails.startingPrice}`}</h4>
         <p><b>5</b>{` Bids`}<span><Icon type="clock-circle" />{` ${domainDetails.durationDate} Days Left`}</span></p>
-        <Input onChange={bid.handleInputChange} addonAfter={<span onClick={onBidNow} className={classes.bidNowStyle}>Bid Now</span>} placeholder='Enter Amount' />
-        <Row className={classes.rowStyle} gutter={32} align='middle' type='flex'>
+        <Input size='large' onChange={bid.handleInputChange} addonAfter={<span onClick={onBidNow} className={classes.bidNowStyle}>Bid Now</span>} placeholder='Enter Amount' />
+        <Row className={classes.rowStyle} gutter={24}>
           <Col {...twoCol}>
-            <Button className={classes.btnStyle} onClick={showModal}>{`Buy Now $${domainDetails.buyNowPrice}`}</Button>
+            <Button size='large' className={classes.btnStyle} onClick={showModal}>{`Buy Now $${domainDetails.buyNowPrice}`}</Button>
           </Col>
           <Col {...twoCol}>
-            <Button key type='danger' onClick={() => onClickAddToWatchlist()}>{alreadyInWatchList? 'Already in Watchlist' : 'Add to Watchlist'}</Button>
+            <Button size='large' key className={classes.traderloPink} onClick={() => onClickAddToWatchlist()}>{alreadyInWatchList? 'Already in Watchlist' : 'Add to Watchlist'}</Button>
             {/* {alreadyInWatchList ?
               <Button key type='primary' onClick={() => onClickAddToWatchlist()}>{'Add to Watchlist'}</Button>:
               <Button key type='danger' onClick={() => onClickRemoveToWatchlist()}>{'Remove to Watchlist'}</Button>} */}
-
           </Col>
         </Row>
       </Card>
@@ -149,7 +154,7 @@ const RightPane = (domainDetails) => {
         visible={buyNowVisible}
         onCancel = {hideModal}
         footer={null}>
-        <Payments isAddOnly={false}/>
+          <Payments isAddOnly={false}/>
       </Modal>
     </Col>
   );
@@ -171,7 +176,7 @@ const DomainDetails = () => {
 
   return(
     <>
-      <Banner text='Domain Keyword' path={bannerPath}/>
+      <Banner text={domainDetails.keyword || 'Domain'} path={bannerPath}/>
       <PageWrapper>
         <Row className={classes.rowStyle} gutter={16}>
           <LeftPane {...domainDetails}/>

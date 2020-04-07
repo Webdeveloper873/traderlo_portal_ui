@@ -163,10 +163,10 @@ const Filters = () => {
 
 const SearchKeyword = () => {
   const dispatch = useDispatch();
+  const domainList = useSelector(({ buyDomain }) => buyDomain.domainList);
   const [viewDetails, setViewDetails] = useState(false);
   const [viewMode, setViewMode] = useState('card-list'); //default card list view
 
-  const domainList = useSelector(({ buyDomain }) => buyDomain.domainList);
   if(viewDetails){
     return <Redirect to={routes.DOMAINS_VIEW_PAGE} />;
   }
