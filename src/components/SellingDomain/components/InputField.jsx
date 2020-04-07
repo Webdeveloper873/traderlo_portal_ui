@@ -1,14 +1,13 @@
 import React from 'react';
-import { Col, Typography, Input, Icon} from 'antd';
+import { Col, Input, Icon} from 'antd';
 
 //style
 import classes from '../styles.module.scss';
 
 //constants
-import {responsiveConf} from 'common/constants';
+import { responsiveConf } from 'common/constants';
 
-const {Text} = Typography;
-const {threeCol} = responsiveConf || {};
+const { threeCol } = responsiveConf || {};
 
 const Label = ({text}) => <span className={classes.tabDetail}>{text}</span>;
 

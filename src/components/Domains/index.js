@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Slider, Divider, Card, Typography, Select, Checkbox, Input, Row, Col, Button, Icon } from 'antd';
+import { Slider, Divider, Card, Typography, Select, Checkbox, Input, Row, Col, Button } from 'antd';
 import { Redirect } from "react-router-dom";
 
 //components
@@ -16,11 +16,10 @@ import { buyingDomain } from 'appRedux/actions/buying';
 import classes from './styles.module.scss';
 
 //constants
-import {responsiveConf, routes} from 'common/constants';
+import { routes } from 'common/constants';
 
 const { Text } = Typography;
 const { Option } = Select;
-const { threeCol } = responsiveConf || {};
 const { HorizontalList } = CardItem || {};
 
 
@@ -165,7 +164,7 @@ const SearchKeyword = () => {
   const dispatch = useDispatch();
   const domainList = useSelector(({ buyDomain }) => buyDomain.domainList);
   const [viewDetails, setViewDetails] = useState(false);
-  const [viewMode, setViewMode] = useState('card-list'); //default card list view
+  // const [viewMode, setViewMode] = useState('card-list'); //default card list view
 
   if(viewDetails){
     return <Redirect to={routes.DOMAINS_VIEW_PAGE} />;
@@ -176,9 +175,9 @@ const SearchKeyword = () => {
     setViewDetails(true);
   }
 
-  const onClickChangeView = (view) => {
-    setViewMode(view);
-  }
+  // const onClickChangeView = (view) => {
+  //   setViewMode(view);
+  // }
 
 
   return(

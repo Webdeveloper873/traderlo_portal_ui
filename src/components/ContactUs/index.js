@@ -1,8 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
-import { Col, Card, Input, Row, Form, Button, Avatar, DatePicker, Radio } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
-import moment from 'moment';
+import React, { useState } from 'react';
+import { Col, Card, Input, Row, Form, Button } from 'antd';
 
 //components
 import Banner from 'common/components/Banner';
@@ -15,12 +13,10 @@ const { TextArea } = Input;
 
 
 const ContactUs = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const bannerPath = [ 'Contact Us'];
-  
 
-  const [contactInfo, setcontactInfo] = useState({}); 
-
+  const [contactInfo, setcontactInfo] = useState({});
 
   const onChangeContactImfo = (e) => {
     setcontactInfo({...contactInfo,
@@ -28,12 +24,9 @@ const ContactUs = () => {
     })
   }
 
-
-
   const updateProfile = () => {
     //dispatch(user.updateUserProfile(contactInfo));
   }
-
 
   return(
     <>
@@ -41,7 +34,7 @@ const ContactUs = () => {
       <PageWrapper addTopMargin>
         <Col span={18} offset={4} className={classes.customPadding}>
           <Card type="inner" title={'Contact Us'} className={classes.tableContainer}>
-            <Form name="basic">         
+            <Form name="basic">
               <Row>
                 <Col span={11} style={{margin:15, marginBottom:0}} >
                   <Form.Item

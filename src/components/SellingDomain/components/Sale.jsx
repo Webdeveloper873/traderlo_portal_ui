@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Typography, Card, Row, Button, Switch } from 'antd';
+import { Card, Row, Button, Switch } from 'antd';
 
 //components
 import InputField from './InputField';

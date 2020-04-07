@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col, Input, Switch, Button } from 'antd';
@@ -17,10 +18,6 @@ import { user } from 'appRedux/actions/user';
 // util
 import { openNotification } from 'common/utils/helpers';
 
-
-
-
-
 const { threeCol } = responsiveConf;
 
 const PassAndSecurity = () => {
@@ -28,7 +25,7 @@ const PassAndSecurity = () => {
   const dispatch = useDispatch();
   const changePasswordSuccess = useSelector(({user}) => user.changePasswordSuccess);
   const userFetchedInfo = useSelector(({user}) => user.profile);
-  const [userPassword, setUserPassword] = useState({oldPassword:'', newPassword: '', reTypeNewPassword:''}); 
+  const [userPassword, setUserPassword] = useState({oldPassword:'', newPassword: '', reTypeNewPassword:''});
 
 
   useEffect(() =>{
@@ -41,7 +38,7 @@ const PassAndSecurity = () => {
       setTimeout(() => {
         window.location.reload();
       }, 500);
-      
+
     }
   },[changePasswordSuccess])
 
@@ -53,7 +50,7 @@ const PassAndSecurity = () => {
         newPassword: userPassword.newPassword,
         oldPassword: userPassword.oldPassword,
       }
-      
+
     }
     dispatch(user.changeUserPassword(changePwRequest));
   }
