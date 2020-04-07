@@ -10,6 +10,7 @@ const initialState = {
   register: null,
   activeSidebarKey: '',
   updateUserSuccess:false,
+  changePasswordSuccess: false,
   googleToken :null,
 };
 
@@ -36,8 +37,10 @@ export default (state = initialState, action) => {
       return { ...state, loginFailed: true };
     case userActTypes.FETCH_PROFILE_SUCCESS:
       return { ...state, profile, loginFailed: false };
-      case userActTypes.UPDATE_PROFILE_SUCCESS:
+    case userActTypes.UPDATE_PROFILE_SUCCESS:
       return { ...state, profile, updateUserSuccess: true }; 
+    case userActTypes.CHANGE_PASSWORD_SUCCESS:
+      return { ...state, changePasswordSuccess: true }; 
     case userActTypes.REGISTER_USER_SUCCESS:
       return {...initialState, register: true};
     case userActTypes.REGISTER_USER_FAILED:
@@ -55,7 +58,7 @@ export default (state = initialState, action) => {
     case userActTypes.CHANGE_SIDEBAR_ACTIVE_KEY:
       return { ...state, activeSidebarKey: payload };
     case userActTypes.CLEAR_USER_NOTIF_STATUS:
-      return {...state, updateUserSuccess: false}
+      return {...state, updateUserSuccess: false, changePasswordSuccess: false}
     default:
       return state;
   }

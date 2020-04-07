@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col, Input, Switch, Button } from 'antd';
 
 //components
@@ -10,21 +11,67 @@ import classes from './styles.module.scss';
 //constants
 import { responsiveConf } from 'common/constants';
 
+//actions
+import { user } from 'appRedux/actions/user';
+
+// util
+import { openNotification } from 'common/utils/helpers';
+
+
+
+
+
 const { threeCol } = responsiveConf;
 
 const PassAndSecurity = () => {
+
+  const dispatch = useDispatch();
+  const changePasswordSuccess = useSelector(({user}) => user.changePasswordSuccess);
+
+  const [userPassword, setUserPassword] = useState({oldPassword:'', newPassword: '', reTypeNewPassword:''}); 
+
+
+  useEffect(() =>{
+    if (changePasswordSuccess) {
+      console.log(changePasswordSuccess);
+      setTimeout(() => {
+        openNotification({status:'success', message:'change password success'});
+      }, 500);
+      dispatch(user.clearUserNotifStatus());
+    }
+  },[changePasswordSuccess])
+
+  const changePassword = () => {
+
+    const password = {
+      newPassword: userPassword.newPassword,
+      oldPassword: userPassword.oldPassword,
+    }
+    console.log(userPassword);
+    //dispatch(user.changeUserPassword(password));
+  }
+
+  const onChangeUserPassword = (e) => {
+    setUserPassword({...userPassword,
+      [e.target.name]: e.target.value
+    })
+
+    console.log(userPassword);
+  }
+
   return(
     <>
-      <Panel header='Change Password' headerRight={<Button type="primary" size={'large'} className={classes.saveChanges}>Save Changes</Button>}>
+      <Panel header='Change Password' headerRight= {
+        <Button type="primary" size={'large'} className={classes.saveChanges} onClick={changePassword} disabled ={userPassword.newPassword !== userPassword.reTypeNewPassword || userPassword.newPassword === '' || userPassword.reTypeNewPassword === ''}>Save Changes</Button>}>
         <Row gutter={24}>
           <Col {...threeCol}>
-            <Input size='large' placeholder='Old Password' />
+            <Input.Password size='large' placeholder='Old Password' name="oldPassword" onChange={onChangeUserPassword}/>
           </Col>
           <Col {...threeCol}>
-            <Input size='large' placeholder='New Password' />
+            <Input.Password size='large' placeholder='New Password' name="newPassword" onChange={onChangeUserPassword}/>
           </Col>
           <Col {...threeCol}>
-            <Input size='large' placeholder='Re-Type Password' />
+            <Input.Password size='large' placeholder='Re-Type Password' name="reTypeNewPassword" onChange={onChangeUserPassword}/>
           </Col>
         </Row>
       </Panel>

@@ -43,9 +43,13 @@ export const updateUserProfileSuccess = (profile) => ({
   payload: { profile }
 })
 
-export const changeUserPassword = (profile) => ({
-  type: userActTypes.UPDATE_PROFILE,
-  payload: { profile }
+export const changeUserPassword = (userPassword) => ({
+  type: userActTypes.CHANGE_PASSWORD,
+  payload: { userPassword }
+})
+
+export const changeUserPasswordSuccess = () => ({
+  type: userActTypes.CHANGE_PASSWORD_SUCCESS,
 })
 
 export const registerUser = (profile) => (

@@ -58,6 +58,25 @@ function* updateUserProfile({payload}) {
   }
 }
 
+function* changeUserPassword({payload}) {
+  
+  const {userpassword} = payload || {};
+  try{
+    const resp = yield call(() => request.put(`${base_url}/user/changePassword`,
+     { headers: {
+        ...headers,
+        authorization: `Bearer ${getAccessToken()}` },
+        body: JSON.stringify(userpassword)
+       }));
+    if(resp){
+      //yield put(user.updateUserProfileSuccess(resp));
+      put (user.changeUserPasswordSuccess())
+    }
+  }catch(err) {
+    console.log('err: ', err);
+  }
+}
+
 
 function* registerUser({payload}) {
   try{
@@ -135,6 +154,10 @@ export function* updateProfileWatcher() {
   yield takeEvery(userActTypes.UPDATE_PROFILE, updateUserProfile);
 }
 
+export function* changeUserPasswordWatcher() {
+  yield takeEvery(userActTypes.CHANGE_PASSWORD, changeUserPassword);
+}
+
 export function* loginWatcher() {
   yield takeEvery(userActTypes.LOGIN, login);
 }
@@ -144,11 +167,13 @@ export function* logOutWatcher() {
 }
 
 
+
 export default function* rootSaga() {
   yield all([
     fork(loginWatcher),
     fork(getProfileWatcher),
     fork(updateProfileWatcher),
+    fork(changeUserPasswordWatcher),
     fork(registerUserWatcher),
     fork(logOutWatcher),
     fork(getSavedAccountsWatcher),
