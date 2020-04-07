@@ -7,17 +7,8 @@ import moment from 'moment';
 //components
 import Banner from 'common/components/Banner';
 import PageWrapper from 'common/components/PageWrapper';
-import UserSidebar from 'common/components/UserSidebar';
-
 //styles
 import classes from './styles.module.scss';
-
-
-//actions
-import { user } from 'appRedux/actions/user';
-
-// util
-import { openNotification } from 'common/utils/helpers';
 
 const { TextArea } = Input;
 
@@ -25,46 +16,22 @@ const { TextArea } = Input;
 
 const ContactUs = () => {
   const dispatch = useDispatch();
-  const bannerPath = ['Dashboard', 'My Profile and Account', 'User Profile'];
+  const bannerPath = [ 'Contact Us'];
   
-  useEffect(()=>{
-    dispatch(user.getUserProfile());
-  },[]);
-  
-  const userFetchedInfo = useSelector(({user}) => user.profile);
-  const updateUserSuccess = useSelector(({user}) => user.updateUserSuccess);
-  //console.log(userProfile,'userProfile')
+
+  const [contactInfo, setcontactInfo] = useState({}); 
 
 
-  useEffect(() =>{
-    if (updateUserSuccess) {
-      console.log(updateUserSuccess);
-      setTimeout(() => {
-        openNotification({status:'success', message:'user update success'});
-      }, 500);
-      dispatch(user.clearUserNotifStatus());
-      dispatch(user.getUserProfile());
-    }
-  },[updateUserSuccess]);
-
-  const [userProfile, setUserProfile] = useState(userFetchedInfo); 
-
-
-  const onChangeUserProfile = (e) => {
-    setUserProfile({...userProfile,
+  const onChangeContactImfo = (e) => {
+    setcontactInfo({...contactInfo,
       [e.target.name]: e.target.value
     })
   }
 
 
-  const onChangeBirthdate = (date) => {
-    setUserProfile({...userProfile,
-      birthDate: date,
-    })
-  }
 
   const updateProfile = () => {
-    dispatch(user.updateUserProfile(userProfile));
+    //dispatch(user.updateUserProfile(contactInfo));
   }
 
 
@@ -74,20 +41,15 @@ const ContactUs = () => {
       <PageWrapper addTopMargin>
         <Col span={18} offset={4} className={classes.customPadding}>
           <Card type="inner" title={'Contact Us'} className={classes.tableContainer}>
-            <Form
-                name="basic"
-                //initialValues={{ remember: true }}
-                //onFinish={onFinish}
-                //onFinishFailed={onFinishFailed}
-              >         
-              <Row >
+            <Form name="basic">         
+              <Row>
                 <Col span={11} style={{margin:15, marginBottom:0}} >
                   <Form.Item
                     label="First Name"
                     name="firstName"
                     rules={[{ required: true, message: 'Please input your First Name' }]}
                   >
-                    <Input name="firstName" value ={userProfile.firstName} onChange={onChangeUserProfile}/>
+                    <Input name="firstName" value ={contactInfo.firstName} onChange={onChangeContactImfo}/>
                   </Form.Item>
                 </Col>
                 <Col span={11} style={{margin:15, marginBottom:0}}>
@@ -96,7 +58,7 @@ const ContactUs = () => {
                       name="lastName"
                       rules={[{ required: true, message: 'Please input your Last Name' }]}
                     >
-                    <Input name="lastName" value ={userProfile.lastName} onChange={onChangeUserProfile}/>
+                    <Input name="lastName" value ={contactInfo.lastName} onChange={onChangeContactImfo}/>
                   </Form.Item>
                 </Col>
               </Row>
@@ -108,7 +70,7 @@ const ContactUs = () => {
                       name="email"
                       rules={[{ required: true, message: 'Please input your email' }]}
                     >
-                    <Input value ={userProfile.email} name="email" onChange={onChangeUserProfile}/>
+                    <Input value ={contactInfo.email} name="email" onChange={onChangeContactImfo}/>
                   </Form.Item>
                 </Col>
                <Col span={11} style={{margin:15, marginBottom:0, marginTop:0}}>
@@ -117,7 +79,7 @@ const ContactUs = () => {
                       name="location"
                       rules={[{ required: true, message: 'Please input your Location' }]}
                     >
-                    <Input value={userProfile.location} name="location" onChange={onChangeUserProfile}/>
+                    <Input value={contactInfo.location} name="location" onChange={onChangeContactImfo}/>
                   </Form.Item>
                 </Col>
               </Row>
@@ -127,7 +89,7 @@ const ContactUs = () => {
                   name="description"
                   rules={[{ required: true, message: 'Please input your Description' }]}
                 >
-                <TextArea rows={6}  value ={userProfile.aboutMe} name="description" onChange={onChangeUserProfile}/>
+                <TextArea rows={6}  value ={contactInfo.aboutMe} name="description" onChange={onChangeContactImfo}/>
               </Form.Item>
               </Row>
               <Row style={{margin:15}}>

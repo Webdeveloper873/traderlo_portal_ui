@@ -22,7 +22,7 @@ const MiddleCol = () => {
     <Col md={3}>
       <h6>Useful Links</h6>
       <Nav.Link>Privacy Policy</Nav.Link>
-      <Nav.Link>Contact Us</Nav.Link>
+      <Nav.Link href="/contact_us">Contact Us</Nav.Link>
       <Nav.Link>FAQs</Nav.Link>
       <Nav.Link>Blog</Nav.Link>
     </Col>
