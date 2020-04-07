@@ -18,6 +18,7 @@ function* login({payload}) {
     }));
 
     if (resp) {
+      console.log(resp,'resp');
       yield put(user.successLogin(resp));
     }
   } catch (err) {
