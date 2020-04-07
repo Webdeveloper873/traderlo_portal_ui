@@ -45,7 +45,7 @@ const UserProfile = () => {
       dispatch(user.clearUserNotifStatus());
       dispatch(user.getUserProfile());
     }
-  })
+  },[updateUserSuccess]);
 
   const [userProfile, setUserProfile] = useState(userFetchedInfo); 
 

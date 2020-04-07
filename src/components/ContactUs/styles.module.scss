@@ -1,0 +1,55 @@
+
+.customPadding {
+  padding-left: 10px !important;
+
+  .tableContainer {
+    :global {
+      .ant-card-body{
+        padding: 0 !important;
+      }
+  
+      .ant-table-thead {
+        tr {
+          th {
+            background: inherit !important;
+          }
+        }
+      }
+    }
+  }
+
+ 
+}
+
+.formHeader {
+  margin:15;
+  margin-bottom:0;
+}
+
+.deleteCol {
+  cursor: pointer;
+
+  .deleteIcon {
+    font-size: 1.125rem;
+    color: #ec008c;
+  }
+
+  .deleteText {
+    color: #ec008c;
+    margin-left: 5px;
+    position: absolute;
+    margin-top: 4px;
+  }
+}
+
+.btnContainer {
+
+  margin: 15px;
+
+  .btnStyle {
+    background-color:#00bcd4;
+    padding: 0px 40px;
+    color: white;
+    margin-left: 15px;
+  }
+}
