@@ -48,7 +48,8 @@ const PassAndSecurity = () => {
       oldPassword: userPassword.oldPassword,
     }
     console.log(userPassword);
-    //dispatch(user.changeUserPassword(password));
+    console.log(password);
+    dispatch(user.changeUserPassword(password));
   }
 
   const onChangeUserPassword = (e) => {

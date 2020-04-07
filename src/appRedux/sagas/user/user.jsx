@@ -61,13 +61,15 @@ function* updateUserProfile({payload}) {
 
 function* changeUserPassword({payload}) {
   
-  const {userpassword} = payload || {};
+  const { userPassword } = payload || {};
   try{
+    console.log(payload,'payloadpayloadpayload')
+    console.log(userPassword,'userpassword')
     const resp = yield call(() => request.put(`${base_url}/user/changePassword`,
      { headers: {
         ...headers,
         authorization: `Bearer ${getAccessToken()}` },
-        body: JSON.stringify(userpassword)
+        body: JSON.stringify(userPassword)
        }));
     if(resp){
       //yield put(user.updateUserProfileSuccess(resp));
@@ -98,9 +100,12 @@ function* registerUser({payload}) {
 }
 
 function* logout({payload}) {
+  const {profile} = payload || {};
   try{
-    const resp = yield call(() => request.post(`${base_url}/user/logout`, {  // as updated in swagger
-      headers: { ...headers,
+    const resp = yield call(() => request.get(`${base_url}/user/logout`, {  // as updated in swagger
+      headers: { 
+        ...headers,
+        uid: profile.id.toString(),
         authorization: `Bearer ${getAccessToken()}`
       }
     }));

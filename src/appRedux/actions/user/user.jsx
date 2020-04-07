@@ -67,11 +67,12 @@ export const registerUserFailed = () => ({
   type: userActTypes.REGISTER_USER_FAILED,
 });
 
-export const logout = () => ({
+export const logout = (profile) => ({
   type: userActTypes.LOGOUT,
-  payload: {
-    accessToken: window.localStorage.getItem('access_token')
-  }
+  payload: { profile }
+  // payload: {
+  //   accessToken: window.localStorage.getItem('access_token')
+  // }
 });
 
 export const successLogout = () => ({

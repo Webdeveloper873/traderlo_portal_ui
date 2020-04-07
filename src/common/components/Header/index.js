@@ -19,9 +19,11 @@ import userImg from 'assets/user-img.jpg'
 
 const Menus = () => {
   const dispatch = useDispatch();
+  const profile = useSelector(({user}) => user.profile);
 
   const onClickLogout = () => {
-    dispatch(user.logout());
+    console.log(profile,'profileprofileprofile');
+    dispatch(user.logout(profile));
   }
 
   return (

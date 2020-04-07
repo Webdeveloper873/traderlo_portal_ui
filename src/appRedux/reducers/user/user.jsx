@@ -19,12 +19,14 @@ export default (state = initialState, action) => {
   const { profile, token, googleToken } = payload || {};
   switch (type) {
     case userActTypes.LOGIN_SUCCESS:
-      const { access_token, refresh_token } = token || {};
-      window.localStorage.setItem('access_token', access_token);
+      console.log(token,'tokentoken')
+      const { accessToken, refresh_token } = token || {};
+      console.log()
+      window.localStorage.setItem('access_token', accessToken);
      // window.location.reload();
       return { ...state,
         isLoggedIn: true,
-        accessToken: access_token,
+        accessToken: accessToken,
         refreshToken: refresh_token
       };
     case userActTypes.LOGIN_VIA_GOOGLE_SUCCESS:
