@@ -92,9 +92,9 @@ const ContactUs = () => {
                 <TextArea rows={6}  value ={contactInfo.aboutMe} name="description" onChange={onChangeContactImfo}/>
               </Form.Item>
               </Row>
-              <Row style={{margin:15}}>
-               <Button onClick ={updateProfile}> Save Changes</Button>
-              </Row>
+              <Row className={classes.btnContainer}>
+                <Button onClick ={updateProfile} size='large' className={classes.btnStyle}>Submit</Button>
+               </Row>
            </Form>
           </Card>
         </Col>
