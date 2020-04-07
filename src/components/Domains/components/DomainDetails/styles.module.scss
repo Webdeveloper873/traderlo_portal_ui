@@ -155,21 +155,28 @@
   }
 }
 
-.messageIcon {
-  font-size: 32px;
-  color: #00bcd4;
-  top: 0;
-  position: absolute;
+.chatCol {
+  float: right;
   cursor: pointer;
+
+  .messageIcon {
+    font-size: 24px;
+    color: #00bcd4;
+    top: 3px;
+    right: 58px;
+    position: absolute;
+    cursor: pointer;
+  }
+
+  .chat {
+    cursor: pointer;
+    margin-left: 36px;
+    font-weight: 500;
+    font-size: 24px;
+    color: #00bcd4;
+  }
 }
 
-.chat {
-  cursor: pointer;
-  margin-left: 36px;
-  font-weight: 500;
-  font-size: 24px;
-  color: #00bcd4;
-}
 
 .similarList {
   display: block;

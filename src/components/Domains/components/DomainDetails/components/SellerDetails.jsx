@@ -47,6 +47,15 @@ const SellerDetails = () => {
           <Button size='large' key className={classes.traderloPink}>Watch</Button>
         </Col>
       </Row>
+      {/* <Row justify='space-between' className={classes.rowStyle} type='flex'>
+        <Col span={12}>
+          <Button type='primary'>View All Listings</Button>
+        </Col>
+        <Col span={12}>
+          <Icon type="message" theme='twoTone' className={classes.messageIcon}/>
+          <span className={classes.chat}>CHAT</span>
+        </Col>
+      </Row> */}
     </>
   );
 }

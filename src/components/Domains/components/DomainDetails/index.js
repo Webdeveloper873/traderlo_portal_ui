@@ -140,7 +140,17 @@ const RightPane = (domainDetails) => {
         </Row>
       </Card>
       <Card className={classes.marginTop15}>
-        <span className={classes.cardTitle}>Seller Details</span>
+        <Row justify='space-between' type='flex'>
+          <Col span={12}>
+            <span className={classes.boldLabel}>Seller Details</span>
+          </Col>
+          <Col span={12}>
+            <div className={classes.chatCol}>
+              <Icon type="message" theme='twoTone' className={classes.messageIcon} />
+              <span className={classes.chat}>CHAT</span>
+            </div>
+          </Col>
+        </Row>
         <Divider className={classes.dividerStyle} />
         <SellerDetails />
       </Card>
