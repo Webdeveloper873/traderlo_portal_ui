@@ -195,17 +195,17 @@ const SearchKeyword = () => {
       <Divider/>
 
       <Row gutter={16}>
-        <Col span={14}>
+        <Col span={18}>
           <Typography.Title level={4}>{`Showing 1 - ${domainList.length} of ${domainList.length} results`}</Typography.Title>
         </Col>
         <Col span={6} className={classes.alignEnd}>
-          <Select style={{ width: '125px' }} placeholder='Sort By:'>
+          <Select style={{ width: '100%' }} placeholder='Sort By:'>
             <Option value="beginning">beginning</Option>
             <Option value="anywhere">anywhere</Option>
             <Option value="ending">ending</Option>
           </Select>
         </Col>
-        <Col span={2}>
+        {/* <Col span={2}>
           <Button type='primary' onClick={()=>onClickChangeView('card-list')}>
             <Icon type="appstore" className={classes.iconSize}/>
           </Button>
@@ -214,14 +214,18 @@ const SearchKeyword = () => {
           <Button type='primary' onClick={()=>onClickChangeView('horizontal-list')}>
             <Icon type="unordered-list" className={classes.iconSize}/>
           </Button>
-        </Col>
+        </Col> */}
       </Row>
       <Row gutter={16}>
+        {/*
+        //remove grid view
         {domainList.map(itemProps => {
             return viewMode === 'card-list'? <Col {...threeCol}>
               <CardItem key={itemProps.id} onClick={() => onClickCardItem(itemProps)} {...itemProps} style={{marginBottom:20}}/>
             </Col> : <HorizontalList key={itemProps.id} onClick={() => onClickCardItem(itemProps)} {...itemProps} style={{marginBottom:20}}/>
         })}
+          */}
+        {domainList.map(itemProps => <HorizontalList key={itemProps.id} onClick={() => onClickCardItem(itemProps)} {...itemProps} style={{ marginBottom: 20 }} />)}
       </Row>
     </div>
   );
