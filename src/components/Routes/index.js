@@ -26,12 +26,14 @@ import UserProfile from 'components/UserProfile';
 import PaymentActivity from 'components/PaymentActivity';
 import PublicProfile from 'components/PublicProfile';
 import OAuth2RedirectHandler from 'components/OAuth2RedirectHandler';
+import ContactUs from 'components/ContactUs';
 
 //subroute component
 import DomainDetails from 'components/Domains/components/DomainDetails'
 
 //constants
 import { routes } from 'common/constants';
+
 
 
 
@@ -69,7 +71,8 @@ const Routes = ({ }) => {
           <Route exact path={routes.USER_PROFILE} render={() => <UserProfile />} />
           <Route exact path={routes.PAYMENT_ACTIVITY} render={() => <PaymentActivity />} />
           <Route exact path={routes.PUBLIC_PROFILE} render={() => <PublicProfile />} />
-          <Route exact path={routes.OAUTH2_REDIRECT_HANDLER} render={() => <OAuth2RedirectHandler />} /> 
+          <Route exact path={routes.OAUTH2_REDIRECT_HANDLER} render={() => <OAuth2RedirectHandler />} />
+          <Route exact path={routes.CONTACT_US} render={() => <ContactUs />} /> 
           <Route path="*" render={
             () => (<Redirect to={routes.HOME_PAGE} />)
           } />

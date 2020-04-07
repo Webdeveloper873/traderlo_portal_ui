@@ -43,9 +43,13 @@ export const updateUserProfileSuccess = (profile) => ({
   payload: { profile }
 })
 
-export const changeUserPassword = (profile) => ({
-  type: userActTypes.UPDATE_PROFILE,
-  payload: { profile }
+export const changeUserPassword = (userPassword) => ({
+  type: userActTypes.CHANGE_PASSWORD,
+  payload: { userPassword }
+})
+
+export const changeUserPasswordSuccess = () => ({
+  type: userActTypes.CHANGE_PASSWORD_SUCCESS,
 })
 
 export const registerUser = (profile) => (
@@ -63,11 +67,12 @@ export const registerUserFailed = () => ({
   type: userActTypes.REGISTER_USER_FAILED,
 });
 
-export const logout = () => ({
+export const logout = (profile) => ({
   type: userActTypes.LOGOUT,
-  payload: {
-    accessToken: window.localStorage.getItem('access_token')
-  }
+  payload: { profile }
+  // payload: {
+  //   accessToken: window.localStorage.getItem('access_token')
+  // }
 });
 
 export const successLogout = () => ({

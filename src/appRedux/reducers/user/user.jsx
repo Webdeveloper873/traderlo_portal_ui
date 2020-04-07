@@ -10,6 +10,7 @@ const initialState = {
   register: null,
   activeSidebarKey: '',
   updateUserSuccess:false,
+  changePasswordSuccess: false,
   googleToken :null,
 };
 
@@ -18,12 +19,14 @@ export default (state = initialState, action) => {
   const { profile, token, googleToken } = payload || {};
   switch (type) {
     case userActTypes.LOGIN_SUCCESS:
-      const { access_token, refresh_token } = token || {};
-      window.localStorage.setItem('access_token', access_token);
+      console.log(token,'tokentoken')
+      const { accessToken, refresh_token } = token || {};
+      console.log()
+      window.localStorage.setItem('access_token', accessToken);
      // window.location.reload();
       return { ...state,
         isLoggedIn: true,
-        accessToken: access_token,
+        accessToken: accessToken,
         refreshToken: refresh_token
       };
     case userActTypes.LOGIN_VIA_GOOGLE_SUCCESS:
@@ -36,8 +39,10 @@ export default (state = initialState, action) => {
       return { ...state, loginFailed: true };
     case userActTypes.FETCH_PROFILE_SUCCESS:
       return { ...state, profile, loginFailed: false };
-      case userActTypes.UPDATE_PROFILE_SUCCESS:
+    case userActTypes.UPDATE_PROFILE_SUCCESS:
       return { ...state, profile, updateUserSuccess: true }; 
+    case userActTypes.CHANGE_PASSWORD_SUCCESS:
+      return { ...state, changePasswordSuccess: true }; 
     case userActTypes.REGISTER_USER_SUCCESS:
       return {...initialState, register: true};
     case userActTypes.REGISTER_USER_FAILED:
@@ -55,7 +60,7 @@ export default (state = initialState, action) => {
     case userActTypes.CHANGE_SIDEBAR_ACTIVE_KEY:
       return { ...state, activeSidebarKey: payload };
     case userActTypes.CLEAR_USER_NOTIF_STATUS:
-      return {...state, updateUserSuccess: false}
+      return {...state, updateUserSuccess: false, changePasswordSuccess: false}
     default:
       return state;
   }

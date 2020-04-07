@@ -18,6 +18,7 @@ function* login({payload}) {
     }));
 
     if (resp) {
+      console.log(resp,'resp');
       yield put(user.successLogin(resp));
     }
   } catch (err) {
@@ -58,6 +59,28 @@ function* updateUserProfile({payload}) {
   }
 }
 
+function* changeUserPassword({payload}) {
+  
+  const { userPassword } = payload || {};
+  try{
+
+    const resp = yield call(() => request.put(`${base_url}/user/changePassword`,
+     { headers: {
+        ...headers,
+        uid: userPassword.id.toString(),
+        authorization: `Bearer ${getAccessToken()}` },
+        body: JSON.stringify(userPassword.passwordInfo)
+       }));
+    if(resp){
+      //yield put(user.updateUserProfileSuccess(resp));
+      yield put (user.changeUserPasswordSuccess())
+    }
+  }catch(err) {
+    console.log('err: ', err);
+    yield put (user.changeUserPasswordSuccess())
+  }
+}
+
 
 function* registerUser({payload}) {
   try{
@@ -78,9 +101,12 @@ function* registerUser({payload}) {
 }
 
 function* logout({payload}) {
+  const {profile} = payload || {};
   try{
-    const resp = yield call(() => request.post(`${base_url}/user/logout`, {  // as updated in swagger
-      headers: { ...headers,
+    const resp = yield call(() => request.get(`${base_url}/user/logout`, {  // as updated in swagger
+      headers: { 
+        ...headers,
+        uid: profile.id.toString(),
         authorization: `Bearer ${getAccessToken()}`
       }
     }));
@@ -135,6 +161,10 @@ export function* updateProfileWatcher() {
   yield takeEvery(userActTypes.UPDATE_PROFILE, updateUserProfile);
 }
 
+export function* changeUserPasswordWatcher() {
+  yield takeEvery(userActTypes.CHANGE_PASSWORD, changeUserPassword);
+}
+
 export function* loginWatcher() {
   yield takeEvery(userActTypes.LOGIN, login);
 }
@@ -144,11 +174,13 @@ export function* logOutWatcher() {
 }
 
 
+
 export default function* rootSaga() {
   yield all([
     fork(loginWatcher),
     fork(getProfileWatcher),
     fork(updateProfileWatcher),
+    fork(changeUserPasswordWatcher),
     fork(registerUserWatcher),
     fork(logOutWatcher),
     fork(getSavedAccountsWatcher),
