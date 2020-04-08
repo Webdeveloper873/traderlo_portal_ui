@@ -110,7 +110,7 @@ const RightPane = (domainDetails) => {
   const onClickWatch = () => {
     const { userId } = selectedDomainInfo || {};
     dispatch(buyingDomain.addToWatchlist({
-      listingType: 's',
+      listType: 's',
       id: userId, 
     }));
   }

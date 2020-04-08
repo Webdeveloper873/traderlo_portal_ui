@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { List, Avatar, Card, Icon, Button, Row, Col } from 'antd';
 
 //styles
@@ -44,7 +45,9 @@ const SellerDetails = ({ onClickWatch }) => {
       </Card>
       <Row className={classes.rowStyle} gutter={24}>
         <Col {...twoCol}>
-          <Button size='large' className={classes.btnStyle}>View All Listings</Button>
+          <Link to={'/domains'}>
+            <Button size='large' className={classes.btnStyle}>View All Listings</Button>
+          </Link>
         </Col>
         <Col {...twoCol}>
           <Button size='large' key className={classes.traderloPink} onClick={onClickWatch}>Watch</Button>
