@@ -11,11 +11,12 @@ const { threeCol } = responsiveConf || {};
 
 const Label = ({text}) => <span className={classes.tabDetail}>{text}</span>;
 
-const InputField = ({ label, icon, colStyle, ...props }) => {
+const InputField = ({ label, icon, colStyle, children, ...props }) => {
   return (
     <Col {...threeCol} {...colStyle} className={classes.marginBot20}>
       <Label text={label}/>
       <Input {...props} addonBefore={icon ? <Icon type={icon} /> : null} size='large' />
+      {children}
     </Col>
   );
 }

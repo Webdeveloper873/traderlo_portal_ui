@@ -182,17 +182,18 @@ const SearchKeyword = () => {
 
   return(
     <div className={classes.searchKeyword}>
-      <Typography.Text level={4} strong>{`Keywords : `}</Typography.Text>
-      <Input.Group compact className={classes.inputLeft}>
-        <Select style={{width: '125px'}} placeholder='Placement'>
-          <Option value="beginning">Beginning</Option>
-          <Option value="anywhere">Any Where</Option>
-          <Option value="ending">Ending</Option>
-        </Select>
-        <Input.Search style={{ width: '220px ' }} enterButton />
-      </Input.Group>
+      <div>
+        <Input.Group compact className={classes.inputLeft}>
+          <span className={classes.keywordLabel}>{`Keywords : `}</span>
+          <Select style={{width: '125px'}} placeholder='Placement'>
+            <Option value="beginning">Beginning</Option>
+            <Option value="anywhere">Any Where</Option>
+            <Option value="ending">Ending</Option>
+          </Select>
+          <Input.Search style={{ width: '220px ' }} enterButton />
+        </Input.Group>
+      </div>
       <Divider/>
-
       <Row gutter={16}>
         <Col span={18}>
           <Typography.Title level={4}>{`Showing 1 - ${domainList.length} of ${domainList.length} results`}</Typography.Title>

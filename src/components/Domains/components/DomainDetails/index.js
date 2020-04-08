@@ -88,8 +88,7 @@ const RightPane = (domainDetails) => {
   }
 
   const onClickAddToWatchlist = () => {
-    console.log('clicked')
-    dispatch(buyingDomain.addToWatchlist(domainDetails))
+    dispatch(buyingDomain.addToWatchlist(domainDetails));
   }
 
   // const onClickRemoveToWatchlist = () => {
@@ -106,6 +105,14 @@ const RightPane = (domainDetails) => {
     };
     console.log('data', data);
     dispatch(bidDomain.setBid(data));
+  }
+  
+  const onClickWatch = () => {
+    const { userId } = selectedDomainInfo || {};
+    dispatch(buyingDomain.addToWatchlist({
+      listingType: 's',
+      id: userId, 
+    }));
   }
 
   useEffect(()=>{
@@ -152,7 +159,7 @@ const RightPane = (domainDetails) => {
           </Col>
         </Row>
         <Divider className={classes.dividerStyle} />
-        <SellerDetails />
+        <SellerDetails onClickWatch={onClickWatch} />
       </Card>
       <Card className={classes.marginTop15}>
         <span className={classes.cardTitle}>Similar Domains</span>

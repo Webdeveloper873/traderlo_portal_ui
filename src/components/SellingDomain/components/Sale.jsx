@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Card, Row, Button, Switch } from 'antd';
+import { Card, Row, Button, Switch, Checkbox } from 'antd';
 
 //components
 import InputField from './InputField';
@@ -60,7 +60,9 @@ const Sale = ({ setActiveKey }) => {
       <Row gutter={16}>
         <InputField onChange={startBid.handleInputChange} label='Starting Bid Price*' icon='dollar' />
         <InputField disabled={!enableReserve} onChange={reserve.handleInputChange} label={<>{`Reserve Price* `}<Switch defaultChecked onChange={onChangeRSwitch} /></>} icon='dollar' />
-        <InputField disabled={!enableBuyNow} onChange={buyNow.handleInputChange} label={<>{`Buy Now Price* `}<Switch defaultChecked onChange={onChangeBSwitch} /></>} icon='dollar' />
+        <InputField disabled={!enableBuyNow} onChange={buyNow.handleInputChange} label={<>{`Buy Now Price* `}<Switch defaultChecked onChange={onChangeBSwitch} /></>} icon='dollar'>
+          <Checkbox className={`${classes.normalLabel} ${classes.marginTop20}`}>If the current bid is closer to the Buy Now price, 10% increase will reflect.</Checkbox>
+        </InputField>
       </Row>
       <Row className={classes.btnContainer}>
         <Button onClick={onClickNext} size='large' className={classes.btnStyle}>Next</Button>

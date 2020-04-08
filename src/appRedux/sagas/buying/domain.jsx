@@ -52,13 +52,21 @@ function* getBuyDomainById({payload}) {
 
 
 function* addToWatchlist({payload}) {
+  // Categor:
+  //   l("LISTING"),
+  //   s("SELLER"),
+  //   c("CATEGORY"),
+  //   n("NICHE"),
+  //   p("PLATFORM"),
+  //   m("MONETIZE");
+
   try{
-    const {id, userId} = payload || {};
-    const type = 'l' // temporarily
+    const { id, listType } = payload || {};
+    const type = listType || 'l' // if not specified automatic l
     const resp = yield call(() => request.post(`${base_url}/watchlist/${type}/${id}`,
     {
       headers: { ...headers,
-        uid: userId.toString(),
+        uid: 1,
         authorization: `Bearer ${getAccessToken()}`,
       }
     }));
@@ -73,12 +81,12 @@ function* addToWatchlist({payload}) {
 function* removeToWatchlist({payload}) {
   try{
     console.log(payload,'payload watchlist')
-    const {id, userId} = payload || {};
+    const { id } = payload || {};
     const type = 'l' // temporarily
     const resp = yield call(() => request.delete(`${base_url}/watchlist/${type}/${id}`,
     {
       headers: { ...headers,
-        uid: userId.toString(),
+        uid: 1,
         authorization: `Bearer ${getAccessToken()}`,
       }
     }));

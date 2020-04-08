@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { List, Avatar, Card, Icon, Button, Row, Col } from 'antd';
 
 //styles
@@ -20,7 +21,9 @@ const Description = () => {
   );
 }
 
-const SellerDetails = () => {
+const SellerDetails = ({ onClickWatch }) => {
+
+
   return(
     <>
       <List.Item key={1}>
@@ -44,18 +47,9 @@ const SellerDetails = () => {
           <Button size='large' className={classes.btnStyle}>View All Listings</Button>
         </Col>
         <Col {...twoCol}>
-          <Button size='large' key className={classes.traderloPink}>Watch</Button>
+          <Button size='large' key className={classes.traderloPink} onClick={onClickWatch}>Watch</Button>
         </Col>
       </Row>
-      {/* <Row justify='space-between' className={classes.rowStyle} type='flex'>
-        <Col span={12}>
-          <Button type='primary'>View All Listings</Button>
-        </Col>
-        <Col span={12}>
-          <Icon type="message" theme='twoTone' className={classes.messageIcon}/>
-          <span className={classes.chat}>CHAT</span>
-        </Col>
-      </Row> */}
     </>
   );
 }
