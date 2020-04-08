@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { List, Avatar, Card, Icon, Button, Row, Col } from 'antd';
 
@@ -23,7 +22,6 @@ const Description = () => {
 }
 
 const SellerDetails = ({ onClickWatch }) => {
-
 
   return(
     <>
