@@ -65,14 +65,14 @@ const Routes = ({ }) => {
           <Route exact path={routes.CUSTOMER_ORDERS} render={() => <CustomerOrders />} />
           <Route exact path={routes.LISTING_AND_STATUS} render={() => <ListingAndStatus />} />
           <Route exact path={routes.BIDS_PERFORMANCE} render={() => <BidPerformance />} />
-          <Route exact path={routes.CHAT} render={() => <Chat />} />
+          <Route exact path={routes.CHAT} render={props => <Chat {...props} />} />
           <Route exact path={routes.ACCOUNTS_AND_CARDS} render={() => <AccountsAndCards />} />
           <Route exact path={routes.ACCOUNTS_AND_SECURITY} render={() => <UserSecurity />} />
           <Route exact path={routes.USER_PROFILE} render={() => <UserProfile />} />
           <Route exact path={routes.PAYMENT_ACTIVITY} render={() => <PaymentActivity />} />
           <Route exact path={routes.PUBLIC_PROFILE} render={() => <PublicProfile />} />
           <Route exact path={routes.OAUTH2_REDIRECT_HANDLER} render={() => <OAuth2RedirectHandler />} />
-          <Route exact path={routes.CONTACT_US} render={() => <ContactUs />} /> 
+          <Route exact path={routes.CONTACT_US} render={() => <ContactUs />} />
           <Route path="*" render={
             () => (<Redirect to={routes.HOME_PAGE} />)
           } />

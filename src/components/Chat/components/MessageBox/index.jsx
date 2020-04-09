@@ -67,9 +67,10 @@ const MessageBox = ({ activeChatUser }) => {
     if (activeChatUser && activeChatUser.id){
       dispatch(chat.getChatMsg(activeChatUser.id));
     }
+    console.log('activeChatUser', activeChatUser);
   }, []);
 
-  if(!activeChatMsg  && !activeChatUser) {
+  if ( !activeChatUser) {
     return null;
   }
 
