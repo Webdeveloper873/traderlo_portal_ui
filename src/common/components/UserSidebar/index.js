@@ -137,7 +137,7 @@ const UserSideBar = () => {
          <Col span={5} style={{paddingLeft:20}}>
           <UsersCard></UsersCard>
           <ItemSelection image={dashboard} title={'Dashboard'} redirectPath={routes.DASHBOARD_PAGE}></ItemSelection>
-          <ItemSelection image={chat} title={'Chat'} redirectPath={routes.CHAT}></ItemSelection>
+          <ItemSelection image={chat} title={'Chat'} redirectPath={'/user/chat'}></ItemSelection>
           <CollapsibleItems></CollapsibleItems>
          </Col>
        </Row>

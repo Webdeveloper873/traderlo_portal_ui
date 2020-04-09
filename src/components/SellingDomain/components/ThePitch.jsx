@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Card, Menu, Dropdown, Button, Icon, message, Input, Row  } from 'antd';
+import { Card, Menu, Dropdown, Button, Icon, message, Input, Row, Select } from 'antd';
 
 //action
 import { domain } from 'appRedux/actions/selling';
@@ -12,6 +12,7 @@ import classes from '../styles.module.scss';
 import { useFormInput } from 'common/utils/hooks';
 
 const { TextArea } = Input;
+const { Option } = Select;
 
 const handleMenuClick = (e) => {
   message.info('Click on menu item.');
@@ -19,22 +20,11 @@ const handleMenuClick = (e) => {
 }
 
 
-const listCategoryMenu = () => {
+const ListCategoryMenu = ({ categories }) => {
   return (
-    <Menu onClick={handleMenuClick}>
-      <Menu.Item key="1">
-        <Icon type="user" />
-        Male
-      </Menu.Item>
-      <Menu.Item key="2">
-        <Icon type="user" />
-        Female
-      </Menu.Item>
-      <Menu.Item key="3">
-        <Icon type="user" />
-        Others
-      </Menu.Item>
-    </Menu>
+    <Select size='large' placeholder={'-Select Category-'} style={{ width: 320, marginBottom: '10px' }}>
+      {categories && categories.map(details => <Option value={details.name}>{details.name}</Option>)}
+    </Select>
   )
 };
 
@@ -42,6 +32,7 @@ const listCategoryMenu = () => {
 
 const ThePitch = ({ setActiveKey }) => {
   const listingId = useSelector(({ sellDomain }) => sellDomain.listingId);
+  const categories = useSelector(({ sellDomain }) => sellDomain.categories);
   const pitch = useSelector(({ sellDomain }) => sellDomain.pitch);
   const tagline = useFormInput();
   const description = useFormInput();
@@ -57,6 +48,11 @@ const ThePitch = ({ setActiveKey }) => {
     };
     dispatch(domain.setPitch(data));
   }
+
+  useEffect(()=>{
+    console.log('getPitchCateg useEffect');
+    dispatch(domain.getPitchCateg());
+  }, []);
 
   if(!listingId){
     console.log('listingId null');
@@ -76,11 +72,7 @@ const ThePitch = ({ setActiveKey }) => {
         <div>
           <Row>
             <h5 className={classes.fontDecorH5}>Sublisting Category *</h5>
-            <Dropdown overlay={listCategoryMenu}>
-              <Button size="large" className={classes.listCategory}>
-                List Category <Icon type="down" />
-              </Button>
-            </Dropdown>
+            <ListCategoryMenu categories={categories} />
           </Row>
           <Row>
             <h5 className={classes.fontDecorH5}>Description Heading *</h5>

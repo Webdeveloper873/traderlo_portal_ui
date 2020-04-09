@@ -87,3 +87,12 @@ export const getMetaSuccess = (payload) => ({
   type: sellDomainTypes.GET_META_SUCCESS,
   payload,
 });
+
+export const getPitchCateg = () => ({
+  type: sellDomainTypes.GET_PITCH_CATEG,
+});
+
+export const getPitchCategSuccess = (payload) => ({
+  type: sellDomainTypes.GET_PITCH_CATEG_SUCCESS,
+  payload,
+});

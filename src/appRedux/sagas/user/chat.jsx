@@ -40,6 +40,32 @@ function* getChatMsg({id}) {
   }
 }
 
+function* sendChat({ payload }) {
+  console.log('saga sendChat');
+  try {
+    let resp = yield call(() => request.post(`${base_url}/selling/domain/sale`,
+      {
+        headers: {
+          ...headers,
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      }
+    ));
+    console.log('sendChat resp ', resp);
+    if (resp) {
+      yield put(chat.sendChatSuccess(resp));
+    }
+  } catch (err) {
+    // yield put(user.failedLogin());
+    console.log('err: ', err);
+  }
+}
+
+export function* sendChatWatcher() {
+  yield takeEvery(userActTypes.GET_CHAT_MSG, sendChat);
+}
+
 export function* getChatMsgWatcher() {
   yield takeEvery(userActTypes.GET_CHAT_MSG, getChatMsg);
 }
