@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Card, Icon, Row, Col } from 'antd';
+import { Card, Icon, Row, Col, notification  } from 'antd';
 import CountUp from 'react-countup';
 
 //component
@@ -51,18 +51,24 @@ const DashboardItem = ({count ,title}) => {
 const Dashboards = ({...props}) => {
   const dispatch = useDispatch();
   const bannerPath = ['Home', 'Dashboard'];
-  const isLoggedIn = useSelector(({user}) => user.isLoggedIn);
+  const loginSuccess = useSelector(({user}) => user.loginSuccess);
 
   useEffect(()=>{
     //this is initial login, fetch user profile
-    console.log('dispatch userGetProfile');
-    if(isLoggedIn){
-      console.log('update when logged in')
+    if(loginSuccess){
+      notification.success({
+        className: classes.successNotif,
+        message: 'User Successfully Logged in',
+      });
       dispatch(user.getUserProfile());
+      dispatch(user.clearUserNotifStatus());
     }
-    dispatch(user.getUserProfile());
-  }, [isLoggedIn]);
+    //dispatch(user.getUserProfile());
+  }, [loginSuccess]);
 
+  useEffect(()=> {
+    dispatch(user.getUserProfile());
+  })
 
   return(
     <>

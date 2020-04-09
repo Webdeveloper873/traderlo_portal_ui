@@ -24,6 +24,7 @@ import {routes} from 'common/constants';
 
 const SignInForm = ({form, handleClose}) => {
   const [toLoginPage, setToLoginPage] = useState(false);
+  const [loading, setLoading] = useState(false);
   const loginFailed = useSelector(({user})=>user.loginFailed);
   const isLoggedIn = useSelector(({user}) => user.isLoggedIn);
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ const SignInForm = ({form, handleClose}) => {
   const OAUTH2_REDIRECT_URI = `${hashes}oauth2/redirect`;
   const GOOGLE_AUTH_URL = `${base_url}/user/googleLogin?redirectUri=` + OAUTH2_REDIRECT_URI;
 
+  
 
   useEffect(()=>{
     if(isLoggedIn){
@@ -45,6 +47,7 @@ const SignInForm = ({form, handleClose}) => {
   }, [isLoggedIn]);
 
   const handleSubmit = e => {
+    setLoading(true);
     e.preventDefault();
     form.validateFields((err, values) => {
       if (!err) {
@@ -57,6 +60,7 @@ const SignInForm = ({form, handleClose}) => {
         dispatch(user.login(userDetails));
       }
     });
+    setLoading(false);
   };
 
   if (toLoginPage){
@@ -95,11 +99,17 @@ const SignInForm = ({form, handleClose}) => {
         )}
       </Form.Item>
       <Form.Item>
-        {getFieldDecorator('remember', {
-          valuePropName: 'checked',
-          initialValue: true,
-        })(<Checkbox>Remember me</Checkbox>)}<br/>
-        <Button type="primary" htmlType="submit" className="login-form-button">Submit</Button>
+        <Row justify="space-between" gutter={48}>
+          <Col span={11} style={{marginLeft:15}}>
+              {getFieldDecorator('remember', {
+              valuePropName: 'checked',
+              initialValue: true,
+            })(<Checkbox>Remember me</Checkbox>)}
+          </Col>
+          <Col span={11} style={{textAlign:'right', marginRight:15}}>
+            <Button type="primary" htmlType="submit" loading={loading} className="login-form-button" >Submit</Button>
+          </Col>
+        </Row>
       </Form.Item>
     </Form>
   )

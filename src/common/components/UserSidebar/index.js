@@ -30,16 +30,20 @@ const customPanelStyle = {backgroundColor:'white', borderRadius:0, padding:0, wi
 
 
 
-const CardsDesc = ({aboutMe}) => (
-  <>
-    <div>{'Designer | Developer'}</div>
-    <div>{aboutMe}</div>
+const CardsDesc = ({profile}) => {
+  return (
+    <>
+    <div>{profile.email}</div>
+    <div>{profile.aboutMe}</div>
   </>
-)
+  )
+}
 
 const UsersCard = () => {
   const profile = useSelector(({user}) => user.profile);
+  console.log(profile,'profile')
   const {userName} = profile || {};
+  
   return(
     <Card className={classes.usersCard}>
       <Row>
