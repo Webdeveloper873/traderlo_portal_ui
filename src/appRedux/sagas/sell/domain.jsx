@@ -181,6 +181,30 @@ function* getMetaText() {
   }
 }
 
+function* getPitchCateg() {
+  console.log('getPitchCateg saga');
+  try {
+    let resp = yield call(() => request.get(`${base_url}/listing/categories?type=DOMAIN`, //for now only supports domain
+      {
+        headers: {
+          ...headers,
+          'content-type': 'application/json'
+        },
+      }
+    ));
+    if (resp) {
+      console.log('getPitchCateg resp', resp);
+      yield put(domain.getPitchCategSuccess(resp));
+    }
+  } catch (err) {
+    console.log('err: ', err);
+  }
+}
+
+export function* getPitchCategWatcher() {
+  yield takeEvery(sellDomainTypes.GET_PITCH_CATEG, getPitchCateg);
+}
+
 export function* verifyByMetaTagWatcher() {
   yield takeEvery(sellDomainTypes.VERIFY_META, verifyByMetaTag);
 }
@@ -228,5 +252,6 @@ export default function* rootSaga() {
     fork(getRandTextWatcher),
     fork(getMetaTextWatcher),
     fork(verifyByMetaTagWatcher),
+    fork(getPitchCategWatcher),
   ]);
 }

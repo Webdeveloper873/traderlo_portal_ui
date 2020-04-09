@@ -37,18 +37,21 @@ const ChattedUserInfo = ({ details }) => {
         <Row><span>{`${firstName} ${lastName}`}</span></Row>
         <Row><span>{moment(latestDate).format('LL')}</span></Row>
      </Col>
-   </Card>
+    </Card>
   )
 }
 
-const Chat = () => {
+const Chat = ({ match, ...props}) => {
   const dispatch = useDispatch();
   const chatContacts = useSelector(({ chat }) => chat.chatContacts);
   const [activeChatUser, setactiveChatUser] = useState(null);
+  const { params } = match || {};
+  const { activeId } = params || {};
   const bannerPath = ['Dashboard', 'Çhat'];
 
 
   useEffect(()=>{
+    console.log('chat match props: ', match);
     dispatch(chat.getChatUsers());
   }, []);
 
@@ -77,7 +80,7 @@ const Chat = () => {
                 {chatContacts.map(details => <ChattedUserInfo details={details} />)}
               </Col>
               <Col span={15}>
-                <MessageBox activeChatUser={activeChatUser}/>
+                {activeId && <MessageBox activeChatUser={activeChatUser} activeId={activeId}/>}
               </Col>
             </Row>
           </Card>

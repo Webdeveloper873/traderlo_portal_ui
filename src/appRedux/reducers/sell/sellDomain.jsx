@@ -9,6 +9,7 @@ const initialState = {
   verifyOwnership: false,
   randomText: null,
   meta: null,
+  categories: [],
 };
 
 export default (state = initialState, action) => {
@@ -35,6 +36,8 @@ export default (state = initialState, action) => {
       return { ...state, randomText: payload};
     case sellDomainTypes.GET_META_SUCCESS:
       return { ...state, meta: payload};
+    case sellDomainTypes.GET_PITCH_CATEG_SUCCESS:
+      return { ...state, categories: payload};
     case sellDomainTypes.INITIALIZE_SELL:
       return initialState;
     default:

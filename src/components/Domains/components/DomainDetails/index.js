@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Row, Col, Card, Tabs, Icon, Input, Button, Divider, Modal, notification } from 'antd';
 
 //components
@@ -78,6 +79,7 @@ const RightPane = (domainDetails) => {
   const bidFailed = useSelector(({ bidding }) => bidding.bidFailed);
   const bid = useFormInput();
   const dispatch = useDispatch();
+  const { user, id } = selectedDomainInfo || {};
 
   const showModal = () => {
     setShowModal(true);
@@ -97,21 +99,19 @@ const RightPane = (domainDetails) => {
   // }
 
   const onBidNow = () => {
-    const { userId, id } = selectedDomainInfo || {};
     const data = {
       amount: parseInt(bid.value),
-      sellerId: userId,
+      sellerId: user && user.id ? user.id : '',
       id,
     };
     console.log('data', data);
     dispatch(bidDomain.setBid(data));
   }
-  
+
   const onClickWatch = () => {
-    const { userId } = selectedDomainInfo || {};
     dispatch(buyingDomain.addToWatchlist({
       listType: 's',
-      id: userId, 
+      id: user && user.id ? user.id : '',
     }));
   }
 
@@ -152,10 +152,10 @@ const RightPane = (domainDetails) => {
             <span className={classes.boldLabel}>Seller Details</span>
           </Col>
           <Col span={12}>
-            <div className={classes.chatCol}>
+            <Link className={classes.chatCol} to={`/user/chat/${user && user.id ? user.id : ''}`} >
               <Icon type="message" theme='twoTone' className={classes.messageIcon} />
               <span className={classes.chat}>CHAT</span>
-            </div>
+            </Link>
           </Col>
         </Row>
         <Divider className={classes.dividerStyle} />

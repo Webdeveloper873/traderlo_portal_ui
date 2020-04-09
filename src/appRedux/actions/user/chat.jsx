@@ -21,3 +21,13 @@ export const getChatMsgSuccess = (payload) => ({
   type: userActTypes.GET_CHAT_MSG_SUCCESS,
   payload
 });
+
+export const sendChat = (payload) => ({
+  type: userActTypes.SEND_CHAT,
+  payload
+});
+
+export const sendChatSuccess = (payload) => ({
+  type: userActTypes.SEND_CHAT_SUCCESS,
+  payload
+});
