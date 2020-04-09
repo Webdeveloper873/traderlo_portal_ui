@@ -92,7 +92,7 @@ const Menus = () => {
 
 const Header = ({onClickSignInUp}) => {
   const isLoggedIn = useSelector(({user}) => user.isLoggedIn);
-
+  const accessToken = window.localStorage.getItem('access_token');
   // useEffect(()=>{
   //   if(isLoggedIn){
   //     console.log('loggedIn')
@@ -111,7 +111,7 @@ const Header = ({onClickSignInUp}) => {
             <Link className={classes.linkStyle} to="/templates">Template/Graphics</Link>
             <Link className={classes.linkStyle} to="/script">Clone script</Link>
             <Link className={classes.linkStyle} to="/plugins">Plugins/Themes</Link>
-            {isLoggedIn ? <UserAvatar /> : <Link onClick={onClickSignInUp} className={classes.linkStyle}>Sign in/Signup</Link>}
+            {accessToken ? <UserAvatar /> : <Link onClick={onClickSignInUp} className={classes.linkStyle}>Sign in/Signup</Link>}
             <Button size='large' className={classes.buttonStyle} href={routes.SELLING_PAGE}>Start Selling</Button>
           </Nav>
         </Navbar.Collapse>
