@@ -42,6 +42,9 @@ export const openNotification = ({status, message , description}) => {
   return notification[status]({
     message: message,
     description: description,
-    placement: 'bottomRight',
+    placement: 'topRight',
+    style:{
+      marginTop: 50,
+    }
   });
 };
