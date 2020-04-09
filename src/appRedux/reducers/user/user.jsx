@@ -2,6 +2,7 @@ import { userActTypes } from 'appRedux/constants/ActionTypes';
 
 const initialState = {
   isLoggedIn: false,
+  loginSuccess: false,
   loginFailed: false,
   token: {},
   profile: {},
@@ -26,6 +27,7 @@ export default (state = initialState, action) => {
      // window.location.reload();
       return { ...state,
         isLoggedIn: true,
+        loginSuccess: true,
         accessToken: accessToken,
         refreshToken: refresh_token
       };
@@ -33,6 +35,7 @@ export default (state = initialState, action) => {
       window.localStorage.setItem('access_token', googleToken);
       return { ...state,
         isLoggedIn: true,
+        loginSuccess: true,
         googleToken: googleToken,
       };
     case userActTypes.LOGIN_FAILED:
@@ -60,7 +63,7 @@ export default (state = initialState, action) => {
     case userActTypes.CHANGE_SIDEBAR_ACTIVE_KEY:
       return { ...state, activeSidebarKey: payload };
     case userActTypes.CLEAR_USER_NOTIF_STATUS:
-      return {...state, updateUserSuccess: false, changePasswordSuccess: false}
+      return {...state, updateUserSuccess: false, changePasswordSuccess: false, loginSuccess: false}
     default:
       return state;
   }

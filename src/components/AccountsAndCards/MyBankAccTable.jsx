@@ -18,27 +18,25 @@ const MyBankAccTable = ({savedBanks}) => {
     const deleteAccount = (e) => {
         setSelectedItem(e);
         showDeleteModal();
-      }
+    }
 
-      const onClickDelete = () => {
-        setLoading(true);
-        console.log(selectedItem,'selectedItem');
-
-        dispatch(payment.deleteAccount(selectedItem)); // ----> continue on delete API
-        setTimeout(() => {
-          setLoading(false);
-          setShowModal(false);
-        }, 1000);
-
-      }
-
-      const showDeleteModal = () => {
-        setShowModal(true);
-      }
-
-      const hideModal = () => {
+    const onClickDelete = () => {
+      setLoading(true);
+      console.log(selectedItem,'selectedItem');
+      dispatch(payment.deleteAccount(selectedItem)); // ----> continue on delete API
+      setTimeout(() => {
+        setLoading(false);
         setShowModal(false);
-      }
+      }, 1000);
+    }
+
+    const showDeleteModal = () => {
+      setShowModal(true);
+    }
+    
+    const hideModal = () => {
+      setShowModal(false);
+    }
 
 
 
