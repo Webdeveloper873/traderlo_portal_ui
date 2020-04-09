@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Card, Menu, Dropdown, Button, Icon, message, Input, Row, Select } from 'antd';
 
@@ -14,22 +14,6 @@ import { useFormInput } from 'common/utils/hooks';
 const { TextArea } = Input;
 const { Option } = Select;
 
-const handleMenuClick = (e) => {
-  message.info('Click on menu item.');
-  console.log('click', e);
-}
-
-
-const ListCategoryMenu = ({ categories }) => {
-  return (
-    <Select size='large' placeholder={'-Select Category-'} style={{ width: 320, marginBottom: '10px' }}>
-      {categories && categories.map(details => <Option value={details.name}>{details.name}</Option>)}
-    </Select>
-  )
-};
-
-
-
 const ThePitch = ({ setActiveKey }) => {
   const listingId = useSelector(({ sellDomain }) => sellDomain.listingId);
   const categories = useSelector(({ sellDomain }) => sellDomain.categories);
@@ -37,16 +21,22 @@ const ThePitch = ({ setActiveKey }) => {
   const tagline = useFormInput();
   const description = useFormInput();
   const dispatch = useDispatch();
+  const [selectedCateg, setSelectedCateg] = useState('');
 
   const onClickNext = () => {
     const data = {
       args: {
         tagline: tagline.value,
-        description: description.value
+        description: description.value,
+        categoryId: selectedCateg,
       },
       listingId,
     };
     dispatch(domain.setPitch(data));
+  }
+
+  const handleCategChange = value => {
+    setSelectedCateg(value)
   }
 
   useEffect(()=>{
@@ -72,7 +62,9 @@ const ThePitch = ({ setActiveKey }) => {
         <div>
           <Row>
             <h5 className={classes.fontDecorH5}>Sublisting Category *</h5>
-            <ListCategoryMenu categories={categories} />
+            <Select size='large' placeholder={'-Select Category-'} style={{ width: 320, marginBottom: '10px' }} onChange={handleCategChange}>
+              {categories && categories.map(details => <Option value={details.id}>{details.name}</Option>)}
+            </Select>
           </Row>
           <Row>
             <h5 className={classes.fontDecorH5}>Description Heading *</h5>
