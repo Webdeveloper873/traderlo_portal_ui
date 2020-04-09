@@ -25,8 +25,9 @@ function* getChatUsers() {
   }
 }
 
-function* getChatMsg({id}) {
-  console.log('saga getChatMsg');
+function* getChatMsg({ payload }) {
+  const { id } = payload || {};
+  console.log('saga getChatMsg', payload);
   try {
     let resp = yield call(() => request.get(`${base_url}/messages/user/${id}`, { headers: { ...headers, authorization: `Bearer ${getAccessToken()}` } }));
 

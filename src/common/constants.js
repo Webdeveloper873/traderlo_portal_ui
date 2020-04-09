@@ -12,7 +12,7 @@ export const routes = {
   CUSTOMER_ORDERS: '/user/customer_orders',
   BIDS_PERFORMANCE: '/user/bids_performance',
   LISTING_AND_STATUS: '/user/listing_and_status',
-  CHAT: '/user/chat/:activeId',
+  CHAT: '/user/chat/:activeId?',
   ACCOUNTS_AND_CARDS: '/user/accounts_and_cards',
   ACCOUNTS_AND_SECURITY: '/user/security',
   USER_PROFILE: '/user/profile',

@@ -79,7 +79,7 @@ const RightPane = (domainDetails) => {
   const bidFailed = useSelector(({ bidding }) => bidding.bidFailed);
   const bid = useFormInput();
   const dispatch = useDispatch();
-  const { userId, id } = selectedDomainInfo || {};
+  const { user, id } = selectedDomainInfo || {};
 
   const showModal = () => {
     setShowModal(true);
@@ -101,17 +101,17 @@ const RightPane = (domainDetails) => {
   const onBidNow = () => {
     const data = {
       amount: parseInt(bid.value),
-      sellerId: userId,
+      sellerId: user && user.id ? user.id : '',
       id,
     };
     console.log('data', data);
     dispatch(bidDomain.setBid(data));
   }
-  
+
   const onClickWatch = () => {
     dispatch(buyingDomain.addToWatchlist({
       listType: 's',
-      id: userId, 
+      id: user && user.id ? user.id : '',
     }));
   }
 
@@ -152,7 +152,7 @@ const RightPane = (domainDetails) => {
             <span className={classes.boldLabel}>Seller Details</span>
           </Col>
           <Col span={12}>
-            <Link className={classes.chatCol} to={`/user/chat/${userId}`} >
+            <Link className={classes.chatCol} to={`/user/chat/${user && user.id ? user.id : ''}`} >
               <Icon type="message" theme='twoTone' className={classes.messageIcon} />
               <span className={classes.chat}>CHAT</span>
             </Link>

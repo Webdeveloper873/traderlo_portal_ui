@@ -5,7 +5,7 @@ import moment from 'moment';
 import { Col, Card, Input, Icon, Row, Avatar, Button } from 'antd';
 
 //actions
-import { chat } from 'appRedux/actions/user';
+import { chat as chatActions } from 'appRedux/actions/user';
 
 //styles
 import classes from './styles.module.scss';
@@ -64,14 +64,15 @@ const MessageBox = ({ activeId }) => {
 
   useEffect(()=>{
     //getMessage based on activeId
-    dispatch(chat.getChatMsg(activeId));
+    console.log('MessageBox activeId', activeId);
+    dispatch(chatActions.getChatMsg(activeId));
   }, []);
 
   if (!activeId) {
     return null;
   }
 
-  return ( chat && firstName && lastName ?
+  return (
     <>
       <SelectedUser userName={`${firstName} ${lastName}`} lastLoginDate={lastLoginDate} />
       <Row>
@@ -95,8 +96,8 @@ const MessageBox = ({ activeId }) => {
           </Row>
         </Card>
       </Row>
-    </> :
-  null);
+    </>
+  );
 }
 
 export default MessageBox;

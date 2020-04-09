@@ -80,7 +80,7 @@ const Chat = ({ match, ...props}) => {
                 {chatContacts.map(details => <ChattedUserInfo details={details} />)}
               </Col>
               <Col span={15}>
-                <MessageBox activeChatUser={activeChatUser} activeId={activeId}/>
+                {activeId && <MessageBox activeChatUser={activeChatUser} activeId={activeId}/>}
               </Col>
             </Row>
           </Card>
