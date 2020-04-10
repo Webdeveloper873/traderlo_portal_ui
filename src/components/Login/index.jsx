@@ -118,7 +118,6 @@ const SignInForm = ({form, handleClose}) => {
 
 const SignUpForm = ({handleClose}) => {
   const [toLoginPage, setToLoginPage] = useState(false);
-  const [isEmailValid, setEmailValid] = useState();
   const signUpUsername = useFormInput('');
   const signUpUserEmail = useFormInput('');
   const signUpUserPass = useFormInput('');
@@ -152,15 +151,12 @@ const SignUpForm = ({handleClose}) => {
 
 
   const onSignUp = () => {
-    // const userDetails = {
-    //   userName: signUpUsername.value,
-    //   email: signUpUserEmail.value,
-    //   password: signUpUserPass.value,
-    // }
-    // dispatch(user.registerUser(userDetails));
-    let checkEmail = EmailValidator.validate(signUpUserEmail.value);
-    setEmailValid(checkEmail);
-    console.log(checkEmail,'email shit')
+    const userDetails = {
+      userName: signUpUsername.value,
+      email: signUpUserEmail.value,
+      password: signUpUserPass.value,
+    }
+    dispatch(user.registerUser(userDetails));
   }
 
   if (toLoginPage){
