@@ -65,7 +65,6 @@ const Filters = () => {
       isBuyNow: false,
   });
   const onChangeMinPrice = (e) => {
-    console.log(e.target.value);
     if(e.target.value > 0 || (e.target.value !== domainMinPrice)){
       setFilterIncludeChecker({...filterIncludeChecker, minPrice:true});
     } else {
@@ -164,17 +163,14 @@ const Filters = () => {
       filterContainer.push(`isBuyNow=${isBuyNow}&`)
     }
 
-    console.log(filterContainer,'filterContainer after');
     // flatten the array and convert to string
     const joinedFilters = filterContainer.join('').slice(0, -1)
-    console.log(joinedFilters,'joinedFilters')
 
     // const filter = `minLength=${domainLength[0]}&maxLength=${domainLength[1]}&minAge=${domainAge[0]}&maxAge=${domainAge[1]}&minPrice=${domainMinPrice}&maxPrice=${domainMinPrice}&isReserve=${isReserve}&isBuyNow=${isBuyNow}&minTimeRemaining=${timeRemaining[0]}&maxTimeRemaining=${timeRemaining[1]}`
  
     dispatch(buyingDomain.getBuyDomain(joinedFilters));
-    setFilterContainer([]);
+    setFilterContainer([]); //clear filter to avoid multiple changes
 
-    console.log(filterContainer,'filterContainer');
     setTimeout(() => {
       setLoading(false);
       notification.success({
@@ -252,8 +248,6 @@ const SearchKeyword = () => {
   const [loading, setLoading] = useState(false);
   const domainList = useSelector(({ buyDomain }) => buyDomain.domainList);
   const [viewDetails, setViewDetails] = useState(false);
-  // const [placement, setPlacement] = useState('');
-  // const [sortBy, setSort] = useState('');
 
   if(viewDetails){
     return <Redirect to={routes.DOMAINS_VIEW_PAGE} />;
@@ -265,7 +259,6 @@ const SearchKeyword = () => {
   }
 
   const handleChangePlacement = value => {
-    //setPlacement(value)
     setLoading(true);
     const placementFliter = `placement=${value}`
     dispatch(buyingDomain.getBuyDomain(placementFliter));
@@ -279,7 +272,6 @@ const SearchKeyword = () => {
   }
 
   const handleSortBy = value => {
-    //setSort(value)
     setLoading(true);
     const sortByFliter = `sortBy=${value}`
     dispatch(buyingDomain.getBuyDomain(sortByFliter));
