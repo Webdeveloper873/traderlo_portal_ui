@@ -15,14 +15,15 @@ export default (state = initialState, action) => {
     case userActTypes.SEND_CHAT_SUCCESS:
       const { activeChatMsg } = state;
       const { chat } = activeChatMsg || {};
-      console.log('state: ', state);
-      console.log('activeChatMsg: ', activeChatMsg);
-      console.log('chat: ', chat);
-      console.log('payload: ', payload);
       let updatedChat = chat;
       updatedChat.push(payload);
-      console.log('updatedChat: ', updatedChat);
       return { ...state, activeChatMsg: { ...activeChatMsg, chat: updatedChat } };
+    case userActTypes.DELETE_CHAT_SUCCESS:
+      const { chatContacts } = state || {};
+      const updatedContacts = chatContacts.filter(x => {
+        return x.id !== payload;
+      });
+      return { ...state, activeChatMsg: [], chatContacts: updatedContacts  };
     default:
       return state;
   }

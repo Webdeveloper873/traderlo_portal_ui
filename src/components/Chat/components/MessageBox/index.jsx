@@ -20,7 +20,7 @@ const { TextArea } = Input;
 
 const selectedUserAvatar = { paddingLeft: 15, paddingTop: 5, paddingBottom: 5 }
 
-const SelectedUser = ({ userName, lastLoginDate }) => {
+const SelectedUser = ({ userName, lastLoginDate, onClickDeleteChat }) => {
   return (
     <Row>
       <Card>
@@ -32,7 +32,7 @@ const SelectedUser = ({ userName, lastLoginDate }) => {
           <Row><span>{`Last Online: ${moment(lastLoginDate).format('LL')}`}</span></Row>
         </Col>
         <Col className={classes.selectedUserDelete} span={4}>
-          <Icon type="delete" className={{ fontSize: 30, color: 'red' }} />
+          <Icon onClick={onClickDeleteChat} type="delete" className={{ fontSize: 30, color: 'red',  }} />
         </Col>
       </Card>
     </Row>
@@ -64,7 +64,7 @@ const MessageBox = ({ activeId }) => {
   const profile = useSelector(({ user }) => user.profile);
   const activeChatUser = useSelector(({ chat }) => chat.activeChatMsg);
   const msg = useFormInput('');
-  const { firstName, lastName, lastLoginDate, chat } = activeChatUser || {};
+  const { firstName, lastName, lastLoginDate, chat, id } = activeChatUser || {};
 
   const onClickSend = () => {
     dispatch(chatActions.sendChat({
@@ -72,20 +72,30 @@ const MessageBox = ({ activeId }) => {
       receiverId: activeId
     }));
   }
+  
+  const onClickDeleteChat = () => {
+    dispatch(chatActions.deleteChat({
+      id: id,
+    }));
+
+  }
 
   useEffect(()=>{
     //getMessage based on activeId
     console.log('MessageBox activeId', activeId);
     dispatch(chatActions.getChatMsg(activeId));
-  }, []);
+  }, [activeId]);
 
-  if (!activeId) {
+  if (!activeId || !firstName || !lastName) {
     return null;
   }
 
   return (
     <>
-      <SelectedUser userName={`${firstName} ${lastName}`} lastLoginDate={lastLoginDate} />
+      <SelectedUser userName={`${firstName} ${lastName}`}
+        lastLoginDate={lastLoginDate}
+        onClickDeleteChat={onClickDeleteChat}
+      />
       <Row>
         <Card>
           {chat && chat.map(msg => {

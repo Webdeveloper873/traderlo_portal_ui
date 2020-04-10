@@ -31,3 +31,13 @@ export const sendChatSuccess = (payload) => ({
   type: userActTypes.SEND_CHAT_SUCCESS,
   payload
 });
+
+export const deleteChat = (payload) => ({
+  type: userActTypes.DELETE_CHAT,
+  payload
+});
+
+export const deleteChatSuccess = (payload) => ({
+  type: userActTypes.DELETE_CHAT_SUCCESS,
+  payload
+});
