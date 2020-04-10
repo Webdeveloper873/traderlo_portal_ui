@@ -13,7 +13,7 @@ import { request, getAccessToken } from 'common/utils/helpers';
 function* getChatUsers() {
   console.log('saga getChatUsers');
   try {
-    let resp = yield call(() => request.get(`${base_url}/messages`, { headers: { ...headers, authorization: `Bearer ${getAccessToken()}` } }));
+    let resp = yield call(() => request.get(`${base_url}/messages/user`, { headers: { ...headers, authorization: `Bearer ${getAccessToken()}` } }));
 
     console.log('getChatUsers resp ', resp);
     if (resp) {
@@ -47,7 +47,8 @@ function* sendChat({ payload }) {
       {
         headers: {
           ...headers,
-          'content-type': 'application/json'
+          'content-type': 'application/json',
+          authorization: `Bearer ${getAccessToken()}`
         },
         body: JSON.stringify(payload)
       }
@@ -61,6 +62,36 @@ function* sendChat({ payload }) {
     console.log('err: ', err);
   }
 }
+
+
+function* deleteChat({ payload }) {
+  try {
+    const { id } = payload || {};
+    // let resp = yield call(() => request.post(`${base_url}/messages`,
+    //   {
+    //     headers: {
+    //       ...headers,
+    //       'content-type': 'application/json',
+    //       authorization: `Bearer ${getAccessToken()}`
+    //     },
+    //     body: JSON.stringify(payload)
+    //   }
+    // ));
+    let resp = true;
+    console.log('deleteChat resp ', resp);
+    if (resp) {
+      yield put(chat.deleteChatSuccess(id));
+    }
+  } catch (err) {
+    // yield put(user.failedLogin());
+    console.log('err: ', err);
+  }
+}
+
+export function* deleteChatWatcher() {
+  yield takeEvery(userActTypes.DELETE_CHAT, deleteChat);
+}
+
 
 export function* sendChatWatcher() {
   yield takeEvery(userActTypes.SEND_CHAT, sendChat);
@@ -80,5 +111,6 @@ export default function* rootSaga() {
     fork(getChatUsersWatcher),
     fork(getChatMsgWatcher),
     fork(sendChatWatcher),
+    fork(deleteChatWatcher),
   ]);
 }

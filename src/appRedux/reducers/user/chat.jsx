@@ -14,7 +14,16 @@ export default (state = initialState, action) => {
       return { ...state, activeChatMsg: payload };
     case userActTypes.SEND_CHAT_SUCCESS:
       const { activeChatMsg } = state;
-      return { ...state, activeChatMsg: { ...activeChatMsg, chat: payload} };
+      const { chat } = activeChatMsg || {};
+      let updatedChat = chat;
+      updatedChat.push(payload);
+      return { ...state, activeChatMsg: { ...activeChatMsg, chat: updatedChat } };
+    case userActTypes.DELETE_CHAT_SUCCESS:
+      const { chatContacts } = state || {};
+      const updatedContacts = chatContacts.filter(x => {
+        return x.id !== payload;
+      });
+      return { ...state, activeChatMsg: [], chatContacts: updatedContacts  };
     default:
       return state;
   }
