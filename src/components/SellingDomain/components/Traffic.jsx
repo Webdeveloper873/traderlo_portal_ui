@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Typography, Card, Row, Button, Upload, message, Icon, Col } from 'antd';
+import { Typography, Card, Row, Button, Upload, message, Icon, Col, Form } from 'antd';
 
 //components
 import InputField from './InputField';
@@ -42,7 +42,7 @@ const uploadBtnProps = {
   },
 };
 
-const Traffic = ({ setActiveKey }) => {
+const Traffic = ({ setActiveKey, form }) => {
   const listingId = useSelector(({ sellDomain }) => sellDomain.listingId);
   const traffic = useSelector(({ sellDomain }) => sellDomain.traffic);
   const uniqVisit = useFormInput();
@@ -74,12 +74,24 @@ const Traffic = ({ setActiveKey }) => {
       <Row gutter={16}>
         <Col xs={24} md={14}>
           <Row gutter={16}>
-            <InputField onChange={uniqVisit.handleInputChange} label='Monthly Unique Visits' colStyle={twoCol} />
-            <InputField onChange={pageViews.handleInputChange} label='Monthly Page Views' colStyle={twoCol} />
+            <InputField form={form} id='uniqVisit'
+              label='Monthly Unique Visits'
+              colStyle={twoCol}
+            />
+            <InputField form={form} id='pageViews'
+              label='Monthly Page Views'
+              colStyle={twoCol}
+            />
           </Row>
           <Row gutter={16}>
-            <InputField onChange={revenue.handleInputChange} label='Monthly Revenue' icon='dollar' colStyle={twoCol} />
-            <InputField onChange={expensives.handleInputChange} label='Monthly Expensives' icon='dollar' colStyle={twoCol} />
+            <InputField form={form} id='revenue'
+              label='Monthly Revenue' icon='dollar'
+              colStyle={twoCol}
+            />
+            <InputField form={form} id='expensives'
+              label='Monthly Expensives' icon='dollar'
+              colStyle={twoCol}
+            />
           </Row>
           <Row>
             <Label text={`Upload Files (Revenue Proof's & Traffic Products)`} />
@@ -102,4 +114,6 @@ const Traffic = ({ setActiveKey }) => {
   );
 }
 
-export default Traffic;
+const WrappedTraffic = Form.create({ name: 'traffic' })(Traffic);
+
+export default WrappedTraffic;

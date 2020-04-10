@@ -12,6 +12,9 @@ export default (state = initialState, action) => {
       return { ...state, chatContacts: payload };
     case userActTypes.GET_CHAT_MSG_SUCCESS:
       return { ...state, activeChatMsg: payload };
+    case userActTypes.SEND_CHAT_SUCCESS:
+      const { activeChatMsg } = state;
+      return { ...state, activeChatMsg: { ...activeChatMsg, chat: payload} };
     default:
       return state;
   }
