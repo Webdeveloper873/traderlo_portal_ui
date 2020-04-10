@@ -13,7 +13,7 @@ import { request, getAccessToken } from 'common/utils/helpers';
 function* getChatUsers() {
   console.log('saga getChatUsers');
   try {
-    let resp = yield call(() => request.get(`${base_url}/messages`, { headers: { ...headers, authorization: `Bearer ${getAccessToken()}` } }));
+    let resp = yield call(() => request.get(`${base_url}/messages/user`, { headers: { ...headers, authorization: `Bearer ${getAccessToken()}` } }));
 
     console.log('getChatUsers resp ', resp);
     if (resp) {
@@ -47,7 +47,8 @@ function* sendChat({ payload }) {
       {
         headers: {
           ...headers,
-          'content-type': 'application/json'
+          'content-type': 'application/json',
+          authorization: `Bearer ${getAccessToken()}`
         },
         body: JSON.stringify(payload)
       }

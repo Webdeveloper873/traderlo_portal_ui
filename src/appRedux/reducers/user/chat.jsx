@@ -14,7 +14,15 @@ export default (state = initialState, action) => {
       return { ...state, activeChatMsg: payload };
     case userActTypes.SEND_CHAT_SUCCESS:
       const { activeChatMsg } = state;
-      return { ...state, activeChatMsg: { ...activeChatMsg, chat: payload} };
+      const { chat } = activeChatMsg || {};
+      console.log('state: ', state);
+      console.log('activeChatMsg: ', activeChatMsg);
+      console.log('chat: ', chat);
+      console.log('payload: ', payload);
+      let updatedChat = chat;
+      updatedChat.push(payload);
+      console.log('updatedChat: ', updatedChat);
+      return { ...state, activeChatMsg: { ...activeChatMsg, chat: updatedChat } };
     default:
       return state;
   }
