@@ -7,6 +7,9 @@ import { Col, Card, Input, Icon, Row, Avatar, Button } from 'antd';
 //actions
 import { chat as chatActions } from 'appRedux/actions/user';
 
+//utils
+import { useFormInput } from 'common/utils/hooks';
+
 //styles
 import classes from './styles.module.scss';
 
@@ -60,7 +63,15 @@ const MessageBox = ({ activeId }) => {
   const dispatch = useDispatch();
   const profile = useSelector(({ user }) => user.profile);
   const activeChatUser = useSelector(({ chat }) => chat.activeChatMsg);
+  const msg = useFormInput('');
   const { firstName, lastName, lastLoginDate, chat } = activeChatUser || {};
+
+  const onClickSend = () => {
+    dispatch(chatActions.sendChat({
+      message: msg.value,
+      receiverId: activeId
+    }));
+  }
 
   useEffect(()=>{
     //getMessage based on activeId
@@ -77,7 +88,7 @@ const MessageBox = ({ activeId }) => {
       <SelectedUser userName={`${firstName} ${lastName}`} lastLoginDate={lastLoginDate} />
       <Row>
         <Card>
-          {chat.map(msg => {
+          {chat && chat.map(msg => {
             const { messageDesc, senderId } = msg || {};
             const { id } = profile || {};
             if(senderId === id){
@@ -89,10 +100,13 @@ const MessageBox = ({ activeId }) => {
         </Card>
         <Card>
           <Row>
-            <TextArea rows={4} />
+            <TextArea rows={4} onChange={msg.handleInputChange} />
           </Row>
           <Row className={classes.btnContainer}>
-            <Button size='large' className={classes.btnStyle}>Send</Button>
+            <Button size='large'
+              className={classes.btnStyle}
+              onClick={onClickSend}
+            >Send</Button>
           </Row>
         </Card>
       </Row>

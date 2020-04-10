@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Card, Menu, Dropdown, Button, Icon, message, Input, Row, Select } from 'antd';
+import { Card, Button, Input, Row, Select, Form } from 'antd';
 
 //action
 import { domain } from 'appRedux/actions/selling';
@@ -14,7 +14,7 @@ import { useFormInput } from 'common/utils/hooks';
 const { TextArea } = Input;
 const { Option } = Select;
 
-const ThePitch = ({ setActiveKey }) => {
+const ThePitch = ({ setActiveKey, form }) => {
   const listingId = useSelector(({ sellDomain }) => sellDomain.listingId);
   const categories = useSelector(({ sellDomain }) => sellDomain.categories);
   const pitch = useSelector(({ sellDomain }) => sellDomain.pitch);
@@ -22,18 +22,37 @@ const ThePitch = ({ setActiveKey }) => {
   const description = useFormInput();
   const dispatch = useDispatch();
   const [selectedCateg, setSelectedCateg] = useState('');
+  const { getFieldDecorator } = form || {};
 
-  const onClickNext = () => {
-    const data = {
-      args: {
-        tagline: tagline.value,
-        description: description.value,
-        categoryId: selectedCateg,
-      },
-      listingId,
-    };
-    dispatch(domain.setPitch(data));
-  }
+  // const onClickNext = () => {
+  //   const data = {
+  //     args: {
+  //       tagline: tagline.value,
+  //       description: description.value,
+  //       categoryId: selectedCateg,
+  //     },
+  //     listingId,
+  //   };
+  //   dispatch(domain.setPitch(data));
+  // }
+
+  const onClickNext = e => {
+    e.preventDefault();
+    form.validateFields((err, values) => {
+      if (!err) {
+        const { categoryId, tagline, description } = values || {};
+        const data = {
+          args: {
+            tagline,
+            description,
+            categoryId,
+          },
+          listingId,
+        };
+        dispatch(domain.setPitch(data));
+      }
+    });
+  };
 
   const handleCategChange = value => {
     setSelectedCateg(value)
@@ -62,25 +81,43 @@ const ThePitch = ({ setActiveKey }) => {
         <div>
           <Row>
             <h5 className={classes.fontDecorH5}>Sublisting Category *</h5>
-            <Select size='large' placeholder={'-Select Category-'} style={{ width: 320, marginBottom: '10px' }} onChange={handleCategChange}>
-              {categories && categories.map(details => <Option value={details.id}>{details.name}</Option>)}
-            </Select>
+            <Form.Item>
+              {getFieldDecorator('categoryId', {
+                rules: [{ required: true, message: 'This field is required!' }],
+              })(
+                <Select size='large' placeholder={'-Select Category-'} style={{ width: 320, marginBottom: '10px' }} onChange={handleCategChange}>
+                  {categories && categories.map(details => <Option value={details.id}>{details.name}</Option>)}
+                </Select>
+              )}
+            </Form.Item>
           </Row>
           <Row>
             <h5 className={classes.fontDecorH5}>Description Heading *</h5>
-            <Input
-              size="large"
-              className={classes.descriptionHeading}
-              placeholder="Enter description heading"
-              onChange={tagline.handleInputChange}
-            />
+            <Form.Item>
+              {getFieldDecorator('tagline', {
+                rules: [{ required: true, message: 'This field is required!' }],
+              })(
+                <Input
+                  size="large"
+                  className={classes.descriptionHeading}
+                  placeholder="Enter description heading"
+                  // onChange={tagline.handleInputChange}
+                />
+              )}
+            </Form.Item>
           </Row>
           <Row>
             <h5 className={classes.fontDecorH5}>Description *</h5>
-            <TextArea rows={8} className={classes.description}
-              onChange={description.handleInputChange}
-              placeholder="Enter description"
-            />
+            <Form.Item>
+              {getFieldDecorator('description', {
+                rules: [{ required: true, message: 'This field is required!' }],
+              })(
+                <TextArea rows={8} className={classes.description}
+                  // onChange={description.handleInputChange}
+                  placeholder="Enter description"
+                />
+              )}
+            </Form.Item>
           </Row>
           <Row className={classes.btnContainer}>
             <Button size='large' className={classes.btnStyle} onClick={onClickNext}>Next</Button>
@@ -91,4 +128,6 @@ const ThePitch = ({ setActiveKey }) => {
   )
 }
 
-export default ThePitch;
+const WrappedPitch = Form.create({ name: 'thePitch' })(ThePitch);
+
+export default WrappedPitch;
