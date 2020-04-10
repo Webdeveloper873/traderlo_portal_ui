@@ -5,6 +5,7 @@ import { Modal, Row, Form as TempForm, Button as TempButton } from 'react-bootst
 import { Form, Icon, Input, Button, Checkbox, Col } from 'antd';
 import { Redirect } from "react-router-dom";
 import GoogleButton from 'react-google-button'
+import * as EmailValidator from 'email-validator';
 //components
 import Divider from 'common/components/Divider';
 
@@ -125,7 +126,6 @@ const SignUpForm = ({handleClose}) => {
   const register = useSelector(({user}) => user.register);
   const dispatch = useDispatch();
 
-
   const url = window.location.href; 
   const hashes = url.split("?")[0];  // if deployed https://traderlo-portal-api.herokuapp.com/ || if local  http://localhost:3000/
   const OAUTH2_REDIRECT_URI = `${hashes}oauth2/redirect`;
@@ -176,16 +176,22 @@ const SignUpForm = ({handleClose}) => {
       </Divider>
       <br />
       <TempForm.Group>
+        {signUpUsername.value.trim().length == 0 && signUpUsername.value? <span class="text-warning">Please enter valid username</span> : ''}
         <TempForm.Control type="text" placeholder="Username"
           onChange={signUpUsername.handleInputChange}/> <br />
+          {!EmailValidator.validate(signUpUserEmail.value) && signUpUserEmail.value? <span class="text-warning">Please enter valid email</span> : ''}
         <TempForm.Control type="text" placeholder="Email Id"
           onChange={signUpUserEmail.handleInputChange}/> <br />
+          
         <TempForm.Control type='password' placeholder="Password"
           onChange={signUpUserPass.handleInputChange}/> <br />
         <TempForm.Control type='password' placeholder="Confirm Password"
           onChange={signUpUserConfirmPass.handleInputChange}/>
       </TempForm.Group>
-      <TempButton variant="primary" disabled={signUpUserConfirmPass.value !== signUpUserPass.value} onClick={onSignUp}>Sign Up</TempButton>
+      <TempButton variant="primary" disabled={(signUpUserConfirmPass.value !== signUpUserPass.value) || 
+          (signUpUserConfirmPass.value.trim().length == 0 || signUpUserPass.value.trim().length == 0) || 
+          (!EmailValidator.validate(signUpUserEmail.value) || signUpUserEmail.value.trim().length == 0) || 
+          (signUpUsername.value.trim().length == 0)} onClick={onSignUp}>Sign Up</TempButton>
     </TempForm>
   )
 }

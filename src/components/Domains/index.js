@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Slider, Divider, Card, Typography, Select, Checkbox, Input, Row, Col, Button } from 'antd';
+import { Slider, Divider, Card, Typography, Select, Checkbox, Input, Row, Col, Button, notification } from 'antd';
 import { Redirect } from "react-router-dom";
 
 //components
@@ -39,66 +39,147 @@ const SliderFilter = ({ sliderVal, amtLabel, ...props}) => {
 
 const Filters = () => {
   const dispatch = useDispatch();
-  const [domainPrice, setDomainPrice] = useState([0, 20]);
+  const [loading, setLoading] = useState(false);
+  const [domainMinPrice, setDomainMinPrice] = useState(0);
+  const [domainMaxPrice, setDomainMaxPrice] = useState(0);
   const [domainAge, setDomainAge] = useState([0, 20]);
   const [domainLength, setDomainLength] = useState([0, 20]);
   const [timeRemaining, setTimeRemaining] = useState([0, 20]);
   const [listingType, setListingType] = useState('');
   const [extension, setExtension] = useState('');
-  const [isReverseMet, setReverseMet] = useState(false);
+  const [isReserve, setReverseMet] = useState(false);
   const [isBuyNow, setBuyNow] =useState(false);
+  const [filterContainer, setFilterContainer] = useState([]);
+  const [filterIncludeChecker, setFilterIncludeChecker] = useState({
+      minPrice: false,
+      maxPrice: false,
+      minAge: false,
+      maxAge: false,
+      minLength: false,
+      maxLength: false,
+      minTimeRemaining: false,
+      maxTimeRemaining: false,
+      listingType: false,
+      extension: false,
+      isReserve: false,
+      isBuyNow: false,
+  });
+  const onChangeMinPrice = (e) => {
+    if(e.target.value > 0 || (e.target.value !== domainMinPrice)){
+      setFilterIncludeChecker({...filterIncludeChecker, minPrice:true});
+    } else {
+      setFilterIncludeChecker({...filterIncludeChecker, minPrice:false});
+    }
+    setDomainMinPrice(e.target.value);
+  }
 
-  const onChangeDomPrice = (value) => {
-    setDomainPrice(value);
+  const onChangeMaxPrice = (e) => {
+    if(e.target.value > 0 || (e.target.value !== domainMaxPrice)){
+      setFilterIncludeChecker({...filterIncludeChecker, maxPrice:true});
+    }else {
+      setFilterIncludeChecker({...filterIncludeChecker, minPrice:false});
+    }
+    setDomainMaxPrice(e.target.value);
   }
 
   const onChangeDomAge = value => {
-    setDomainAge(value);
+      setDomainAge(value);
+      setFilterIncludeChecker({...filterIncludeChecker, minAge:true, maxAge:true}); 
   }
 
   const onChangeDomLength = value => {
     setDomainLength(value);
+    setFilterIncludeChecker({...filterIncludeChecker, minLength:true, maxLength:true});
   }
 
   const onChangeTimeRem = value => {
     setTimeRemaining(value);
+    setFilterIncludeChecker({...filterIncludeChecker, minTimeRemaining:true, maxTimeRemaining:true});
   }
 
   const handleChangeListingType = value => {
     setListingType(value)
+    setFilterIncludeChecker({...filterIncludeChecker, listingType:true});
   }
 
   const handleChangeExtension = value => {
     setExtension(value)
+    setFilterIncludeChecker({...filterIncludeChecker, extension:true});
   }
 
   const onChangeReverseMet = value => {
     setReverseMet(value.target.checked);
+    setFilterIncludeChecker({...filterIncludeChecker, isReserve:true});
   }
 
   const onChangeBuyNow = value => {
     setBuyNow(value.target.checked);
+    setFilterIncludeChecker({...filterIncludeChecker, isBuyNow:true});
   }
 
   const handleApplyFilter = () => {
+    setLoading(true);
+    // const filter = {
+    //   minPrice: domainPrice[0],
+    //   maxPrice: domainPrice[1],
+    //   minAge: domainAge[0],
+    //   maxAge: domainAge[1],
+    //   minLength: domainLength[0],
+    //   maxLength: domainLength[1],
+    //   minTimeRemaining: timeRemaining[0],
+    //   maxTimeRemaining: timeRemaining[1],
+    //   listingType: listingType,
+    //   extension: extension,
+    //   isReserve: isReserve,
+    //   isBuyNow: isBuyNow,
+    // }
 
-    const filter = {
-      minPrice: domainPrice[0],
-      maxPrice: domainPrice[1],
-      minAge: domainAge[0],
-      maxAge: domainAge[1],
-      minLength: domainLength[0],
-      maxLength: domainLength[1],
-      minTimeRemaining: timeRemaining[0],
-      maxTimeRemaining: timeRemaining[1],
-      listingType: listingType,
-      extension: extension,
-      isReserve: isReverseMet,
-      isBuyNow: isBuyNow,
+    // check which item send as query to filter in API
+    if (filterIncludeChecker.minPrice) {
+      filterContainer.push(`minPrice=${domainMinPrice}&`)
+    }
+    if (filterIncludeChecker.maxPrice) {
+      filterContainer.push(`maxPrice=${domainMaxPrice}&`)
+    }
+    if (filterIncludeChecker.minAge || filterIncludeChecker.maxAge) {
+      filterContainer.push(`minAge=${domainAge[0]}&maxAge=${domainAge[1]}&`)
+    }
+    if (filterIncludeChecker.minLength || filterIncludeChecker.maxLength) {
+      filterContainer.push(`minAge=${domainLength[0]}&maxAge=${domainLength[1]}&`)
+    }
+    if (filterIncludeChecker.minTimeRemaining || filterIncludeChecker.maxTimeRemaining) {
+      filterContainer.push(`minAge=${timeRemaining[0]}&maxAge=${timeRemaining[1]}&`)
+    }
+    if (filterIncludeChecker.listingType) {
+      //filterContainer.push(`minAge=${timeRemaining[0]}&maxAge=${timeRemaining[1]}&`)
+    }
+    if (filterIncludeChecker.extension) {
+      //filterContainer.push(`isReserve=${isReserve}&`)
+    }
+    if (filterIncludeChecker.isReserve) {
+      filterContainer.push(`isReserve=${isReserve}&`)
+    }
+    if (filterIncludeChecker.isBuyNow) {
+      filterContainer.push(`isBuyNow=${isBuyNow}&`)
     }
 
-    console.log(filter,'filters');
-    dispatch(buyingDomain.getBuyDomain(filter));
+    // flatten the array and convert to string
+    const joinedFilters = filterContainer.join('').slice(0, -1)
+
+    // const filter = `minLength=${domainLength[0]}&maxLength=${domainLength[1]}&minAge=${domainAge[0]}&maxAge=${domainAge[1]}&minPrice=${domainMinPrice}&maxPrice=${domainMinPrice}&isReserve=${isReserve}&isBuyNow=${isBuyNow}&minTimeRemaining=${timeRemaining[0]}&maxTimeRemaining=${timeRemaining[1]}`
+ 
+    dispatch(buyingDomain.getBuyDomain(joinedFilters));
+    setFilterContainer([]); //clear filter to avoid multiple changes
+
+    setTimeout(() => {
+      setLoading(false);
+      notification.success({
+        className: classes.successNotif,
+        message: 'Filter Success!',
+      });
+    }, 3000);
+
+   
   }
 
   return(
@@ -106,7 +187,10 @@ const Filters = () => {
       <Card className={classes.filters}>
         <Text strong>Domain Price</Text>
         <Divider className={classes.divider} />
-        <SliderFilter sliderVal={domainPrice} onChange={(onChangeDomPrice)} />
+        min:
+        <Input placeholder="min price" suffix="$" name='minPrice' style={{marginBottom:5}} value={domainMinPrice}  onChange={onChangeMinPrice}/>
+        max:
+        <Input placeholder="max price" suffix="$" name='maxPrice' style={{marginBottom:10}} value={domainMaxPrice}  onChange={onChangeMaxPrice}/>
 
         <Text strong>Domain Age</Text>
         <Divider className={classes.divider} />
@@ -153,18 +237,17 @@ const Filters = () => {
         </Select>
       </Card>
       <Card className={`${classes.filters} ${classes.filterCard}`}>
-        <Button onClick={handleApplyFilter}> Apply Filter</Button>
+        <Button onClick={handleApplyFilter} type="primary" loading={loading} disabled={loading}> Apply Filter</Button>
       </Card>
     </>
   );
 }
 
-
 const SearchKeyword = () => {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const domainList = useSelector(({ buyDomain }) => buyDomain.domainList);
   const [viewDetails, setViewDetails] = useState(false);
-  // const [viewMode, setViewMode] = useState('card-list'); //default card list view
 
   if(viewDetails){
     return <Redirect to={routes.DOMAINS_VIEW_PAGE} />;
@@ -175,20 +258,45 @@ const SearchKeyword = () => {
     setViewDetails(true);
   }
 
-  // const onClickChangeView = (view) => {
-  //   setViewMode(view);
-  // }
+  const handleChangePlacement = value => {
+    setLoading(true);
+    const placementFliter = `placement=${value}`
+    dispatch(buyingDomain.getBuyDomain(placementFliter));
+    setTimeout(() => {
+      setLoading(false);
+      notification.success({
+        className: classes.successNotif,
+        message: 'Placement Success!',
+      });
+    }, 4000);
+  }
 
+  const handleSortBy = value => {
+    setLoading(true);
+    const sortByFliter = `sortBy=${value}`
+    dispatch(buyingDomain.getBuyDomain(sortByFliter));
+
+    setTimeout(() => {
+      setLoading(false);
+      notification.success({
+        className: classes.successNotif,
+        message: 'Sort Success!',
+      });
+    }, 4000);
+
+  }
 
   return(
     <div className={classes.searchKeyword}>
       <div>
         <Input.Group compact className={classes.inputLeft}>
           <span className={classes.keywordLabel}>{`Keywords : `}</span>
-          <Select style={{width: '125px'}} placeholder='Placement'>
-            <Option value="beginning">Beginning</Option>
-            <Option value="anywhere">Any Where</Option>
-            <Option value="ending">Ending</Option>
+          <Select style={{width: '125px'}} placeholder='Placement' onChange={handleChangePlacement} loading={loading} disabled={loading}>
+            <Option value=" "></Option>
+            <Option value="ANYWHERE">Anywhere</Option>
+            <Option value="AT_START">At Start</Option>
+            <Option value="AT_END">At End</Option>
+            <Option value="EXACT">Exact</Option>
           </Select>
           <Input.Search style={{ width: '220px ' }} enterButton />
         </Input.Group>
@@ -199,10 +307,10 @@ const SearchKeyword = () => {
           <Typography.Title level={4}>{`Showing 1 - ${domainList.length} of ${domainList.length} results`}</Typography.Title>
         </Col>
         <Col span={6} className={classes.alignEnd}>
-          <Select style={{ width: '100%' }} placeholder='Sort By:'>
-            <Option value="beginning">beginning</Option>
-            <Option value="anywhere">anywhere</Option>
-            <Option value="ending">ending</Option>
+          <Select style={{ width: '100%' }} placeholder='Sort By:' onChange={handleSortBy} loading={loading} disabled={loading}>
+          <Option value="MOST_RELEVANT">Most Relevant</Option>
+            <Option value="MOST_RECENT">Most Recent</Option>
+            <Option value="LOWEST_PRICE">Lowest Price</Option>
           </Select>
         </Col>
         {/* <Col span={2}>
@@ -236,8 +344,6 @@ const SearchRecord = ({title}) => {
   const bannerPath = ['Home', 'Domains']
 
   useEffect(()=>{
-    //this is initial login, fetch user profile
-    console.log('dispatch getBuyDomain');
     dispatch(buyingDomain.getBuyDomain());
   }, []);
 
