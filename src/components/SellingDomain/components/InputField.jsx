@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Input, Icon} from 'antd';
+import { Col, Input, Icon, Form } from 'antd';
 
 //style
 import classes from '../styles.module.scss';
@@ -11,11 +11,18 @@ const { threeCol } = responsiveConf || {};
 
 const Label = ({text}) => <span className={classes.tabDetail}>{text}</span>;
 
-const InputField = ({ label, icon, colStyle, children, ...props }) => {
+const InputField = ({ id, required, label, icon, colStyle, validateStatus, help, form, children, ...props }) => {
+  const { getFieldDecorator } = form || {};
   return (
     <Col {...threeCol} {...colStyle} className={classes.marginBot20}>
       <Label text={label}/>
-      <Input {...props} addonBefore={icon ? <Icon type={icon} /> : null} size='large' />
+      <Form.Item validateStatus={validateStatus} help={help}>
+        {getFieldDecorator(id, {
+          rules: [{ required: required, message: 'This field is required!' }],
+        })(
+          <Input {...props} addonBefore={icon ? <Icon type={icon} /> : null} size='large' />
+        )}
+      </Form.Item>
       {children}
     </Col>
   );

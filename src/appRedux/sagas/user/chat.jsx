@@ -42,9 +42,8 @@ function* getChatMsg({ payload }) {
 }
 
 function* sendChat({ payload }) {
-  console.log('saga sendChat');
   try {
-    let resp = yield call(() => request.post(`${base_url}/selling/domain/sale`,
+    let resp = yield call(() => request.post(`${base_url}/messages`,
       {
         headers: {
           ...headers,
@@ -64,7 +63,7 @@ function* sendChat({ payload }) {
 }
 
 export function* sendChatWatcher() {
-  yield takeEvery(userActTypes.GET_CHAT_MSG, sendChat);
+  yield takeEvery(userActTypes.SEND_CHAT, sendChat);
 }
 
 export function* getChatMsgWatcher() {
@@ -80,5 +79,6 @@ export default function* rootSaga() {
   yield all([
     fork(getChatUsersWatcher),
     fork(getChatMsgWatcher),
+    fork(sendChatWatcher),
   ]);
 }
