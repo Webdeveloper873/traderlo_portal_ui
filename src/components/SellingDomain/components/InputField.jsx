@@ -17,7 +17,7 @@ const InputField = ({ id, required, label, icon, colStyle, validateStatus, help,
     <Col {...threeCol} {...colStyle} className={classes.marginBot20}>
       <Label text={label}/>
       <Form.Item validateStatus={validateStatus} help={help}>
-        {getFieldDecorator(id, {
+        {getFieldDecorator(id || 'passId', {
           rules: [{ required: required, message: 'This field is required!' }],
         })(
           <Input {...props} addonBefore={icon ? <Icon type={icon} /> : null} size='large' />

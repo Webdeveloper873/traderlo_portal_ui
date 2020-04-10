@@ -8,9 +8,6 @@ import InputField from './InputField';
 //action
 import { domain } from 'appRedux/actions/selling';
 
-//utils
-import { useFormInput } from 'common/utils/hooks';
-
 //styles
 import classes from '../styles.module.scss';
 
@@ -19,18 +16,64 @@ const Sale = ({ setActiveKey, form }) => {
   const [enableBuyNow, setEnableBuyNow] = useState(true);
   const listingId = useSelector(({ sellDomain }) => sellDomain.listingId);
   const sale = useSelector(({ sellDomain }) => sellDomain.sale);
-  const duration = useFormInput();
-  const startBid = useFormInput();
-  const reserve = useFormInput();
-  const buyNow = useFormInput();
   const dispatch = useDispatch();
-  const buyNowValidate = form.getFieldValue('buyNowPrice') &&
-    (
-      parseInt(form.getFieldValue('buyNowPrice')) <= parseInt(form.getFieldValue('startingPrice')) ||
-      parseInt(form.getFieldValue('buyNowPrice')) <= parseInt(form.getFieldValue('reservePrice'))
-    )
-  ? 'error' : '';
-  const reserveValidate = form.getFieldValue('reservePrice') && (parseInt(form.getFieldValue('reservePrice')) <= parseInt(form.getFieldValue('startingPrice'))) ? 'error' : '';
+  const validateStartPrice = form.getFieldValue('startingPrice') && (parseInt(form.getFieldValue('startingPrice')) < 0) ? 'error' : '';
+  const validateDuration = form.getFieldValue('listDurationDate') && (parseInt(form.getFieldValue('listDurationDate')) < 0) ? 'error' : '';
+
+  const validateBuyNow = () => {
+    const buyNow = parseInt(form.getFieldValue('buyNowPrice'));
+    const sPrice = parseInt(form.getFieldValue('startingPrice'));
+    const rPrice = parseInt(form.getFieldValue('reservePrice'));
+
+    if (buyNow){
+      if(buyNow < 0 ){
+        return {
+          validateStatus: 'error',
+          errorMessage: 'Buy now price should not be negative'
+        }
+      } else if(buyNow <= sPrice){
+        return {
+          validateStatus: 'error',
+          errorMessage: 'Buy now price should be higher than starting price'
+        }
+      } else if (buyNow <= rPrice) {
+        return {
+          validateStatus: 'error',
+          errorMessage: 'Buy now price should be higher than reserve price'
+        }
+      }
+    }
+
+    return {
+      validateStatus: '',
+      errorMessage: null
+    }
+  }
+
+  const validateReserve = () => {
+    const rPrice = parseInt(form.getFieldValue('reservePrice'));
+    const sPrice = parseInt(form.getFieldValue('startingPrice'));
+
+    if(rPrice){
+      if(rPrice < 0){
+        return {
+          validateStatus: 'error',
+          errorMessage: 'Reserve price should not be negative'
+        }
+      }
+      if(rPrice <= sPrice) {
+        return {
+          validateStatus: 'Reserve price should be greater than starting price',
+          errorMessage: null
+        }
+      }
+    }
+
+    return {
+      validateStatus: '',
+      errorMessage: null
+    }
+  }
 
   const onClickNext = e => {
     e.preventDefault();
@@ -71,27 +114,31 @@ const Sale = ({ setActiveKey, form }) => {
       <Row gutter={16}>
         <InputField form={form} required
           label='No. Of Days For Auction *'
+          validateStatus={validateDuration}
+          help={validateDuration === 'error' ? 'This should not be negative' : ''}
           icon='setting'
           id='listDurationDate'
         />
       </Row>
       <Row gutter={16}>
         <InputField form={form} required
+          validateStatus={validateStartPrice}
+          help={validateStartPrice === 'error' ? 'Starting price should not be negative' : ''}
           label='Starting Bid Price*'
           icon='dollar'
           id='startingPrice'
         />
         <InputField form={form} required={enableReserve}
-          validateStatus={reserveValidate}
-          help={reserveValidate === 'error' ? 'Reserve Price should be greater than Starting Bid Price' : ''}
+          validateStatus={validateReserve().validateStatus}
+          help={validateReserve().errorMessage}
           disabled={!enableReserve}
           label={<>{`Reserve Price `}<Switch defaultChecked onChange={onChangeRSwitch} /></>}
           icon='dollar'
           id='reservePrice'
         />
         <InputField form={form} required={enableBuyNow}
-          validateStatus={buyNowValidate}
-          help={buyNowValidate === 'error' ? 'Buy Now Price should be greater than Starting Bid Price and Reserve Price' : ''}
+          validateStatus={validateBuyNow().validateStatus}
+          help={validateBuyNow().errorMessage}
           disabled={!enableBuyNow}
           label={<>{`Buy Now Price `}<Switch defaultChecked onChange={onChangeBSwitch} /></>}
           icon='dollar'
