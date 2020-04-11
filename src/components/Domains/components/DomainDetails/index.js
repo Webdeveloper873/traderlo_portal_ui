@@ -35,8 +35,9 @@ import SimilarPost from './components/SimilarPost';
 import { buyingDomain } from 'appRedux/actions/buying';
 
 
-const {TabPane} = Tabs;
-const {twoCol} = responsiveConf;
+const { TabPane } = Tabs;
+const { TextArea } = Input;
+const { twoCol } = responsiveConf;
 
 const LeftPane = (domainDetails) => {
   return(
@@ -59,7 +60,10 @@ const LeftPane = (domainDetails) => {
             veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
           </TabPane>
           <TabPane tab="Comments" key="3">
-            eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex. Exercitation mollit sit culpa nisi culpa non adipisicing alsoAmet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
+            <div className={`${classes.boldLabel} ${classes.marginTop15}`}>Comments</div>
+            <TextArea className={classes.marginTop15} rows={6} />
+            <Button className={classes.commentSubmit} size='large'>Submit</Button>
           </TabPane>
         </Tabs>
       </Card>
