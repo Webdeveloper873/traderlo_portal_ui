@@ -50,17 +50,38 @@
   text-align:left;
 
   .fontDecor {
+    padding-top: 0px;
     margin-left:55px;
     font-size:15px;
     font-weight:300px;
   }
+
+  .selectedFontDecor {
+    padding-top: 0px;
+    margin-left:55px;
+    font-size:16px;
+    font-weight:300px;
+    color: #00bcd4;
+  }
 }
 
 .fontDecor {
+    padding-top: 0px;
     margin-left:12px;
     font-size:15px;
     font-weight:300px;
+    color: black;
 }
+
+.selectedDDFontDecor {
+  padding-top: 0px;
+  margin-left:12px;
+  font-size:17px;
+  font-weight:300px;
+  color: #e83e8c;
+}
+
+
 
 .collapsibleItems {
   background-color:white;
@@ -75,5 +96,12 @@
 
   .colDecor {
     margin-left:10px;
+  }
+
+  .selectedFontDecor {
+    margin-left:55px;
+    font-size:16px;
+    font-weight:300px;
+    color: #00bcd4;
   }
 }
