@@ -12,7 +12,7 @@ import classes from './styles.module.scss';
 //constants
 import { routes } from 'common/constants'
 
-export const listAndStatusCol = (onEditListing) => {
+export const listAndStatusCol = (onEditListing, onDeleteListing) => {
   return [
     {
       title: 'Name',
@@ -55,13 +55,19 @@ export const listAndStatusCol = (onEditListing) => {
           <>
             <Link to={`${routes.SELLING_DOMAINS_PAGE}?edit=true`}>
               <Icon type="edit" theme="twoTone" className={classes.actionStyle}
-                onClick={()=>{
+                onClick={() => {
                   onEditListing(id)
                 }}
               />
             </Link>
             {`  /  `}
-            <Icon type="delete" theme='twoTone' twoToneColor='#eb2f96' className={classes.actionStyle}/>
+            <Icon type="delete" theme='twoTone' 
+              twoToneColor='#eb2f96' 
+              className={classes.actionStyle}
+              onClick={() => {
+                onDeleteListing(id);
+              }}
+            />
           </>
         );
       }

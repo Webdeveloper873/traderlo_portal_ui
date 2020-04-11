@@ -31,6 +31,10 @@ const ListingAndStatus = () => {
     dispatch(domainSelling.setListingId(id));
   }
 
+  const onDeleteListing = id => {
+    dispatch(sellingActivities.deleteSellListing({ id }));
+  }
+
   useEffect(()=>{
     dispatch(sellingActivities.getListingStatus());
   }, []);
@@ -45,7 +49,7 @@ const ListingAndStatus = () => {
         <Col xs={24} sm={24} md={18} lg={18} className={classes.customPadding}>
           <Card type="inner" title={'Listing And Status'} extra={<SearchBid />} className={classes.tableContainer}>
             <Table dataSource={listingStatus}
-              columns={listAndStatusCol(onEditListing)}
+              columns={listAndStatusCol(onEditListing, onDeleteListing)}
             />
           </Card>
         </Col>

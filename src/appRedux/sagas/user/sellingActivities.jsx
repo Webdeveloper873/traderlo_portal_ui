@@ -55,6 +55,33 @@ function* getListingStatus() {
   }
 }
 
+function* deleteSellListing({ payload }) {
+  const { id } = payload || {};
+  console.log('deleteSellListing payload', payload)
+  try {
+    // let resp = yield call(() => request.delete(`${base_url}/listing/${id}`,
+    //   {
+    //     headers: {
+    //       ...headers,
+    //       authorization: `Bearer ${getAccessToken()}`
+    //     }
+    //   }
+    // ));
+    let resp = true;
+    if (resp) {
+      console.log('deleteSellListing resp', resp);
+      yield put(sellingActivities.deleteSellListingSuccess({ id }));
+    }
+  } catch (err) {
+    console.log('err: ', err);
+  }
+}
+
+export function* deleteSellListingWatcher() {
+  yield takeEvery(userActTypes.DELETE_SELL_LISTING, deleteSellListing);
+}
+
+
 export function* getBidsPerfWatcher() {
   yield takeEvery(userActTypes.GET_SELLING_BIDS, getBidsPerf);
 }
@@ -72,5 +99,6 @@ export default function* rootSaga() {
     fork(getBidsPerfWatcher),
     fork(getCstmrOrdersWatcher),
     fork(getListingStatusWatcher),
+    fork(deleteSellListingWatcher),
   ]);
 }

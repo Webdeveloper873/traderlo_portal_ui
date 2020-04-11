@@ -29,3 +29,13 @@ export const getListingStatusSuccess = (payload) => ({
   type: userActTypes.GET_LISTING_STATUS_SUCCESS,
   payload
 });
+
+export const deleteSellListing = (payload) => ({
+  type: userActTypes.DELETE_SELL_LISTING,
+  payload,
+});
+
+export const deleteSellListingSuccess = (payload) => ({
+  type: userActTypes.DELETE_SELL_LISTING_SUCCESS,
+  payload,
+});
