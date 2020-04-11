@@ -39,7 +39,7 @@ function* getUserProfile() {
 }
 
 function* updateUserProfile({payload}) {
-  
+
   const {profile} = payload || {};
   console.log(payload,'payload');
   console.log(profile.id,'id');
@@ -60,7 +60,7 @@ function* updateUserProfile({payload}) {
 }
 
 function* changeUserPassword({payload}) {
-  
+
   const { userPassword } = payload || {};
   try{
 
@@ -104,7 +104,7 @@ function* logout({payload}) {
   const {profile} = payload || {};
   try{
     const resp = yield call(() => request.get(`${base_url}/user/logout`, {  // as updated in swagger
-      headers: { 
+      headers: {
         ...headers,
         uid: profile.id.toString(),
         authorization: `Bearer ${getAccessToken()}`

@@ -72,7 +72,7 @@ const MessageBox = ({ activeId }) => {
       receiverId: activeId
     }));
   }
-  
+
   const onClickDeleteChat = () => {
     dispatch(chatActions.deleteChat({
       id: id,

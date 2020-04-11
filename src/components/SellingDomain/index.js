@@ -20,9 +20,12 @@ const callback = (key) => {
 }
 
 // Main part
-const SellingSub = () => {
+const SellingSub = ({ ...props}) => {
   const [activeKey, setActiveKey] = useState(1);
   const bannerPath = ['Start Selling', 'Domains', 'Add Product Details'];
+  console.log('SellingSub: ', props);
+  const urlParam = new URLSearchParams(props.location.search);
+  const editMode = urlParam.get('edit');
 
   const moveToNextTab = () => {
     console.log('move to next: ', activeKey)
@@ -37,13 +40,13 @@ const SellingSub = () => {
     <>
       <Banner text={'Selling'} path={bannerPath}/>
       <PageWrapper className={classes.pageWrapper}>
-        <Tabs className={classes.tabStyle} activeKey={JSON.stringify(activeKey)} 
-          onNextClick={moveToNextTab} 
-          defaultActiveKey="1" 
-          onChange={callback} 
-          size="large" 
-          tabBarGutter={120} 
-          tabBarStyle={{fontWeight:600}} 
+        <Tabs className={classes.tabStyle} activeKey={JSON.stringify(activeKey)}
+          onNextClick={moveToNextTab}
+          defaultActiveKey="1"
+          onChange={callback}
+          size="large"
+          tabBarGutter={120}
+          tabBarStyle={{fontWeight:600}}
           onTabClick={onTabClick}
         >
           <TabPane tab="1.The Pitch" key="1">
@@ -58,9 +61,9 @@ const SellingSub = () => {
           <TabPane tab="4. Promote" key="4">
             <Promote setActiveKey={setActiveKey} />
           </TabPane>
-          <TabPane tab="5. Verify Ownership" key="5">
+          {editMode ? null : <TabPane tab="5. Verify Ownership" key="5">
             <VerifyOwnership />
-          </TabPane>
+          </TabPane>}
         </Tabs>,
       </PageWrapper>
     </>
