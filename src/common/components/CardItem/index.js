@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Icon, Avatar } from 'antd';
+import { Card, Icon, Avatar, Row } from 'antd';
 
 //components
 import HorizontalList from './HorizontalList';
@@ -20,7 +20,7 @@ const CardsDesc = ({...props}) => {
     <>
       <div><span style={{fontWeight:700}}>{`Current Top Bid: $${startingPrice}`}</span></div>
       <div><span style={{fontWeight:600}}> {`Buy Now Price: $${buyNowPrice}`}</span></div>
-      <div><Icon type="clock-circle" />{`Time Left: ${durationDate} Days`}</div>
+      <Row type="flex" style={{alignItems: 'center', marginLeft:3}}><Icon type="clock-circle" />{`Time Left: ${durationDate} Days`}</Row>
     </>
   )
 }
