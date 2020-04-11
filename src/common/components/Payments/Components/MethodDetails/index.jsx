@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Avatar, Input, Row, Col, Button, Radio, Checkbox } from 'antd';
+import { Avatar, Input, Row, Col, Button, Radio, Checkbox, DatePicker } from 'antd';
+import moment from 'moment';
 
 //styles
 import classes from '../../styles.module.scss';
@@ -16,27 +17,80 @@ import bankCheck from 'assets/payments/bankCheck.png';
 import debitCards from 'assets/payments/debitCards.png';
 import paypal from 'assets/payments/paypal.png';
 
+
+//** DEBIT AND CREDIT CARD **//
+
 const DebitCredit = ({nextStep}) => {
+  const dispatch = useDispatch();
   const isDone = useSelector(({ payment }) => payment.isDone);
+
   const cardNum = useFormInput();
   const cardName = useFormInput();
-  const expiryDate = useFormInput();
+  const expireMonth = useFormInput();
+  const expireYear = useFormInput();
   const cvv = useFormInput();
   const zipcode = useFormInput();
-  const dispatch = useDispatch();
+
+  const numbers = /^[0-9]+$/;
+
+  const [hasCardNumErr, setCardNumVerification] = useState(false);
+  const [hasCardExpDateErr, setCardExpDateVerification] = useState(false); 
+  const [loading, setLoading] = useState(false);
+
 
   const onClickVerifyCard = () => {
-    //verify then charge
-    const date = expiryDate.value && expiryDate.value.split('/');
     const data = {
       cardNumber: cardNum.value,
       cvc: cvv.value,
-      expMonth: date[0] ? parseInt(date[0]) : 0,
-      expYear: date[1] ? parseInt(date[1]) : 0,
+      expMonth: expireMonth.value,
+      expYear: expireYear.value,
       name: cardName.value,
     }
     console.log('verifyData', data);
-    dispatch(payment.verifyCard(data));
+
+    const cardNumVerified = cardNum.value && (cardNum.value.match(numbers) !== null) ? true : false;
+    const cardNumberLength = cardNum.value ? cardNum.value.length : 0;
+
+    const expMonthVerified = expireMonth.value && (expireMonth.value.match(numbers) !== null) ? true : false;
+    const expMonthLength = expireMonth.value ? expireMonth.value.length : 0;
+
+    const expYearVerified = expireYear.value && (expireYear.value.match(numbers) !== null) ? true : false;
+    const expYearLength = expireYear.value ? expireYear.value.length : 0;
+
+    const ccvVerified = cvv.value && (cvv.value.match(numbers) !== null) ? true : false;
+
+
+
+    if (!cardNumVerified || cardNumberLength !== 16) {
+      setCardNumVerification(true)
+    } else {
+      setCardNumVerification(false)
+    }
+
+    if ((!expMonthVerified || expMonthLength !== 2) ||
+      (!expYearVerified || expYearLength !== 4) ||
+      (!ccvVerified)) {
+      setCardExpDateVerification(true)
+    } else {
+      setCardExpDateVerification(false)
+    }
+
+    //state usage is slow so Ive decided to use condition manualy
+    if (!((!cardNumVerified || cardNumberLength !== 16) ||
+      (!expMonthVerified || expMonthLength !== 2) ||
+      (!expYearVerified || expYearLength !== 4) ||
+      (!ccvVerified))) {
+      setLoading(true);
+      console.log('success');
+      dispatch(payment.verifyCard(data));
+
+      setTimeout(() => {
+        setLoading(false);
+        setCardNumVerification(false)
+        setCardExpDateVerification(false)
+      }, 1000);
+    }
+
   }
 
   if(isDone){
@@ -49,27 +103,37 @@ const DebitCredit = ({nextStep}) => {
       <Row className={classes.inputRow} gutter={[32, 16]}>
         <p><strong>Enter Card Details</strong></p>
         <Col span={24}>
-          <Input onChange={cardNum.handleInputChange} placeholder='Çard Number' />
+          {hasCardNumErr ? <span class="text-warning">Please Input Numbers only (max of 16 digits)</span> : ''}
+          <Input onChange={cardNum.handleInputChange} placeholder='Çard Number' maxLength={16}/>
         </Col>
         <Col span={24}>
           <Input onChange={cardName.handleInputChange} placeholder='Name on card' />
+          {hasCardExpDateErr ? <span class="text-warning">Please input correct date and CVV (number)</span> : ''}
         </Col>
-        <Col span={16}>
-          <Input onChange={expiryDate.handleInputChange} placeholder='Expiration Date(MM/YYYY)' />
+        <Col span={6} style={{paddingRight:0, paddingTop:0}}>
+          <Input onChange={expireMonth.handleInputChange} placeholder='MM' maxLength={2} />
         </Col>
-        <Col span={8}>
-          <Input onChange={cvv.handleInputChange} type='password' placeholder='CVV' />
+        <Col span={1} style={{paddingLeft:0, paddingRight:0, paddingTop:0}}>
+          <h5> /</h5>
+        </Col>
+          <Col span={8} style={{paddingLeft:0, paddingRight:60, paddingTop:0}}>
+          <Input onChange={expireYear.handleInputChange} placeholder='YYYY' maxLength={4} />
+        </Col>
+        <Col span={8} style={{paddingRight:0, paddingTop:0}}>
+          <Input onChange={cvv.handleInputChange} placeholder='CVV' maxLength={3} />
         </Col>
         <Col span={24}>
           <Input onChange={zipcode.handleInputChange} placeholder='Zip Code' />
         </Col>
-        <Button type='primary' onClick={onClickVerifyCard} size='large'>Verify Card</Button>
+        <Button type='primary' onClick={onClickVerifyCard} loading={loading} size='large'>Verify Card</Button>
       </Row>
     </>
   )
 }
 
 
+
+//** BANK ACCOUNT **//
 
 const BankAccount = ({nextStep}) => {
   const dispatch = useDispatch();
@@ -81,6 +145,14 @@ const BankAccount = ({nextStep}) => {
   const acctHolderName = useFormInput();
   const acctType = useFormInput();
 
+  const numbers = /^[0-9]+$/;
+
+  const [hasRoutingNumErr, setRoutingNumVerification] = useState(false);
+  const [hasAcctNumErr, setAcctNumVerification] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+
+ 
 
 
   const onClickVerifyBankAccount = () => {
@@ -91,13 +163,46 @@ const BankAccount = ({nextStep}) => {
       currency: "individual",
       name: acctHolderName.value, //already string
     }
-    dispatch(payment.addAccount(data));
+
+    const acctNumVerified = acctNum.value && (acctNum.value.match(numbers) !== null) ? true : false;
+    const acctNumLength = acctNum.value ? acctNum.value.length : 0;
+
+    const routingNumVerified = routingNum.value && (routingNum.value.match(numbers) !== null) ? true : false;
+    const routingNumLength = routingNum.value ? routingNum.value.length : 0;
+
+
+
+
+    if (!acctNumVerified || acctNumLength < 9) {
+      setAcctNumVerification(true)
+    } else {
+      setAcctNumVerification(false)
+    }
+
+    if (!routingNumVerified || routingNumLength < 9) {
+      setRoutingNumVerification(true)
+    } else {
+      setRoutingNumVerification(false)
+    }
+    
+
+    if (!((!routingNumVerified || routingNumLength < 9) ||
+      (!acctNumVerified || acctNumLength < 9))) {
+      setLoading(true);
+      dispatch(payment.addAccount(data));
+
+      setTimeout(() => {
+        setLoading(false);
+        setRoutingNumVerification(false)
+        setAcctNumVerification(false)
+      }, 1000);
+    }
+
   }
 
   if(isDone){
     nextStep();
   }
-
 
   return (
     <>
@@ -105,10 +210,12 @@ const BankAccount = ({nextStep}) => {
         <Row className={classes.inputRow} gutter={[32, 16]}>
           <p><strong>Enter Account Details</strong></p>
           <Col span={24}>
-            <Input onChange={routingNum.handleInputChange} type='password' placeholder='Routing Number' />
+            {hasRoutingNumErr ? <span class="text-warning">Please input correct Routing Number (9)</span> : ''}
+            <Input onChange={routingNum.handleInputChange} placeholder='Routing Number' maxLength={9}/>
           </Col>
           <Col span={24}>
-            <Input onChange={acctNum.handleInputChange} type='password' placeholder='Account Number' />
+            {hasAcctNumErr ? <span class="text-warning">Please input correct Account Number (10-12 digits)</span> : ''}
+            <Input onChange={acctNum.handleInputChange} placeholder='Account Number' maxLength={12}/>
           </Col>
           <Col span={24}>
             <Input onChange={acctHolderName.handleInputChange} placeholder='Account Holder Name' />
@@ -117,11 +224,13 @@ const BankAccount = ({nextStep}) => {
             <Input onChange={acctType.handleInputChange} placeholder='Account Type' />
           </Col>
         </Row>
-      <Button type='primary' onClick={onClickVerifyBankAccount} size='large'>Verify Account</Button>
+      <Button type='primary' onClick={onClickVerifyBankAccount} size='large' loading={loading} >Verify Account</Button>
     </>
   )
 }
 
+
+//** PAYPAL ACCOUNT **//
 
 const Paypal = ({nextStep}) => {
   const isDone = useSelector(({ payment }) => payment.isDone);

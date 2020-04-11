@@ -53,7 +53,7 @@ const ChooseMethod = ({selectedOpt, onClickOpt, nextStep}) => {
         ))}
       </Row>
       <Row className={classes.btnContainer}>
-        <Button onClick={nextStep} size='large' className={classes.btnStyle}>Proceed</Button>
+        <Button onClick={nextStep} size='large' disabled={!selectedOpt} className={classes.btnStyle}>Proceed</Button>
       </Row>
       <Row className={classes.contactRow}>
         <span className={classes.fontDecor}>Problem with payment? contact us on</span>

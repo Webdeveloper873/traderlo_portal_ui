@@ -21,7 +21,7 @@ const HorizontalList = ({...props}) => {
       </Col>
       <Col span={7} className={`${classes.colStyle}`}>
         Buy Now Price: <span className={classes.boldLabel}>{`$${buyNowPrice}`}</span>
-        <div><Icon type="clock-circle" />{`${durationDate} Days left`}</div>
+        <Row type="flex" style={{alignItems: 'center', marginLeft:3}}><Icon type="clock-circle" style={{marginRight:5}}/>{`${durationDate} Days left`}</Row>
       </Col>
       <Col span={5} className={`${classes.rightCol} ${classes.colStyle}`}>
         Category

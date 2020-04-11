@@ -49,7 +49,7 @@ const TemplatesList = () => {
           <ListGroup.Item>
             <div className={classes.viewAllDecor}>
               <span className={classes.fontDecor}>
-                <a href='/'>View All <Icon type="arrow-right" style={{ fontSize:14}}/></a> 
+                <a href='/'> <Row type="flex" style={{alignItems: 'center', marginLeft:80}}> View All <Icon type="arrow-right" style={{ fontSize:14, marginLeft:10}}/> </Row></a> 
               </span>
             </div>
           </ListGroup.Item>
@@ -99,7 +99,7 @@ const TemplatesList = () => {
           <ListGroup.Item>
             <div className={classes.viewAllDecor}>
               <span className={classes.fontDecor}>
-                <a href='/'>View All <Icon type="arrow-right" style={{ fontSize:14}}/></a> 
+              <a href='/'> <Row type="flex" style={{alignItems: 'center', marginLeft:80}}> View All <Icon type="arrow-right" style={{ fontSize:14, marginLeft:10}}/> </Row></a>  
               </span>
             </div>
           </ListGroup.Item>
@@ -150,7 +150,7 @@ const TemplatesList = () => {
           <ListGroup.Item>
             <div className={classes.viewAllDecor}>
               <span className={classes.fontDecor}>
-                <a href='/'>View All <Icon type="arrow-right" style={{ fontSize:14}}/></a> 
+              <a href='/'> <Row type="flex" style={{alignItems: 'center', marginLeft:80}}> View All <Icon type="arrow-right" style={{ fontSize:14, marginLeft:10}}/> </Row></a> 
               </span>
             </div>
           </ListGroup.Item>

@@ -132,7 +132,7 @@ const RightPane = (domainDetails) => {
       <Card className={classes.rightPane}>
         <h4 className={classes.boldLabel}>Current Bid <span>Request for Reserve?</span></h4>
         <h4 className={`${classes.boldLabel} ${classes.currBid}`}>{`$${domainDetails.startingPrice}`}</h4>
-        <p><b>5</b>{` Bids`}<span><Icon type="clock-circle" />{` ${domainDetails.durationDate} Days Left`}</span></p>
+        <p><b>5</b>{` Bids`}<Row type="flex" style={{alignItems: 'center', marginLeft:3}}> <Icon type="clock-circle" style={{marginRight:10}}/>{`${domainDetails.durationDate} Days Left`}</Row></p>
         <Input size='large' onChange={bid.handleInputChange} addonAfter={<span onClick={onBidNow} className={classes.bidNowStyle}>Bid Now</span>} placeholder='Enter Amount' />
         <Row className={classes.rowStyle} gutter={24}>
           <Col {...twoCol}>

@@ -1,6 +1,8 @@
 import React from 'react';
 import {Jumbotron, Col, Nav, InputGroup, Form, Button, Row} from 'react-bootstrap';
 import { Icon } from 'antd';
+import { SendOutlined, MailOutlined, PhoneOutlined, FacebookFilled, TwitterSquareFilled, LinkedinFilled, InstagramOutlined } from '@ant-design/icons';
+
 //style
 import classes from './styles.module.scss';
 
@@ -12,7 +14,19 @@ const RightCol = () => {
     <Col xs={12} md={6}>
       <img className={classes.logo} src={logo} alt="Free Domain Auctions" />
       <div className={classes.textDisp}>Consectetur adipisicing elit, sed do eiusmod tempor incididunt utbor etian dolm magna aliqua enim ad minim veniam quis nostrud exercita ullamco laboris nisie aliquip commodo okialama sikune pisuye.</div>
-      <div className={classes.fbLogo}></div>
+      <br></br>
+      <Row type="flex" style={{alignItems: 'center', marginLeft:3}}><SendOutlined rotate={-30} size={16}/><span className={classes.imageInfo}>123 New Design Street, Melbourn Australia, 54215</span></Row>
+      <Row type="flex" style={{alignItems: 'center', marginLeft:3}}><MailOutlined size={16}/><span className={classes.imageInfo}>info@domainUrl.com</span></Row>
+      <Row type="flex" style={{alignItems: 'center', marginLeft:3}}><PhoneOutlined  size={16}/><span className={classes.imageInfo}>(0800) 1234 567891</span></Row>
+      <br></br>
+      <Row type="flex" style={{alignItems: 'center', marginLeft:3}}>
+        <FacebookFilled size={25} style={{color:'#3b5998', marginRight:8}}/>
+        <TwitterSquareFilled  size={25} style={{color:'#00acee', marginRight:8}}/> 
+        <LinkedinFilled size={25} style={{color:'#0e76a8', marginRight:8}}/>
+        <InstagramOutlined size={25} style={{color:'#E1306C', marginRight:8}}/>
+      </Row>
+      <br></br>
+      <br></br>
     </Col>
   );
 }
