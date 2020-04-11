@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Col, Card, Input, Icon, Row, Avatar, Badge } from 'antd';
 import moment from 'moment';
@@ -25,19 +26,21 @@ const SearchBid = () => {
 }
 
 const ChattedUserInfo = ({ details }) => {
-  const { firstName, lastName, latestDate} = details || {};
+  const { firstName, lastName, latestDate, id} = details || {};
   return (
-    <Card style={{padding:12}}>
-     <Col span={5}>
-       <Badge dot>
-         <Avatar size="large" src={UserImgTemp}/>
-       </Badge>
-     </Col>
-     <Col span={12}>
-        <Row><span>{`${firstName} ${lastName}`}</span></Row>
-        <Row><span>{moment(latestDate).format('LL')}</span></Row>
-     </Col>
-    </Card>
+    <Link to={`/user/chat/${id}`}>
+      <Card style={{padding:12}}>
+      <Col span={5}>
+        <Badge dot>
+          <Avatar size="large" src={UserImgTemp}/>
+        </Badge>
+      </Col>
+      <Col span={12}>
+          <Row><span>{`${firstName} ${lastName}`}</span></Row>
+          <Row><span>{moment(latestDate).format('LL')}</span></Row>
+      </Col>
+      </Card>
+    </Link>
   )
 }
 
