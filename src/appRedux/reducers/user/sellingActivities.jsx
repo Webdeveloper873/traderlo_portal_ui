@@ -23,6 +23,13 @@ export default (state = initialState, action) => {
         return item.id !== id;
       });
       return { ...state, listingStatus: updatedlist };
+    case userActTypes.DELETE_SELL_LISTING_BIDS_SUCCESS:
+      const { bidPerf } = state || {};
+      //removed element with same id
+      const updatedBidPerf = bidPerf.filter(item => {
+        return item.id !== id;
+      });
+      return { ...state, bidPerf: updatedBidPerf };
     default:
       return state;
   }

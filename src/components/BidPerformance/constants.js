@@ -11,7 +11,7 @@ import classes from './styles.module.scss';
 //constants
 import { routes } from 'common/constants'
 
-export const bidPerfCol = (onEditListing) => {
+export const bidPerfCol = (onEditListing, onDeleteListing) => {
   return [
     {
       title: 'Name',
@@ -54,7 +54,13 @@ export const bidPerfCol = (onEditListing) => {
               />
             </Link>
             {`  /  `}
-            <Icon type="delete" theme='twoTone' twoToneColor='#eb2f96' className={classes.actionStyle} />
+            <Icon type="delete" theme='twoTone'
+              twoToneColor='#eb2f96'
+              className={classes.actionStyle}
+              onClick={() => {
+                onDeleteListing(id);
+              }}
+            />
           </>
         );
       }

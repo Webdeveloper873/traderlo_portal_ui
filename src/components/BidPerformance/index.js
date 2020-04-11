@@ -31,6 +31,10 @@ const BidPerformance = () => {
     dispatch(domainSelling.setListingId(id));
   }
 
+  const onDeleteListing = id => {
+    dispatch(sellingActivities.deleteSellListing({ id, isBidPerf: true }));
+  }
+
   useEffect(()=>{
     dispatch(sellingActivities.getBidsPerf());
   }, []);
@@ -45,7 +49,7 @@ const BidPerformance = () => {
         <Col xs={24} sm={24} md={18} lg={18} className={classes.customPadding}>
           <Card type="inner" title={'Bids Performance'} extra={<SearchBid />} className={classes.tableContainer}>
             <Table dataSource={bidsPerf}
-              columns={bidPerfCol(onEditListing)}
+              columns={bidPerfCol(onEditListing, onDeleteListing)}
             />
           </Card>
         </Col>

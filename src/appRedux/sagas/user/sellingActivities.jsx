@@ -56,7 +56,7 @@ function* getListingStatus() {
 }
 
 function* deleteSellListing({ payload }) {
-  const { id } = payload || {};
+  const { id, isBidPerf } = payload || {};
   console.log('deleteSellListing payload', payload)
   try {
     // let resp = yield call(() => request.delete(`${base_url}/listing/${id}`,
@@ -70,7 +70,11 @@ function* deleteSellListing({ payload }) {
     let resp = true;
     if (resp) {
       console.log('deleteSellListing resp', resp);
-      yield put(sellingActivities.deleteSellListingSuccess({ id }));
+      if(isBidPerf){
+        yield put(sellingActivities.deleteSellListingBidsSuccess({ id }));
+      }else {
+        yield put(sellingActivities.deleteSellListingSuccess({ id }));
+      }
     }
   } catch (err) {
     console.log('err: ', err);

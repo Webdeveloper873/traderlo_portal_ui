@@ -39,3 +39,8 @@ export const deleteSellListingSuccess = (payload) => ({
   type: userActTypes.DELETE_SELL_LISTING_SUCCESS,
   payload,
 });
+
+export const deleteSellListingBidsSuccess = (payload) => ({
+  type: userActTypes.DELETE_SELL_LISTING_BIDS_SUCCESS,
+  payload,
+});
