@@ -1,5 +1,5 @@
 import user from './user';
-import buyActivities from './sellingActivities';
+import buyActivities from './buyActivities';
 import sellingActivities from './sellingActivities';
 import chat from './chat';
 

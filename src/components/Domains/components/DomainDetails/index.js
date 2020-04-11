@@ -35,8 +35,9 @@ import SimilarPost from './components/SimilarPost';
 import { buyingDomain } from 'appRedux/actions/buying';
 
 
-const {TabPane} = Tabs;
-const {twoCol} = responsiveConf;
+const { TabPane } = Tabs;
+const { TextArea } = Input;
+const { twoCol } = responsiveConf;
 
 const LeftPane = (domainDetails) => {
   return(
@@ -59,7 +60,10 @@ const LeftPane = (domainDetails) => {
             veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
           </TabPane>
           <TabPane tab="Comments" key="3">
-            eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex. Exercitation mollit sit culpa nisi culpa non adipisicing alsoAmet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
+            <div className={`${classes.boldLabel} ${classes.marginTop15}`}>Comments</div>
+            <TextArea className={classes.marginTop15} rows={6} />
+            <Button className={classes.commentSubmit} size='large'>Submit</Button>
           </TabPane>
         </Tabs>
       </Card>
@@ -80,6 +84,7 @@ const RightPane = (domainDetails) => {
   const bid = useFormInput();
   const dispatch = useDispatch();
   const { user, id } = selectedDomainInfo || {};
+  const { reservePrice } = domainDetails || {};
 
   const showModal = () => {
     setShowModal(true);
@@ -130,13 +135,22 @@ const RightPane = (domainDetails) => {
   return(
     <Col xs={24} md={8}>
       <Card className={classes.rightPane}>
-        <h4 className={classes.boldLabel}>Current Bid <span>Request for Reserve?</span></h4>
+        <h4 className={classes.boldLabel}>
+          Current Bid 
+          {reservePrice ? <span>Request for Reserve?</span> : null}
+        </h4>
         <h4 className={`${classes.boldLabel} ${classes.currBid}`}>{`$${domainDetails.startingPrice}`}</h4>
         <p><b>5</b>{` Bids`}<Row type="flex" style={{alignItems: 'center', marginLeft:3}}> <Icon type="clock-circle" style={{marginRight:10}}/>{`${domainDetails.durationDate} Days Left`}</Row></p>
         <Input size='large' onChange={bid.handleInputChange} addonAfter={<span onClick={onBidNow} className={classes.bidNowStyle}>Bid Now</span>} placeholder='Enter Amount' />
         <Row className={classes.rowStyle} gutter={24}>
           <Col {...twoCol}>
-            <Button size='large' className={classes.btnStyle} onClick={showModal}>{`Buy Now $${domainDetails.buyNowPrice}`}</Button>
+            <Button size='large'
+              className={classes.btnStyle}
+              onClick={showModal}
+              disabled={domainDetails.buyNowPrice ? false : true}
+            >
+              {`Buy Now${domainDetails.buyNowPrice ? ` $${domainDetails.buyNowPrice}` : ''}`}
+            </Button>
           </Col>
           <Col {...twoCol}>
             <Button size='large' key className={classes.traderloPink} onClick={() => onClickAddToWatchlist()}>{alreadyInWatchList? 'Already in Watchlist' : 'Add to Watchlist'}</Button>

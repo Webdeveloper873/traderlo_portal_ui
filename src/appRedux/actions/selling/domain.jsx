@@ -96,3 +96,8 @@ export const getPitchCategSuccess = (payload) => ({
   type: sellDomainTypes.GET_PITCH_CATEG_SUCCESS,
   payload,
 });
+
+export const setListingId = (payload) => ({
+  type: sellDomainTypes.SET_LISTING_ID,
+  payload
+});

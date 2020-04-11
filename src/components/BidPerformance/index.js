@@ -10,6 +10,7 @@ import UserSidebar from 'common/components/UserSidebar';
 
 //actions
 import { sellingActivities } from 'appRedux/actions/user';
+import { domain as domainSelling } from 'appRedux/actions/selling';
 
 //constants
 import { bidPerfCol } from './constants';
@@ -26,6 +27,14 @@ const BidPerformance = () => {
   const bidsPerf = useSelector(({ sellingActivities }) => sellingActivities.bidsPerf);
   const bannerPath = ['Dashboard', 'Selling Activities', 'Bids Performance'];
 
+  const onEditListing = id => {
+    dispatch(domainSelling.setListingId(id));
+  }
+
+  const onDeleteListing = id => {
+    dispatch(sellingActivities.deleteSellListing({ id, isBidPerf: true }));
+  }
+
   useEffect(()=>{
     dispatch(sellingActivities.getBidsPerf());
   }, []);
@@ -39,7 +48,9 @@ const BidPerformance = () => {
         </Col>
         <Col xs={24} sm={24} md={18} lg={18} className={classes.customPadding}>
           <Card type="inner" title={'Bids Performance'} extra={<SearchBid />} className={classes.tableContainer}>
-            <Table columns={bidPerfCol} dataSource={bidsPerf}/>
+            <Table dataSource={bidsPerf}
+              columns={bidPerfCol(onEditListing, onDeleteListing)}
+            />
           </Card>
         </Col>
       </PageWrapper>

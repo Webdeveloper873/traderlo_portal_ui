@@ -8,6 +8,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   const { type, payload } = action || {};
+  const { id } = payload || {};
   switch (type) {
     case userActTypes.GET_SELLING_BIDS_SUCCESS:
       return { ...state, bidPerf: payload };
@@ -15,6 +16,20 @@ export default (state = initialState, action) => {
       return { ...state, sellOrders: payload };
     case userActTypes.GET_LISTING_STATUS_SUCCESS:
       return { ...state, listingStatus: payload };
+    case userActTypes.DELETE_SELL_LISTING_SUCCESS:
+      const { listingStatus } = state || {};
+      //removed element with same id
+      const updatedlist = listingStatus.filter(item => {
+        return item.id !== id;
+      });
+      return { ...state, listingStatus: updatedlist };
+    case userActTypes.DELETE_SELL_LISTING_BIDS_SUCCESS:
+      const { bidPerf } = state || {};
+      //removed element with same id
+      const updatedBidPerf = bidPerf.filter(item => {
+        return item.id !== id;
+      });
+      return { ...state, bidPerf: updatedBidPerf };
     default:
       return state;
   }

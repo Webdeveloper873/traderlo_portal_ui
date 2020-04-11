@@ -67,17 +67,16 @@ function* sendChat({ payload }) {
 function* deleteChat({ payload }) {
   try {
     const { id } = payload || {};
-    // let resp = yield call(() => request.post(`${base_url}/messages`,
-    //   {
-    //     headers: {
-    //       ...headers,
-    //       'content-type': 'application/json',
-    //       authorization: `Bearer ${getAccessToken()}`
-    //     },
-    //     body: JSON.stringify(payload)
-    //   }
-    // ));
-    let resp = true;
+    const resp = yield call(() => request.delete(`${base_url}/messages/user/${id}`,
+      {
+        headers: {
+          ...headers,
+          'content-type': 'application/json',
+          authorization: `Bearer ${getAccessToken()}`
+        },
+        body: JSON.stringify(payload)
+      }
+    ));
     console.log('deleteChat resp ', resp);
     if (resp) {
       yield put(chat.deleteChatSuccess(id));

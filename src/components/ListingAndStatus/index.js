@@ -10,6 +10,7 @@ import UserSidebar from 'common/components/UserSidebar';
 
 //actions
 import { sellingActivities } from 'appRedux/actions/user';
+import { domain as domainSelling } from 'appRedux/actions/selling';
 
 //constants
 import { listAndStatusCol } from './constants';
@@ -24,7 +25,15 @@ const SearchBid = () => {
 const ListingAndStatus = () => {
   const dispatch = useDispatch();
   const listingStatus = useSelector(({ sellingActivities }) => sellingActivities.listingStatus);
-  const bannerPath = ['Dashboard', 'Selling Activities', 'Listing and Status']
+  const bannerPath = ['Dashboard', 'Selling Activities', 'Listing and Status'];
+
+  const onEditListing = id => {
+    dispatch(domainSelling.setListingId(id));
+  }
+
+  const onDeleteListing = id => {
+    dispatch(sellingActivities.deleteSellListing({ id }));
+  }
 
   useEffect(()=>{
     dispatch(sellingActivities.getListingStatus());
@@ -39,7 +48,9 @@ const ListingAndStatus = () => {
         </Col>
         <Col xs={24} sm={24} md={18} lg={18} className={classes.customPadding}>
           <Card type="inner" title={'Listing And Status'} extra={<SearchBid />} className={classes.tableContainer}>
-            <Table columns={listAndStatusCol} dataSource={listingStatus}/>
+            <Table dataSource={listingStatus}
+              columns={listAndStatusCol(onEditListing, onDeleteListing)}
+            />
           </Card>
         </Col>
       </PageWrapper>

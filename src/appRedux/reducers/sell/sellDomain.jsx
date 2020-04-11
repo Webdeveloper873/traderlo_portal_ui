@@ -38,6 +38,8 @@ export default (state = initialState, action) => {
       return { ...state, meta: payload};
     case sellDomainTypes.GET_PITCH_CATEG_SUCCESS:
       return { ...state, categories: payload};
+    case sellDomainTypes.SET_LISTING_ID:
+      return { ...state, listingId: payload};
     case sellDomainTypes.INITIALIZE_SELL:
       return initialState;
     default:
