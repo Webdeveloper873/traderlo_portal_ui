@@ -4,6 +4,7 @@ const initialState = {
   isLoggedIn: false,
   loginSuccess: false,
   loginFailed: false,
+  loginViaGoogleFailed: false,
   token: {},
   profile: {},
   savedBanks: [],
@@ -40,6 +41,8 @@ export default (state = initialState, action) => {
       };
     case userActTypes.LOGIN_FAILED:
       return { ...state, loginFailed: true };
+    case userActTypes.LOGIN_VIA_GOOGLE_FAILED:
+      return { ...state, loginViaGoogleFailed: true };
     case userActTypes.FETCH_PROFILE_SUCCESS:
       return { ...state, profile, loginFailed: false };
     case userActTypes.UPDATE_PROFILE_SUCCESS:
@@ -63,7 +66,12 @@ export default (state = initialState, action) => {
     case userActTypes.CHANGE_SIDEBAR_ACTIVE_KEY:
       return { ...state, activeSidebarKey: payload };
     case userActTypes.CLEAR_USER_NOTIF_STATUS:
-      return {...state, updateUserSuccess: false, changePasswordSuccess: false, loginSuccess: false}
+      return {
+        ...state,
+        updateUserSuccess: false,
+        changePasswordSuccess: false,
+        loginSuccess: false,
+        loginViaGoogleFailed: false}
     default:
       return state;
   }

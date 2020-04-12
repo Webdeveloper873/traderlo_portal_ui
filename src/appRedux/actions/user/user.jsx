@@ -24,6 +24,10 @@ export const failedLogin = () => ({
   type: userActTypes.LOGIN_FAILED
 });
 
+export const failedGoogleLogin = () => ({
+  type: userActTypes.LOGIN_VIA_GOOGLE_FAILED
+});
+
 export const getUserProfile = (id) => ({
   type: userActTypes.FETCH_PROFILE,
 })
