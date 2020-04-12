@@ -59,15 +59,14 @@ function* deleteSellListing({ payload }) {
   const { id, isBidPerf } = payload || {};
   console.log('deleteSellListing payload', payload)
   try {
-    // let resp = yield call(() => request.delete(`${base_url}/listing/${id}`,
-    //   {
-    //     headers: {
-    //       ...headers,
-    //       authorization: `Bearer ${getAccessToken()}`
-    //     }
-    //   }
-    // ));
-    let resp = true;
+    let resp = yield call(() => request.delete(`${base_url}/listing/${id}`,
+      {
+        headers: {
+          ...headers,
+          authorization: `Bearer ${getAccessToken()}`
+        }
+      }
+    ));
     if (resp) {
       console.log('deleteSellListing resp', resp);
       if(isBidPerf){
