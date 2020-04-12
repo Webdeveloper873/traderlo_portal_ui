@@ -27,6 +27,7 @@ const Home = () => {
   const featBlogs = useSelector(({ blogs }) => blogs.featBlogs);
   const dispatch = useDispatch();
   const register = useSelector(({ user }) => user.register);
+  const loginViaGoogleFailed =  useSelector(({ user }) => user.loginViaGoogleFailed);
 
   useEffect(() => {
     if(register) {
@@ -47,6 +48,15 @@ const Home = () => {
 
   useEffect(()=>{
     //add fetching on initialization
+    if(loginViaGoogleFailed){
+      notification.error({
+        className: classes.successNotif,
+        message: 'Signin/Signup via Google failed!',
+        description: 'Please try again.',
+      });
+      dispatch(user.resetUserState());
+      dispatch(user.clearUserNotifStatus());
+    }
     dispatch(getFeaturedBlogs());
   }, []);
 

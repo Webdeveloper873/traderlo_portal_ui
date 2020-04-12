@@ -21,9 +21,7 @@ const OAuth2RedirectHandler  = () => {
 
         const token = getUrlParameter('token');
         const error = getUrlParameter('error');
-        console.log(error,'error')
 
-        console.log("Token" + token)
         if(token) {
             //localStorage.setItem('access_token', token);
             console.log(token,'to user action')
@@ -33,8 +31,9 @@ const OAuth2RedirectHandler  = () => {
                 //state: { from: this.props.location }
             }}/>;
         } else {
+            dispatch(user.failedGoogleLogin());
             return <Redirect to={{
-                pathname: "/public_profile",
+                pathname: "/", // <- redirect to homepage
                 // state: {
                 //     from: this.props.location,
                 //     error: error
