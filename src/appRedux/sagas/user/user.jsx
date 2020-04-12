@@ -121,7 +121,12 @@ function* logout({payload}) {
 
 function* getSavedAccounts() {
   try {
-    const resp = yield call(() => request.get(`${base_url}/stripe/getSavedAccounts`, { headers }));
+    const resp = yield call(() => request.get(`${base_url}/stripe/getSavedAccounts`, {
+      headers: {
+        ...headers,
+        authorization: `Bearer ${getAccessToken()}`
+      }
+    }));
     if (resp) {
       yield put(user.getSavedBanksSuccess(resp));
     }
@@ -132,7 +137,12 @@ function* getSavedAccounts() {
 
 function* getSavedCards() {
   try {
-    const resp = yield call(() => request.get(`${base_url}/stripe/getSavedCards`, { headers }));
+    const resp = yield call(() => request.get(`${base_url}/stripe/getSavedCards`, {
+      headers: {
+        ...headers,
+        authorization: `Bearer ${getAccessToken()}`
+      }
+    }));
     if (resp) {
       yield put(user.getSavedCardSuccess(resp));
     }
