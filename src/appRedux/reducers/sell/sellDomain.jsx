@@ -40,6 +40,13 @@ export default (state = initialState, action) => {
       return { ...state, categories: payload};
     case sellDomainTypes.SET_LISTING_ID:
       return { ...state, listingId: payload};
+    case sellDomainTypes.RESET_SELL_DOMAIN:
+      return { ...state,
+        pitch: false,
+        sale: false,
+        traffic: false,
+        promote: false,
+      };
     case sellDomainTypes.INITIALIZE_SELL:
       return initialState;
     default:

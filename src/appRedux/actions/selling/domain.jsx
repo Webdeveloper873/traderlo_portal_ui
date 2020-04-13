@@ -101,3 +101,7 @@ export const setListingId = (payload) => ({
   type: sellDomainTypes.SET_LISTING_ID,
   payload
 });
+
+export const resetSellDomain = () => ({
+  type: sellDomainTypes.RESET_SELL_DOMAIN,
+});

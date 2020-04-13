@@ -18,7 +18,8 @@ function* verifyCard({ payload }) {
       {
         headers: {
           ...headers,
-          'content-type': 'application/json'
+          'content-type': 'application/json',
+          authorization: `Bearer ${getAccessToken()}`,
         },
         body: JSON.stringify(payload)
       }
@@ -65,7 +66,8 @@ function* addAccount({ payload }) {
       {
         headers: {
           ...headers,
-          'content-type': 'application/json'
+          'content-type': 'application/json',
+          authorization: `Bearer ${getAccessToken()}`,
         },
         body: JSON.stringify(payload)
       }
@@ -111,7 +113,8 @@ function* charge({ payload }) {
       {
         headers: {
           ...headers,
-          'content-type': 'application/json'
+          'content-type': 'application/json',
+          authorization: `Bearer ${getAccessToken()}`,
         },
         body: JSON.stringify(payload)
       }

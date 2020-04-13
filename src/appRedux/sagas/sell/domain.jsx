@@ -8,7 +8,7 @@ import { sellDomainTypes } from 'appRedux/constants/ActionTypes';
 import { base_url, headers } from 'appRedux/constants/configs';
 
 //utils
-import { request } from 'common/utils/helpers';
+import { request, getAccessToken } from 'common/utils/helpers';
 
 function* sellDomain({payload}) {
   try {
@@ -16,7 +16,8 @@ function* sellDomain({payload}) {
       {
         headers: {
           ...headers,
-          'content-type': 'application/json'
+          'content-type': 'application/json',
+          authorization: `Bearer ${getAccessToken()}`,
         },
         body: JSON.stringify(payload)
       }
@@ -35,7 +36,8 @@ function* pitchDomain({ payload }) {
       {
         headers: {
           ...headers,
-          'content-type': 'application/json'
+          'content-type': 'application/json',
+          authorization: `Bearer ${getAccessToken()}`,
         },
         body: JSON.stringify(payload)
       }
@@ -54,7 +56,8 @@ function* domainSale({ payload }) {
       {
         headers: {
           ...headers,
-          'content-type': 'application/json'
+          'content-type': 'application/json',
+          authorization: `Bearer ${getAccessToken()}`,
         },
         body: JSON.stringify(payload)
       }
@@ -73,7 +76,8 @@ function* domainTraffic({ payload }) {
       {
         headers: {
           ...headers,
-          'content-type': 'application/json'
+          'content-type': 'application/json',
+          authorization: `Bearer ${getAccessToken()}`,
         },
         body: JSON.stringify(payload)
       }
@@ -93,7 +97,8 @@ function* domainPromote({ payload }) {
       {
         headers: {
           ...headers,
-          'content-type': 'application/json'
+          'content-type': 'application/json',
+          authorization: `Bearer ${getAccessToken()}`,
         },
         body: JSON.stringify(payload)
       }
@@ -112,7 +117,8 @@ function* verifyByText({ payload }) {
       {
         headers: {
           ...headers,
-          'content-type': 'application/json'
+          'content-type': 'application/json',
+          authorization: `Bearer ${getAccessToken()}`,
         },
         body: JSON.stringify(payload)
       }
@@ -132,7 +138,8 @@ function* verifyByMetaTag({ payload }) {
       {
         headers: {
           ...headers,
-          'content-type': 'application/json'
+          'content-type': 'application/json',
+          authorization: `Bearer ${getAccessToken()}`,
         },
         body: JSON.stringify(others)
       }
@@ -151,7 +158,8 @@ function* getRandText() {
       {
         headers: {
           ...headers,
-          'content-type': 'application/json'
+          'content-type': 'application/json',
+          authorization: `Bearer ${getAccessToken()}`,
         },
       }
     ));
@@ -169,7 +177,8 @@ function* getMetaText() {
       {
         headers: {
           ...headers,
-          'content-type': 'application/json'
+          'content-type': 'application/json',
+          authorization: `Bearer ${getAccessToken()}`,
         },
       }
     ));
@@ -188,7 +197,8 @@ function* getPitchCateg() {
       {
         headers: {
           ...headers,
-          'content-type': 'application/json'
+          'content-type': 'application/json',
+          authorization: `Bearer ${getAccessToken()}`,
         },
       }
     ));

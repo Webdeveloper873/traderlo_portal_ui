@@ -87,6 +87,7 @@ export const sellDomainTypes = {
   GET_PITCH_CATEG: 'GET_PITCH_CATEG',
   GET_PITCH_CATEG_SUCCESS: 'GET_PITCH_CATEG_SUCCESS',
   SET_LISTING_ID: 'SET_LISTING_ID',
+  RESET_SELL_DOMAIN: 'RESET_SELL_DOMAIN',
 }
 
 export const buyDomainTypes = {

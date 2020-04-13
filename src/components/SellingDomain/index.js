@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Tabs  } from 'antd';
 
 //components
@@ -9,6 +10,9 @@ import Sale from './components/Sale';
 import Traffic from './components/Traffic';
 import Promote from './components/Promote';
 import VerifyOwnership from './components/VerifyOwnership';
+
+//actions
+import { domain } from 'appRedux/actions/selling';
 
 //styles
 import classes from './styles.module.scss';
@@ -26,6 +30,7 @@ const SellingSub = ({ ...props}) => {
   console.log('SellingSub: ', props);
   const urlParam = new URLSearchParams(props.location.search);
   const editMode = urlParam.get('edit');
+  const dispatch = useDispatch();
 
   const moveToNextTab = () => {
     console.log('move to next: ', activeKey)
@@ -34,6 +39,7 @@ const SellingSub = ({ ...props}) => {
 
   const onTabClick = (key) => {
     setActiveKey(parseInt(key));
+    dispatch(domain.resetSellDomain());
   }
 
   return(
