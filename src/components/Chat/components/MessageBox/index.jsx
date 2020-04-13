@@ -86,7 +86,7 @@ const MessageBox = ({ activeId }) => {
     dispatch(chatActions.getChatMsg(activeId));
   }, [activeId]);
 
-  if (!activeId || !firstName || !lastName) {
+  if (!activeId || !firstName) {
     return null;
   }
 
