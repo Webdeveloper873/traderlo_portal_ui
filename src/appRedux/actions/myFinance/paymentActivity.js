@@ -19,3 +19,13 @@ export const getBalanceHistorySuccess = payload => ({
   type: myFinance.GET_BALANCE_HISTORY_SUCCESS,
   payload
 });
+
+export const requestRedeem = payload => ({
+  type: myFinance.REQUEST_REDEEM,
+  payload
+});
+
+export const requestRedeemSuccess = payload => ({
+  type: myFinance.REQUEST_REDEEM_SUCCESS,
+  payload
+});

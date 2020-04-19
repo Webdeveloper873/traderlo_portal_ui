@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Button } from "antd";
+import { Card, Button, Tooltip } from "antd";
 import PropTypes from "prop-types";
 
 const buttonStyle = {
@@ -9,7 +9,17 @@ const buttonStyle = {
   height: "42px"
 };
 
-function Activities({ data }) {
+function Activities({ data, onClickWithdraw }) {
+  console.log('data: ', data);
+  let enableWithdraw = true;
+
+  if(data.length >= 3){
+    const activeBal = data[3] || {};
+    if(activeBal && activeBal.amount > 0) {
+      enableWithdraw = false;
+    }
+  }
+
   return (
     <Card bordered={true}>
       <div className="d-flex flex-row justify-content-around activity">
@@ -24,9 +34,11 @@ function Activities({ data }) {
           })}
       </div>
       <div className="d-flex flex-column align-items-center justify-content-middle p-2">
-        <Button className="pl-3 pr-3 pt-2 pb-2" style={buttonStyle}>
-          <b>Withdraw</b>
-        </Button>
+        <Tooltip title="No active balance">
+          <Button className="pl-3 pr-3 pt-2 pb-2" style={buttonStyle} onClick={onClickWithdraw} disabled={enableWithdraw}>
+            <b>Withdraw</b>
+          </Button>
+        </Tooltip>
       </div>
     </Card>
   );

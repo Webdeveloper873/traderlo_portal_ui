@@ -42,6 +42,30 @@ function* getBalanceHistoryCall({ id }) {
   }
 }
 
+function* requestRedeem({ payload }) {
+  try {
+    const resp = yield call(() =>
+      request.post(`${base_url}/wallet/withdraw`, {
+        headers: {
+          ...headers,
+          authorization: `Bearer ${getAccessToken()}`
+        },
+        body: JSON.stringify(payload),
+      })
+    );
+
+    if (resp) {
+      yield put(paymentActivity.requestRedeemSuccess(resp));
+    }
+  } catch (err) {
+    console.log("err: ", err);
+  }
+}
+
+export function* requestRedeemWatcher() {
+  yield takeEvery(myFinance.REQUEST_REDEEM, requestRedeem);
+}
+
 export function* getPaymentActivityWatcher() {
   yield takeEvery(myFinance.GET_PAYMENT_ACITIVITY, getPaymentActivityCall);
 }
@@ -51,5 +75,9 @@ export function* getBalanceHistoryWatcher() {
 }
 
 export default function* rootSaga() {
-  yield all([fork(getPaymentActivityWatcher), fork(getBalanceHistoryWatcher)]);
+  yield all([
+    fork(getPaymentActivityWatcher),
+    fork(getBalanceHistoryWatcher),
+    fork(requestRedeemWatcher),
+  ]);
 }
