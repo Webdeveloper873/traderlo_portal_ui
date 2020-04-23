@@ -54,7 +54,7 @@ const Routes = ({ }) => {
         <Login show={showLogin} handleClose={toggleShowLogin} />
         <Switch>
           <Route exact path={routes.HOME_PAGE} component={Home} />
-          <Route exact path={routes.DOMAINS_PAGE} render={() => <Domains title='Domains'/>} />
+          <Route exact path={routes.DOMAINS_PAGE} render={props => <Domains title='Domains' {...props}/>} />
           <Route exact path={routes.DOMAINS_VIEW_PAGE} render={() => <DomainDetails/>} />
           <Route exact path={routes.SELLING_PAGE} render={() => <Selling />} />
           <Route exact path={routes.SELLING_DOMAINS_PAGE} render={props => <SellingDomain {...props} />} />

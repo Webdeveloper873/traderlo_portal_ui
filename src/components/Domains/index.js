@@ -84,7 +84,7 @@ const Filters = () => {
 
   const onChangeDomAge = value => {
       setDomainAge(value);
-      setFilterIncludeChecker({...filterIncludeChecker, minAge:true, maxAge:true}); 
+      setFilterIncludeChecker({...filterIncludeChecker, minAge:true, maxAge:true});
   }
 
   const onChangeDomLength = value => {
@@ -167,7 +167,7 @@ const Filters = () => {
     const joinedFilters = filterContainer.join('').slice(0, -1)
 
     // const filter = `minLength=${domainLength[0]}&maxLength=${domainLength[1]}&minAge=${domainAge[0]}&maxAge=${domainAge[1]}&minPrice=${domainMinPrice}&maxPrice=${domainMinPrice}&isReserve=${isReserve}&isBuyNow=${isBuyNow}&minTimeRemaining=${timeRemaining[0]}&maxTimeRemaining=${timeRemaining[1]}`
- 
+
     dispatch(buyingDomain.getBuyDomain(joinedFilters));
     setFilterContainer([]); //clear filter to avoid multiple changes
 
@@ -179,7 +179,7 @@ const Filters = () => {
       });
     }, 3000);
 
-   
+
   }
 
   return(
@@ -339,12 +339,20 @@ const SearchKeyword = () => {
   );
 }
 
-const SearchRecord = ({title}) => {
+const SearchRecord = ({title, location, ...props}) => {
   const dispatch = useDispatch();
   const bannerPath = ['Home', 'Domains']
 
   useEffect(()=>{
-    dispatch(buyingDomain.getBuyDomain());
+    console.log('searchRecord props: ', props);
+    const { search } = location || {};
+    const urlParam = new URLSearchParams(search);
+    const keyword = urlParam.get('keyword');
+    if(keyword){
+      dispatch(buyingDomain.getBuyDomain([`keyword=${keyword}`]));
+    }else{
+      dispatch(buyingDomain.getBuyDomain());
+    }
   }, []);
 
   return(
