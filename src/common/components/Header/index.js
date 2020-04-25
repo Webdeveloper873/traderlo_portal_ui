@@ -91,13 +91,14 @@ const Menus = () => {
 
 
 const Header = ({onClickSignInUp}) => {
-  // const isLoggedIn = useSelector(({user}) => user.isLoggedIn);
+  const isLoggedIn = useSelector(({user}) => user.isLoggedIn);
   const accessToken = window.localStorage.getItem('access_token');
-  // useEffect(()=>{
-  //   if(isLoggedIn){
-  //     console.log('loggedIn')
-  //   }
-  // }, [isLoggedIn]);
+
+  const onClickStartSelling = () => {
+    if(!isLoggedIn){
+      onClickSignInUp();
+    }
+  }
 
   return (
     <div className={classes.wrapper}>
@@ -112,7 +113,13 @@ const Header = ({onClickSignInUp}) => {
             <Link className={classes.linkStyle} to="/script">Clone script</Link>
             <Link className={classes.linkStyle} to="/plugins">Plugins/Themes</Link>
             {accessToken ? <UserAvatar /> : <Link onClick={onClickSignInUp} className={classes.linkStyle}>Sign in/Signup</Link>}
-            <Button size='large' className={classes.buttonStyle} href={routes.SELLING_PAGE}>Start Selling</Button>
+            <Button size='large'
+              className={classes.buttonStyle}
+              href={isLoggedIn ? routes.SELLING_PAGE : null}
+              onClick={onClickStartSelling}
+            >
+              Start Selling
+            </Button>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
