@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {Col, Card, Input, Icon, Table} from 'antd';
+import {Col, Card, Select, Table} from 'antd';
 
 //components
 import Banner from 'common/components/Banner';
@@ -18,8 +18,17 @@ import { columns } from './constants';
 //styles
 import classes from './styles.module.scss';
 
+const { Option } = Select;
+
 const SearchBid = () => {
-  return(<Input addonAfter={<Icon type={'search'} />} size='large' />);
+  return(
+    <Select style={{ width: 200 }} placeholder='Select Category'>
+      <Option value="1">All</Option>
+      <Option value="2">Templates</Option>
+      <Option value="3">Clones</Option>
+      <Option value="4">Plugins</Option>
+    </Select>
+  );
 }
 
 const CustomerOrders = () => {

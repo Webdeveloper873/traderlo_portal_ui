@@ -79,11 +79,11 @@ const LeftPane = (domainDetails) => {
 const RightPane = (domainDetails) => {
   const [buyNowVisible, setShowModal] = useState(false);
   const selectedDomainInfo = useSelector(({ buyDomain }) => buyDomain.selectedDomainInfo);
-  const alreadyInWatchList = useSelector(({buyDomain}) => buyDomain.alreadyInWatchList);
   const bidFailed = useSelector(({ bidding }) => bidding.bidFailed);
   const bid = useFormInput();
   const dispatch = useDispatch();
-  const { user, id } = selectedDomainInfo || {};
+  const { user, id, isWatched } = selectedDomainInfo || {};
+  const alreadyInWatchList = isWatched === 'y' ? true : false;
   const { reservePrice } = domainDetails || {};
 
   const showModal = () => {
