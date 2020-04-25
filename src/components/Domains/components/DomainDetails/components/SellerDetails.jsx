@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { List, Avatar, Card, Icon, Button, Row, Col } from 'antd';
+import moment from 'moment';
 
 //styles
 import classes from '../styles.module.scss';
@@ -10,37 +11,40 @@ import { responsiveConf } from 'common/constants';
 
 const { twoCol } = responsiveConf;
 
-const Description = () => {
+const Description = ({ user }) => {
+  const { createdDate } = user || {};
   return(
     <>
       <span>Status:</span>
       <div className={classes.online}></div>
       <span>Online</span>
-      <div>Member since: Jun 27, 2019</div>
+      <div>{`Member since: ${moment(createdDate).format('LL')}`}</div>
     </>
   );
 }
 
-const SellerDetails = ({ onClickWatch }) => {
-
+const SellerDetails = ({ onClickWatch, domainDetails }) => {
+  const { user } = domainDetails || {};
+  const { firstName, lastName, contactNo, address } = user || {};
+  console.log('sellerdetails user: ', user);
   return(
     <>
       <List.Item key={1}>
         <List.Item.Meta
           avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-          title={<a href="https://ant.design">{'item.name.last'}</a>}
-          description={<Description />}
+          title={<a href="https://ant.design">{`${firstName} ${lastName || ''}`}</a>}
+          description={<Description user={user}/>}
         />
       </List.Item>
-      <Card className={`${classes.sellerDetailsCard} ${classes.phoneNumberCard}`}>
+      {contactNo ? <Card className={`${classes.sellerDetailsCard} ${classes.phoneNumberCard}`}>
         <Icon type="lock" className={classes.padlock}/>
-        <span className={classes.number}>(+1) 234 677 8899</span>
+        <span className={classes.number}>(+1) 234 XXX XXXX</span>
         <span className={classes.showNumber}>Click to Reveal Phone No.</span>
-      </Card>
-      <Card className={`${classes.sellerDetailsCard} ${classes.addressCard}`}>
+      </Card> : null}
+      {address ? <Card className={`${classes.sellerDetailsCard} ${classes.addressCard}`}>
         <Icon type="pushpin" className={classes.padlock} />
         <span className={classes.number}>ManChester, Uk</span>
-      </Card>
+      </Card> : null}
       <Row className={classes.rowStyle} gutter={24}>
         <Col {...twoCol}>
           <Link to={'/domains'}>

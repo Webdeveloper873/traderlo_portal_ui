@@ -136,7 +136,7 @@ const RightPane = (domainDetails) => {
     <Col xs={24} md={8}>
       <Card className={classes.rightPane}>
         <h4 className={classes.boldLabel}>
-          Current Bid 
+          Current Bid
           {reservePrice ? <span>Request for Reserve?</span> : null}
         </h4>
         <h4 className={`${classes.boldLabel} ${classes.currBid}`}>{`$${domainDetails.startingPrice}`}</h4>
@@ -173,7 +173,7 @@ const RightPane = (domainDetails) => {
           </Col>
         </Row>
         <Divider className={classes.dividerStyle} />
-        <SellerDetails onClickWatch={onClickWatch} />
+        <SellerDetails onClickWatch={onClickWatch} domainDetails={domainDetails} />
       </Card>
       <Card className={classes.marginTop15}>
         <span className={classes.cardTitle}>Similar Domains</span>
