@@ -12,6 +12,9 @@ import Banner from 'common/components/Banner';
 //actions
 import { buyingDomain } from 'appRedux/actions/buying';
 
+//utils
+import { useFormInput } from 'common/utils/hooks';
+
 //styles
 import classes from './styles.module.scss';
 
@@ -194,11 +197,11 @@ const Filters = () => {
 
         <Text strong>Domain Age</Text>
         <Divider className={classes.divider} />
-        <SliderFilter sliderVal={domainAge} onChange={onChangeDomAge} />
+        <SliderFilter sliderVal={domainAge} onChange={onChangeDomAge} amtLabel={'days'}/>
 
         <Text strong>Domain Length</Text>
         <Divider className={classes.divider} />
-        <SliderFilter sliderVal={domainLength} onChange={onChangeDomLength} amtLabel={'years'}/>
+        <SliderFilter sliderVal={domainLength} onChange={onChangeDomLength} amtLabel={'characters'}/>
       </Card>
 
       <Card className={`${classes.filters} ${classes.filterCard}`}>
@@ -244,10 +247,12 @@ const Filters = () => {
 }
 
 const SearchKeyword = () => {
-  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-  const domainList = useSelector(({ buyDomain }) => buyDomain.domainList);
   const [viewDetails, setViewDetails] = useState(false);
+  const placement = useFormInput('ANYWHERE');
+  const keyword = useFormInput('');
+  const domainList = useSelector(({ buyDomain }) => buyDomain.domainList);
+  const dispatch = useDispatch();
 
   if(viewDetails){
     return <Redirect to={routes.DOMAINS_VIEW_PAGE} />;
@@ -258,17 +263,17 @@ const SearchKeyword = () => {
     setViewDetails(true);
   }
 
-  const handleChangePlacement = value => {
-    setLoading(true);
-    const placementFliter = `placement=${value}`
-    dispatch(buyingDomain.getBuyDomain(placementFliter));
-    setTimeout(() => {
-      setLoading(false);
-      notification.success({
-        className: classes.successNotif,
-        message: 'Placement Success!',
-      });
-    }, 4000);
+  const onSearchKeyword = value => {
+    // setLoading(true);
+    const filters = `keyword=${value}&placement=${placement.value}`;
+    dispatch(buyingDomain.getBuyDomain(filters));
+    // setTimeout(() => {
+    //   setLoading(false);
+    //   notification.success({
+    //     className: classes.successNotif,
+    //     message: 'Placement Success!',
+    //   });
+    // }, 4000);
   }
 
   const handleSortBy = value => {
@@ -291,14 +296,13 @@ const SearchKeyword = () => {
       <div>
         <Input.Group compact className={classes.inputLeft}>
           <span className={classes.keywordLabel}>{`Keywords : `}</span>
-          <Select style={{width: '125px'}} placeholder='Placement' onChange={handleChangePlacement} loading={loading} disabled={loading}>
-            <Option value=" "></Option>
+          <Select style={{ width: '125px' }} placeholder='Placement' onChange={placement.handleInputChange}>
             <Option value="ANYWHERE">Anywhere</Option>
             <Option value="AT_START">At Start</Option>
             <Option value="AT_END">At End</Option>
             <Option value="EXACT">Exact</Option>
           </Select>
-          <Input.Search style={{ width: '220px ' }} enterButton />
+          <Input.Search style={{ width: '220px ' }} enterButton onSearch={onSearchKeyword} />
         </Input.Group>
       </div>
       <Divider/>
