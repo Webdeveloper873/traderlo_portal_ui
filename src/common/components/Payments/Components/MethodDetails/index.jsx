@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Avatar, Input, Row, Col, Button, Radio, Checkbox, DatePicker } from 'antd';
-import moment from 'moment';
+import { Avatar, Input, Row, Col, Button, Radio, Checkbox } from 'antd';
 
 //styles
 import classes from '../../styles.module.scss';

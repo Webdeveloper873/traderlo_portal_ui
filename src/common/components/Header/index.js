@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
@@ -20,7 +20,7 @@ import userImg from 'assets/user-img.jpg'
 const Menus = () => {
   const dispatch = useDispatch();
   const profile = useSelector(({user}) => user.profile);
-  
+
   const [logOutCardVisible, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -91,7 +91,7 @@ const Menus = () => {
 
 
 const Header = ({onClickSignInUp}) => {
-  const isLoggedIn = useSelector(({user}) => user.isLoggedIn);
+  // const isLoggedIn = useSelector(({user}) => user.isLoggedIn);
   const accessToken = window.localStorage.getItem('access_token');
   // useEffect(()=>{
   //   if(isLoggedIn){

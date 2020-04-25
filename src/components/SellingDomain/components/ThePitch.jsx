@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Card, Button, Input, Row, Select, Form } from 'antd';
@@ -8,9 +9,6 @@ import { domain } from 'appRedux/actions/selling';
 //styles
 import classes from '../styles.module.scss';
 
-//utils
-import { useFormInput } from 'common/utils/hooks';
-
 const { TextArea } = Input;
 const { Option } = Select;
 
@@ -18,8 +16,6 @@ const ThePitch = ({ setActiveKey, form }) => {
   const listingId = useSelector(({ sellDomain }) => sellDomain.listingId);
   const categories = useSelector(({ sellDomain }) => sellDomain.categories);
   const pitch = useSelector(({ sellDomain }) => sellDomain.pitch);
-  const tagline = useFormInput();
-  const description = useFormInput();
   const dispatch = useDispatch();
   const [selectedCateg, setSelectedCateg] = useState('');
   const { getFieldDecorator } = form || {};

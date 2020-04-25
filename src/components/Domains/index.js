@@ -250,7 +250,6 @@ const SearchKeyword = () => {
   const [loading, setLoading] = useState(false);
   const [viewDetails, setViewDetails] = useState(false);
   const placement = useFormInput('ANYWHERE');
-  const keyword = useFormInput('');
   const domainList = useSelector(({ buyDomain }) => buyDomain.domainList);
   const dispatch = useDispatch();
 
@@ -264,16 +263,8 @@ const SearchKeyword = () => {
   }
 
   const onSearchKeyword = value => {
-    // setLoading(true);
     const filters = `keyword=${value}&placement=${placement.value}`;
     dispatch(buyingDomain.getBuyDomain(filters));
-    // setTimeout(() => {
-    //   setLoading(false);
-    //   notification.success({
-    //     className: classes.successNotif,
-    //     message: 'Placement Success!',
-    //   });
-    // }, 4000);
   }
 
   const handleSortBy = value => {
@@ -288,7 +279,6 @@ const SearchKeyword = () => {
         message: 'Sort Success!',
       });
     }, 4000);
-
   }
 
   return(

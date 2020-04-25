@@ -23,7 +23,6 @@ const OAuth2RedirectHandler  = () => {
     };
 
         const token = getUrlParameter('token');
-        const error = getUrlParameter('error');
 
         if(token) {
             //localStorage.setItem('access_token', token);
