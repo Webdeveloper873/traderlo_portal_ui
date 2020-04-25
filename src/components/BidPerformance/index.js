@@ -19,7 +19,12 @@ import { bidPerfCol } from './constants';
 import classes from './styles.module.scss';
 
 const SearchBid = () => {
-  return(<Input addonAfter={<Icon type={'search'} />} size='large' />);
+  return (
+    <Input size='large'
+      addonAfter={<Icon type={'search'} />}
+      placeholder='Search Bid'
+    />
+  );
 }
 
 const BidPerformance = () => {
