@@ -82,7 +82,7 @@ const ContactUs = () => {
                   name="description"
                   rules={[{ required: true, message: 'Please input your Description' }]}
                 >
-                <TextArea rows={6}  value ={contactInfo.aboutMe} name="description" onChange={onChangeContactImfo}/>
+                <TextArea rows={6} name="description" onChange={onChangeContactImfo}/>
               </Form.Item>
               </Row>
               <Row className={classes.btnContainer}>
