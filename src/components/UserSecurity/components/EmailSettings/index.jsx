@@ -68,7 +68,7 @@ const EmailSettings = () => {
         </Row>
       </Panel>
       <Button type="primary" size={'large'} className={classes.saveBtn}>
-        Download
+        Save Changes
       </Button>
     </>
   );
