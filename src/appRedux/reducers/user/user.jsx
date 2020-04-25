@@ -25,7 +25,6 @@ export default (state = initialState, action) => {
       const { accessToken, refresh_token } = token || {};
       console.log()
       window.localStorage.setItem('access_token', accessToken);
-     // window.location.reload();
       return { ...state,
         isLoggedIn: true,
         loginSuccess: true,

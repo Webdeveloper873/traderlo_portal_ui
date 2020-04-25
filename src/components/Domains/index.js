@@ -188,9 +188,9 @@ const Filters = () => {
         <Text strong>Domain Price</Text>
         <Divider className={classes.divider} />
         min:
-        <Input placeholder="min price" suffix="$" name='minPrice' style={{marginBottom:5}} value={domainMinPrice}  onChange={onChangeMinPrice}/>
+        <Input type='number' placeholder="min price" suffix="$" name='minPrice' style={{marginBottom:5}} value={domainMinPrice}  onChange={onChangeMinPrice}/>
         max:
-        <Input placeholder="max price" suffix="$" name='maxPrice' style={{marginBottom:10}} value={domainMaxPrice}  onChange={onChangeMaxPrice}/>
+        <Input type='number' placeholder="max price" suffix="$" name='maxPrice' style={{marginBottom:10}} value={domainMaxPrice}  onChange={onChangeMaxPrice}/>
 
         <Text strong>Domain Age</Text>
         <Divider className={classes.divider} />
