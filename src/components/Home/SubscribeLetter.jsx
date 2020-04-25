@@ -53,7 +53,7 @@ const SubscribeLetter = () => {
     if(subscribeResult){
       message.success('Subscribe to Newsletter success');
     }else if(subscribeResult === false){
-      message.error('Subscribe to Newsletter failed')
+      message.error('Subscribe to Newsletter failed. Email id already exists.')
     }
     emailInput.reset();
     dispatch(resetSubscribeResult());
