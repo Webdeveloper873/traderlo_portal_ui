@@ -12,10 +12,6 @@ import { routes } from 'common/constants';
 const GlobalSearch = () => {
   const keyword = useFormInput();
 
-  const onClickSearch = () => {
-    console.log('keyword: ', keyword.value);
-  }
-
   return(
     <InputGroup className="mb-3" style={{marginTop:15, paddingTop:15, paddingBottom:15}}>
       <DropdownButton
@@ -37,10 +33,10 @@ const GlobalSearch = () => {
       <Form.Control aria-describedby='basic-addon1' style={{height:'auto'}} placeholder="Type Brand,Name of your Choice" onChange={keyword.handleInputChange}/>
       <InputGroup.Append>
         <Link to={`${routes.DOMAINS_PAGE}${keyword.value? `?keyword=${keyword.value}`: ''}`}>
-          <Button 
+          <Button
             style={{backgroundColor:'#00bcd4',borderColor: '#00bcd4', textAlign:'center'}}
           >
-              <Icon type="search" style={{ fontSize:25, padding:10}} />
+            <Icon type="search" style={{ fontSize:25, padding:10}} />
           </Button>
         </Link>
       </InputGroup.Append>

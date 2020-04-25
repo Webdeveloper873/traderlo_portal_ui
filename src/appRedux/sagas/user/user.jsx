@@ -100,7 +100,7 @@ function* registerUser({payload}) {
   }
 }
 
-function* logout({payload}) {
+function* logout({ payload }) {
   const {profile} = payload || {};
   try{
     const resp = yield call(() => request.get(`${base_url}/user/logout`, {  // as updated in swagger

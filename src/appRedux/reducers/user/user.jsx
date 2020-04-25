@@ -46,16 +46,16 @@ export default (state = initialState, action) => {
     case userActTypes.FETCH_PROFILE_SUCCESS:
       return { ...state, profile, loginFailed: false };
     case userActTypes.UPDATE_PROFILE_SUCCESS:
-      return { ...state, profile, updateUserSuccess: true }; 
+      return { ...state, profile, updateUserSuccess: true };
     case userActTypes.CHANGE_PASSWORD_SUCCESS:
-      return { ...state, changePasswordSuccess: true }; 
+      return { ...state, changePasswordSuccess: true };
     case userActTypes.REGISTER_USER_SUCCESS:
       return {...initialState, register: true};
     case userActTypes.REGISTER_USER_FAILED:
       return {...initialState, register: false};
     case userActTypes.LOGOUT_SUCCESS:
       window.localStorage.clear();
-      window.location.reload();
+      window.location.pathname = '/';
       return initialState;
     case userActTypes.GET_SAVED_BANKS_SUCCESS:
       return { ...state, savedBanks: payload };

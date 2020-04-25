@@ -48,7 +48,7 @@ const Menus = () => {
       <Link className={classes.linkStyle} to={routes.DASHBOARD_PAGE}>Dashboard</Link>
     </Menu.Item>
     <Menu.Item>
-      <Link  onClick={showLogoutModal} className={classes.linkStyle} to={routes.DASHBOARD_PAGE}>Logout</Link>
+      <Link  onClick={showLogoutModal} className={classes.linkStyle} >Logout</Link>
     </Menu.Item>
 
     <Modal
