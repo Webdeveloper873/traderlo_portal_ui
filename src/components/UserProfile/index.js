@@ -26,11 +26,11 @@ const { TextArea } = Input;
 const UserProfile = () => {
   const dispatch = useDispatch();
   const bannerPath = ['Dashboard', 'My Profile and Account', 'User Profile'];
-  
+
   useEffect(()=>{
     dispatch(user.getUserProfile());
   },[]);
-  
+
   const userFetchedInfo = useSelector(({user}) => user.profile);
   const updateUserSuccess = useSelector(({user}) => user.updateUserSuccess);
   //console.log(userProfile,'userProfile')
@@ -47,7 +47,7 @@ const UserProfile = () => {
     }
   },[updateUserSuccess]);
 
-  const [userProfile, setUserProfile] = useState(userFetchedInfo); 
+  const [userProfile, setUserProfile] = useState(userFetchedInfo);
 
 
   const onChangeUserProfile = (e) => {
@@ -82,7 +82,7 @@ const UserProfile = () => {
                 //initialValues={{ remember: true }}
                 //onFinish={onFinish}
                 //onFinishFailed={onFinishFailed}
-              >         
+              >
               <Row >
                 <Col span={11} style={{margin:15, marginBottom:0}} >
                   <Form.Item
@@ -161,10 +161,16 @@ const UserProfile = () => {
                 </Col>
               </Row>
               <Row style={{margin:15, marginBottom:0}}>
-                <Radio.Group onChange={onChangeUserProfile} value={userProfile.gender} name="gender">
-                  <Radio value={'m'}>Male</Radio>
-                  <Radio value={'f'}>Female</Radio>
-                </Radio.Group>
+                <Form.Item
+                  label="Gender"
+                  name="gender"
+                  rules={[{ required: true, message: 'Please input your gender' }]}
+                >
+                  <Radio.Group onChange={onChangeUserProfile} value={userProfile.gender} name="gender">
+                    <Radio value={'m'}>Male</Radio>
+                    <Radio value={'f'}>Female</Radio>
+                  </Radio.Group>
+                </Form.Item>
               </Row>
               <Row style={{margin:15, marginBottom:0}}>
               <Form.Item
