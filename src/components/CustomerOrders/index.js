@@ -34,7 +34,7 @@ const SearchBid = () => {
 const CustomerOrders = () => {
   const sellOrders = useSelector(({ sellingActivities }) => sellingActivities.sellOrders);
   const dispatch = useDispatch();
-  const bannerPath = ['Dashboard', 'Selling Activities', 'Bids Performance'];
+  const bannerPath = ['Dashboard', 'Selling Activities', 'Customer Orders'];
 
   useEffect(()=>{
     dispatch(sellingActivities.getCstmrOrder());
@@ -42,13 +42,13 @@ const CustomerOrders = () => {
 
   return(
     <>
-     <Banner text={'Customers Orders'} path={bannerPath} />
+     <Banner text={'Customer Orders'} path={bannerPath} />
       <PageWrapper addTopMargin>
         <Col xs={24} sm={24} md={6} lg={6} >
           <UserSidebar />
         </Col>
         <Col xs={24} sm={24} md={18} lg={18} className={classes.customPadding}>
-          <Card type="inner" title={'Customers Orders'} extra={<SearchBid />} className={classes.tableContainer}>
+          <Card type="inner" title={'Customer Orders'} extra={<SearchBid />} className={classes.tableContainer}>
             <Table
               columns={columns}
               dataSource={sellOrders}
