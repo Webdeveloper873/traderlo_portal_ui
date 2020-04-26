@@ -39,10 +39,12 @@ const PaymentOptions = ({imgSrc, label, ...props}) => {
   )
 }
 
-const ChooseMethod = ({selectedOpt, onClickOpt, nextStep}) => {
+const ChooseMethod = ({ selectedOpt, onClickOpt, nextStep, paymentAvail}) => {
   return(
     <>
-      <span className={classes.subHeader}>Select the Payment Method to make the payment</span>
+      <span className={classes.subHeader}>
+        {paymentAvail ? 'Select the Payment Method to make the payment' : 'Please link and verify your preferred payment method'}
+      </span>
       <Row className={classes.imageRow}>
         {optDetails.map(opt => (
           <PaymentOptions label={opt.label}

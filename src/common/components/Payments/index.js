@@ -16,10 +16,15 @@ import PaymentResult from './Components/PaymentResult';
 //styles
 import classes from './styles.module.scss';
 
-const PageRouter = ({ selectedOpt, onClickOpt, stepNo, nextStep, isAddOnly}) => {
+const PageRouter = ({ selectedOpt, onClickOpt, stepNo, nextStep, isAddOnly, paymentAvail }) => {
   switch(stepNo){
     case 0:
-      return <ChooseMethod selectedOpt={selectedOpt} nextStep={nextStep} onClickOpt={onClickOpt} />;
+      return <ChooseMethod
+        paymentAvail={paymentAvail}
+        selectedOpt={selectedOpt}
+        nextStep={nextStep}
+        onClickOpt={onClickOpt}
+      />;
     case 1:
       return <MethodDetails selectedOpt={selectedOpt} nextStep={nextStep} isAddOnly={isAddOnly}/>;
     case 2:
@@ -72,6 +77,7 @@ const Payments = ({isAddOnly}) => {
         onClickOpt={onClickOpt}
         selectedOpt={selectedOpt}
         isAddOnly={isAddOnly}
+        paymentAvail={savedCards.length > 0 || savedBanks.length > 0}
       />
     </div>
   );
