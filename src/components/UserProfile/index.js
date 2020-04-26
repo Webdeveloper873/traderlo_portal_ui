@@ -36,6 +36,11 @@ const { Label } = InputField;
 const UserProfile = ({ form }) => {
   const dispatch = useDispatch();
   const bannerPath = ['Dashboard', 'My Profile and Account', 'User Profile'];
+  const profile = useSelector(({user}) => user.profile);
+  console.log('userProfile', profile);
+  const { firstName, lastName, contactNo, email, profileImage, birthDate, createdDate, location, aboutMe, homePageUrl } = profile || {};
+
+
   const userFetchedInfo = useSelector(({user}) => user.profile);
   const updateUserSuccess = useSelector(({user}) => user.updateUserSuccess);
   const [userProfile, setUserProfile] = useState(userFetchedInfo);
@@ -44,7 +49,7 @@ const UserProfile = ({ form }) => {
       [e.target.name]: e.target.value
     })
   };
-  const { firstName, lastName } = userProfile || {};
+  // const { firstName, lastName } = userProfile || {};
 
   const onChangeBirthdate = (date) => {
     setUserProfile({...userProfile,
@@ -85,11 +90,13 @@ const UserProfile = ({ form }) => {
                 colWidth={twoCol}
                 label={'First Name'}
                 id='firstName'
+                initialValue={firstName || ''}
               />
               <InputField form={form} required={true}
                 colWidth={twoCol}
                 label={'Last Name'}
                 id='lastName'
+                initialValue={lastName || ''}
               />
             </Row>
             <Row gutter={16}>
@@ -97,16 +104,18 @@ const UserProfile = ({ form }) => {
                 colWidth={twoCol}
                 label={'Contact Number'}
                 id='contactNumber'
+                initialValue={contactNo || ''}
               />
               <InputField form={form} required={true}
                 colWidth={twoCol}
                 label={'Your Email'}
-                id='yourEmail'
+                id='email'
+                initialValue={email || ''}
               />
             </Row>
             <Label text={'Avatar image'} />
             <Row gutter={16}>
-              <Avatar size={64} src={profileImgHolder} />
+              <Avatar size={64} src={profileImage || profileImgHolder} />
               <Button type="primary" size={'large'} className={classes.uploadBtn}>
                 Choose File
               </Button>
@@ -117,16 +126,17 @@ const UserProfile = ({ form }) => {
                 colWidth={threeCol}
                 label={'Date Of Birth'}
                 id='firstName'
+                initialValue={location || ''}
               />
-              <InputField form={form} required={true}
-                colWidth={threeCol}
-                label={'Registered On'}
-                id='lastName'
-              />
+              <Col {...threeCol}>
+                <Label text={'Registered On'} />
+                <div className={classes.regOn}>March 20, 2020</div>
+              </Col>
               <InputField form={form} required={true}
                 colWidth={threeCol}
                 label={'Location'}
-                id='lastName'
+                id='location'
+                initialValue={location || ''}
               />
             </Row>
             <Label text={'Gender'} className={classes.marginTop15} />
@@ -135,10 +145,14 @@ const UserProfile = ({ form }) => {
             </Row>
             <Row gutter={16} className={classes.marginTop15}>
               <Label text={'About Me'} />
-              <TextArea rows={4} placeholder='Description'/>
+              <TextArea rows={4}
+                placeholder='Description'
+                initialValue={aboutMe || ''}
+              />
             </Row>
             <Row gutter={16} className={classes.marginTop15}>
               <Label text={'Public Profile Url:'} />
+              <div className={classes.regOn}>{homePageUrl}</div>
             </Row>
           </Panel>
           <Button type="primary" size={'large'} className={classes.saveBtn}>
