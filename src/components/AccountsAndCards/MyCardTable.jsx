@@ -10,37 +10,35 @@ import * as payment from 'appRedux/actions/payment';
 import classes from './styles.module.scss';
 
 const MyCardTable = ({savedCards}) => {
-    const dispatch = useDispatch();
-    const [deleteCardVisible, setShowModal] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const [selectedItem, setSelectedItem] = useState({});
+  const dispatch = useDispatch();
+  const [deleteCardVisible, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [selectedItem, setSelectedItem] = useState({});
 
-    const deleteCard = (e) => {
-      setSelectedItem(e);
-      showDeleteModal();
-    }
+  const deleteCard = (e) => {
+    setSelectedItem(e);
+    showDeleteModal();
+  }
 
-    const onClickDelete = () => {
-      setLoading(true);
-
-      dispatch(payment.deleteCard(selectedItem)); // ----> continue on delete API
-      setTimeout(() => {
-        setLoading(false);
-        setShowModal(false);
-      }, 1000);
-
-    }
-
-    const showDeleteModal = () => {
-      setShowModal(true);
-    }
-
-    const hideModal = () => {
+  const onClickDelete = () => {
+    setLoading(true);
+    dispatch(payment.deleteCard(selectedItem)); // ----> continue on delete API
+    setTimeout(() => {
+      setLoading(false);
       setShowModal(false);
-    }
+    }, 1000);
+  }
+
+  const showDeleteModal = () => {
+    setShowModal(true);
+  }
+
+  const hideModal = () => {
+    setShowModal(false);
+  }
 
 
-    const myCardCol = [
+  const myCardCol = [
     {
       title: 'Card Number',
       dataIndex: 'cardId',
@@ -52,14 +50,13 @@ const MyCardTable = ({savedCards}) => {
       key: 'customer',
     },
     {
-      title: 'Expiry Month',
+      title: 'Expiry Month/Year',
       dataIndex: 'expirationMonth',
       key: 'expirationMonth',
-    },
-    {
-      title: 'Expiry Year',
-      dataIndex: 'expirationYear',
-      key: 'expirationYear',
+      render: (text, record) => {
+        const { expirationYear } = record || {};
+        return `${text || ''}/${expirationYear || ''}`
+      }
     },
     {
       title: 'Action',
@@ -68,7 +65,6 @@ const MyCardTable = ({savedCards}) => {
       render: (cardData) => <Icon type="delete" style={{fontSize:18, color:'red'}} onClick={() => deleteCard(cardData)}  /> ,
     },
   ]
-
 
     return(
       <>
