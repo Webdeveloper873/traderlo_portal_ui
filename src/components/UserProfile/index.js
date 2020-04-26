@@ -26,36 +26,15 @@ const { TextArea } = Input;
 const UserProfile = () => {
   const dispatch = useDispatch();
   const bannerPath = ['Dashboard', 'My Profile and Account', 'User Profile'];
-
-  useEffect(()=>{
-    dispatch(user.getUserProfile());
-  },[]);
-
   const userFetchedInfo = useSelector(({user}) => user.profile);
   const updateUserSuccess = useSelector(({user}) => user.updateUserSuccess);
-  //console.log(userProfile,'userProfile')
-
-
-  useEffect(() =>{
-    if (updateUserSuccess) {
-      console.log(updateUserSuccess);
-      setTimeout(() => {
-        openNotification({status:'success', message:'user update success'});
-      }, 500);
-      dispatch(user.clearUserNotifStatus());
-      dispatch(user.getUserProfile());
-    }
-  },[updateUserSuccess]);
-
   const [userProfile, setUserProfile] = useState(userFetchedInfo);
-
-
   const onChangeUserProfile = (e) => {
     setUserProfile({...userProfile,
       [e.target.name]: e.target.value
     })
-  }
-
+  };
+  const { firstName, lastName } = userProfile || {};
 
   const onChangeBirthdate = (date) => {
     setUserProfile({...userProfile,
@@ -67,6 +46,20 @@ const UserProfile = () => {
     dispatch(user.updateUserProfile(userProfile));
   }
 
+  useEffect(()=>{
+    dispatch(user.getUserProfile());
+  },[]);
+
+  useEffect(() =>{
+    if (updateUserSuccess) {
+      console.log(updateUserSuccess);
+      setTimeout(() => {
+        openNotification({status:'success', message:'user update success'});
+      }, 500);
+      dispatch(user.clearUserNotifStatus());
+      dispatch(user.getUserProfile());
+    }
+  },[updateUserSuccess]);
 
   return(
     <>
@@ -90,7 +83,7 @@ const UserProfile = () => {
                     name="firstName"
                     rules={[{ required: true, message: 'Please input your First Name' }]}
                   >
-                    <Input name="firstName" value ={userProfile.firstName} onChange={onChangeUserProfile}/>
+                    <Input name="firstName" initialValue={firstName} onChange={onChangeUserProfile}/>
                   </Form.Item>
                 </Col>
                 <Col span={11} style={{margin:15, marginBottom:0}}>
@@ -99,7 +92,7 @@ const UserProfile = () => {
                       name="lastName"
                       rules={[{ required: true, message: 'Please input your Last Name' }]}
                     >
-                    <Input name="lastName" value ={userProfile.lastName} onChange={onChangeUserProfile}/>
+                    <Input name="lastName" initialValue={lastName} onChange={onChangeUserProfile}/>
                   </Form.Item>
                 </Col>
               </Row>

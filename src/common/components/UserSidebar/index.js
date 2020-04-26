@@ -42,13 +42,13 @@ const CardsDesc = ({profile}) => {
 const UsersCard = () => {
   const profile = useSelector(({user}) => user.profile);
   console.log(profile,'profile')
-  const {userName} = profile || {};
-  
+  const { userName, profileImage } = profile || {};
+
   return(
     <Card className={classes.usersCard}>
       <Row>
         <Col span={8}>
-          <Avatar size={60} src={UserImgTemp} className={classes.avatarStyle}/>
+          <Avatar size={60} src={profileImage || UserImgTemp} className={classes.avatarStyle}/>
         </Col>
         <Col span={16}>
           <Meta title={userName} description={<CardsDesc profile={profile} />} />

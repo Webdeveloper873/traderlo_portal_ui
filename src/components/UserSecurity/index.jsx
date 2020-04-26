@@ -33,7 +33,7 @@ const UserSecurity = () => {
             <TabPane tab={`Email Notification Settings`} key="2">
               <EmailSettings />
             </TabPane>
-          </Tabs>,
+          </Tabs>
         </Col>
       </PageWrapper>
     </>
