@@ -34,14 +34,26 @@ function* getBuyDomain({payload}) {
 
 function* getBuyDomainById({payload}) {
   try{
-    const {id, userId} = payload || {};
-    const resp = yield call(() => request.get(`${base_url}/listing/domains/${id}`,
-    {
-      headers: { ...headers,
-        uid: userId,
-        authorization: `Bearer ${getAccessToken()}`
+    const { id } = payload || {};
+    const token = getAccessToken();
+    let headerFields = {
+      ...headers,
+    };
+
+    if(token) {
+      headerFields = {
+        ...headerFields,
+        authorization: `Bearer ${token}`
       }
-    }));
+    }
+    console.log('headerFields', headerFields);
+
+    const resp = yield call(() => request.get(`${base_url}/listing/domains/${id}`,
+      {
+        headers: headerFields
+      }
+    ));
+
     if(resp){
       yield put(buyingDomain.storeSelectedDomain(resp));
     }
