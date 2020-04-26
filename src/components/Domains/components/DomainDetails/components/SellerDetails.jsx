@@ -1,7 +1,12 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { List, Avatar, Card, Icon, Button, Row, Col } from 'antd';
 import moment from 'moment';
+
+//actions
+import { chat } from 'appRedux/actions/user';
 
 //styles
 import classes from '../styles.module.scss';
@@ -12,27 +17,35 @@ import { responsiveConf } from 'common/constants';
 const { twoCol } = responsiveConf;
 
 const Description = ({ user }) => {
+  const isOnline = useSelector(({ chat }) => chat.isOnline);
   const { createdDate } = user || {};
+
   return(
     <>
       <span>Status:</span>
-      <div className={classes.online}></div>
-      <span>Online</span>
+      <div className={`${classes.status} ${isOnline ? classes.online : classes.offline}`}></div>
+      <span>{isOnline ? 'Online' : 'Offline'}</span>
       <div>{`Member since: ${moment(createdDate).format('LL')}`}</div>
     </>
   );
 }
 
 const SellerDetails = ({ onClickWatch, domainDetails }) => {
+  const dispatch = useDispatch();
   const { user } = domainDetails || {};
-  const { firstName, lastName, contactNo, address } = user || {};
+  const { id, firstName, lastName, contactNo, address, profileImage } = user || {};
+
+  useEffect(()=>{
+    dispatch(chat.getOnlineStatus({ id }));
+  }, []);
+
   console.log('sellerdetails user: ', user);
   return(
     <>
       <List.Item key={1}>
         <List.Item.Meta
-          avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-          title={<a href="https://ant.design">{`${firstName} ${lastName || ''}`}</a>}
+          avatar={<Avatar src={profileImage || "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" }/>}
+          title={<a href="/">{`${firstName} ${lastName || ''}`}</a>}
           description={<Description user={user}/>}
         />
       </List.Item>

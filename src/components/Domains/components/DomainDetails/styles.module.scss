@@ -108,14 +108,21 @@
   }
 }
 
-.online {
+.status {
   border-radius: 50%;
   width: 6px;
   height: 6px;
-  background: #57e50c;
   margin-left: 8px;
   margin-right: 4px;
   display: inline-block;
+
+  &.online {
+    background: #57e50c;
+  }
+
+  &.offline {
+    background: gray;
+  }
 }
 
 .sellerDetailsCard {

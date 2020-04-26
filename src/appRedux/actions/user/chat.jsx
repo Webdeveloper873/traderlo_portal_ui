@@ -41,3 +41,16 @@ export const deleteChatSuccess = (payload) => ({
   type: userActTypes.DELETE_CHAT_SUCCESS,
   payload
 });
+
+export const getOnlineStatus = (payload) => ({
+  type: userActTypes.GET_ONLINE_STATUS,
+  payload
+});
+
+export const getOnlineStatusSuccess = () => ({
+  type: userActTypes.GET_ONLINE_STATUS_SUCCESS,
+});
+
+export const getOnlineStatusFailed = () => ({
+  type: userActTypes.GET_ONLINE_STATUS_FAILED,
+});

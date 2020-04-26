@@ -63,7 +63,6 @@ function* sendChat({ payload }) {
   }
 }
 
-
 function* deleteChat({ payload }) {
   try {
     const { id } = payload || {};
@@ -85,6 +84,32 @@ function* deleteChat({ payload }) {
     // yield put(user.failedLogin());
     console.log('err: ', err);
   }
+}
+
+function* getOnlineStatus({ payload }) {
+  try {
+    const { id } = payload || {};
+    const resp = yield call(() => request.get(`${base_url}/user?userId=${id}`,
+      {
+        headers: {
+          ...headers,
+          'content-type': 'application/json',
+          authorization: `Bearer ${getAccessToken()}`
+        },
+      }
+    ));
+    console.log('getOnlineStatus resp ', resp);
+    if (resp) {
+      yield put(chat.getOnlineStatusSuccess(resp));
+    }
+  } catch (err) {
+    yield put(chat.getOnlineStatusFailed());
+    console.log('err: ', err);
+  }
+}
+
+export function* getOnlineStatusWatcher() {
+  yield takeEvery(userActTypes.GET_ONLINE_STATUS, getOnlineStatus);
 }
 
 export function* deleteChatWatcher() {
@@ -111,5 +136,6 @@ export default function* rootSaga() {
     fork(getChatMsgWatcher),
     fork(sendChatWatcher),
     fork(deleteChatWatcher),
+    fork(getOnlineStatusWatcher),
   ]);
 }
