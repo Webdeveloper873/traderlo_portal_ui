@@ -106,4 +106,9 @@ export const sellersCol = [
     dataIndex: 'action',
     key: 'action',
   },
-]
+];
+
+export const genderOpt = [
+  { label: 'Male', value: 'male' },
+  { label: 'Female', value: 'female' },
+];

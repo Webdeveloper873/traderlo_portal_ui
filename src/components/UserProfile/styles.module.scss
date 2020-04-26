@@ -1,13 +1,14 @@
 
 .customPadding {
   padding-left: 10px !important;
+  font-size: 1.125rem;
 
   .tableContainer {
     :global {
       .ant-card-body{
         padding: 0 !important;
       }
-  
+
       .ant-table-thead {
         tr {
           th {
@@ -18,7 +19,7 @@
     }
   }
 
- 
+
 }
 
 .formHeader {
@@ -45,4 +46,20 @@
 
 .successNotif {
   margin-top: 50px !important;
+}
+
+.saveBtn {
+  background-color: black !important;
+  border-color: black !important;
+  margin-top: 20px !important;
+  float: right !important;
+}
+
+.uploadBtn {
+  background-color: #888888 !important;
+  margin: 0 10px;
+}
+
+.marginTop15 {
+  margin-top: 15px;
 }
