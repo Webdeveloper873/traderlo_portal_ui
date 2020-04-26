@@ -34,9 +34,7 @@ const SignInForm = ({form, handleClose}) => {
   const url = window.location.href;
   const hashes = url.split("?")[0];  // if deployed https://traderlo-portal-api.herokuapp.com/ || if local  http://localhost:3000/
   const OAUTH2_REDIRECT_URI = `${hashes}oauth2/redirect`;
-  const GOOGLE_AUTH_URL = `${base_url}/user/googleLogin?redirectUri=` + OAUTH2_REDIRECT_URI;
-
-
+  const GOOGLE_AUTH_URL = `${base_url}/user/login/google?redirectUri=` + OAUTH2_REDIRECT_URI;
 
   useEffect(()=>{
     if(isLoggedIn){

@@ -64,7 +64,7 @@ function* changeUserPassword({payload}) {
   const { userPassword } = payload || {};
   try{
 
-    const resp = yield call(() => request.put(`${base_url}/user/changePassword`,
+    const resp = yield call(() => request.put(`${base_url}/user/password`,
      { headers: {
         ...headers,
         uid: userPassword.id.toString(),
