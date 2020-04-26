@@ -163,7 +163,7 @@ const CollapsibleItems = () => {
       </Panel>
       <Panel header={<DropdownSelection image={sellingActivities} title = {'Selling Activities'} redirectPath={routes.LISTING_AND_STATUS} idKey={2}/>} key="2" >
         <SubItemSelection title={'Listing And Status'} redirectPath={routes.LISTING_AND_STATUS} idKey={'listing_and_status'}/>
-        <SubItemSelection title={'Bids'} redirectPath={routes.BIDS_PERFORMANCE} idKey={'bids_performance'}/>
+        <SubItemSelection title={'Bids Performance'} redirectPath={routes.BIDS_PERFORMANCE} idKey={'bids_performance'}/>
         <SubItemSelection title={'Customer Orders'} redirectPath={routes.CUSTOMER_ORDERS} idKey={'customer_orders'}/>
       </Panel>
       <Panel header={<DropdownSelection image={myFinance} title = {'My Finance'} redirectPath={routes.PAYMENT_ACTIVITY} idKey={3}/>} key="3" >
