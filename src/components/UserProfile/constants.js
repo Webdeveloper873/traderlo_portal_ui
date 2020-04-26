@@ -109,6 +109,6 @@ export const sellersCol = [
 ];
 
 export const genderOpt = [
-  { label: 'Male', value: 'male' },
-  { label: 'Female', value: 'female' },
+  { label: 'Male', value: 'm' },
+  { label: 'Female', value: 'f' },
 ];

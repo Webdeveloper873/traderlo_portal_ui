@@ -39,17 +39,13 @@ function* getUserProfile() {
 }
 
 function* updateUserProfile({payload}) {
-
-  const {profile} = payload || {};
-  console.log(payload,'payload');
-  console.log(profile.id,'id');
   try{
     const resp = yield call(() => request.put(`${base_url}/user/profile`,
      { headers: {
         ...headers,
-        uid: profile.id.toString(),
+        uid: 1,
         authorization: `Bearer ${getAccessToken()}` },
-        body: JSON.stringify(profile)
+        body: JSON.stringify(payload)
        }));
     if(resp){
       yield put(user.updateUserProfileSuccess(resp));

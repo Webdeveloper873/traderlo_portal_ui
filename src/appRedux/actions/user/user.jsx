@@ -37,9 +37,9 @@ export const getProfileSuccess = (profile) => ({
   payload: { profile }
 })
 
-export const updateUserProfile = (profile) => ({
+export const updateUserProfile = (payload) => ({
   type: userActTypes.UPDATE_PROFILE,
-  payload: { profile }
+  payload
 })
 
 export const updateUserProfileSuccess = (profile) => ({

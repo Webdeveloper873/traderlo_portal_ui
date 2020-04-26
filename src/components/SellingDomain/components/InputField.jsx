@@ -11,7 +11,7 @@ const { threeCol } = responsiveConf || {};
 
 const Label = ({text}) => <span className={classes.tabDetail}>{text}</span>;
 
-const InputField = ({ id, required, label, icon, colStyle, validateStatus, help, form, children, ...props }) => {
+const InputField = ({ id, required, label, icon, colStyle, validateStatus, help, form, children, customField, ...props }) => {
   const { getFieldDecorator } = form || {};
   return (
     <Col {...threeCol} {...colStyle} className={classes.marginBot20}>

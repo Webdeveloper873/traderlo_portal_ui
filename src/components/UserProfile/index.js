@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import { Col, Card, Input, Row, Form, Button, Avatar, DatePicker, Radio } from 'antd';
+import { Col, Input, Row, Form, Button, Avatar, DatePicker, Radio } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 
@@ -38,7 +38,7 @@ const UserProfile = ({ form }) => {
   const bannerPath = ['Dashboard', 'My Profile and Account', 'User Profile'];
   const profile = useSelector(({user}) => user.profile);
   console.log('userProfile', profile);
-  const { firstName, lastName, contactNo, email, profileImage, birthDate, createdDate, location, aboutMe, homePageUrl } = profile || {};
+  const { firstName, lastName, contactNo, email, profileImage, birthDate, createdDate, location, gender, aboutMe, homePageUrl } = profile || {};
 
 
   const userFetchedInfo = useSelector(({user}) => user.profile);
@@ -57,8 +57,10 @@ const UserProfile = ({ form }) => {
     })
   }
 
-  const updateProfile = () => {
-    dispatch(user.updateUserProfile(userProfile));
+  const updateProfile = e => {
+    e.preventDefault();
+    console.log('updateProfile', form.getFieldsValue());
+    dispatch(user.updateUserProfile(form.getFieldsValue()));
   }
 
   useEffect(()=>{
@@ -125,12 +127,13 @@ const UserProfile = ({ form }) => {
               <InputField form={form} required={true}
                 colWidth={threeCol}
                 label={'Date Of Birth'}
-                id='firstName'
-                initialValue={location || ''}
+                id='birthDate'
+                initialValue={birthDate || ''}
+                customField={<DatePicker size={'large'} />}
               />
               <Col {...threeCol}>
                 <Label text={'Registered On'} />
-                <div className={classes.regOn}>March 20, 2020</div>
+                <div className={classes.regOn}>{moment(createdDate).format('LL')}</div>
               </Col>
               <InputField form={form} required={true}
                 colWidth={threeCol}
@@ -139,15 +142,24 @@ const UserProfile = ({ form }) => {
                 initialValue={location || ''}
               />
             </Row>
-            <Label text={'Gender'} className={classes.marginTop15} />
             <Row gutter={16}>
-              <Radio.Group options={genderOpt} />
+              <InputField form={form} required={true}
+                label={'Gender'}
+                id='gender'
+                initialValue={gender || ''}
+                customField={<Radio.Group options={genderOpt} />}
+              />
             </Row>
-            <Row gutter={16} className={classes.marginTop15}>
-              <Label text={'About Me'} />
-              <TextArea rows={4}
-                placeholder='Description'
+            <Row gutter={16}>
+              <InputField form={form} required={true}
+                label={'About Me'}
+                id='aboutMe'
                 initialValue={aboutMe || ''}
+                customField={
+                  <TextArea rows={4}
+                    placeholder='Description'
+                  />
+                }
               />
             </Row>
             <Row gutter={16} className={classes.marginTop15}>
@@ -155,7 +167,10 @@ const UserProfile = ({ form }) => {
               <div className={classes.regOn}>{homePageUrl}</div>
             </Row>
           </Panel>
-          <Button type="primary" size={'large'} className={classes.saveBtn}>
+          <Button type="primary" size={'large'}
+            className={classes.saveBtn}
+            onClick={updateProfile}
+          >
             Save Changes
           </Button>
         </Col>
