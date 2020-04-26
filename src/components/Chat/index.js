@@ -55,7 +55,7 @@ const Chat = ({ match, ...props}) => {
   const [activeChatUser, setactiveChatUser] = useState(null);
   const { params } = match || {};
   const { activeId } = params || {};
-  const bannerPath = ['Dashboard', 'Çhat'];
+  const bannerPath = ['Dashboard', 'Chat'];
 
 
   useEffect(()=>{
