@@ -22,7 +22,12 @@ import classes from './styles.module.scss';
 
 
 const SearchBid = () => {
-  return(<Input addonAfter={<Icon type={'search'} />} size='large' />);
+  return(
+    <Input size='large'
+      placeholder='Search for User'
+      addonAfter={<Icon type={'search'} />}
+    />
+  );
 }
 
 const ChattedUserInfo = ({ details }) => {
