@@ -9,6 +9,9 @@ import InputField from 'common/components/InputField';
 
 //actions
 
+//utils
+import { useFormInput } from 'common/utils/hooks';
+
 //styles
 import classes from './styles.module.scss';
 
@@ -17,6 +20,12 @@ const { Label } = InputField;
 
 const UserSecurity = () => {
   const bannerPath = [''];
+  const comment = useFormInput('');
+
+  const onClickReport = () => {
+    //dispatch action for report
+  }
+
   return (
     <>
       <Banner text={'Report'} path={bannerPath} />
@@ -28,11 +37,15 @@ const UserSecurity = () => {
             <Label text='Description'/>
             <Row>
               <Col span={15}>
-                <TextArea rows={6} />
+                <TextArea rows={6}
+                  placeholder='Comment'
+                  onChange={comment.handleInputChange}
+                />
               </Col>
             </Row>
             <Button size='large' type='primary'
               className={classes.reportBtn}
+              onClick={onClickReport}
             >
               Report
             </Button>
