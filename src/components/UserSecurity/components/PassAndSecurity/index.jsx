@@ -65,7 +65,9 @@ const PassAndSecurity = () => {
 
   return(
     <>
-      {loginWith.toUpperCase() !== 'GOOGLE' ? <Panel header='Change Password' headerRight= {
+      { loginWith && loginWith.toUpperCase() === 'GOOGLE' ? null :
+      <Panel header='Change Password' className={classes.bottomMargin}
+        headerRight= {
         <Button type="primary" size={'large'} className={classes.saveChanges} onClick={changePassword} disabled ={(userPassword.newPassword !== userPassword.reTypeNewPassword || userPassword.newPassword === '' || userPassword.reTypeNewPassword === '') || userPassword.oldPassword === ''}>Save Changes</Button>}>
         <Row gutter={24}>
           <Col {...threeCol}>
@@ -78,8 +80,8 @@ const PassAndSecurity = () => {
             <Input.Password size='large' placeholder='Re-Type Password' name="reTypeNewPassword" onChange={onChangeUserPassword}/>
           </Col>
         </Row>
-      </Panel> : null}
-      <Panel header='Two-factor authentication' className={classes.topMargin}>
+      </Panel>}
+      <Panel header='Two-factor authentication' >
         <p className={classes.text}>Please download an authentication app such as 2FA Authenticator to your smartphone. Once activated, the app will generate a code that will be needed to unlock your account.</p>
         <Col span={22}>
           <p className={classes.text}>
