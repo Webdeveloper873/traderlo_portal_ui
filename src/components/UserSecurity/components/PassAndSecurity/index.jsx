@@ -21,11 +21,11 @@ import { openNotification } from 'common/utils/helpers';
 const { threeCol } = responsiveConf;
 
 const PassAndSecurity = () => {
-
   const dispatch = useDispatch();
   const changePasswordSuccess = useSelector(({user}) => user.changePasswordSuccess);
   const userFetchedInfo = useSelector(({user}) => user.profile);
   const [userPassword, setUserPassword] = useState({oldPassword:'', newPassword: '', reTypeNewPassword:''});
+  const { loginWith } = userFetchedInfo || {};
 
 
   useEffect(() =>{
@@ -65,7 +65,7 @@ const PassAndSecurity = () => {
 
   return(
     <>
-      <Panel header='Change Password' headerRight= {
+      {loginWith.toUpperCase() !== 'GOOGLE' ? <Panel header='Change Password' headerRight= {
         <Button type="primary" size={'large'} className={classes.saveChanges} onClick={changePassword} disabled ={(userPassword.newPassword !== userPassword.reTypeNewPassword || userPassword.newPassword === '' || userPassword.reTypeNewPassword === '') || userPassword.oldPassword === ''}>Save Changes</Button>}>
         <Row gutter={24}>
           <Col {...threeCol}>
@@ -78,7 +78,7 @@ const PassAndSecurity = () => {
             <Input.Password size='large' placeholder='Re-Type Password' name="reTypeNewPassword" onChange={onChangeUserPassword}/>
           </Col>
         </Row>
-      </Panel>
+      </Panel> : null}
       <Panel header='Two-factor authentication' className={classes.topMargin}>
         <p className={classes.text}>Please download an authentication app such as 2FA Authenticator to your smartphone. Once activated, the app will generate a code that will be needed to unlock your account.</p>
         <Col span={22}>
