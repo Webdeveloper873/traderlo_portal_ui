@@ -48,3 +48,14 @@ export const openNotification = ({status, message , description}) => {
     }
   });
 };
+
+export const hideContactNo = (number) => {
+  //+9 195 921 746 00 sample
+  if(number.length > 5){
+    const countryCode = number.substring(0, 2);
+    const visibleNum = number.substring(2, 5);
+    return `(${countryCode}) ${visibleNum} XXX XXX`;
+  }else{
+    return number
+  }
+}

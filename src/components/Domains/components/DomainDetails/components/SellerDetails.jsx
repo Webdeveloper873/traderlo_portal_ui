@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { List, Avatar, Card, Icon, Button, Row, Col } from 'antd';
@@ -11,8 +11,9 @@ import { chat } from 'appRedux/actions/user';
 //styles
 import classes from '../styles.module.scss';
 
-//constants
+//utils
 import { responsiveConf } from 'common/constants';
+import { hideContactNo } from 'common/utils/helpers';
 
 const { twoCol } = responsiveConf;
 
@@ -31,9 +32,14 @@ const Description = ({ user }) => {
 }
 
 const SellerDetails = ({ onClickWatch, domainDetails }) => {
+  const [hideContact, setHideContact] = useState(true);
   const dispatch = useDispatch();
   const { user } = domainDetails || {};
   const { id, firstName, lastName, contactNo, address, profileImage } = user || {};
+
+  const revealPhoneNo = () => {
+    setHideContact(false);
+  }
 
   useEffect(()=>{
     dispatch(chat.getOnlineStatus({ id }));
@@ -51,8 +57,12 @@ const SellerDetails = ({ onClickWatch, domainDetails }) => {
       </List.Item>
       {contactNo ? <Card className={`${classes.sellerDetailsCard} ${classes.phoneNumberCard}`}>
         <Icon type="lock" className={classes.padlock}/>
-        <span className={classes.number}>(+1) 234 XXX XXXX</span>
-        <span className={classes.showNumber}>Click to Reveal Phone No.</span>
+        <span className={classes.number}>{hideContact ? hideContactNo(contactNo) : contactNo}</span>
+        <span className={classes.showNumber}
+          onClick={revealPhoneNo}
+        >
+          Click to Reveal Phone No.
+          </span>
       </Card> : null}
       {address ? <Card className={`${classes.sellerDetailsCard} ${classes.addressCard}`}>
         <Icon type="pushpin" className={classes.padlock} />
