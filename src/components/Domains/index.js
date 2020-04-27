@@ -43,8 +43,8 @@ const SliderFilter = ({ sliderVal, amtLabel, ...props}) => {
 const Filters = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-  const [domainMinPrice, setDomainMinPrice] = useState(0);
-  const [domainMaxPrice, setDomainMaxPrice] = useState(0);
+  const [domainMinPrice, setDomainMinPrice] = useState();
+  const [domainMaxPrice, setDomainMaxPrice] = useState();
   const [domainAge, setDomainAge] = useState([0, 20]);
   const [domainLength, setDomainLength] = useState([0, 20]);
   const [timeRemaining, setTimeRemaining] = useState([0, 20]);
