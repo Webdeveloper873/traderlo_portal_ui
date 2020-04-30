@@ -27,7 +27,7 @@ import TimeFrame from 'assets/bidding/timeframe.png';
 import PaymentsImg from 'assets/bidding/payments.png';
 
 //constants
-import {responsiveConf} from 'common/constants';
+import { responsiveConf, routes } from 'common/constants';
 import SimilarPost from './components/SimilarPost';
 
 
@@ -70,7 +70,13 @@ const LeftPane = (domainDetails) => {
       <Card className={classes.report}>
         <div className={classes.boldLabel}>Report</div>
         <p className={classes.marginTop15}>{`Does this listing violate the Free Domain Auction `}<span className={classes.blueLink}>Terms and Conditions</span>{`?`}</p>
-        <p className={classes.marginTop15}>{`If so, anonymously `}<span className={classes.blueLink}>report it here</span>{`.`}</p>
+        <p className={classes.marginTop15}>
+          {`If so, anonymously `}
+          <Link to={routes.REPORT} >
+            <span className={classes.blueLink}>report it here</span>
+          </Link>
+          {`.`}
+        </p>
       </Card>
     </Col>
   );
