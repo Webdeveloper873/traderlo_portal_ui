@@ -128,7 +128,7 @@ const UserProfile = ({ form }) => {
                 colWidth={threeCol}
                 label={'Date Of Birth'}
                 id='birthDate'
-                initialValue={birthDate || ''}
+                initialValue={birthDate ? moment(birthDate) : ''}
                 customField={<DatePicker size={'large'} />}
               />
               <Col {...threeCol}>
