@@ -292,7 +292,7 @@ const SearchKeyword = () => {
             <Option value="AT_END">At End</Option>
             <Option value="EXACT">Exact</Option>
           </Select>
-          <Input.Search style={{ width: '220px ' }} enterButton onSearch={onSearchKeyword} />
+          <Input.Search style={{ width: '220px ' }} enterButton onSearch={onSearchKeyword} placeholder='Keyword' />
         </Input.Group>
       </div>
       <Divider/>
