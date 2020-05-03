@@ -108,6 +108,7 @@ function* deleteAccount({ payload }) {
 
 
 function* charge({ payload }) {
+  const { domainData, ...others } = payload || {};
   try {
     const resp = yield call(() => request.post(`${base_url}/stripe/charge`,
       {
@@ -116,7 +117,30 @@ function* charge({ payload }) {
           'content-type': 'application/json',
           authorization: `Bearer ${getAccessToken()}`,
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(others)
+      }
+    ));
+    if (resp) {
+      yield put(payment.saveCharged(domainData));
+    }
+  } catch (err) {
+    console.log('err: ', err);
+    yield put(payment.chargeFailed(err));
+  }
+}
+
+
+function* saveCharged({ payload }) {
+  const { id, ...others } = payload || {};
+  try {
+    const resp = yield call(() => request.post(`${base_url}/listing/${id}/order`,
+      {
+        headers: {
+          ...headers,
+          'content-type': 'application/json',
+          authorization: `Bearer ${getAccessToken()}`,
+        },
+        body: JSON.stringify(others)
       }
     ));
     if (resp) {
@@ -126,6 +150,11 @@ function* charge({ payload }) {
     console.log('err: ', err);
     yield put(payment.chargeFailed(err));
   }
+}
+
+
+export function* saveChargedWatcher() {
+  yield takeEvery(paymentTypes.SAVE_CHARGE, saveCharged);
 }
 
 
@@ -156,5 +185,6 @@ export default function* rootSaga() {
     fork(addAccountWatcher),
     fork(deleteAccountWatcher),
     fork(chargeWatcher),
+    fork(saveChargedWatcher),
   ]);
 }
