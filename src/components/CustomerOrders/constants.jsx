@@ -1,5 +1,6 @@
 import React from 'react';
 import { Tag, Avatar } from 'antd';
+import moment from 'moment';
 
 //components
 import TableNameCol from 'common/components/TableNameCol';
@@ -13,8 +14,8 @@ import paymentsImg from 'assets/myOrders/payments.png';
 export const columns = [
   {
     title: 'Order Id',
-    dataIndex: 'noOfBids',
-    key: 'noOfBids',
+    dataIndex: 'orderId',
+    key: 'orderId',
     render: text => {
       return `#${text}`;
     }
@@ -39,6 +40,7 @@ export const columns = [
     title: 'Sold Date',
     dataIndex: 'soldDate',
     key: 'soldDate',
+    render: (text) => moment(text).format('LL')
   },
   {
     title: 'Invoice',
