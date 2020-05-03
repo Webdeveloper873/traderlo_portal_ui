@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Icon } from 'antd';
+import moment from 'moment';
 
 //components
 import TableNameCol from 'common/components/TableNameCol';
@@ -36,6 +37,7 @@ export const bidPerfCol = (onEditListing, onDeleteListing) => {
       title: 'Bid End Date',
       dataIndex: 'endDate',
       key: 'endDate',
+      render: (text) => moment(text).format('LL')
     },
     {
       title: 'Action',
@@ -45,7 +47,6 @@ export const bidPerfCol = (onEditListing, onDeleteListing) => {
         const { id } = record || {};
         return (
           <>
-            <Icon type="edit" theme="twoTone" className={classes.actionStyle} />
             <Link to={`${routes.SELLING_DOMAINS_PAGE}?edit=true`}>
               <Icon type="edit" theme="twoTone" className={classes.actionStyle}
                 onClick={() => {
