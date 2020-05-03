@@ -29,7 +29,7 @@ const SearchBid = () => {
 
 const BidPerformance = () => {
   const dispatch = useDispatch();
-  const bidsPerf = useSelector(({ sellingActivities }) => sellingActivities.bidsPerf);
+  const bidPerf = useSelector(({ sellingActivities }) => sellingActivities.bidPerf);
   const bannerPath = ['Dashboard', 'Selling Activities', 'Bids Performance'];
 
   const onEditListing = id => {
@@ -53,7 +53,7 @@ const BidPerformance = () => {
         </Col>
         <Col xs={24} sm={24} md={18} lg={18} className={classes.customPadding}>
           <Card type="inner" title={'Bids Performance'} extra={<SearchBid />} className={classes.tableContainer}>
-            <Table dataSource={bidsPerf}
+            <Table dataSource={bidPerf}
               columns={bidPerfCol(onEditListing, onDeleteListing)}
             />
           </Card>

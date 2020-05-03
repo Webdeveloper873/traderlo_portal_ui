@@ -6,7 +6,7 @@ import classes from './styles.module.scss';
 
 const Label = ({ text, className }) => <span className={`${classes.label} ${className}`}>{text}</span>;
 
-const InputField = ({ id, required, label, icon, colStyle, colWidth, validateStatus, help, form, children, initialValue, customField, ...props }) => {
+const InputField = ({ id, type, required, label, icon, colStyle, colWidth, validateStatus, help, form, children, initialValue, customField, ...props }) => {
   const { getFieldDecorator } = form || {};
   return (
     <Col span={24} {...colWidth} {...colStyle} className={classes.marginBot20}>
@@ -14,7 +14,7 @@ const InputField = ({ id, required, label, icon, colStyle, colWidth, validateSta
       <Form.Item validateStatus={validateStatus} help={help}>
         {getFieldDecorator(id || 'passId', {
           initialValue,
-          rules: [{ required: required, message: 'This field is required!' }],
+          rules: [{ required: required, message: 'This is not a valid input!', type: type || 'string' }],
         })(
           customField? customField : <Input {...props} addonBefore={icon ? <Icon type={icon} /> : null} size='large' />
         )}
