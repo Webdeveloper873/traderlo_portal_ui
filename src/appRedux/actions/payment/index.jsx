@@ -53,6 +53,11 @@ export const charge = (payload) => ({
   payload
 })
 
+export const saveCharged = (payload) => ({
+  type: paymentTypes.SAVE_CHARGE,
+  payload
+})
+
 export const chargeSuccess = (payload) => ({
   type: paymentTypes.CHARGE_SUCCESS,
   payload

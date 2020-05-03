@@ -272,6 +272,7 @@ const CardInfo = ({info}) => {
 
 // this is for PAYMENT
 const RegisteredAccount = ({nextStep, selectedOpt}) => {
+  const domainInfo = useSelector(({ buyDomain }) => buyDomain.selectedDomainInfo)
   const dispatch = useDispatch();
 
   const debitCreditInfo = {
@@ -292,12 +293,18 @@ const RegisteredAccount = ({nextStep, selectedOpt}) => {
   const [selectedAccountNumber, setToSelectedAcct] = useState('');
 
   const onMakePayment = () => {
+    const { id, buyNowPrice, user } = domainInfo || {};
 
     const data = {
-      amount: 120,
+      amount: buyNowPrice,
       paymentId: 12,
       currency: "eur",
-      type: selectedOpt === 1 ? "CARD" : "ACCOUNT"
+      type: selectedOpt === 1 ? "CARD" : "ACCOUNT",
+      domainData: {
+        id,
+        amount: buyNowPrice,
+        sellerId: user && user.id,
+      }
     }
     dispatch(payment.charge(data));
   }
