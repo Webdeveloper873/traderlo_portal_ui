@@ -164,7 +164,7 @@ const UserProfile = ({ form }) => {
             </Row>
             <Row gutter={16} className={classes.marginTop15}>
               <Label text={'Public Profile Url:'} />
-              <div className={classes.regOn}>{homePageUrl}</div>
+              <div className={classes.regOn}>{homePageUrl || 'n/a'}</div>
             </Row>
           </Panel>
           <Button type="primary" size={'large'}
